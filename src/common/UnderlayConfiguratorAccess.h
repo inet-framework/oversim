@@ -24,7 +24,7 @@
 #ifndef __UNDERLAYCONFIGURATOR_ACCESS_H__
 #define __UNDERLAYCONFIGURATOR_ACCESS_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "UnderlayConfigurator.h"
 

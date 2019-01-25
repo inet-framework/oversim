@@ -26,7 +26,7 @@
 #define __SINGLEHOSTUNDERLAYCONFIGURATOR_H__
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <BasicModule.h>
 
 #include <UnderlayConfigurator.h>

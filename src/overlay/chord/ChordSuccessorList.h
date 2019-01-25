@@ -26,7 +26,7 @@
 
 #include <map>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <InitStages.h>
 #include <NodeHandle.h>

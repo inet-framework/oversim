@@ -28,7 +28,7 @@
 
 #include <oversim_mapset.h>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <RpcState.h>
 #include <RpcListener.h>

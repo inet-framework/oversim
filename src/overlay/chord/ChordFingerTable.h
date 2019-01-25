@@ -27,7 +27,7 @@
 #include <deque>
 #include <map>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <NodeVector.h>
 #include <InitStages.h>

@@ -21,7 +21,7 @@
 
 #include <assert.h>
 #include <sstream>
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <GlobalStatisticsAccess.h>
 #include "MessageObserver.h"
 #include "ALMTestTracedMessage_m.h"
@@ -42,7 +42,7 @@ MessageObserver::~MessageObserver() {
 void MessageObserver::initialize() {
     WATCH_MAP(groups);
     WATCH_MAP(joinedAt);
-    WATCH_MAP(receivedAt);
+    //WATCH_MAP(receivedAt); //TODO
     WATCH(numLooped);
 
     numLooped = 0;

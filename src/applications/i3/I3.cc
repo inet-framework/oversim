@@ -30,7 +30,7 @@
 #include <GlobalNodeListAccess.h>
 #include <UnderlayConfiguratorAccess.h>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <OverlayKey.h>
 #include "SHA1.h"
 

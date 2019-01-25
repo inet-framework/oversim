@@ -24,7 +24,7 @@
 #include "RealworldConnector.h"
 
 #include <string.h>
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 
 RealworldConnector::RealworldConnector()
@@ -115,7 +115,7 @@ void RealworldConnector::handleMessage(cMessage *msg)
         transmitToNetwork(check_and_cast<cPacket*>(msg));
     }
 
-    if (ev.isGUI())
+    if (hasGUI())
         updateDisplayString();
 
 }
@@ -153,7 +153,7 @@ void RealworldConnector::updateDisplayString()
 {
     char buf[80];
 
-    if (ev.isDisabled()) {
+    if (getEnvir()->isExpressMode()) {
         // speed up things
         getDisplayString().setTagArg("t",0,"");
     }

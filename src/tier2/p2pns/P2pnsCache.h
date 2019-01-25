@@ -29,7 +29,7 @@
 #include <deque>
 #include <sstream>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <NodeHandle.h>
 #include <InitStages.h>

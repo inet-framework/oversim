@@ -25,7 +25,7 @@
 #define __GLOBALNODELISTACCESS_H__
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "GlobalNodeList.h"
 
 

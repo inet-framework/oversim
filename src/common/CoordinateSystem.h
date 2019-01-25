@@ -26,7 +26,7 @@
 #include <stdint.h>
 #include <vector>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 class Prox;
 class NeighborCache;

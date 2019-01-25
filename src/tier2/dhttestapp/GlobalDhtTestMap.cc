@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <GlobalStatisticsAccess.h>
 

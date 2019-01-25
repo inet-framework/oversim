@@ -29,8 +29,9 @@
 
 class BinaryValue;
 class OverlayKeyBit;
+namespace omnetpp {
 class cCommBuffer;
-
+}
 /**
  * replacement function for mpn_random() using omnet's rng
  */
@@ -509,14 +510,14 @@ public:
      *
      * @param b the buffer
      */
-    void netPack(cCommBuffer *b);
+    void netPack(omnetpp::cCommBuffer *b);
 
     /**
      * deserializes the object from a buffer
      *
      * @param b the buffer
      */
-    void netUnpack(cCommBuffer *b);
+    void netUnpack(omnetpp::cCommBuffer *b);
 };
 
 /**
@@ -573,7 +574,7 @@ class OverlayKeyBit
  * @param b the buffer
  * @param obj the OverlayKey to serialise
  */
-inline void doPacking(cCommBuffer *b, OverlayKey& obj) {obj.netPack(b);}
+inline void doPacking(omnetpp::cCommBuffer *b, OverlayKey& obj) {obj.netPack(b);}
 
 /**
  * netUnpack for OverlayKey
@@ -581,6 +582,6 @@ inline void doPacking(cCommBuffer *b, OverlayKey& obj) {obj.netPack(b);}
  * @param b the buffer
  * @param obj the OverlayKey to unserialise
  */
-inline void doUnpacking(cCommBuffer *b, OverlayKey& obj) {obj.netUnpack(b);}
+inline void doUnpacking(omnetpp::cCommBuffer *b, OverlayKey& obj) {obj.netUnpack(b);}
 
 #endif

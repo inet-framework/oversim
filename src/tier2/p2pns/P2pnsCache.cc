@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "P2pnsCache.h"
 
@@ -177,7 +177,7 @@ void P2pnsCache::removeData(const BinaryValue& name)
 void P2pnsCache::updateDisplayString()
 {
 // FIXME: doesn't work without tcl/tk
-    //if (ev.isGUI()) {
+    //if (hasGUI()) {
     if (1) {
         char buf[80];
 
@@ -195,7 +195,7 @@ void P2pnsCache::updateDisplayString()
 
 void P2pnsCache::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream str;
         for (uint32_t i = 0; i < cache.size(); i++)	{
             str << getDataAtPos(i);

@@ -24,7 +24,7 @@
 #ifndef __BINARYVALUE_H_
 #define __BINARYVALUE_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 class BinaryValue : public std::vector<char>, public cPolymorphic {
   public:

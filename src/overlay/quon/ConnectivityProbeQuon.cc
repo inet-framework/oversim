@@ -264,7 +264,7 @@ void ConnectivityProbeQuon::handleMessage(cMessage* msg)
 
 void ConnectivityProbeQuon::extractTopology()
 {
-    for(int i=0; i<=simulation.getLastModuleId(); i++) {
+    for(int i=0; i<=getSimulation()->getLastComponentId(); i++) {
         cModule* module = simulation.getModule(i);
         if(module && dynamic_cast<Quon*>(module)) {
             Quon* quonp = check_and_cast<Quon*>(module);

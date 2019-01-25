@@ -26,6 +26,6 @@ public:
     OverSimMessage& operator=(const OverSimMessage& other) {OverSimMessage_Base::operator=(other); return *this;}
     virtual OverSimMessage *dup() const {return new OverSimMessage(*this);}
 
-    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimPack(cCommBuffer *b) const;
     virtual void parsimUnpack(cCommBuffer *b);
 };

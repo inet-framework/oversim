@@ -55,7 +55,7 @@ void RealtimeScheduler::startRun()
     module = NULL;
     notificationMsg = NULL;
 
-    appConnectionLimit = ev.getConfig()->getAsInt(CFGID_EXTERNALAPP_CONNECTION_LIMIT, 0);
+    appConnectionLimit = getEnvir()->getConfig()->getAsInt(CFGID_EXTERNALAPP_CONNECTION_LIMIT, 0);
 
     if (initializeNetwork()) {
         opp_error("realtimeScheduler error: initializeNetwork failed\n");
@@ -306,10 +306,10 @@ int RealtimeScheduler::receiveUntil(const timeval& targetTime)
     while (targetTime.tv_sec-curTime.tv_sec >=2 ||
             timeval_diff_usec(targetTime, curTime) >= 200000) {
         if (receiveWithTimeout(100000)) { // 100ms
-            if (ev.idle()) return -1;
+            if (getEnvir()->idle()) return -1;
             return 1;
         }
-        if (ev.idle()) return -1;
+        if (getEnvir()->idle()) return -1;
         gettimeofday(&curTime, NULL);
     }
 
@@ -317,14 +317,23 @@ int RealtimeScheduler::receiveUntil(const timeval& targetTime)
     long usec = timeval_diff_usec(targetTime, curTime);
     if (usec>0)
         if (receiveWithTimeout(usec)) {
-            if (ev.idle()) return -1;
+            if (getEnvir()->idle()) return -1;
             return 1;
         }
-    if (ev.idle()) return -1;
+    if (getEnvir()->idle()) return -1;
     return 0;
 }
 
+#if OMNETPP_VERSION >= 0x0500
+cEvent *RealtimeScheduler::guessNextEvent()
+{
+    return sim->getFES()->peekFirst();
+}
+cEvent *RealtimeScheduler::takeNextEvent()
+#else
 cMessage *RealtimeScheduler::getNextEvent()
+#define cEvent cMessage
+#endif
 {
     // assert that we've been configured
     if (!module)
@@ -335,15 +344,15 @@ cMessage *RealtimeScheduler::getNextEvent()
 
     // calculate target time
     timeval targetTime;
-    cMessage *msg = sim->msgQueue.peekFirst();
-    if (!msg) {
+    cEvent *event = sim->getFES()->peekFirst();
+    if (!event) {
         // if there are no events, wait until something comes from outside
         // TBD: obey simtimelimit, cpu-time-limit
         targetTime.tv_sec = LONG_MAX;
         targetTime.tv_usec = 0;
     } else {
         // use time of next event
-        simtime_t eventSimtime = msg->getArrivalTime();
+        simtime_t eventSimtime = event->getArrivalTime();
         targetTime = timeval_add(baseTime, SIMTIME_DBL(eventSimtime));
     }
 
@@ -356,7 +365,7 @@ cMessage *RealtimeScheduler::getNextEvent()
             printf("WARNING: receiveUntil returned -1 (user interrupt)\n");
             return NULL; // interrupted by user
         } else if (status == 1) {
-            msg = sim->msgQueue.peekFirst(); // received something
+            event = sim->getFES()->peekFirst(); // received something
         }
     } else {
         //    printf("WARNING: Lagging behind realtime!\n");
@@ -364,8 +373,16 @@ cMessage *RealtimeScheduler::getNextEvent()
         // alert if we're too much behind, whatever that means
     }
     // ok, return the message
-    return msg;
+    return event;
 }
+#undef cEvent
+
+#if OMNETPP_VERSION >= 0x0500
+void RealtimeScheduler::putBackEvent(cEvent *event)
+{
+    sim->getFES()->putBackFirst(event);
+}
+#endif
 
 void RealtimeScheduler::closeAppSocket(SOCKET fd)
 {
@@ -401,8 +418,8 @@ void RealtimeScheduler::sendNotificationMsg(cMessage* msg, cModule* mod)
     if (t < simTime()) t = simTime();
 
     msg->setSentFrom(mod, -1, simTime());
-    msg->setArrival(mod,-1,t);
-    simulation.msgQueue.insert(msg);
+    msg->setArrival(mod->getId(),-1,t);
+    getSimulation()->getActiveSimulation()->insertEvent(msg);
 }
 
 ssize_t RealtimeScheduler::sendBytes(const char *buf,

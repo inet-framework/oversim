@@ -20,7 +20,7 @@
  * @author Antonio Zea
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <IPAddressResolver.h>
 #include <GlobalNodeListAccess.h>
 #include <InitStages.h>
@@ -44,7 +44,7 @@ using namespace std;
 
 I3BaseApp::I3CachedServer::I3CachedServer() :
         lastReply(0),
-        roundTripTime(MAXTIME)
+        roundTripTime(SIMTIME_MAX)
 {
 }
 
@@ -348,7 +348,7 @@ I3Identifier I3BaseApp::retrieveClosestIdentifier()
     map<I3Identifier, I3CachedServer>::iterator mit;
     I3IPAddress myAddress(nodeIPAddress, par("clientPort"));
 
-    time = MAXTIME;
+    time = SIMTIME_MAX;
     for (mit = samplingCache.begin(); mit != samplingCache.end(); mit++) {
         if (time > mit->second.roundTripTime) {
             time = mit->second.roundTripTime;

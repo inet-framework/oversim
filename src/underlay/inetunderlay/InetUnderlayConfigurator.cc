@@ -356,7 +356,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
         nodeAddresses[i] = addr;
 
         // update ip display string
-        if (ev.isGUI()) {
+        if (hasGUI()) {
             topo.getNode(i)->getModule()->getDisplayString().insertTag("t", 0);
             topo.getNode(i)->getModule()->getDisplayString().setTagArg("t", 0,
                                     const_cast<char*>(IPAddress(addr).str().c_str()));
@@ -515,7 +515,7 @@ void InetUnderlayConfigurator::setUpIPv6(cTopology &topo)
         nodeAddresses[i] = addr;
 
         // update ip display string
-        if (ev.isGUI()) {
+        if (hasGUI()) {
             topo.getNode(i)->getModule()->getDisplayString().insertTag("t", 0);
             topo.getNode(i)->getModule()->getDisplayString().setTagArg("t", 0,
                                     const_cast<char*>(IPv6Address(addr.d0, addr.d1, addr.d2, addr.d3).str().c_str()));
@@ -626,7 +626,7 @@ double uniform2(double start, double end, double index, double new_calc)
     if ( (unsigned int)index >= value.size() )
         value.resize((int)index + 1);
     if ( new_calc == 1 )
-        value[(int)index] = uniform(start, end);
+        value[(int)index] = RNGCONTEXT uniform(start, end);
     return value[(int)index];
 };
 
@@ -645,7 +645,7 @@ double intuniform2(double start, double end, double index, double new_calc)
     if ( (unsigned int)index >= value.size() )
         value.resize((int)index + 1);
     if ( new_calc == 1 )
-        value[(int)index] = (double)intuniform((int)start, (int)end);
+        value[(int)index] = (double)(RNGCONTEXT intuniform((int)start, (int)end));
     return value[(int)index];
 };
 

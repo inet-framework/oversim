@@ -24,7 +24,7 @@
 #include <vector>
 #include <iostream>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <IRoutingTable.h>
 #include <IInterfaceTable.h>
@@ -158,7 +158,7 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 //    }
 
     // update ip display string
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         const char* ip_disp = const_cast<char*>
         (terminal.IPAddress.str().c_str());
         terminal.module->getDisplayString().insertTag("t", 0);
@@ -438,7 +438,7 @@ cModule* AccessNet::getOverlayNode(int ID)
 
 void AccessNet::updateDisplayString()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         char buf[80];
         if ( overlayTerminal.size() == 1 ) {
             sprintf(buf, "1 terminal connected");

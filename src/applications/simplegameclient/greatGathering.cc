@@ -27,8 +27,8 @@ greatGathering::greatGathering(double areaDimension, double speed, NeighborMap *
                :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)
 {
     if(coordinator->getPeerCount() == 0) {
-        target.x = uniform(areaDimension / 3, 2 * areaDimension / 3);
-        target.y = uniform(areaDimension / 3, 2 * areaDimension / 3);
+        target.x = RNGCONTEXT uniform(areaDimension / 3, 2 * areaDimension / 3);
+        target.y = RNGCONTEXT uniform(areaDimension / 3, 2 * areaDimension / 3);
         coordinator->increasePositionSize();
         coordinator->setPosition(0, target);
         coordinator->increasePeerCount();

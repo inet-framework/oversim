@@ -1138,7 +1138,7 @@ void Vast::sendMessage(VastMessage *vastMsg, NodeHandle destAddr)
 
 void Vast::setBootstrapedIcon()
 {
-    if(ev.isGUI()) {
+    if(hasGUI()) {
         if(state == READY) {
             getParentModule()->getParentModule()->getDisplayString().setTagArg("i2", 1, "green");
             getDisplayString().setTagArg("i", 1, "green");

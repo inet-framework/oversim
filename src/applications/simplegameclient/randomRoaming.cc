@@ -26,8 +26,8 @@
 randomRoaming::randomRoaming(double areaDimension, double speed, NeighborMap *Neighbors, GlobalCoordinator* coordinator, CollisionList* CollisionRect)
               :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)
 {
-    target.x = uniform(0.0, areaDimension);
-    target.y = uniform(0.0, areaDimension);
+    target.x = RNGCONTEXT uniform(0.0, areaDimension);
+    target.y = RNGCONTEXT uniform(0.0, areaDimension);
 }
 
 void randomRoaming::move()
@@ -40,7 +40,7 @@ void randomRoaming::move()
     }
 
     if(target.distanceSqr(position) < speed * speed) {
-        target.x = uniform(0.0, areaDimension);
-        target.y = uniform(0.0, areaDimension);
+        target.x = RNGCONTEXT uniform(0.0, areaDimension);
+        target.y = RNGCONTEXT uniform(0.0, areaDimension);
     }
 }

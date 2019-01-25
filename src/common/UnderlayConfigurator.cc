@@ -21,7 +21,7 @@
  * @author Stephan Krause, Bernhard Heep, Ingmar Baumgart
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <GlobalNodeListAccess.h>
 #include <ChurnGeneratorAccess.h>
 #include <GlobalStatisticsAccess.h>
@@ -214,7 +214,7 @@ void UnderlayConfigurator::finishUnderlay()
 
 void UnderlayConfigurator::consoleOut(const std::string& text)
 {
-    if (!ev.isGUI()) {
+    if (!hasGUI()) {
         struct timeval now, diff;
         gettimeofday(&now, NULL);
         diff = timeval_substract(now, initStartTime);

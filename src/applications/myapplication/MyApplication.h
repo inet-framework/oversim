@@ -23,7 +23,7 @@
 #ifndef MYAPPLICATION_H
 #define MYAPPLICATION_H
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "BaseApp.h"
 

@@ -537,7 +537,7 @@ void NeighborCache::updateEntry(const TransportAddress& address,
 TransportAddress NeighborCache::getNearestNode(uint8_t maxLayer)
 {
     TransportAddress nearestNode = TransportAddress::UNSPECIFIED_NODE;
-    simtime_t nearestNodeRtt = MAXTIME;
+    simtime_t nearestNodeRtt = SIMTIME_MAX;
     NeighborCacheIterator it;
 
     for(it = neighborCache.begin(); it != neighborCache.end(); it++ ) {

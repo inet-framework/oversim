@@ -96,8 +96,8 @@ SimpleNodeEntry::SimpleNodeEntry(cModule* node,
     index = -1;
 
     // use random values as coordinates
-    nodeRecord->coords[0] = uniform(0, fieldSize) - fieldSize / 2;
-    nodeRecord->coords[1] = uniform(0, fieldSize) - fieldSize / 2;
+    nodeRecord->coords[0] = RNGCONTEXT uniform(0, fieldSize) - fieldSize / 2;
+    nodeRecord->coords[1] = RNGCONTEXT uniform(0, fieldSize) - fieldSize / 2;
 
     SimpleNodeEntry(node, typeRx, typeTx, sendQueueLength, nodeRecord, index);
 }
@@ -153,8 +153,8 @@ SimpleNodeEntry::SimpleDelay SimpleNodeEntry::calcDelay(cPacket* msg,
                                                         const SimpleNodeEntry& dest,
                                                         bool faultyDelay)
 {
-    if ((pow(1 - tx.errorRate, msg->getByteLength() * 8) <= uniform(0, 1)) ||
-        (pow(1 - dest.rx.errorRate, msg->getByteLength() * 8) <= uniform(0, 1))) {
+    if ((pow(1 - tx.errorRate, msg->getByteLength() * 8) <= RNGCONTEXT uniform(0, 1)) ||
+        (pow(1 - dest.rx.errorRate, msg->getByteLength() * 8) <= RNGCONTEXT uniform(0, 1))) {
         msg->setBitError(true);
     }
 

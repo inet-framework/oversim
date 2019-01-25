@@ -16,9 +16,9 @@
 void DiscoveryMode::init(NeighborCache* neighborCache)
 {
     this->neighborCache = neighborCache;
-    nearNodeRtt = MAXTIME;
+    nearNodeRtt = SIMTIME_MAX;
     nearNodeImproved = false;
-    firstRtt = SIMTIME_DBL(MAXTIME);
+    firstRtt = SIMTIME_DBL(SIMTIME_MAX);
     improvement = 0;
     maxIndex = -1;
     finished = false;

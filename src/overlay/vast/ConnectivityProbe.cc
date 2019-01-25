@@ -256,7 +256,7 @@ void ConnectivityProbe::handleMessage(cMessage* msg)
 
 void ConnectivityProbe::extractTopology()
 {
-    for(int i=0; i<=simulation.getLastModuleId(); i++) {
+    for(int i=0; i<=simulation.getLastComponentId(); i++) {
         cModule* module = simulation.getModule(i);
         if(module && dynamic_cast<Vast*>(module)) {
             Vast* vast = check_and_cast<Vast*>(module);

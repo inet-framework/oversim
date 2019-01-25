@@ -26,7 +26,7 @@
 
 #define WANT_WINSOCK2
 #include <platdep/sockets.h>
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <list>
 #include <climits>
 
@@ -178,13 +178,30 @@ public:
     void registerSocket(SOCKET fd, cModule *mod, cMessage *notifMsg,
                         PacketBuffer* buffer, int mtu);
 
+#if OMNETPP_VERSION >= 0x0500
+        /**
+         * Returns the first event in the Future Event Set.
+         */
+        virtual cEvent *guessNextEvent();
 
-    /**
-     * Scheduler function -- it comes from cScheduler interface.
-     */
-    virtual cMessage *getNextEvent();
+        /**
+         * Scheduler function -- it comes from the cScheduler interface.
+         */
+        virtual cEvent *takeNextEvent();
 
-    /**
+        /**
+         * Scheduler function -- it comes from the cScheduler interface.
+         */
+        virtual void putBackEvent(cEvent *event);
+#else
+        /**
+         * Scheduler function -- it comes from cScheduler interface.
+         */
+        virtual cEvent *getNextEvent();
+#endif
+#undef cEvent
+
+        /**
      * send notification msg to module
      *
      * \param msg The notification Message

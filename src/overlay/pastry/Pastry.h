@@ -29,7 +29,7 @@
 #include <queue>
 #include <algorithm>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <IPvXAddress.h>
 
 #include <OverlayKey.h>

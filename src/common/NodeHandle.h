@@ -28,7 +28,7 @@
 //#include <stdint.h>
 //#include <oversim_mapset.h>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <OverlayKey.h>
 #include <TransportAddress.h>

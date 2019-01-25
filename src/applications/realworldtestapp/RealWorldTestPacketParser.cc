@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "RealWorldTestPacketParser.h"
 

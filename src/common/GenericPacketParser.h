@@ -24,7 +24,7 @@
 #ifndef __GENERICPACKETPARSER_H_
 #define __GENERICPACKETPARSER_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <PacketParser.h>
 #include <cnetcommbuffer.h>

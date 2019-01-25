@@ -26,7 +26,7 @@
 
 #include <map>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <OverlayKey.h>
 #include <BinaryValue.h>

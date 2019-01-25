@@ -25,7 +25,7 @@
 #include <vector>
 #include <iostream>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <IRoutingTable.h>
 #include <IInterfaceTable.h>
@@ -209,7 +209,7 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         terminal.ASindex = overlayNode->ASindex;
 
         // update display
-        if (ev.isGUI()) {
+        if (hasGUI()) {
                 const char* ip_disp = const_cast<char*>
                 (IPAddress(terminal.IPAddress).str().c_str());
                 terminal.module->getDisplayString().insertTag("t", 0);
@@ -464,7 +464,7 @@ void ConnectReaSE::handleMessage(cMessage* msg)
 
 void ConnectReaSE::updateDisplayString()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         char buf[80];
         if ( overlayTerminal.size() == 1 ) {
             sprintf(buf, "1 terminal connected");

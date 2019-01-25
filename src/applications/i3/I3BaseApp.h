@@ -26,7 +26,7 @@
 #define __I3BASEAPP_H__
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <UDPAppBase.h>
 #include <INotifiable.h>
 

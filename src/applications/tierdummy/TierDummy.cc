@@ -20,7 +20,7 @@
  * @author Antonio Zea
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <TierDummy.h>
 
 Define_Module(TierDummy);

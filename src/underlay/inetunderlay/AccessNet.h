@@ -24,7 +24,7 @@
 #ifndef __ACCESSNET_H__
 #define __ACCESSNET_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <InitStages.h>
 #include <IPvXAddress.h>

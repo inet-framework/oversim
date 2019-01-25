@@ -24,7 +24,7 @@
 #include <iterator>
 #include <assert.h>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "GiaNeighborCandidateList.h"
 
@@ -83,7 +83,7 @@ const NodeHandle& GiaNeighborCandidateList::get( uint32_t position )
 
 const NodeHandle& GiaNeighborCandidateList::getRandomCandidate()
 {
-    return get(intuniform(0, getSize()));
+    return get(RNGCONTEXT intuniform(0, getSize()));
 }
 
 // int GiaNeighborCandidateList::getPosition( NodeHandle node )

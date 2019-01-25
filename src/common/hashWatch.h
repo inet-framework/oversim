@@ -24,14 +24,14 @@
 #ifndef __WATCHABLECONTAINERS_H__
 #define __WATCHABLECONTAINERS_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <map>
 #include <deque>
 #include <oversim_mapset.h>
 
 template<class T>
-class SIM_API cHashSetWatcher : public cStdVectorWatcherBase
+class SIM_API cHashSetWatcher : public OPP::cStdVectorWatcherBase
 {
     protected:
         UNORDERED_SET<T>& v;
@@ -75,7 +75,7 @@ void createHashSetWatcher(const char *varname, UNORDERED_SET<T>& v)
 };
 
 template<class T>
-class SIM_API cDequeWatcher : public cStdVectorWatcherBase
+class SIM_API cDequeWatcher : public OPP::cStdVectorWatcherBase
 {
     protected:
         std::deque<T>& v;
@@ -119,7 +119,7 @@ void createDequeWatcher(const char *varname, std::deque<T>& v)
 };
 
 template<class KeyT, class ValueT, class CmpT>
-class SIM_API cHashMapWatcher : public cStdVectorWatcherBase
+class SIM_API cHashMapWatcher : public OPP::cStdVectorWatcherBase
 {
     protected:
         UNORDERED_MAP<KeyT,ValueT,CmpT>& m;
@@ -163,7 +163,7 @@ void createHashMapWatcher(const char *varname, UNORDERED_MAP<KeyT,ValueT,CmpT>& 
 };
 
 template<class KeyT, class ValueT, class CmpT>
-class SIM_API cConstHashMapWatcher : public cStdVectorWatcherBase
+class SIM_API cConstHashMapWatcher : public OPP::cStdVectorWatcherBase
 {
     protected:
         const UNORDERED_MAP<KeyT,ValueT,CmpT>& m;
@@ -207,7 +207,7 @@ void createHashMapWatcher(const char *varname, const UNORDERED_MAP<KeyT,ValueT,C
 };
 
 template<class KeyT, class ValueT, class CmpT>
-class SIM_API cPointerMapWatcher : public cStdVectorWatcherBase
+class SIM_API cPointerMapWatcher : public OPP::cStdVectorWatcherBase
 {
     protected:
         std::map<KeyT,ValueT,CmpT>& m;

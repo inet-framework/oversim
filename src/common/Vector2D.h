@@ -25,7 +25,7 @@
 #define __VECTOR2D_H_
 
 #include <math.h>
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <iostream>
 
 class Vector2D

@@ -20,7 +20,7 @@
  * @author Bernhard Heep
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <NodeHandle.h>
 #include <GlobalNodeList.h>
@@ -52,7 +52,7 @@ void TopologyVis::initVis(cModule* terminal)
 void TopologyVis::showOverlayNeighborArrow(const NodeHandle& neighbor,
                                            bool flush, const char* displayString)
 {
-    if (!ev.isGUI() || !thisTerminal)
+    if (!getEnvir()->isGUI() || !thisTerminal)
         return;
 
     char red[] = "ls=red,1";
@@ -137,7 +137,7 @@ void TopologyVis::showOverlayNeighborArrow(const NodeHandle& neighbor,
 
 void TopologyVis::deleteOverlayNeighborArrow(const NodeHandle& neighbor)
 {
-    if (!ev.isGUI() || !thisTerminal)
+    if (!getEnvir()->isGUI() || !thisTerminal)
         return;
 
     PeerInfo* peerInfo = globalNodeList->getPeerInfo(neighbor);

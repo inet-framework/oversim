@@ -168,14 +168,14 @@ void I3Identifier::createRandomKey()
 void I3Identifier::createRandomPrefix()
 {
     for (int i = 0; i < prefixLength / 8; i++) {
-        key[i] = intrand(256);
+        key[i] = RNGCONTEXT intrand(256);
     }
 }
 
 void I3Identifier::createRandomSuffix()
 {
     for (int i = prefixLength / 8; i < keyLength / 8; i++) {
-        key[i] = intrand(256);
+        key[i] = RNGCONTEXT intrand(256);
     }
 }
 

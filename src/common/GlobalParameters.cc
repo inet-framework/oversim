@@ -21,7 +21,7 @@
  * @author IngmarBaumgart
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <OverlayKey.h>
 
 #include "GlobalParameters.h"
@@ -32,8 +32,8 @@ void GlobalParameters::initialize()
 {
     printStateToStdOut = par("printStateToStdOut");
 
-    if (!ev.isDisabled()) {
-        ev.getOStream().setf(std::ios::fixed, std::ios::floatfield);
-        ev.getOStream().precision(3);
+    if (!getEnvir()->isExpressMode()) {
+        // EV.setf(std::ios::fixed, std::ios::floatfield); //TODO
+        // EV.precision(3); //TODO
     }
 }

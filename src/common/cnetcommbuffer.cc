@@ -19,7 +19,7 @@
 #include <string.h>
 #include <platdep/sockets.h>
 #include <stdexcept>
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "cnetcommbuffer.h"
 
 /*
@@ -123,17 +123,17 @@ void cNetCommBuffer::pack(unsigned long d)
 }
 
 
-void cNetCommBuffer::pack(opp_long_long d)
+void cNetCommBuffer::pack(long long d)
 {
-    extendBufferFor(sizeof(opp_long_long));
-    STORE(opp_long_long,d);
+    extendBufferFor(sizeof(long long));
+    STORE(long long,d);
 }
 
 
-void cNetCommBuffer::pack(opp_unsigned_long_long d)
+void cNetCommBuffer::pack(unsigned long long d)
 {
-    extendBufferFor(sizeof(opp_unsigned_long_long));
-    STORE(opp_unsigned_long_long,d);
+    extendBufferFor(sizeof(unsigned long long));
+    STORE(unsigned long long,d);
 }
 
 
@@ -248,17 +248,17 @@ void cNetCommBuffer::pack(const unsigned long *d, int size)
 }
 
 
-void cNetCommBuffer::pack(const opp_long_long *d, int size)
+void cNetCommBuffer::pack(const long long *d, int size)
 {
-    extendBufferFor(size*sizeof(opp_long_long));
-    STOREARRAY(opp_long_long,d,size);
+    extendBufferFor(size*sizeof(long long));
+    STOREARRAY(long long,d,size);
 }
 
 
-void cNetCommBuffer::pack(const opp_unsigned_long_long *d, int size)
+void cNetCommBuffer::pack(const unsigned long long *d, int size)
 {
-    extendBufferFor(size*sizeof(opp_unsigned_long_long));
-    STOREARRAY(opp_unsigned_long_long,d,size);
+    extendBufferFor(size*sizeof(unsigned long long));
+    STOREARRAY(unsigned long long,d,size);
 }
 
 
@@ -298,7 +298,7 @@ void cNetCommBuffer::pack(const opp_string *d, int size)
 
 void cNetCommBuffer::pack(SimTime d)
 {
-    pack((opp_long_long)d.raw());
+    pack((long long)d.raw());
 }
 
 //--------------------------------
@@ -361,15 +361,15 @@ void cNetCommBuffer::unpack(unsigned long& d)
 }
 
 
-void cNetCommBuffer::unpack(opp_long_long& d)
+void cNetCommBuffer::unpack(long long& d)
 {
-    EXTRACT(opp_long_long,d);
+    EXTRACT(long long,d);
 }
 
 
-void cNetCommBuffer::unpack(opp_unsigned_long_long& d)
+void cNetCommBuffer::unpack(unsigned long long& d)
 {
-    EXTRACT(opp_unsigned_long_long,d);
+    EXTRACT(unsigned long long,d);
 }
 
 
@@ -417,7 +417,7 @@ void cNetCommBuffer::unpack(opp_string& d)
 
 void cNetCommBuffer::unpack(SimTime& d)
 {
-    opp_long_long raw;
+    long long raw;
     unpack(raw);
     d.setRaw(raw);
 }
@@ -475,15 +475,15 @@ void cNetCommBuffer::unpack(unsigned long *d, int size)
 }
 
 
-void cNetCommBuffer::unpack(opp_long_long *d, int size)
+void cNetCommBuffer::unpack(long long *d, int size)
 {
-    EXTRACTARRAY(opp_long_long,d,size);
+    EXTRACTARRAY(long long,d,size);
 }
 
 
-void cNetCommBuffer::unpack(opp_unsigned_long_long *d, int size)
+void cNetCommBuffer::unpack(unsigned long long *d, int size)
 {
-    EXTRACTARRAY(opp_unsigned_long_long,d,size);
+    EXTRACTARRAY(unsigned long long,d,size);
 }
 
 

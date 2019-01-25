@@ -1353,7 +1353,7 @@ void NTree::changeState( int newState ) {
 
 void NTree::setBootstrapedIcon()
 {
-    if(ev.isGUI()) {
+    if(hasGUI()) {
         if(state == READY) {
             getParentModule()->getParentModule()->getDisplayString().setTagArg("i2", 1, "green");
             getDisplayString().setTagArg("i", 1, "green");

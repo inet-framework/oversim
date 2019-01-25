@@ -22,7 +22,7 @@
  * @author Sebastian Mies
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "TransportAddress.h"
 

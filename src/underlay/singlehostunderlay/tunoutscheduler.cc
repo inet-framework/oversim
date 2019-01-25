@@ -56,7 +56,7 @@ int TunOutScheduler::initializeNetwork()
     dev = new char[IFNAMSIZ];
 
     // get app port (0 if external app is not used)
-    int appPort = ev.getConfig()->getAsInt(CFGID_EXTERNALAPP_APP_PORT, 0);
+    int appPort = getEnvir()->getConfig()->getAsInt(CFGID_EXTERNALAPP_APP_PORT, 0);
 
     // Initialize TCP socket for App communication if desired
     if (appPort > 0) {
@@ -100,7 +100,7 @@ int TunOutScheduler::initializeNetwork()
     }
 
     if ((netw_fd = open("/dev/net/tun", O_RDWR)) < 0 ) {
-        opp_warning("Error opening tun device");
+        opp_error("Error opening tun device");
         return 0;
     } else {
         ev << "[TunOutScheduler::initializeNetwork()]\n"
@@ -142,7 +142,7 @@ void TunOutScheduler::additionalFD() {
 
     SOCKET new_sock = accept( additional_fd, 0, 0 );
     if (new_sock == INVALID_SOCKET) {
-        opp_warning("Error connecting to remote app");
+        opp_error("Error connecting to remote app");
         return;
     }
     if (appConnectionLimit) {

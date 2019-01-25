@@ -25,7 +25,7 @@
 #ifndef __BOOTSTRAPLIST_H_
 #define __BOOTSTRAPLIST_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <BaseApp.h>
 #include <BootstrapNodeHandle.h>
 #include <NodeVector.h>

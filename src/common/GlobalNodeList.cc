@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <NotificationBoard.h>
 #include <BinaryValue.h>
@@ -401,7 +401,7 @@ cObject** GlobalNodeList::getContext(const TransportAddress& address)
 void GlobalNodeList::setOverlayReadyIcon(const TransportAddress& address,
                                          bool ready)
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         const char* color;
 
         if (ready) {

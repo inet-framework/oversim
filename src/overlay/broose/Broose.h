@@ -24,7 +24,7 @@
 #ifndef __BROOSE_H_
 #define __BROOSE_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <BaseOverlay.h>
 #include <RpcListener.h>
 #include <OverlayKey.h>
@@ -161,7 +161,7 @@ class Broose : public BaseOverlay
      * @return true, if the node was known or has been added
      */
     bool routingAdd(const NodeHandle& node, bool isAlive,
-                    simtime_t rtt = MAXTIME);
+                    simtime_t rtt = SIMTIME_MAX);
 
     /**
      * changes the node's state

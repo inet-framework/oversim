@@ -329,7 +329,7 @@ bool Kademlia::routingAdd(const NodeHandle& handle, bool isAlive,
     EV << "[Kademlia::routingAdd()] @ " << thisNode.getIp()
        << " (" << thisNode.getKey().toString(16) << ")]\n"
        << "    inserting node " << handle << " (rtt = ";
-    if (rtt == MAXTIME) {
+    if (rtt == SIMTIME_MAX) {
         EV << "<unknown>";
     } else {
         EV << SIMTIME_DBL(rtt);
@@ -340,9 +340,9 @@ bool Kademlia::routingAdd(const NodeHandle& handle, bool isAlive,
     // bucket index
     KademliaBucket::iterator i;
     bool result = false;
-    bool authenticated = (isAlive && (rtt != MAXTIME));
+    bool authenticated = (isAlive && (rtt != SIMTIME_MAX));
 
-    bool needsRtt = (activePing && ((rtt == MAXTIME) ? true : false));
+    bool needsRtt = (activePing && ((rtt == SIMTIME_MAX) ? true : false));
 
     // convert node handle
     KademliaBucketEntry kadHandle = handle;
@@ -355,7 +355,7 @@ bool Kademlia::routingAdd(const NodeHandle& handle, bool isAlive,
         // not alive? -> do not change routing information
         if (isAlive) {
             if (!secureMaintenance || authenticated) {
-                if (kadHandle.getRtt() == MAXTIME) {
+                if (kadHandle.getRtt() == SIMTIME_MAX) {
                     kadHandle.setRtt(i->getRtt());
                 }
                 // refresh sibling
@@ -388,12 +388,12 @@ bool Kademlia::routingAdd(const NodeHandle& handle, bool isAlive,
         // not alive? -> do not change routing information
         if (isAlive) {
             if (!secureMaintenance || authenticated) {
-                if (kadHandle.getRtt() == MAXTIME) {
+                if (kadHandle.getRtt() == SIMTIME_MAX) {
                     kadHandle.setRtt(i->getRtt());
                 }
 
                 // R/Kademlia
-                if (needsRtt && (kadHandle.getRtt() == MAXTIME)) {
+                if (needsRtt && (kadHandle.getRtt() == SIMTIME_MAX)) {
                     Prox prox =
                         neighborCache->getProx(kadHandle, NEIGHBORCACHE_DEFAULT, -1,
                                                this, NULL);
@@ -445,7 +445,7 @@ bool Kademlia::routingAdd(const NodeHandle& handle, bool isAlive,
     /* check if node can be added to the sibling list -----------------------*/
     if (siblingTable->isAddable(kadHandle) ) {
         if (secureMaintenance && !authenticated) {
-            if (!maintenanceLookup || (isAlive && (rtt == MAXTIME))) {
+            if (!maintenanceLookup || (isAlive && (rtt == SIMTIME_MAX))) {
                 // received a FindNodeCall or PingCall from a potential sibling
                 // or new nodes from a FindNodeResponse app lookup
                 pingNode(kadHandle);
@@ -537,7 +537,7 @@ bool Kademlia::routingAdd(const NodeHandle& handle, bool isAlive,
     bucket = routingBucket(kadHandle.getKey(), true);
     if (!bucket->isFull()) {
         if (secureMaintenance && !authenticated) {
-            if (/*!maintenanceLookup || */(isAlive && (rtt == MAXTIME))) {
+            if (/*!maintenanceLookup || */(isAlive && (rtt == SIMTIME_MAX))) {
                 // received a FindNodeCall or PingCall from a potential new bucket entry
                 // or new nodes from a FindNodeReponse app lookup
                 // optimization: don't send a ping for nodes from FindNodeResponse for app lookups
@@ -1164,7 +1164,7 @@ bool Kademlia::handleRpcCall(BaseCallMessage* msg)
         // add active node
         OverlayCtrlInfo* ctrlInfo =
             check_and_cast<OverlayCtrlInfo*>(msg->getControlInfo());
-        routingAdd(ctrlInfo->getSrcRoute(), true, MAXTIME, maintenanceLookup);
+        routingAdd(ctrlInfo->getSrcRoute(), true, SIMTIME_MAX, maintenanceLookup);
         break;
     }
     RPC_ON_CALL(FindNode)
@@ -1172,7 +1172,7 @@ bool Kademlia::handleRpcCall(BaseCallMessage* msg)
         // add active node
         OverlayCtrlInfo* ctrlInfo =
             check_and_cast<OverlayCtrlInfo*>(msg->getControlInfo());
-        routingAdd(ctrlInfo->getSrcRoute(), true, MAXTIME, maintenanceLookup);
+        routingAdd(ctrlInfo->getSrcRoute(), true, SIMTIME_MAX, maintenanceLookup);
         break;
     }
     RPC_SWITCH_END()
@@ -1210,7 +1210,7 @@ void Kademlia::handleRpcResponse(BaseResponseMessage* msg,
                 routingAdd(srcRoute, true, rtt, maintenanceLookup);
                 for (uint32_t i=0; i<_FindNodeResponse->getClosestNodesArraySize(); i++)
                     routingAdd(_FindNodeResponse->getClosestNodes(i), true,
-                               MAXTIME-1, maintenanceLookup);
+                               SIMTIME_MAX-1, maintenanceLookup);
 
                 if (newMaintenance) {
                     createLookup()->lookup(getThisNode().getKey(), s, hopCountMax, 0,
@@ -1230,14 +1230,14 @@ void Kademlia::handleRpcResponse(BaseResponseMessage* msg,
             if (defaultRoutingType == SEMI_RECURSIVE_ROUTING ||
                 defaultRoutingType == FULL_RECURSIVE_ROUTING ||
                 defaultRoutingType == RECURSIVE_SOURCE_ROUTING) {
-                rtt = MAXTIME;
+                rtt = SIMTIME_MAX;
             }
             setBucketUsage(srcRoute.getKey());
 
             // add inactive nodes
             for (uint32_t i=0; i<_FindNodeResponse->getClosestNodesArraySize(); i++)
                 routingAdd(_FindNodeResponse->getClosestNodes(i), false,
-                           MAXTIME, maintenanceLookup);
+                           SIMTIME_MAX, maintenanceLookup);
             break;
         }
     RPC_SWITCH_END()
@@ -1428,7 +1428,7 @@ OverlayKey Kademlia::distance(const OverlayKey& x,
 
 void Kademlia::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream ttString;
 
         // show our nodeId in a tooltip

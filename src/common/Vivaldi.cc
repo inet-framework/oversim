@@ -45,7 +45,7 @@ void Vivaldi::init(NeighborCache* neighborCache)
 
     for (uint32_t i = 0; i < dimension; i++) {
         //ownCoords->setCoords(i, uniform(-.2, .2));
-        ownCoords->setCoords(i, uniform(-200, 200));
+        ownCoords->setCoords(i, RNGCONTEXT uniform(-200, 200));
     }
     if (enableHeightVector) ownCoords->setHeightVector(0.0);
 

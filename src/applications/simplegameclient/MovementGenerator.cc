@@ -37,8 +37,8 @@ MovementGenerator::MovementGenerator(double areaDimension, double speed, Neighbo
     this->CollisionRect = CollisionRect;
 
     Vector2D center(areaDimension / 2, areaDimension / 2);
-    position.x = uniform(0.0, areaDimension);
-    position.y = uniform(0.0, areaDimension);
+    position.x = RNGCONTEXT uniform(0.0, areaDimension);
+    position.y = RNGCONTEXT uniform(0.0, areaDimension);
     direction = center - position;
     direction.normalize();
     if(CollisionRect != NULL) {

@@ -24,7 +24,7 @@
 #ifndef __COORDBASEDROUTING_ACCESS_H__
 #define __COORDBASEDROUTING_ACCESS_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "CoordBasedRouting.h"
 
 

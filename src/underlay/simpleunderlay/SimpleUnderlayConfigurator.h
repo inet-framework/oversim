@@ -24,7 +24,7 @@
 #ifndef __SIMPLEUNDERLAYCONFIGURATOR_H__
 #define __SIMPLEUNDERLAYCONFIGURATOR_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <BasicModule.h>
 #include <deque>
 #include <set>

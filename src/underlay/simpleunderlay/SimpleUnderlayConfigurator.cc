@@ -20,7 +20,7 @@
  * @author Bernhard Heep (migrateRandomNode)
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #if !defined(__APPLE__) &&  !defined(_WIN32) && !defined(__ANDROID__)
 #include <malloc.h>
@@ -38,8 +38,8 @@
 #include "IPv6InterfaceData.h"
 #include "TransportAddress.h"
 #include "IPAddressResolver.h"
-#include <cenvir.h>
-#include <cxmlelement.h>
+//#include <cenvir.h>
+//#include <cxmlelement.h>
 #include "ChurnGenerator.h"
 #include "GlobalNodeList.h"
 #include <StringConvert.h>
@@ -235,7 +235,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
 
     //show ip...
     //TODO: migrate
-    if (fixedNodePositions && ev.isGUI()) {
+    if (fixedNodePositions && hasGUI()) {
         node->getDisplayString().insertTag("p");
         node->getDisplayString().setTagArg("p", 0, (long int)(entry->getX() * 5));
         node->getDisplayString().setTagArg("p", 1, (long int)(entry->getY() * 5));
@@ -259,7 +259,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
 
 uint32_t SimpleUnderlayConfigurator::parseCoordFile(const char* nodeCoordinateSource)
 {
-    cXMLElement* rootElement = ev.getXMLDocument(nodeCoordinateSource);
+    cXMLElement* rootElement = getEnvir()->getXMLDocument(nodeCoordinateSource);
 
     // get number of dimensions from attribute of xml rootelement
     dimensions = atoi(rootElement->getAttribute("dimensions"));
@@ -308,7 +308,7 @@ uint32_t SimpleUnderlayConfigurator::parseCoordFile(const char* nodeCoordinateSo
 
 #if OMNETPP_VERSION>=0x0401
     // free memory used for xml document
-    ev.forgetXMLDocument(nodeCoordinateSource);
+    getEnvir()->forgetXMLDocument(nodeCoordinateSource);
 #if !defined(__APPLE__) &&  !defined(_WIN32) && !defined(__ANDROID__)
     malloc_trim(0);
 #endif

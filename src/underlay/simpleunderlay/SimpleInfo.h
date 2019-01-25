@@ -24,7 +24,7 @@
 #ifndef __SIMPLEINFO_H__
 #define __SIMPLEINFO_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <PeerInfo.h>
 #include <SimpleNodeEntry.h>
 

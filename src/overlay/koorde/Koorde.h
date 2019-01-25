@@ -24,7 +24,7 @@
 #ifndef __KOORDE_H_
 #define __KOORDE_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <IPvXAddress.h>
 

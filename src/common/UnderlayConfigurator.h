@@ -24,7 +24,7 @@
 #ifndef _UNDERLAYCONFIGURATOR_H_
 #define _UNDERLAYCONFIGURATOR_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 class PeerInfo;
 class ChurnGenerator;

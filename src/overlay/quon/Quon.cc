@@ -1082,7 +1082,7 @@ void Quon::sendMessage(QuonMessage* quonMsg, NodeHandle destination)
 
 void Quon::setBootstrapedIcon()
 {
-    if(ev.isGUI()) {
+    if(hasGUI()) {
         switch(qstate) {
             case QUNINITIALIZED:
                 getParentModule()->getParentModule()->getDisplayString().setTagArg("i2", 1, "red");

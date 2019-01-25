@@ -21,7 +21,7 @@
  * @author Sebastian Mies, Ingmar Baumgart
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "OverlayKey.h"
 #include "Comparator.h"
@@ -824,7 +824,7 @@ inline void omnet_random(mp_limb_t *r1p, mp_size_t r1n)
     uint32_t* chunkPtr = (uint32_t*)r1p;
 
     for (uint32_t i=0; i < ((r1n*sizeof(mp_limb_t) + 3) / 4); i++) {
-        chunkPtr[i] = intuniform(0, 0xFFFFFFFF);
+        chunkPtr[i] = RNGCONTEXT intuniform(0, 0xFFFFFFFF);
     }
 }
 

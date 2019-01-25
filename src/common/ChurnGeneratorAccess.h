@@ -25,7 +25,7 @@
 #define __CHURNGENERATOR_ACCESS_H__
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <ModuleAccess.h>
 

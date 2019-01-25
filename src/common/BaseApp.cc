@@ -165,7 +165,7 @@ void BaseApp::handleMessage(cMessage* msg)
     	cPacket* packet = check_and_cast<cPacket*>(msg);
         RECORD_STATS(numUdpReceived++; bytesUdpReceived += packet->getByteLength());
         // debug message
-        if (debugOutput && !ev.isDisabled()) {
+        if (debugOutput && !getEnvir()->isExpressMode()) {
             UDPControlInfo* udpControlInfo =
                 check_and_cast<UDPControlInfo*>(msg->getControlInfo());
             EV << "[BaseApp:handleMessage() @ " << thisNode.getIp()
@@ -262,7 +262,7 @@ void BaseApp::callRoute(const OverlayKey& key, cPacket* msg,
     sendDirect(routeMsg, overlay->getCompRpcGate(OVERLAY_COMP));
 
     // debug message
-    if (debugOutput && !ev.isDisabled()) {
+    if (debugOutput && !getEnvir()->isExpressMode()) {
         EV << "[BaseApp::callRoute() @ " << thisNode.getIp()
            << " (" << overlay->getThisNode().getKey().toString(16) << ")]\n"
            << "    Sending " << *msg
@@ -537,7 +537,7 @@ void BaseApp::sendMessageToUDP(const TransportAddress& destAddr, cPacket *msg,
     ctrl->setDestPort(destAddr.getPort());
     msg->setControlInfo(ctrl);
 
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         BaseRpcMessage* rpc = dynamic_cast<BaseRpcMessage*>(msg);
         if (rpc) rpc->setStatType(APP_DATA_STAT);
     }

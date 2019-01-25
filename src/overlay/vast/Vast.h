@@ -24,7 +24,7 @@
 #ifndef __VAST_H_
 #define __VAST_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <BaseOverlay.h>
 #include <float.h>
 #include <VastDefs.h>

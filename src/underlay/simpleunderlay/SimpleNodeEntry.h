@@ -27,7 +27,7 @@
 #define __SIMPLENODEENTRY_H
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <IPvXAddress.h>
 
 #include "UDPPacket_m.h"

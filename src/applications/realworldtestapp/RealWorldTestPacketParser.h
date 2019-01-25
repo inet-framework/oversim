@@ -27,7 +27,7 @@
 
 #include <utility>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "RealWorldTestMessage_m.h"
 
 #include <PacketParser.h>

@@ -60,7 +60,7 @@ void GlobalViewBuilder::start()
 {
     neighborCache->cancelEvent(coordSendTimer);
     neighborCache->scheduleAt(simTime() +
-                              truncnormal(meanCoordSendInterval / 2.0, //TODO
+                              RNGCONTEXT truncnormal(meanCoordSendInterval / 2.0, //TODO
                                           deviation),
                               coordSendTimer);
 }

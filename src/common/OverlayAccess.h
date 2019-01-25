@@ -25,7 +25,7 @@
 #define __OVERLAY_ACCESS_H__
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <BaseOverlay.h>
 #include <NotificationBoard.h>

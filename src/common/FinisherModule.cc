@@ -21,7 +21,7 @@
  * @author Bernhard Heep
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <GlobalStatisticsAccess.h>
 

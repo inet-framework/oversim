@@ -28,7 +28,7 @@
  * made to let the SimpleTCP module create SimpleTCPConnection.
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <CommonMessages_m.h>
 #include <GlobalNodeListAccess.h>
@@ -223,7 +223,7 @@ void SimpleTCP::handleMessage(cMessage *msg)
             removeConnection(conn);
     }
 
-    if (ev.isGUI())
+    if (hasGUI())
         updateDisplayString();
 }
 
@@ -406,11 +406,11 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
         //totalDelay += truncnormal(0, SIMTIME_DBL(totalDelay) * jitter);
 
         //workaround (bug in truncnormal(): sometimes returns inf)
-        double temp = truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
+        double temp = RNGCONTEXT truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
         while (temp == INFINITY || temp != temp) { // reroll if temp is INF or NaN
             std::cerr << "\n******* SimpleTCPConnection: truncnormal() -> inf !!\n"
                       << std::endl;
-            temp = truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
+            temp = RNGCONTEXT truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
         }
 
         totalDelay += temp;
@@ -515,11 +515,11 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, IPvXAddress src, IPvXAddr
         //totalDelay += truncnormal(0, SIMTIME_DBL(totalDelay) * jitter);
 
         //workaround (bug in truncnormal(): sometimes returns inf)
-        double temp = truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
+        double temp = RNGCONTEXT truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
         while (temp == INFINITY || temp != temp) { // reroll if temp is INF or NaN
             std::cerr << "\n******* SimpleTCPConnection: truncnormal() -> inf !!\n"
                       << std::endl;
-            temp = truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
+            temp = RNGCONTEXT truncnormal(0, SIMTIME_DBL(totalDelay) * sad.jitter);
         }
 
         totalDelay += temp;

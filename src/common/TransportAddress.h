@@ -29,7 +29,7 @@
 //#include <stdint.h>
 #include <oversim_mapset.h>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <IPvXAddress.h>
 
 class TransportAddress;
@@ -336,7 +336,7 @@ inline void doPacking(cCommBuffer *buf, TransportAddress& addr)
  * @param buf the buffer
  * @param addr the TransportAddress to unserialise
  */
-inline void doUnpacking(cCommBuffer *buf, TransportAddress& addr)
+inline void doUnpacking(omnetpp::cCommBuffer *buf, TransportAddress& addr)
 {
     IPvXAddress ip;
     int port;

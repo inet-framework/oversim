@@ -61,8 +61,8 @@ hotspotRoaming::hotspotRoaming(double areaDimension, double speed, NeighborMap *
     } else {
         stayInHotspot = true;
     }
-    target.x = uniform(0.0, areaDimension);
-    target.y = uniform(0.0, areaDimension);
+    target.x = RNGCONTEXT uniform(0.0, areaDimension);
+    target.y = RNGCONTEXT uniform(0.0, areaDimension);
 }
 
 double hotspotRoaming::getDistanceFromHotspot()
@@ -96,7 +96,7 @@ void hotspotRoaming::move()
             hotspotStayTime = 0;
             
             // ... select next target hotspot
-            double rnd = uniform(0, 1);
+            double rnd = RNGCONTEXT uniform(0, 1);
             for( curHotspot = hotspots.begin(); curHotspot != hotspots.end(); ++curHotspot ){
                 rnd -= curHotspot->probability;
                 if( rnd <= 0 ) break;
@@ -114,15 +114,15 @@ void hotspotRoaming::move()
         if( curHotspot != hotspots.end() ){
             Vector2D dev;
             // randomly select point inside the hotspot
-            double r = uniform( 0, 1 );
-            double theta = uniform( 0, 2*M_PI );
+            double r = RNGCONTEXT uniform( 0, 1 );
+            double theta = RNGCONTEXT uniform( 0, 2*M_PI );
             dev.x = sqrt( r ) * cos( theta );
             dev.y = sqrt( r ) * sin( theta );
 
             target = curHotspot->center + dev*curHotspot->radius;
         } else {
-            target.x = uniform(0.0, areaDimension);
-            target.y = uniform(0.0, areaDimension);
+            target.x = RNGCONTEXT uniform(0.0, areaDimension);
+            target.y = RNGCONTEXT uniform(0.0, areaDimension);
         }
     }
 }

@@ -24,7 +24,7 @@
 #ifndef __BROOSEBUCKET_H_
 #define __BROOSEBUCKET_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "BrooseHandle.h"
 #include "Broose.h"
 #include <map>
@@ -61,7 +61,7 @@ public:
      * @return true, if the node was known or has been added
      */
     virtual bool add(const NodeHandle& node, bool isAlive = false,
-                     simtime_t rtt = MAXTIME);
+                     simtime_t rtt = SIMTIME_MAX);
 
     /**
      * removes a broose node handle from the bucket

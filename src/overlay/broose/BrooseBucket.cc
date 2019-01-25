@@ -21,7 +21,7 @@
  * @author Jochen Schenk
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "BrooseBucket.h"
 #include "BrooseHandle.h"
 
@@ -107,7 +107,7 @@ bool BrooseBucket::add(const NodeHandle& node, bool isAlive, simtime_t rtt)
         bucketIter->second.lastSeen = simTime();
     }
 
-    if (rtt != MAXTIME) {
+    if (rtt != SIMTIME_MAX) {
         bucketIter->second.rtt = rtt;
     }
 

@@ -26,7 +26,7 @@
 #include <deque>
 #include <set>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <UnderlayConfigurator.h>
 

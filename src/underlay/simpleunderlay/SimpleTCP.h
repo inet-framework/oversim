@@ -32,7 +32,7 @@
 
 //#include <map>
 //#include <set>
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "IPvXAddress.h"
 #include <TCPConnection.h>
 #include <InitStages.h>

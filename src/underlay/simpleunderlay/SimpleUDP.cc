@@ -28,7 +28,7 @@
 // Modifications: Stephan Krause
 //
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <CommonMessages_m.h>
 #include <GlobalNodeListAccess.h>
@@ -365,7 +365,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 
     BaseOverlayMessage* temp = NULL;
 
-    if (ev.isGUI() && appData) {
+    if (hasGUI() && appData) {
         if ((temp = dynamic_cast<BaseOverlayMessage*>(appData))) {
             switch (temp->getStatType()) {
             case APP_DATA_STAT:
@@ -441,7 +441,7 @@ void SimpleUDP::handleMessage(cMessage *msg)
             processCommandFromApp(msg);
     }
 
-    if (ev.isGUI())
+    if (hasGUI())
         updateDisplayString();
 }
 

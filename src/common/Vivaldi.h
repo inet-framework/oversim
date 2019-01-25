@@ -27,7 +27,7 @@
 
 #include <vector>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <GlobalStatisticsAccess.h>
 #include <NeighborCache.h>

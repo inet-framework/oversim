@@ -245,7 +245,7 @@ std::ostream& operator<<(std::ostream& os, const Successors& suc)
 
         if (i->first == -1) {
             continue;
-        } else if (i->first == MAXTIME) {
+        } else if (i->first == SIMTIME_MAX) {
             os << "; RTT:  --- ";
         } else {
             os << "; RTT: " << i->first;

@@ -26,7 +26,7 @@
 
 #include <oversim_mapset.h>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <NodeVector.h>
 #include <TopologyVis.h>

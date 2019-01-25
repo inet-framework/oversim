@@ -24,7 +24,7 @@
 #define _SVIVALDI_
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <Vivaldi.h>
 

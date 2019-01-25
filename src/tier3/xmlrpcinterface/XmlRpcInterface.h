@@ -26,7 +26,7 @@
 
 #include <tunoutscheduler.h>
 #include <realtimescheduler.h>
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <CommonMessages_m.h>
 #include <DHTMessage_m.h>
 #include <BaseOverlay.h>

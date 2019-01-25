@@ -171,7 +171,7 @@ void Pastry::changeState(int toState)
 
     case DISCOVERY: {
         state = DISCOVERY;
-        nearNodeRtt = MAXTIME;
+        nearNodeRtt = SIMTIME_MAX;
         discoveryModeProbedNodes = 0;
         pingNode(bootstrapNode, discoveryTimeoutAmount, 0,
                  NULL, "PING bootstrapNode in discovery mode",

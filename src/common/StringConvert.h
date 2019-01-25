@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include <cexception.h>
+#include <omnetpp.h>
 #include <iostream>
 #include <sstream>
 #include <string>

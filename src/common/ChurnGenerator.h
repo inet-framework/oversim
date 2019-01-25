@@ -28,7 +28,7 @@
 
 #include <string>
 #include <vector>
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <InitStages.h>
 

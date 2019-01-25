@@ -24,7 +24,7 @@
 #ifndef __GLOBALPARAMETERS_H__
 #define __GLOBALPARAMETERS_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 /**
  * Modul for storing global simulation parameters

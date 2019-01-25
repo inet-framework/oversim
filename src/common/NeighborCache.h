@@ -26,7 +26,7 @@
 #ifndef __NEIGHBORCACHE_H_
 #define __NEIGHBORCACHE_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <map>
 #include <cfloat>
@@ -176,8 +176,8 @@ private:
     void pingTimeout(PingCall* call, const TransportAddress& dest,
                               cPolymorphic* context, int rpcId);
 
-    static const double RTT_TIMEOUT_ADJUSTMENT = 1.3;
-    static const double NCS_TIMEOUT_CONSTANT = 0.350;
+    static const double constexpr RTT_TIMEOUT_ADJUSTMENT = 1.3;
+    static const double constexpr NCS_TIMEOUT_CONSTANT = 0.350;
 
     void prepareOverlay();
     void setCbrNodeId();

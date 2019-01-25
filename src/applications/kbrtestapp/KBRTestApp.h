@@ -24,7 +24,7 @@
 #ifndef __KBRTESTAPP_H_
 #define __KBRTESTAPP_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <OverlayKey.h>
 

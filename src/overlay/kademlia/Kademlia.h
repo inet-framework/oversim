@@ -25,7 +25,7 @@
 #define __KADEMLIA_H_
 
 #include <deque>
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <CommonMessages_m.h>
 #include <BaseOverlay.h>
@@ -209,7 +209,7 @@ private:
      * @return true, if the node was known or has been added
      */
     bool routingAdd(const NodeHandle& handle, bool isAlive,
-                    simtime_t rtt = MAXTIME, bool maintenanceLookup = false);
+                    simtime_t rtt = SIMTIME_MAX, bool maintenanceLookup = false);
 
     /**
      * Removes a node after a number of timeouts or immediately

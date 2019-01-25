@@ -22,7 +22,7 @@
  */
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <GlobalNodeListAccess.h>
 #include <NeighborCache.h>
@@ -87,7 +87,7 @@ void TreeManagement::handleTimerEvent(cMessage* msg)
         checkTreeChildNodes();
 
         neighborCache->scheduleAt(simTime() +
-                                  truncnormal(treeMgmtBuildInterval,
+                                  RNGCONTEXT truncnormal(treeMgmtBuildInterval,
                                               deviation),
                                   msg);
     }

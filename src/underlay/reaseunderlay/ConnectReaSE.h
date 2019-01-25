@@ -24,7 +24,7 @@
 #ifndef CONNECTREASE_H_
 #define CONNECTREASE_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <InitStages.h>
 

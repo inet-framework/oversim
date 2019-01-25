@@ -27,7 +27,7 @@
 
 #include <sstream>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 class PeerInfo;
 class BaseOverlay;

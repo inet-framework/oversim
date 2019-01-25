@@ -21,7 +21,7 @@
  * @author Jochen Schenk
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <IPAddress.h>
 

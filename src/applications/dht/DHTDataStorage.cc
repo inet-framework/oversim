@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <hashWatch.h>
 
 #include "DHTDataStorage.h"
@@ -246,7 +246,7 @@ DhtDumpVector* DHTDataStorage::dumpDht(const OverlayKey& key, uint32_t kind,
 // TODO: not used ?
 void DHTDataStorage::updateDisplayString()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         char buf[80];
 
         if (dataMap.size() == 1) {
@@ -264,7 +264,7 @@ void DHTDataStorage::updateDisplayString()
 // TODO: not used ?
 void DHTDataStorage::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream str;
 
         for (DhtDataMap::iterator it = dataMap.begin();

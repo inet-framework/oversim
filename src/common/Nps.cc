@@ -62,8 +62,7 @@ void Nps::init(NeighborCache* neighborCache)
     coordBasedRouting = CoordBasedRoutingAccess().get();
     globalNodeList = GlobalNodeListAccess().get();
 
-    if (neighborCache->getParentModule()->getModuleByRelativePath("tier1")
-        ->getModuleByRelativePath("landmark") == NULL) {
+    if (neighborCache->getParentModule()->getModuleByPath(".tier1.landmark") == NULL) {
         landmarkTimer = new cMessage("landmarkTimer");
         neighborCache->scheduleAt(simTime() + landmarkTimeout, landmarkTimer);
     } else {
@@ -397,7 +396,7 @@ bool Nps::setLandmarkSet(uint8_t howManyLM, uint8_t maxLayer,
     } else {
         uint i = availableLM;
         while (i > howManyLM) {
-            uint randomNumber = (intuniform(0, landmarkSet->size()));
+            uint randomNumber = (RNGCONTEXT intuniform(0, landmarkSet->size()));
             landmarkSet->erase(landmarkSet->begin() + randomNumber);
             i--;
         }
@@ -493,7 +492,7 @@ Coords Nps::computeOwnCoordinates(const std::vector<LandmarkDataEntry>& landmark
     for (uint runs = 0; runs < coordCalcRuns; runs++) {
         // start with random coordinates (-100..100 in each dim)
         for (uint i = 0; i < dimensions; i++) {
-            initCoordinates[i] = uniform(-300, 300);
+            initCoordinates[i] = RNGCONTEXT uniform(-300, 300);
         }
         // compute minimum coordinates via Simplex-Downhill minimum
         // function value is returned, coords are written into initCoordinates

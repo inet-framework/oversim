@@ -1278,7 +1278,7 @@ void Chord::handleRpcFixfingersResponse(FixfingersResponse* fixfingersResponse,
                 continue;
             if (fixfingersResponse->getSucNode(i) == thisNode)
                 break;
-            successors.insert(std::make_pair(MAXTIME,
+            successors.insert(std::make_pair(SIMTIME_MAX,
                                              fixfingersResponse->getSucNode(i)));
         }
 
@@ -1381,7 +1381,7 @@ void Chord::initializeFriendModules()
 
 void Chord::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream ttString;
 
         // show our predecessor and successor in tooltip

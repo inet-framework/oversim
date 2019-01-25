@@ -25,7 +25,7 @@
 #define __NICEPEERINFO_H_
 
 #include <BaseOverlay.h>
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <iostream>
 
 namespace oversim

@@ -28,7 +28,7 @@
 #include <vector>
 #include <oversim_mapset.h>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <ChurnGenerator.h>
 

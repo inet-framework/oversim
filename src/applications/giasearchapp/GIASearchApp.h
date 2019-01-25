@@ -26,7 +26,7 @@
 
 #include <set>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <BaseApp.h>
 #include <GlobalNodeList.h>

@@ -24,7 +24,7 @@
 #ifndef __I3IPADDRESS_H__
 #define __I3IPADDRESS_H__
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <IPAddressResolver.h>
 #include <TransportAddress.h>
 

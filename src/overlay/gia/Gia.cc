@@ -218,7 +218,7 @@ void Gia::changeState(int toState)
 
 // void Gia::setBootstrapedIcon()
 // {
-//     if (ev.isGUI()) {
+//     if (hasGUI()) {
 //         if (state == READY) {
 //             getParentModule()->getParentModule()->getDisplayString().
 //                 setTagArg("i2", 1, "");
@@ -233,7 +233,7 @@ void Gia::changeState(int toState)
 
 void Gia::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
 //        if (state == READY) {
 //            getParentModule()->getParentModule()->getDisplayString().
 //                setTagArg("i2", 1, "");

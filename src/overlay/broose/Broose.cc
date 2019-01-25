@@ -855,7 +855,7 @@ bool Broose::isSiblingFor(const NodeHandle& node,
 
 void Broose::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream ttString;
 
         // show our ip and key in tooltip

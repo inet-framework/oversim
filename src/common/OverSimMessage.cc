@@ -16,23 +16,24 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <cnetcommbuffer.h>
 #include "OverSimMessage_m.h"
 #include "OverSimMessage.h"
 
 Register_Class(OverSimMessage);
 
-void OverSimMessage::parsimPack(cCommBuffer *b)
+void OverSimMessage::parsimPack(cCommBuffer *b) const
 {
     cObject::parsimPack(b);
 
     if (getContextPointer() || getControlInfo())
         throw cRuntimeError(this, "netPack(): cannot pack object with "
                                 "contextPointer or controlInfo set");
-    if (getParList().size() > 0) {
+    OverSimMessage * nonConstThis = const_cast<OverSimMessage *>(this);   //FIXME HACK: const ParList not available yet in omnetpp API
+    if (nonConstThis->getParList().size() > 0) {
         b->packFlag(true);
-        b->packObject(&getParList());
+        b->packObject(&nonConstThis->getParList());
     } else {
         b->packFlag(false);
     }

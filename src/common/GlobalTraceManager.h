@@ -24,7 +24,7 @@
 #ifndef __GLOBALTRACEMANAGER_H_
 #define __GLOBALTRACEMANAGER_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 class UnderlayConfigurator;
 class GlobalNodeList;

@@ -36,7 +36,7 @@ const Prox Prox::PROX_WAITING(MAXTIME_DBL, 0.999);
 
 Prox::operator double() { return proximity; };
 Prox::operator simtime_t() { return (proximity >= MAXTIME_DBL)
-                                   ? MAXTIME : proximity; };
+                                   ? SIMTIME_MAX : proximity; };
 
 Prox::Prox() {}
 Prox::Prox(simtime_t prox) : proximity(SIMTIME_DBL(prox)), accuracy(1) {}

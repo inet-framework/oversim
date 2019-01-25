@@ -197,7 +197,7 @@ void ChordSuccessorList::removeOldSuccessors()
 void ChordSuccessorList::updateDisplayString()
 {
     // FIXME: doesn't work without tcl/tk
-    //    	if (ev.isGUI()) {
+    //    	if (hasGUI()) {
     if (1) {
         char buf[80];
 
@@ -215,7 +215,7 @@ void ChordSuccessorList::updateDisplayString()
 
 void ChordSuccessorList::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream str;
         for (uint32_t i = 0; i < successorMap.size(); i++)	{
             str << getSuccessor(i);

@@ -26,11 +26,11 @@
 #ifndef RUNetworkConfigurator_H_
 #define RUNetworkConfigurator_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <cctype>
 #include <vector>
 #include <map>
-#include <ctopology.h>
+//#include <ctopology.h>
 #include <string>
 #include <iostream>
 #include "INETDefs.h"

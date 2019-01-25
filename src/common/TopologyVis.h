@@ -25,8 +25,9 @@
 
 class NodeHandle;
 class GlobalNodeList;
+namespace omnetpp {
 class cModule;
-
+}
 
 enum VisDrawDirection
 {

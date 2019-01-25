@@ -29,8 +29,8 @@ groupRoaming::groupRoaming(double areaDimension, double speed, NeighborMap *Neig
     groupNr = coordinator->getPeerCount() / groupSize;
 
     if((coordinator->getPeerCount() % groupSize) == 0) {
-        target.x = uniform(0.0, areaDimension);
-        target.y = uniform(0.0, areaDimension);
+        target.x = RNGCONTEXT uniform(0.0, areaDimension);
+        target.y = RNGCONTEXT uniform(0.0, areaDimension);
         coordinator->increasePositionSize();
         coordinator->setPosition(groupNr, target);
     }
@@ -56,8 +56,8 @@ void groupRoaming::move()
     }
 
     if(target.distanceSqr(position) < speed * speed) {
-        target.x = uniform(0.0, areaDimension);
-        target.y = uniform(0.0, areaDimension);
+        target.x = RNGCONTEXT uniform(0.0, areaDimension);
+        target.y = RNGCONTEXT uniform(0.0, areaDimension);
         coordinator->setPosition(groupNr, target);
     }
 }

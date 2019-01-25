@@ -38,7 +38,7 @@ public:
         pingSent = false;
     }
 
-    KademliaBucketEntry(const NodeHandle& handle, simtime_t prox = MAXTIME)
+    KademliaBucketEntry(const NodeHandle& handle, simtime_t prox = SIMTIME_MAX)
     : ProxNodeHandle(handle)
     {
         staleCount = 0;

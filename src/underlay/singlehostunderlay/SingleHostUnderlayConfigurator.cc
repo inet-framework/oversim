@@ -35,7 +35,7 @@
 #include <netinet/in.h>
 #endif
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "IInterfaceTable.h"
 #include "InterfaceEntry.h"

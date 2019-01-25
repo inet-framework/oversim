@@ -784,7 +784,7 @@ void BasePastry::handleAppMessage(BaseOverlayMessage* msg)
 
 void BasePastry::updateTooltip()
 {
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream ttString;
 
         // show our predecessor and successor in tooltip

@@ -73,7 +73,7 @@ struct PastryStateMsgHandle
     PastryStateMsgHandle(PastryStateMessage* msg)
     : msg(msg), prox(NULL), outdatedUpdate(false)
     {
-        nonce = intuniform(0, std::numeric_limits<uint32_t>::max()); //0x7FFFFF ???
+        nonce = RNGCONTEXT intuniform(0, std::numeric_limits<uint32_t>::max()); //0x7FFFFF ???
     };
 };
 

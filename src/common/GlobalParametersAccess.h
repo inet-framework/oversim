@@ -25,7 +25,7 @@
 #define __GLOBALPARAMETERS_ACCESS_H__
 
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include "GlobalParameters.h"
 
 

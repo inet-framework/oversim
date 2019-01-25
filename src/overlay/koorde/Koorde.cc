@@ -587,7 +587,7 @@ void Koorde::updateTooltip()
     // Updates the tooltip display strings.
     //
 
-    if (ev.isGUI()) {
+    if (hasGUI()) {
         std::stringstream ttString;
 
         // show our predecessor, successor and de Bruijn node in tooltip

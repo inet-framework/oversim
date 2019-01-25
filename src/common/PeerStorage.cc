@@ -250,7 +250,7 @@ const PeerHashMap::iterator PeerStorage::getRandomNode(int32_t overlayId,
         return peerHashMap.end();
     }
 
-    size_t random = intuniform(1, sum);
+    size_t random = RNGCONTEXT intuniform(1, sum);
     uint i = 0;
 
     while ((i < peerVector.size())) {
@@ -267,7 +267,7 @@ const PeerHashMap::iterator PeerStorage::getRandomNode(int32_t overlayId,
         }
     }
 
-    random = intuniform(1, peerVector[i].size());
+    random = RNGCONTEXT intuniform(1, peerVector[i].size());
     PeerHashMap::iterator it = peerVector[i][random-1];
     while (it == peerHashMap.end()) {
         if (random == peerVector[i].size()) {

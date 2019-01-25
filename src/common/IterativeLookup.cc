@@ -427,7 +427,7 @@ bool IterativeLookup::addSibling(const NodeHandle& handle, bool assured)
     if (config.verifySiblings && !assured && !getVisited(handle)) {
         // ping potential sibling for authentication
         if (siblings.isAddable(handle) && !getPinged(handle)) {
-            int id = intuniform(1, 2147483647);
+            int id = RNGCONTEXT intuniform(1, 2147483647);
             int nonce = overlay->pingNode(handle, -1, 0, NULL, NULL, this, id);
             pendingPings.insert(make_pair(id, nonce));
             setPinged(handle);

@@ -31,7 +31,7 @@ class NodeHandle;
 class OverlayKey;
 class CommonAPIMessage;
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include "NodeVector.h"
 #include <BaseRpc.h>

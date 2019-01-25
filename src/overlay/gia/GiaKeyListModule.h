@@ -24,7 +24,7 @@
 #ifndef __GIAKEYLISTMODULE_H_
 #define __GIAKEYLISTMODULE_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <InitStages.h>
 

@@ -25,7 +25,7 @@
 #include <GlobalStatisticsAccess.h>
 #include <UDPSocket.h>
 #include <TCPCommand_m.h>
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 void BaseTcpSupport::handleTCPMessage(cMessage* msg)
 {

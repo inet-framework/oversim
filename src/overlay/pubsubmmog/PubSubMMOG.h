@@ -24,7 +24,7 @@
 #ifndef __PUBSUBMMOG_H_
 #define __PUBSUBMMOG_H_
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 #include <NodeHandle.h>
 #include <BaseOverlay.h>
 #include "PubSubSubspace.h"

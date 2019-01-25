@@ -28,7 +28,7 @@
 #include <cassert>
 #include <algorithm>
 
-#include <omnetpp.h>
+#include "INETDefs.h"
 
 #include <GlobalNodeListAccess.h>
 #include <PeerInfo.h>
@@ -85,7 +85,7 @@ void CoordBasedRouting::finish()
 
 void CoordBasedRouting::parseSource(const char* areaCoordinateSource)
 {
-    cXMLElement* rootElement = ev.getXMLDocument(areaCoordinateSource);
+    cXMLElement* rootElement = getEnvir()->getXMLDocument(areaCoordinateSource);
 
     xmlDimensions = atoi(rootElement->getAttribute("dimensions"));
 
