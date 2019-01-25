@@ -1,4 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <buildspec version="4.0">
-<dir path="." type="custom"/>
-<dir makemake-options="--deep --meta:recurse --meta:auto-include-path --meta:export-library --meta:use-exported-libs --meta:feature-cflags --meta:feature-ldflags" path="src" type="makemake"/>
+    <dir makemake-options="--deep -I. -Iapplications -Iapplications/almtest -Iapplications/dht -Iapplications/giasearchapp -Iapplications/i3 -Iapplications/i3/i3Apps -Iapplications/kbrtestapp -Iapplications/myapplication -Iapplications/realworldtestapp -Iapplications/scribe -Iapplications/simplegameclient -Iapplications/tcpexampleapp -Iapplications/tierdummy -Icommon -Icommon/cbr -Icommon/cbr/globalViewBuilder -Ioverlay -Ioverlay/bamboo -Ioverlay/broose -Ioverlay/chord -Ioverlay/gia -Ioverlay/kademlia -Ioverlay/koorde -Ioverlay/myoverlay -Ioverlay/nice -Ioverlay/ntree -Ioverlay/pastry -Ioverlay/pubsubmmog -Ioverlay/quon -Ioverlay/vast -Itier2 -Itier2/dhttestapp -Itier2/p2pns -Itier2/simmud -Itier3 -Itier3/xmlrpcinterface -Itier3/xmlrpcinterface/xmlrpc++ -Iunderlay -Iunderlay/inetunderlay -Iunderlay/inetunderlay/ipv6 -Iunderlay/reaseunderlay -Iunderlay/reaseunderlay/topologies -Iunderlay/reaseunderlay/topologies/topology_example -Iunderlay/reaseunderlay/topologies/topology_tiny_oversim -Iunderlay/simpleunderlay -Iunderlay/singlehostunderlay --meta:recurse --meta:use-exported-include-paths --meta:export-library --meta:use-exported-libs --meta:feature-cflags --meta:feature-ldflags" path="src" type="makemake"/>
+    <dir path="." type="custom"/>
 </buildspec>
