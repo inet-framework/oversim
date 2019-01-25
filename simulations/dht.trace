@@ -1,0 +1,9 @@
+1 1 JOIN
+5 2 JOIN
+10 3 JOIN
+11 1 LEAVE
+15 4 JOIN
+16 3 LEAVE
+50 4 PUT foo bar
+60 2 GET foo
+

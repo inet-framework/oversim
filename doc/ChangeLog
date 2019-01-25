@@ -1,0 +1,628 @@
+OverSim-20121206:
+ - NEW: compatible with OMNeT++ 4.2.2 and gcc 4.7
+ - NEW: complete rewrite of Pastry and Bamboo using OverSim's RPC
+	interface
+ - NEW: SimpleUnderlay: added optional tx queue for the destination
+	access router (parameter enableAccessRouterTxQueue)	
+ - NEW: InetUnderlay now depends on unmodified INET-20111118
+	
+ - Initial support for multiple (different) overlays
+ - Updated SHA1 code
+ - RealtimeScheduler now supports an arbitrary number of sockets
+ - postprocessing scripts updated for latest scipy versions
+ - SimpleUnderlay: better performance by removing unnecessary
+	message encapsulation
+ - Toplevel Makefile adapted to INET framework ("make makefiles")
+ - added std::string constructor to BinaryValue
+ - New nc parameter: useNcsForTimeout
+ - DHT: return empty array, if no valid result
+ - several bugfixes for DHT and DHTTestApp
+ - fixed bug with contextPointer in ChurnGenerators
+ - cleaned up state names, e.g. BOOTSTRAP -> JOIN
+ - removed obsolete STUN support from SingleHostUnderlay
+
+	
+OverSim-20101103:
+
+ - NEW: Support for the ReaSE Internet topology generator (ReaSEUnderlay)
+ - NEW: TCP support for SimpleUnderlay and InetUnderlay (still experimental)
+    - Take a look at the new TCPExampleApp to see how the TCP interface works
+ - NEW: IPv6 support for SimpleUnderlay and InetUnderlay (still experimental)
+ - NEW: N-Tree
+    - overlay protocol for virtual worlds
+    - dynamic zone partition of the game world
+ - NEW: Recursive routing for the Kademlia protocol
+ - NICE protocol:
+   - several bugfixes
+   - Rendezvous is not allowd to change/churn out any more
+
+ - GlobalStatistics: new recordHistogram() method
+ - BaseOverlay: added new sendRpcResponseToLastHop parameter, which allows
+   non-KBR protocols to route RPC messages back to the originator of an
+   RPC call (needed by NTree)
+ - Kademlia: fixed bug which prevented to use a sibling table with
+   only one node (s=1)
+ - GlobalNodeList now internaly uses a better data structure (implemented in
+   the PeerStorage class). This allows for random node access in O(1).
+ - removed redundant overlayType and tier{1-3}Type parameters
+   from churn generators
+ - terminals created by churnGenerator[1] are now named
+   overlayTerminal_1[x] instead of overlayTerminal_2[x]
+
+ - various other bug fixes and enhancements
+
+
+OverSim-20100323:
+
+ - NEW: gcc-4.4 compatibility
+
+ - KBR protocols:
+    - only call join() again, if we lost connection to the
+      network (retries in the initial join phase should call joinOverlay())
+    - BaseOverlay now waits for CompReady-Msg from BootstrapList
+    - NEW: several KBR / DHT attacks implemented
+    - NEW: secure iterative lookup / secure DHT maintenance
+    - added restoreContext parameter to BaseOverlay to enable
+      nodes to rejoin with their old nodeIds
+
+ - Kademlia:
+    - NEW: replacement cache as described in the paper
+    - additional parameters for periodic refresh lookups
+
+  - Pastry / Bamboo: new PNS switch
+
+  - NICE:
+    - now compatible to Scribe/generic ALM API
+    - NEW: ALM test application
+
+  - Underlays:
+    - SingleHostUnderlay now finishes init phase
+    - NEW: FinisherModule avoids loss of statistical data
+
+  - NEW: Example overlay (MyOverlay) and application (MyApplication) added
+  - NEW: generic network coordinate system (NCS) interface
+    - NEW: optimized NCS-based RPC-time-out calculation
+
+  - post-processing scripts
+    - NEW: support for confidence intervals to scatterplot.py 
+
+ - various other bug fixes and enhancements
+
+	
+OverSim-20090908:
+
+ - NEW: python scripts for postprocessing and plotting scalar and vector files
+
+ - NEW: application layer multicast protocol NICE
+
+ - NEW: hotspot roaming model for simplegameclient
+
+ - NEW: GNP/NPS network coordinate system
+
+ - API CHANGE - CHECK AND APAPT YOUR FILES:
+    - renamed RPC methods from *andleRpc() to *andleRpcCall()
+	
+ - DHT: support for multiple entries with the same key
+
+ - KBRTestApp: 
+    - new parameter failureLatency:
+	this latency is recorded for all failed RPCs and lookups
+        ("Total Latency" compared to "Success Latency")	
+    - additional measurement methods: 
+	kbr-one-way (old default behavior), 
+	kbr-rpc,
+	and kbr-lookup 
+	
+ - Chord: memory efficient finger table 
+	
+ - Kademlia: fixed bucket refresh for b > 1
+
+ - Pastry/Bamboo:	
+    - disabled neighborhoodSet by default
+    - Bamboo: global/local tuning fix
+
+ - Koorde:
+     - added redundancy to the de-Bruijn-list
+     - perfomance improvments
+
+ - QuON: new AOI adaption strategies
+	
+ - PubSubMMOG: allow forwarding of move messages after the timeslot-deadline
+     (not enabled by default)	
+
+ - NeighborCache:	
+    - NEW: CoordinateBasedRouting (CBR)
+    - completely revised API for proximity information
+	
+ - Underlay:
+    - change overlayTerminal name to overlayTerminal-<curnGeneratorNumber> if
+	multiple churn generators are present		
+    - added support for asymmetric channels
+    - moved InetUnderlay specific channelTypes parameter from
+	UnderlayConfigurator to AccessNet
+    - SimpleUnderlay: new parameter faultydelay -> violation of the triangle
+	inequality
+	
+ - BaseRpc/BaseOverlay:
+    - enhanced source routing support
+    - added RpcState object to handleRpcResponse() and handleRpcTimeout() method
+	signatures
+    - send CompReadyMessage to all registered components
+    - new parameter rejoinOnFailure
+    - application-RPC source-routing fix
+    - added new **.nodeId parameter to manually set a nodeId
+    - new BaseRpc::internalHandleMessage() called from
+	Baseoverlay/BaseApp::handleMessage()
+    - visitedHops in BaseRouteMessage are now set at the receiver of a message
+
+ - TransportAddress/NodeHandle:
+    - key/ip/port fields now protected - use the appropriate getter and setter
+
+ - ned-files: overlay.udpIn not a vector anymore	
+
+ - various other bug fixes and enhancements
+
+
+OverSim-20090320:
+
+ - NEW: OMNeT++-4.0 compatibility
+
+ - NEW: OverSim now runs on Windows and MAC OS X
+    - added namespace for Chord and Koorde to fix name collision with WIN32 API
+    - converted uint to uint32_t (uint doesn't work with MINGW)
+
+ - NEW: overlay gaming protocol QuON
+
+ - NEW: Vivaldi network coordinate system
+
+ - NEW: ned file inheritance
+    - new NED base classes (BaseOverlay, BaseApp, BaseRpc,
+      UnderlayConfigurator and ChurnGenerator)
+
+ - MODULES RENAMED -
+    CHECK AND ADAPT YOUR FILES:
+    - BootstrapOracle to GlobalNodeList
+    - BootstrapOracleAccess to GlobalNodeListAccess
+    - ZeroConfigurator to ZeroconfConnector
+	
+ - CONSISTENT UNDERLAY NAMES - 
+    CHECK AND ADAPT YOUR FILES:
+    - ipv4underlay to inetunderlay
+    - IPv4UnderlayConfigurator to InetUnderlayConfigurator
+    - IPv4Underlay to InetUnderlay
+    - OverlayHost.ned to InetOverlayHost.ned
+    - SimpleNetConfigurator to SimpleUnderlayConfigurator
+	
+ - renamed NED module interfaces to start with an "I" (new OMNeT++ naming convention)
+
+ - shorter real-world messages as default
+	
+ - BaseRpc:
+    -  new member function cancelAllRpcs()
+    - "real" pings default
+
+ - BaseOverlay:
+    - renamed forwardMessageRecursive() -> recursiveRoutingHook()
+    - enhanced loop detection in recursive routing mode
+    - if LookupCall is called with numSiblings < 0, maxNumSiblings are returned
+
+ - Chord:
+    - alternative predecessor check (checkPredecessorRPC)
+    - handleFailedNode() on missed acks
+    - failed sucessor handling
+    - stabilize/notify timeout handling
+    - new parameter memorizeFailedSuccessor
+
+ - Pastry:
+    - new parameter pingBeforeSecondStage
+
+ - Underlay:
+    - dynamically created overlayTerminals are now a proper module vector
+    - fixed layout position for churn generators
+	
+ - SimpleUnderlay:
+    - smaller coordinates file with 15000 entries added
+    - Use coordinte-based delays in default.ini as default
+    - Detailed packet loss statistics
+
+ - BootstrapList:
+    - changed getBootstrapNode() to return a TransportAddress
+
+ - XmlRpcInterface:
+    - support to limit access to applications connecting from localhost (**.limitAccess=true)
+    - new routingType parameter to lookup XML-RPCs
+
+ - RealtimeScheduler:	
+    -fix clock going backwards bug
+
+ - various other bug fixes and enhancements
+
+
+OverSim-20080919:
+
+ - NEW: overlay gaming protocol PubSubMMOG
+
+ - NEW: overlay protocol Bamboo
+
+ - NEW: NoChurn churn generator
+        - now the new default churn generator
+
+ - NEW: additional routing types:
+        - exhaustive-iterative, full-recursive,
+          source-routing-recursive
+
+ - NEW: enhanced IterativeLookup module (former BaseLookup)
+          - supports parallel RPCs and lookup over disjoint paths
+          - Additional parameters:
+            - **.overlay*.*.lookupUseAllParallelResponses
+            - **.overlay*.*.lookupStrictParallelRpcs
+            - **.overlay*.*.lookupNewRpcOnEveryTimeout
+            - **.overlay*.*.lookupNewRpcOnEveryResponse
+            - **.overlay*.*.lookupFinishOnFirstUnchanged
+
+ - NEW: enhanced SimpleUnderlay model:
+        - added packet loss support to SimpleUDP
+        - jitter in SimpleUDP
+
+ - MAJOR NED, INI, VEC and SCA FILE CHANGES -
+   CHECK AND ADAPT YOUR FILES:
+    - removed all BaseOverlay and BaseApp parameters from the
+      outer compound module to the inner simple module
+      (e.g. **.overlay*.debugOutput -> **.overlay*.*.debugOutput)
+    - renamed *.churnGenerator.initialMobilityDelay to
+      *.churnGenerator*.initPhaseCreationInterval
+    - renamed **.useNextHopRpc to **.routeMsgAcks
+    - removed obsolete **.overlay*.measureNetwInitPhase parameter
+      (use *.globalObserver.globalStatistics.measureNetwInitPhase instead)
+    - renamed **.tier*.kbrTestApp.messageDelay parameter to
+      **.tier*.kbrTestApp.testMsgInterval
+    - better names for several KBRTestApp and BaseOverlay
+      output vectors and scalars
+
+    - new parameter **.routingType instead of **.iterativeLookup (removed)
+      -> valid routing types: iterative, exhaustive-iterative,
+         semi-recursive, full-recursive, source-routing-recursive
+
+ - API CHANGE: Added context pointer to sendRpcCall(),
+      sendRouteRpcCall(), sendUdpRpcCall(), sendInternalRpcCall(),
+      handleRpcResponse(), handleRpcTimeout(), pingNode(),
+      pingResponse() and pingTimeout()
+
+ - BaseRPC:
+    - new rpc response handling (based on transport type)
+    - support for dedicated application udp port
+    - dest in RpcInfo is now a pointer; if a rpc is started with a nodehandle
+      as dest, you can cast oldNode in handleRpcTimeout to NodeHandle&
+    - pindNode() now uses sendRouteRpcCall(), if comp != OVERLAY
+  
+ - BaseOverlay:
+    - nodes now join in MAX_STAGE_TIER_3 (when all components are
+      already registered)
+    - added providesKbr() method, to verify if overlay supports KBR           
+
+ - BaseApp:
+    - seperate BaseApp statistics for each tier
+    - renamed BaseApp::sendMessageToOverlay() to
+      BaseApp::sendMessageToLowerTier()
+    - added initial BootstrapList support
+
+ - XmlRpcInterface:
+    - support for multiple parallel application connections
+    - added a new dump_dht() method to dump all local DHT records
+
+ - Kademlia:
+    - better bucket refresh
+    - new parameters:
+      - **.minSiblingTableRefreshInterval
+      - **.minBucketRefreshInterval
+      - **.pingNewSiblings
+    - better bootstrapping support (first ping node before adding
+      to sibling table)
+    - only call update() for real siblings
+    - simple sibling table visualization
+
+ - Pastry:
+    - iterative lookup fix (createLookup())
+    - pastry now uses NeighborCache/routeMsgAcks
+
+ - DHTTestApp:
+    - moved DHTTestApp's global records map from
+      BootstrapOracle to new GlobalDhtTestMap module
+    - new DHTTestApp parameters testInterval and testTtl
+    - reduced memory footprint of DHTTestApp
+
+ - SimpleGameClient:
+    - Added scenery generator to SimpleGameClient (**.useScenery parameter)
+    - New interactions (chat, throw snowball, freeze)
+
+ - NodeVector::add():
+   - now returns the position of an added node
+   - prevents storing the same key twice
+
+ - Support for using an dedicated UDP application port
+   - BaseApp::thisNode now contains the application port and no key
+   - For accessing BaseOverlay::thisNode from the applications
+     use overlay->getThisNode()
+
+ - replaced TierReadyMessage by CompReadyMessage: This message
+   should be sent to all other registered components when a
+   component gets ready (use overlay->sendMessageToAllComp())
+
+ - IPv4UnderlayConfigurator: use parameter terminalTypes
+
+ - shorter real world packets for all OverSimMessages
+
+ - replaced OverlayDummy by OverlayDummyModules (extends BaseOverlay)
+
+ - loop detection for recursive routing
+
+ - BootstrapOracle: mark prekilled nodes
+
+ - renamed UnderlayConfigurator::isInit() to isInInitPhase()
+
+ - added a KeyUniRingMetric
+
+ - PingCache renamed to NeighborCache
+
+ - added initial support for overlay partition merging and
+   Zeroconf bootstrapping
+
+ - various other bug fixes and enhancements
+
+
+OverSim-20080416:
+
+ - NEW: overlay protocol Kademlia
+
+ - NEW: overlay application i3 (Internet Indirection Infrastructure)
+        - several i3 test applications in i3Apps
+        - constructor for conversion between i3 keys and overlay keys
+
+ - NEW: ALM protocol Scribe
+        - new gaming protocol SimMud using Scribe
+        - SimMud works with SimpleGameClient and GameAPIMessages
+
+ - NEW: TraceChurnGenerator / GlobalTraceManager modules 
+        - trace files for applications and overlays to support user models
+          and user behaviour
+        - also applicable for churn generation
+
+ - NEW: overlay application P2PNS (Peer-To-Peer Name Service)
+        - alpha version
+
+ - NEW: PingCache class to reduce probe traffic
+        - ping cache stores RPC reply times
+
+ - NEW: More realistic synthetic coordinates in SimpleUnderlay
+        - coordinates calculated with GNP
+        - sample XML-coordinate files
+  
+ - NEW: SimpleGameClient
+        - helper class GlobalCoordinator
+        - SingleSimpleClient added (SimpleGameClient for SingleHost Networks)
+
+ - NEW: network partitioning/merging support 
+
+ - NEW: RecursiveLookup class
+
+ - NEW: commonALM-API (Application Layer Multicast)
+
+ - BaseOverlay:
+        - NEW: multiplexer added
+          using fields "srcComp"/"destComp" in BaseAppDataMessage
+        - removed internalRoute() and parameter useBaseLookup
+        - route() parameters changed (virtual!)
+        - removed callRouteDirect
+          use callRoute(OverlayKey::UNSPECIFIED_KEY, msg, hint) instead
+        - removed obsolete parameter "onlyCommonAPIMessages"
+        - add "tier ready" message
+        - add useCommonAPIForward parameter to BaseOverlay
+        - topology drawing separated (-> TopologyVis class)
+        - different color for signaling messages in gui
+        - new NextHopRPC (acknowledgements in recursive routing
+          new parameter "useNextHopRpc")
+        - more static_casts, less dynamic_cast
+        - recursive forward fix, additional rpc timeout/response handler
+        - bugfix for kbr forward
+        - resursive routing sendtokey fix
+        - new common enum type "State" for overlay states
+        - recursive routing: no sendToUDP if message is at target node
+        - hopDelay fix
+        - receivedChangeNotification bug fixed
+        - moved bootstrap stuff from Overlays to BaseOverlay
+        - new method setOwnNodeID()
+        - NF_OVERLAY_NODE_LEAVE changed to NF_OVERLAY_NODE_GRACEFUL_LEAVE
+          in receiveChangeNotification()
+
+ - BaseRpc:
+        - replaced deprecated sendRpcMessage calls
+        - added internal RPCs between Tiers
+        - new Rpc wrappers, use send{Udp,Route,Internal}RpcCall()
+          and sendRpcResponse() !
+        - sendRpcMessage() -> sendRpcCall()
+        - rpc timeout bugfix
+        - changed ping RPC management, using new PingCache
+
+ - BaseApp:
+        - tier1 => overlay->getCompModule(TIER1_COMP)
+        - error on different keys with lookupNodeIds = true
+        - fixed receiveChangenotification bug
+
+ - SimpleUnderlay:
+        - new parameter "fixedPosition" for GUI
+        - added terminal type parameter for individual terminal types
+        - SimpleUDP: speed improvement: reduce calls to IPAddressResolver
+        - UnderlayConfigurator: fixed bug with multiple churnGenerators
+          and init phase
+        - removed parameter initialOverlayTerminalNum     
+
+ - RealTimeScheduler:
+        - bugfix: opening/closing app sockets could result in packetNotification
+          scheduled to the wrong module
+        - allow connection of multiple simultaneous external apps
+        - inform app module if new external app connects
+
+ - OverlayKey:
+        - new member functions: setBitAt(), operator[],
+                                OverlayKey(std::string. int base)
+        - new helper class "OverlayKeyBit"
+
+ - Pastry:
+        - fix re-scheduling of timer if pastry reconnects to the overlay
+        - LeafSet and Join fix
+        - new parameter "alwaysSendUpdates"
+        - fixes for small overlay networks
+        - redundant nodes for iterative lookup
+
+  - VAST:
+        - new parameter "ignoreFalseKeys" 
+
+  - DHT:
+        - fixed DHT replication
+        - DHTTestApp extended to handle trace files
+
+  - DHTXMLRealworldApp renamed to XmlRpcInterface
+
+  - only one ned-file for many overlays
+
+  - renamed all gates "rpc_in" to "direct_in"
+
+  - various other bug fixes and enhancements
+
+
+OverSim-20070926:
+
+  - DHTXMLRealworldApp:
+        - Added a CommonAPI lookup() call to the DHT XML-RPC interface
+        - Return an error over DHT-XML interface, if lookups fail
+
+  - GlobalParameters:
+       - New module for storing global simulation parameters
+       - New parameters rpcUdpTimeout and rcpKeyTimeout
+
+  - BaseOverlay:
+        - new API method route_direct() to send application messages to a
+          TransportAddress
+        - moved receiveChangeNotification() from Overlays to
+          BaseOverlay/BaseApp
+        - new virtual BaseOverlay/BaseApp methods:
+	    handleTransportAddressChangedNotification(),
+            handleNodeLeaveNotification(),
+            handleNodeGracefulLeaveNotification() 
+        - Changed statistical output "Total Bytes" to "Total Bytes/s"
+
+  - BaseApp: Added pointers to overlay and application modules
+             (overlay, tier1, tier2, tier3)
+
+  - BaseLookup: Added retries to Lookup calls
+
+  - NotificationBoard: Update to INET-20061020-OverSim-3 !
+     - NF_HOSTPOSITION_UPDATED renamed to NF_OVERLAY_TRANSPORTADDRESS_CHANGED
+     - NF_OVERLAY_NODE_LEAVE renamed to NF_OVERLAY_NODE_GRACEFUL_LEAVE
+     - new notification NF_OVERLAY_NODE_LEAVE 
+
+  - Pastry: Added update() calls
+
+  - Chord:
+        - Better support for redundant paths in Chord
+        - Bugfix for extendedFingerTable
+
+  - ParetoChurn: targetOverlayTerminalNum works now as intended
+
+  - PeerInfo: Contains now the moduleId of the terminal instead of the
+              overlay module
+
+  - KBRTestApp: Don't send new lookups **.gracefulLeaveDelay seconds before
+                the simulation ends 
+
+  - Several improvments to DHT code
+
+  - Cleaned up debug output
+
+  - Various other bug fixes
+
+OverSim-20070724:
+
+  - New overlay protocol YMMOG
+
+  - New churn models: LifetimeChurn and ParetoChurn
+                      (The old model is now called RandomChurn)
+
+  - Added proximity routing for Chord
+
+  - Added support for multiple types of overlay nodes
+
+  - Realworld connection for a SingleHost is now using native
+    Linux udp sockets
+
+  - Easier collection of statistics by GlobalStatistics module
+
+  - Moved the RPC code from BaseOverlay to a generic BaseRpc class
+
+  - Some API changes: - isSiblingFor() replaces isResponsible()
+                      - new findNode() interface with numSiblings and
+                        numRedundantNodes parameter (see doxygen comments)
+
+  - Updated the generic NodeVector template and added serveral comparators
+
+  - Improved the DHT code (started to implement replication)
+
+  - Lots of bug fixes for Pastry
+
+  - Fix a serious bug in the RPC timeout handling
+
+  - Various other bug fixes
+
+OverSim-20070511:
+
+  - New overlay protocols: Pastry, Koorde, Broose
+
+  - New CommonAPI calls: forward(), update(), local_lookup(), ...,
+    new pointer to overlay module in BaseApp for CommonAPI calls, new
+    configuration parameter "useCommonAPIforward"
+
+  - Fixed hop count for iterative lookups when searching nodeIds
+
+  - BootstrapOracle rewritten: now holds all nodes in simulation
+
+  - Split up NodeHandle to NodeHandle (IP, UDP-port, nodeID) and
+    TransportAddress (IP, UDP port)
+
+  - Chord modules and classes renamed to Chord*
+    Gia modules and classes renamed to Gia*
+
+  - Various bug fixes
+	
+OverSim-20070404:
+
+  - Connect IPv4Underlay to real networks via TunOut (see HOWTO.Realworld)
+
+  - New SingleHost Underlay: Emulate a single host. This host can be connected
+    to a real network and an external Application (RealApp) (see
+    HOWTO.Realworld)
+
+  - up to 3 tiers with compound modules on application layer instead of one
+    single application module, new TierDummy module for unused tiers.
+
+  - Support for compiled-in NED files and disabled dynamic library loading
+
+  - Added maximum hop count parameter for iterative routing
+
+  - Several bug fixes for the BaseLookup class
+
+  - new global module: GlobalStatistics
+
+  - Correct statistics for forwarded Chord messages
+
+  - Bug fixes and support for multiple runs in bin/overStat.pl
+
+  - API: new gate names at each tier: to_upperTier, from_upperTier,
+    to_lowerTier, from_lowerTier, from_udp, to_udp;
+	
+  - API: BaseOverlay::isResponsible() now queries, if a node is
+    in the k neighborhood for a given key.
+
+OverSim-20061215:
+
+  - first public release
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# script only runs on Linux
+
+sudo modprobe tun
+sudo chown $USER /dev/net/tun
+sudo chown $USER .tkenvrc
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+
+sudo sh -c "../../src/OverSim -f realdhtworld.ini" &
+sleep 10
+sudo ifconfig tun0 10.0.0.1 netmask 255.0.0.0 up
+
+../../src/OverSim -f realdhtapp.ini &
