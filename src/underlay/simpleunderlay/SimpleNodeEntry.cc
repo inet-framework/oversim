@@ -123,6 +123,13 @@ SimpleNodeEntry::SimpleNodeEntry(cModule* node,
     cDatarateChannel* tempRx = dynamic_cast<cDatarateChannel*>(typeRx->create("temp"));
     cDatarateChannel* tempTx = dynamic_cast<cDatarateChannel*>(typeTx->create("temp"));
 
+    for (int i = 0; i < tempRx->getNumParams(); i++)
+        if (!tempRx->par(i).isSet())
+            tempRx->par(i).acceptDefault();
+    for (int i = 0; i < tempTx->getNumParams(); i++)
+        if (!tempTx->par(i).isSet())
+            tempTx->par(i).acceptDefault();
+
     rx.bandwidth = tempRx->par("datarate");
     rx.errorRate = tempRx->par("ber");
     rx.accessDelay = tempRx->par("delay");
