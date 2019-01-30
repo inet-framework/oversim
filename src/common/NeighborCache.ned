@@ -31,7 +31,7 @@ simple NeighborCache extends BaseApp
         @class(NeighborCache);
         bool enableNeighborCache;  // use neighbor cache for reducing ping traffic?
         double rttExpirationTime @unit(s); // expiration of the validity of the measured rtts
-        double maxSize;           // maximum size of the cache
+        int maxSize;           // maximum size of the cache
 
         int rttHistory;
         double timeoutAccuracyLimit;
