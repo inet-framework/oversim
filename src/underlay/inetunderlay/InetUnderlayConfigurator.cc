@@ -636,18 +636,33 @@ double uniform2(double start, double end, double index, double new_calc)
  * @param start start value
  * @param end end value
  * @param index position of the new value in the static vector
- * @param new_calc '1' if a new random number should be generated
+ * @param new_calc '1' if a new random number should be generated  //TODO change type to bool
  * @return the random number at position index in the double vector
  */
-double intuniform2(double start, double end, double index, double new_calc)
+
+cNedValue nedf_intuniform2(cComponent *contextComponent, cNedValue argv[], int argc)
 {
-    static std::vector<double> value;
-    if ( (unsigned int)index >= value.size() )
+    static std::vector<cNedValue> value;
+    int rng = (argc == 5) ? (int)argv[4] : 0;
+    if (opp_strcmp(argv[0].getUnit(), argv[1].getUnit()) != 0)
+        throw cRuntimeError("intuniform2(%s, %s, ...): start and end arguments must have the same unit",
+                argv[0].stdstringValue().c_str(), argv[1].stdstringValue().c_str()); //TODO convert to smaller unit instead
+
+    int index = argv[2];
+    bool new_calc = argv[3].intValue() != 0;
+    if ( (unsigned int)index >= value.size() ) {
         value.resize((int)index + 1);
-    if ( new_calc == 1 )
-        value[(int)index] = (double)(RNGCONTEXT intuniform((int)start, (int)end));
-    return value[(int)index];
-};
+        new_calc = true;
+    }
+    if (new_calc)
+        value[index] = cNedValue((intpar_t)contextComponent->intuniform((int)argv[0], (int)argv[1], rng), argv[1].getUnit());
+    return value[index];
+}
 
 Define_NED_Math_Function(uniform2, 4);
-Define_NED_Math_Function(intuniform2, 4);
+
+Define_NED_Function2(nedf_intuniform2,
+    "intquantity intuniform2(intquantity a, intquantity b, int index, int new_calc, int rng?)",
+    "random/discrete",
+    "Returns a random integer uniformly distributed over [a, b]");
+
