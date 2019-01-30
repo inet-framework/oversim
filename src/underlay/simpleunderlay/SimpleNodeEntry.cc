@@ -248,7 +248,7 @@ simtime_t SimpleNodeEntry::getFaultyDelay(simtime_t oldDelay) {
     }
 
     // normalize decimal hash value onto 0..1 (decimal number / 2^32-1)
-    double fraction = (double) decimalhash / (unsigned int) ((2 << 31) - 1);
+    double fraction = (double) decimalhash / 0xffffffffUL;
 
     // flip a coin if faulty rtt is larger or smaller
     char sign = (decimalhash % 2 == 0) ? 1 : -1;
