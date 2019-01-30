@@ -44,7 +44,9 @@ enum Stats {
     NUM_STATS
 };
 
-static cStdDev stats[NUM_STATS];
+//static cStdDev stats[NUM_STATS];
+static cStdDev *stats = nullptr;
+
 static bool statsDumped = false;
 
 struct NodeIdentity {
@@ -73,7 +75,6 @@ class I3LatencyStretch : public I3BaseApp {
 
     std::map<I3IPAddress, LatencyInfo> latencies;
 
-
     void initializeApp(int stage);
     void initializeI3();
     void handleTimerEvent(cMessage *msg);
@@ -87,6 +88,8 @@ Define_Module(I3LatencyStretch);
 
 void I3LatencyStretch::initializeApp(int stage) {
     statsDumped = false;
+    if (stats = nullptr)
+        stats = new cStdDev[NUM_STATS];
     I3BaseApp::initializeApp(stage);
 }
 

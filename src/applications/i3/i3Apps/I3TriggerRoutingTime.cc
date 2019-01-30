@@ -25,7 +25,7 @@
 
 using namespace std;
 
-static cStdDev stats;
+static cStdDev *stats = nullptr;
 static bool statsDumped = false;
 
 class I3TRTServer : public I3 {
@@ -46,6 +46,8 @@ Define_Module(I3TRTClient);
 
 
 void I3TRTServer::initializeApp(int stage) {
+    if (stats == nullptr)
+        stats = new cStdDev();
     statsDumped = false;
     I3::initializeApp(stage);
 }
@@ -57,7 +59,7 @@ void I3TRTServer::deliver(OverlayKey &key, cMessage *msg) {
     if (i3msg) {
         simtime_t *pt = (simtime_t*)i3msg->getContextPointer();
         if (pt) {
-            stats.collect(simTime() - *pt);
+            stats->collect(simTime() - *pt);
             //cout << "Trigger reach time " << simTime() - *pt << endl;
             delete pt;
             i3msg->setContextPointer(0);
@@ -69,12 +71,12 @@ void I3TRTServer::deliver(OverlayKey &key, cMessage *msg) {
 void I3TRTServer::finish() {
     if (!statsDumped) {
         statsDumped = true;
-        recordScalar("I3Sim Number of samples", stats.getCount());
-        recordScalar("I3Sim Min time", stats.getMin());
-        recordScalar("I3Sim Max time", stats.getMax());
-        recordScalar("I3Sim Mean time", stats.getMean());
-        recordScalar("I3Sim Stardard dev", stats.getStddev());
-        stats.clearResult();
+        recordScalar("I3Sim Number of samples", stats->getCount());
+        recordScalar("I3Sim Min time", stats->getMin());
+        recordScalar("I3Sim Max time", stats->getMax());
+        recordScalar("I3Sim Mean time", stats->getMean());
+        recordScalar("I3Sim Stardard dev", stats->getStddev());
+        stats->clearResult();
     }
 }
 
