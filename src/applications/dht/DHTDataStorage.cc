@@ -69,7 +69,7 @@ void DHTDataStorage::clear()
     map<OverlayKey, DhtDataEntry>::iterator iter;
 
     for( iter = dataMap.begin(); iter != dataMap.end(); iter++ ) {
-        cancelAndDelete(iter->second.ttlMessage);
+        check_and_cast<cSimpleModule *>(iter->second.ttlMessage->getArrivalModule())->cancelAndDelete(iter->second.ttlMessage);
     }
 
     dataMap.clear();
@@ -198,7 +198,7 @@ void DHTDataStorage::removeData(const OverlayKey& key, uint32_t kind,
 
         if (((kind == 0) || (pos.first->second.kind == kind)) &&
                 ((id == 0) || (pos.first->second.id == id))) {
-            cancelAndDelete(pos.first->second.ttlMessage);
+            check_and_cast<cSimpleModule *>(pos.first->second.ttlMessage->getArrivalModule())->cancelAndDelete(pos.first->second.ttlMessage);
             dataMap.erase(pos.first++);
         } else {
             ++pos.first;
