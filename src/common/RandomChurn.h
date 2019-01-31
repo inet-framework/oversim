@@ -47,7 +47,7 @@ class RandomChurn : public ChurnGenerator
         double initialMean; //!< mean of update interval during initalization phase
         double initialDeviation; //!< deviation of update interval during initalization phase
         double targetMean; //!< mean of update interval after initalization phase
-        double targetOverlayTerminalNum; //!< number of created terminals after init phase
+        int targetOverlayTerminalNum; //!< number of created terminals after init phase
         cMessage* churnTimer; /**< message to change the churn rate */
         cMessage* mobilityTimer; /**< message to schedule events */
         bool churnIntervalChanged; /**< indicates if targetMean changed. */

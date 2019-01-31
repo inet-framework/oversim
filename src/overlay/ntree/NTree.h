@@ -263,7 +263,7 @@ class NTree : public BaseOverlay
          */
         void changeState( int state );
 
-        unsigned int AOIWidth;
+        double AOIWidth;
         unsigned int maxChildren;
         double areaDimension;
         Vector2D position;

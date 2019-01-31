@@ -39,7 +39,7 @@ module SimpleMultiOverlayHost
         string tier2Type;// tier 2 module to use
         string tier3Type; // tier 3 module to use
         int numTiers; // number of tiers
-        double numOverlayModulesPerNode; // number of parallel overlays
+        int numOverlayModulesPerNode; // number of parallel overlays
         string routingFile = default("");
         bool IPForward = default(false);
 

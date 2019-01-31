@@ -38,16 +38,16 @@ class SimMud : public BaseApp
         OverlayKey currentRegionID;
         std::set<OverlayKey> subscribedRegions;
 
-        int fieldSize;
+        double fieldSize;
         int numSubspaces;
         int regionSize;
-        int AOIWidth;
+        double AOIWidth;
 
         int receivedMovementLists;
         int lostMovementLists;
         simtime_t maxMoveDelay;
 
-        int playerTimeout;
+        simtime_t playerTimeout;
         cMessage* playerTimer;
 
         struct PlayerInfo {

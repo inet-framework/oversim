@@ -43,7 +43,7 @@ void PubSubLobby::initializeOverlay(int stage)
     if(stage != MIN_STAGE_OVERLAY) return;
 
     numSubspaces = par("numSubspaces");
-    subspaceSize = (int) ( (unsigned int) par("areaDimension") / numSubspaces);
+    subspaceSize = (int) ( (double) par("areaDimension") / numSubspaces);
 
     // FIXME: Inefficient, make subspace a single dimensioned array
     subspaces.resize( numSubspaces );

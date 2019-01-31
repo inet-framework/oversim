@@ -91,11 +91,11 @@ protected:
 
     cMessage *refreshTriggersTimer;
 
-    int refreshTriggersTime;
+    double refreshTriggersTime;
 
     cMessage *refreshSamplesTimer;
 
-    int refreshSamplesTime;
+    double refreshSamplesTime;
 
     cMessage *initializeTimer;
 

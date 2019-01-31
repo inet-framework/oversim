@@ -81,15 +81,15 @@ void I3BaseApp::initialize(int stage)
     getDisplayString().setTagArg("i", 0, "i3c");
     getParentModule()->getDisplayString().removeTag("i2");
 
-    if (int(par("bootstrapTime")) >= int(par("initTime"))) {
+    if (double(par("bootstrapTime")) >= double(par("initTime"))) {
         opp_error("Parameter bootstrapTime must be smaller than initTime");
     }
 
     bootstrapTimer = new cMessage();
-    scheduleAt(simTime() + int(par("bootstrapTime")), bootstrapTimer);
+    scheduleAt(simTime() + par("bootstrapTime"), bootstrapTimer);
 
     initializeTimer = new cMessage();
-    scheduleAt(simTime() + int(par("initTime")), initializeTimer);
+    scheduleAt(simTime() + par("initTime"), initializeTimer);
 
     numSent = 0;
     sentBytes = 0;
@@ -268,7 +268,7 @@ void I3BaseApp::refreshTriggers()
 
 
     // pick fastest I3 server as gateway
-    int serverTimeout = par("serverTimeout");
+    double serverTimeout = par("serverTimeout");
     gateway.roundTripTime = serverTimeout;
     I3Identifier gatewayId;
     for (mit = samplingCache.begin(); mit != samplingCache.end(); mit++) {
@@ -320,7 +320,7 @@ void I3BaseApp::refreshTriggers()
     }
 
     /* now that we are refreshing stuff, might as well erase old identifier cache entries */
-    int idStoreTime = par("idStoreTime");
+    simtime_t idStoreTime = par("idStoreTime");
     for (mit = identifierCache.begin(); mit != identifierCache.end(); mit++) {
         if (mit->second.lastReply - simTime() > idStoreTime) {
             identifierCache.erase(mit);

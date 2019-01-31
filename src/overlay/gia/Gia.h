@@ -111,15 +111,15 @@ class Gia : public BaseOverlay
     // parameters from OMNeT.ini
     uint32_t maxNeighbors; /**< maximum number of neighbors */
     uint32_t minNeighbors; /**< minimum number of neighbors */
-    uint32_t maxTopAdaptionInterval; /**< maximum topology adaption interval */
+    double maxTopAdaptionInterval; /**< maximum topology adaption interval */
     uint32_t topAdaptionAggressiveness; /**< the topology adaption aggressiveness */
     double maxLevelOfSatisfaction; /**< maximum level of satisfaction */
     double updateDelay; /**< time between to update messages (in ms) */
     uint32_t maxHopCount; /**< maximum time to live for sent messages */
-    uint32_t messageTimeout; /**< timeout for messages */
-    uint32_t neighborTimeout; /**< timeout for neighbors */
-    uint32_t sendTokenTimeout; /**< timeout for tokens */
-    uint32_t tokenWaitTime; /**< delay to send a new token */
+    double messageTimeout; /**< timeout for messages */
+    double neighborTimeout; /**< timeout for neighbors */
+    double sendTokenTimeout; /**< timeout for tokens */
+    double tokenWaitTime; /**< delay to send a new token */
     double keyListDelay; /**< delay to send the keylist to our neighbors */
     bool outputNodeDetails; /**< output of node details? (on std::cout)*/
     bool optimizeReversePath; /**< use optimized reverse path? */

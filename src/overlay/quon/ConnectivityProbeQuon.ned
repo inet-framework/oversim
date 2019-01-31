@@ -53,7 +53,7 @@ module GlobalQuonModules like IGlobalFunctions
         bool plotConnections;
         bool plotBindings;
         bool plotMissing;
-        double seed;
+        int seed;
 
     submodules:
         coordinator: GlobalCoordinator {
@@ -85,7 +85,7 @@ module GlobalQuonModulesLC like IGlobalFunctions
         bool plotConnections;
         bool plotBindings;
         bool plotMissing;
-        double seed;
+        int seed;
 
     submodules:
         coordinator: GlobalCoordinator {

@@ -102,10 +102,10 @@ class PubSubMMOG : public BaseOverlay
         std::map<PubSubSubspaceId, PubSubSubspaceIntermediate> intermediateSubspaces;
 
         int subspaceSize;
-        int AOIWidth;
+        double AOIWidth;
 
         int numSubspaces;
-        int parentTimeout;
+        simtime_t parentTimeout;
         int maxChildren;
 
         bool allowOldMoveMessages;

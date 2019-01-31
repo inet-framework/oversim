@@ -31,7 +31,7 @@ simple Vast extends BaseOverlay
         double areaDimension; // movement range from [0.0, 0.0] to [areaDimension, areaDimension]
         bool debugVastOutput; // enable voronoi diagram debug information
         double AOIWidth; // this nodes area of interest
-        double stockListSize; // size of the stockList
+        int stockListSize; // size of the stockList
         double joinTimeout @unit(s); // retry join timeout in seconds
         double pingTimeout @unit(s); // ping neighbor status in seconds
         double discoveryIntervall @unit(s); // asks stock neighbors for their neighborslist

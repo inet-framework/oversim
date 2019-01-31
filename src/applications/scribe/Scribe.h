@@ -62,8 +62,8 @@ class Scribe : public BaseApp
         typedef std::multimap<NodeHandle, ScribeTimer*> ChildTimeoutList;
         ChildTimeoutList childTimeoutList;
 
-        int childTimeout;
-        int parentTimeout;
+        double childTimeout;
+        double parentTimeout;
 
         ScribeTimer* subscriptionTimer;
 

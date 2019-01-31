@@ -25,7 +25,7 @@ import oversim.common.IGlobalFunctions;
 simple GlobalCoordinator
 {
     parameters:
-        double seed;      // seed for scenery generation
+        int seed;      // seed for scenery generation
         string Hotspots;  // For hotspotRoaming, definition of the hotspots
         double HotspotStayTime @unit(s); // For hotspotRoaming, how long to stay in a hotspot
         @display("i=block/app");

@@ -40,7 +40,7 @@ module GlobalVastModules like IGlobalFunctions
         double visualizeNetworkIntervall @unit(s);
         bool plotConnections;
         bool plotMissing;
-        double seed;                                   // seed for scenery generation
+        int seed;                                   // seed for scenery generation
 
     submodules:
         coordinator: GlobalCoordinator {

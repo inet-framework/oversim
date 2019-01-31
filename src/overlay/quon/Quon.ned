@@ -38,7 +38,7 @@ simple Quon extends BaseOverlay
         double contactBackupIntervall @unit(s); // contact backup neighbors every # seconds
         int numBackups; // the number of binding beackups per quadrant
         int cacheInterval @unit(s); // interval to cache position in login cache
-        double connectionLimit; // maximum # of neighbor connections (for use with dynamic AOI)
+        int connectionLimit; // maximum # of neighbor connections (for use with dynamic AOI)
         double minAOIWidth; // minimum area of interest size (for use with dynamic AOI)
         double AOIWidth; // this nodes area of interest (maximum area of interest when dynamic AOI is used)
         double AOIBuffer; // increase AOI by fixed amount

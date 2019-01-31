@@ -74,7 +74,7 @@ class Koorde : public Chord
 
   protected:
     //parameters
-    int deBruijnDelay; /**< number of seconds between two de bruijn calls */
+    double deBruijnDelay; /**< number of seconds between two de bruijn calls */
     int deBruijnNumber; /**< number of current nodes in de bruijn list; depend on number of nodes in successor list */
     int deBruijnListSize; /**< maximal number of nodes in de bruijn list */
     int shiftingBits; /**< number of bits concurrently shifted in one routing step */
