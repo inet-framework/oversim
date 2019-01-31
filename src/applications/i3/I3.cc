@@ -396,9 +396,11 @@ void I3::handleTimerEvent(cMessage* msg)
     if (msg == expirationTimer) {
         scheduleAt(simTime() + triggerTimeToLive, expirationTimer);
 
-        for (I3TriggerTable::iterator it = triggerTable.begin(); it != triggerTable.end(); it++) {
+        for (I3TriggerTable::iterator it2 = triggerTable.begin(); it2 != triggerTable.end(); ) {
+            I3TriggerTable::iterator it = it2++;
             set<I3Trigger> &triggerSet = it->second;
-            for (set<I3Trigger>::const_iterator sit = triggerSet.begin(); sit != triggerSet.end(); sit++) {
+            for (set<I3Trigger>::const_iterator sit2 = triggerSet.begin(); sit2 != triggerSet.end(); ) {
+                set<I3Trigger>::const_iterator sit = sit2++;
                 //cout << "Trigger " << *sit << " has
                 if (simTime() - sit->getInsertionTime() > triggerTimeToLive) {
                     //if ((bool)par("debugOutput")) {
