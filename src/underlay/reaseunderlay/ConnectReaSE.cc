@@ -263,9 +263,7 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         terminal.remotePPPInterface->gate("netwOut")->connectTo(netwInGate);
 
         // connect network layer module to ip and arp modules
-        cModule* ipModule = overlayNode->edge->Router->getSubmodule("networkLayer")->
-        getSubmodule("ip");
-
+        cModule* ipModule = overlayNode->edge->Router->getSubmodule("networkLayer")->getSubmodule("ip");
         cGate* ipIn = firstUnusedGate(ipModule, "queueIn");
         netwInGate->connectTo(ipIn);
 
