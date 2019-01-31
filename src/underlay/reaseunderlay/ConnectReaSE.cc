@@ -266,6 +266,9 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         cModule* ipModule = overlayNode->edge->Router->getSubmodule("networkLayer")->getSubmodule("ip");
         cGate* ipIn = firstUnusedGate(ipModule, "queueIn");
         netwInGate->connectTo(ipIn);
+        cModule* arpModule = overlayNode->edge->Router->getSubmodule("networkLayer")->getSubmodule("arp");
+        cGate* arpOutGate = firstUnusedGate(arpModule, "nicOut");
+        arpOutGate->connectTo(netwOutGate);
 
         //
         // Start ppp interface modules
