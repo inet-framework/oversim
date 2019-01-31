@@ -111,8 +111,8 @@ class PubSubMMOG : public BaseOverlay
         bool allowOldMoveMessages;
 
         unsigned int currentRegionX, currentRegionY;
-        int movementRate;
-        int maxMoveDelay;
+        double movementRate;
+        double maxMoveDelay;
         PubSubTimer* heartbeatTimer;
         PubSubTimer* childPingTimer;
         PubSubTimer* eventDeliveryTimer;

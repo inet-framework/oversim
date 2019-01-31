@@ -55,7 +55,7 @@ void PubSubMMOG::initializeOverlay(int stage)
     scheduleAt( joinTime + 1.0/(2*movementRate), eventDeliveryTimer );
 
     numSubspaces = par("numSubspaces");
-    subspaceSize = (int) ( (unsigned int) par("areaDimension") / numSubspaces);
+    subspaceSize = (int) ( (unsigned int)(double) par("areaDimension") / numSubspaces);
     thisNode.setKey( OverlayKey::random() );
 
     maxChildren = par("maxChildren");
