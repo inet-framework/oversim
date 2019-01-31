@@ -490,8 +490,8 @@ cGate* ConnectReaSE::firstUnusedGate(cModule* owner, const char* name, cGate::Ty
         }
     }
 
-    owner->setGateSize(name, index + 2);
-    return type == cGate::NONE ? owner->gate(name, index + 1) : owner->gateHalf(name, type, index + 1);
+    owner->setGateSize(name, index + 1);
+    return type == cGate::NONE ? owner->gate(name, index) : owner->gateHalf(name, type, index);
 }
 
 bool ConnectReaSE::extractFromParentModule(cModule* currModule, void* properties)
