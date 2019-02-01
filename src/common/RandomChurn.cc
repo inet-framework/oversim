@@ -111,7 +111,7 @@ void RandomChurn::handleMessage(cMessage* msg)
                     terminalCount > 1) {
                 int oldTerminalCount = terminalCount;
                 underlayConfigurator->preKillNode(type);
-                assert ((oldTerminalCount - 1) == terminalCount);
+                ASSERT((oldTerminalCount - 1) == terminalCount);
             } else if (creationProbability + removalProbability <= random &&
                     random < creationProbability + removalProbability
                     + migrationProbability && terminalCount > 1) {
