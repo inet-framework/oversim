@@ -1,0 +1,16 @@
+/simulations/ -f omnetpp.ini -c Accordion -r 0 ... : FAIL (<!> Submodule overlay)
+ No module type named 'oversim.overlay.accordion.AccordionModules' found that
+ implements module interface oversim.common.IOverlay (not in the loaded NED files?)
+ -- in module (omnetpp::cModule) SimpleUnderlayNetwork.overlayTerminal[0] (id=9),
+ at t=0.294926927s, event #2
+
+/simulations/ -f omnetpp.ini -c ChurnVisualization -r 0 ... : FAIL (<!> ASSERT)
+ Condition '(oldTerminalCount - 1) == terminalCount' does not hold in function 'handleMessage'
+ at common/RandomChurn.cc:114 -- in module (RandomChurn) SimpleUnderlayNetwork.churnGenerator[0] (id=8),
+ at t=7536.004328247s, event #220294
+
+
+/simulations/ -f omnetpp.ini -c MultiOverlay -r 0 ... : FAIL (<!> ASSERT)
+ Condition '(oldTerminalCount - 1) == terminalCount' does not hold in function 'handleMessage'
+ at common/RandomChurn.cc:114 -- in module (RandomChurn) SimpleUnderlayNetwork.churnGenerator[1] (id=9),
+ at t=867.671795884s, event #252584
