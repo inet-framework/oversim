@@ -22,7 +22,7 @@
  */
 
 #ifndef __RANDOMCHURN_H_
-#define __RABDOMCHURN_H_
+#define __RANDOMCHURN_H_
 
 #include <ChurnGenerator.h>
 
