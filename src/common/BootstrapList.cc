@@ -153,7 +153,7 @@ void BootstrapList::handleBootstrapListTimerExpired()
 
 
 void BootstrapList::handleRpcResponse(BaseResponseMessage* msg,
-                                      cPolymorphic* context,
+                                      cObject* context,
                                       int rpcId, simtime_t rtt)
 {
     RPC_SWITCH_START(msg)
@@ -201,7 +201,7 @@ void BootstrapList::handleLookupResponse(LookupResponse* msg)
 
 
 void BootstrapList::pingResponse(PingResponse* pingResponse,
-                                 cPolymorphic* context,
+                                 cObject* context,
                                  int rpcId, simtime_t rtt)
 {
     NodeHandle &srcNode = pingResponse->getSrcNode();
@@ -223,7 +223,7 @@ void BootstrapList::pingResponse(PingResponse* pingResponse,
 
 void BootstrapList::pingTimeout(PingCall* pingCall,
                                 const TransportAddress& dest,
-                                cPolymorphic* context,
+                                cObject* context,
                                 int rpcId)
 {
     EV << "[BootstrapList::pingTimeout() @ " << overlay->getThisNode().getIp()

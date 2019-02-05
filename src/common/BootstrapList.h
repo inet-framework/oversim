@@ -100,13 +100,13 @@ public:
 protected:
     // see BaseRpc.h
     virtual void pingResponse(PingResponse* pingResponse,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               simtime_t rtt);
 
     // see BaseRpc.h
     virtual void pingTimeout(PingCall* pingCall,
                              const TransportAddress& dest,
-                             cPolymorphic* context,
+                             cObject* context,
                              int rpcId);
 
     // see BaseOverlay.h
@@ -131,7 +131,7 @@ private:
 
     // see BaseRpc.h
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context, int rpcId,
+                           cObject* context, int rpcId,
                            simtime_t rtt);
 
     /**

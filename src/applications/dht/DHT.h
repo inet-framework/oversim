@@ -91,10 +91,10 @@ private:
     void handleTimerEvent(cMessage* msg);
 
     bool handleRpcCall(BaseCallMessage* msg);
-    void handleRpcResponse(BaseResponseMessage* msg, cPolymorphic *context,
+    void handleRpcResponse(BaseResponseMessage* msg, cObject *context,
                            int rpcId, simtime_t rtt);
     void handleRpcTimeout(BaseCallMessage* msg, const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey);
     void handlePutRequest(DHTPutCall* dhtMsg);
     void handleGetRequest(DHTGetCall* dhtMsg);

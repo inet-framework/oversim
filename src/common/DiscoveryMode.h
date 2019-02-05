@@ -40,7 +40,7 @@ class DiscoveryMode: public RpcListener, ProxListener
     TransportAddress nearNode;
 
     void proxCallback(const TransportAddress& node, int rpcId,
-                      cPolymorphic *contextPointer, Prox prox);
+                      cObject *contextPointer, Prox prox);
 
     void sendNewRequest(DiscoveryNodesType type, uint8_t numNodes);
 
@@ -57,12 +57,12 @@ class DiscoveryMode: public RpcListener, ProxListener
     bool handleRpcCall(BaseCallMessage* msg);
 
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context,
+                           cObject* context,
                            int rpcId, simtime_t rtt);
 
     void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey);
 };
 

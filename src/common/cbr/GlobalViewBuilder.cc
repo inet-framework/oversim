@@ -158,7 +158,7 @@ void GlobalViewBuilder::sendCapRequest(const TransportAddress& node)
                                     NULL, DEFAULT_ROUTING, -1, 0, -1, this);
 }
 void GlobalViewBuilder::handleRpcResponse(BaseResponseMessage* msg,
-                                          cPolymorphic* context,
+                                          cObject* context,
                                           int rpcId, simtime_t rtt)
 {
     RPC_SWITCH_START(msg)
@@ -190,7 +190,7 @@ void GlobalViewBuilder::handleRpcResponse(BaseResponseMessage* msg,
 
 void GlobalViewBuilder::handleRpcTimeout(BaseCallMessage* msg,
                                          const TransportAddress& dest,
-                                         cPolymorphic* context, int rpcId,
+                                         cObject* context, int rpcId,
                                          const OverlayKey& destKey)
 {
     std::cout << "THIS SHOULD NOT HAPPEN!!!" << std::endl;

@@ -211,7 +211,7 @@ CompType BaseApp::getThisCompType()
     return INVALID_COMP;
 }
 
-void BaseApp::receiveChangeNotification(int category, const cPolymorphic * details)
+void BaseApp::receiveChangeNotification(int category, const cObject * details)
 {
     Enter_Method_Silent();
     if (category == NF_OVERLAY_TRANSPORTADDRESS_CHANGED) {
@@ -563,7 +563,7 @@ bool BaseApp::internalHandleRpcCall(BaseCallMessage* msg)
 }
 
 void BaseApp::internalHandleRpcResponse(BaseResponseMessage* msg,
-                                        cPolymorphic* context,
+                                        cObject* context,
                                         int rpcId, simtime_t rtt)
 {
     // if RPC was handled return true, else tell the parent class to handle it

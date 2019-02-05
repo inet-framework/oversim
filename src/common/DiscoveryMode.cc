@@ -138,7 +138,7 @@ bool DiscoveryMode::handleRpcCall(BaseCallMessage* msg)
 }
 
 void DiscoveryMode::handleRpcResponse(BaseResponseMessage* msg,
-                                      cPolymorphic* context,
+                                      cObject* context,
                                       int rpcId, simtime_t rtt)
 {
     if (dynamic_cast<DiscoveryResponse*>(msg)) {
@@ -207,7 +207,7 @@ void DiscoveryMode::handleRpcResponse(BaseResponseMessage* msg,
 
 void DiscoveryMode::handleRpcTimeout(BaseCallMessage* msg,
                                      const TransportAddress& dest,
-                                     cPolymorphic* context, int rpcId,
+                                     cObject* context, int rpcId,
                                      const OverlayKey& destKey)
 {
     --queries;
@@ -215,7 +215,7 @@ void DiscoveryMode::handleRpcTimeout(BaseCallMessage* msg,
 
 
 void DiscoveryMode::proxCallback(const TransportAddress& node, int rpcId,
-                                 cPolymorphic *contextPointer, Prox prox)
+                                 cObject *contextPointer, Prox prox)
 {
     --queries;
 

@@ -108,18 +108,18 @@ private:
     void kbrTestCall(KbrTestCall* call);
     void underlayTestCall(UnderlayTestCall* call);
 
-    void handleRpcResponse(BaseResponseMessage* msg, cPolymorphic* context,
+    void handleRpcResponse(BaseResponseMessage* msg, cObject* context,
                            int rpcId, simtime_t rtt);
 
     void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey);
 
     void handleLookupResponse(LookupResponse* msg,
                               cObject* context, simtime_t latency);
 
-    void pingResponse(PingResponse* response, cPolymorphic* context,
+    void pingResponse(PingResponse* response, cObject* context,
                       int rpcId, simtime_t rtt);
 
     // see BaseApp.h

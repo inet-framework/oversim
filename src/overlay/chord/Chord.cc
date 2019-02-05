@@ -316,7 +316,7 @@ bool Chord::handleRpcCall(BaseCallMessage* msg)
 }
 
 void Chord::handleRpcResponse(BaseResponseMessage* msg,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               simtime_t rtt)
 {
     RPC_SWITCH_START(msg)
@@ -361,7 +361,7 @@ void Chord::handleRpcResponse(BaseResponseMessage* msg,
 
 void Chord::handleRpcTimeout(BaseCallMessage* msg,
                              const TransportAddress& dest,
-                             cPolymorphic* context, int rpcId,
+                             cObject* context, int rpcId,
                              const OverlayKey&)
 {
     RPC_SWITCH_START(msg)
@@ -1323,7 +1323,7 @@ void Chord::handleRpcFixfingersResponse(FixfingersResponse* fixfingersResponse,
 }
 
 void Chord::proxCallback(const TransportAddress &node, int rpcId,
-                         cPolymorphic *contextPointer, Prox prox)
+                         cObject *contextPointer, Prox prox)
 {
     if (prox == Prox::PROX_TIMEOUT) {
         // call join dependant on return value?
@@ -1334,7 +1334,7 @@ void Chord::proxCallback(const TransportAddress &node, int rpcId,
     fingerTable->updateFinger(rpcId, (NodeHandle&)node, prox.proximity);
 }
 
-void Chord::pingResponse(PingResponse* pingResponse, cPolymorphic* context,
+void Chord::pingResponse(PingResponse* pingResponse, cObject* context,
                          int rpcId, simtime_t rtt)
 {
     EV << "[Chord::pingResponse() @ " << thisNode.getIp()
@@ -1349,7 +1349,7 @@ void Chord::pingResponse(PingResponse* pingResponse, cPolymorphic* context,
 
 void Chord::pingTimeout(PingCall* pingCall,
                         const TransportAddress& dest,
-                        cPolymorphic* context, int rpcId)
+                        cObject* context, int rpcId)
 {
     EV << "[Chord::pingTimeout() @ " << thisNode.getIp()
        << " (" << thisNode.getKey().toString(16) << ")]\n"

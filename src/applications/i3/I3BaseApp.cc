@@ -474,7 +474,7 @@ set<I3Trigger> &I3BaseApp::getInsertedTriggers()
     return insertedTriggers;
 }
 
-void I3BaseApp::receiveChangeNotification (int category, const cPolymorphic *details)
+void I3BaseApp::receiveChangeNotification (int category, const cObject *details)
 {
     Enter_Method_Silent();
 

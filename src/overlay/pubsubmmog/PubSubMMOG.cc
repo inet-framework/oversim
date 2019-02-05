@@ -117,7 +117,7 @@ bool PubSubMMOG::handleRpcCall(BaseCallMessage* msg)
 }
 
 void PubSubMMOG::handleRpcResponse(BaseResponseMessage *msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt)
 {
     RPC_SWITCH_START(msg);
@@ -198,7 +198,7 @@ void PubSubMMOG::handleRpcResponse(BaseResponseMessage *msg,
 
 void PubSubMMOG::handleRpcTimeout (BaseCallMessage *msg,
                                    const TransportAddress &dest,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    const OverlayKey &destKey)
 {
     RPC_SWITCH_START(msg)
@@ -532,7 +532,7 @@ void PubSubMMOG::handleTakeOver( PubSubTakeOverSubspaceCall* toCall )
     sendRpcResponse( toCall, toResp );
 }
 
-void PubSubMMOG::receiveChangeNotification(int category, const cPolymorphic *details)
+void PubSubMMOG::receiveChangeNotification(int category, const cObject *details)
 {
     if(category == NF_OVERLAY_NODE_GRACEFUL_LEAVE && state == READY) {
     }

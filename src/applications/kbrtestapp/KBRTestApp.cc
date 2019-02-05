@@ -263,7 +263,7 @@ void KBRTestApp::handleTimerEvent(cMessage* msg)
 }
 
 
-void KBRTestApp::pingResponse(PingResponse* response, cPolymorphic* context,
+void KBRTestApp::pingResponse(PingResponse* response, cObject* context,
                               int rpcId, simtime_t rtt)
 {
     //std::cout << rtt << std::endl;
@@ -299,7 +299,7 @@ void KBRTestApp::underlayTestCall(UnderlayTestCall* call)
 
 
 void KBRTestApp::handleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt)
 {
     RPC_SWITCH_START(msg)
@@ -374,7 +374,7 @@ void KBRTestApp::handleRpcResponse(BaseResponseMessage* msg,
 
 void KBRTestApp::handleRpcTimeout(BaseCallMessage* msg,
                                   const TransportAddress& dest,
-                                  cPolymorphic* context, int rpcId,
+                                  cObject* context, int rpcId,
                                   const OverlayKey& destKey)
 {
     RPC_SWITCH_START(msg)

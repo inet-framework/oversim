@@ -118,7 +118,7 @@ public:
     void handleUDPMessage(BaseOverlayMessage* msg);
 
     virtual void proxCallback(const TransportAddress& node, int rpcId,
-                              cPolymorphic *contextPointer, Prox prox);
+                              cObject *contextPointer, Prox prox);
 
 protected:
     NodeVector* findNode(const OverlayKey& key,
@@ -127,11 +127,11 @@ protected:
                          BaseOverlayMessage* msg);
 
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context,
+                           cObject* context,
                            int rpcId, simtime_t rtt);
 
     void handleRpcTimeout(BaseCallMessage* msg, const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey);
 
     /**

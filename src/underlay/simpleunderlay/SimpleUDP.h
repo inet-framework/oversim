@@ -111,7 +111,7 @@ protected:
     // process UDP packets coming from IP
     virtual void processUDPPacket(cPacket *udpPacket);
 
-    virtual void processUndeliverablePacket(cPacket *udpPacket, cPolymorphic *ctrl);
+    virtual void processUndeliverablePacket(cPacket *udpPacket, cObject *ctrl);
     virtual void sendUp(cPacket *payload, UDPControlInfo *ctrl, SockDesc *sd);
 
 public:

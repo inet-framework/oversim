@@ -110,7 +110,7 @@ protected:
     * @param rtt the time between sending the call and receiving the response
     */
     virtual void internalHandleRpcResponse(BaseResponseMessage* msg,
-                                           cPolymorphic* context, int rpcId,
+                                           cObject* context, int rpcId,
                                            simtime_t rtt);
 
     /**
@@ -131,7 +131,7 @@ protected:
     */
     virtual void internalHandleRpcTimeout(BaseCallMessage* msg,
                                           const TransportAddress& dest,
-                                          cPolymorphic* context,
+                                          cObject* context,
                                           int rpcId, const OverlayKey& destKey);
     /**
      * Initializes Remote-Procedure state.
@@ -166,7 +166,7 @@ protected:
      * @param destKey Destination OverlayKey (if unspecified, the message will
      *                be sent to dest using the overlay's UDP port)
      * @param msg RPC Call Message
-     * @param context a pointer to an arbitrary cPolymorphic object,
+     * @param context a pointer to an arbitrary cObject object,
      *        which can be used to store additional state
      * @param routingType KBR routing type
      * @param timeout RPC timeout in seconds (-1=use default value, 0=no timeout)
@@ -179,7 +179,7 @@ protected:
                                      const TransportAddress& dest,
                                      const OverlayKey& destKey,
                                      BaseCallMessage* msg,
-                                     cPolymorphic* context = NULL,
+                                     cObject* context = NULL,
                                      RoutingType routingType = DEFAULT_ROUTING,
                                      simtime_t timeout = -1,
                                      int retries = 0,
@@ -207,7 +207,7 @@ protected:
      * @param destComp The destination component
      * @param destKey Destination OverlayKey
      * @param msg RPC Call Message
-     * @param context a pointer to an arbitrary cPolymorphic object,
+     * @param context a pointer to an arbitrary cObject object,
      *        which can be used to store additional state
      * @param routingType KBR routing type
      * @param timeout RPC timeout in seconds (-1=use default value, 0=no timeout)
@@ -219,7 +219,7 @@ protected:
     inline uint32_t sendRouteRpcCall(CompType destComp,
                                      const OverlayKey& destKey,
                                      BaseCallMessage* msg,
-                                     cPolymorphic* context = NULL,
+                                     cObject* context = NULL,
                                      RoutingType routingType = DEFAULT_ROUTING,
                                      simtime_t timeout = -1,
                                      int retries = 0,
@@ -246,7 +246,7 @@ protected:
      * @param destComp The destination component
      * @param dest Destination node handle (may contain a source route)
      * @param msg RPC Call Message
-     * @param context a pointer to an arbitrary cPolymorphic object,
+     * @param context a pointer to an arbitrary cObject object,
      *        which can be used to store additional state
      * @param routingType KBR routing type
      * @param timeout RPC timeout
@@ -258,7 +258,7 @@ protected:
     inline uint32_t sendRouteRpcCall(CompType destComp,
                                      const TransportAddress& dest,
                                      BaseCallMessage* msg,
-                                     cPolymorphic* context = NULL,
+                                     cObject* context = NULL,
                                      RoutingType routingType = DEFAULT_ROUTING,
                                      simtime_t timeout = -1,
                                      int retries = 0,
@@ -282,7 +282,7 @@ protected:
      *
      * @param dest Destination node handle (may contain a source route)
      * @param msg RPC Call Message
-     * @param context a pointer to an arbitrary cPolymorphic object,
+     * @param context a pointer to an arbitrary cObject object,
      *        which can be used to store additional state
      * @param timeout RPC timeout in seconds (-1=use default value, 0=no timeout)
      * @param retries How often we try to resent rpc call, if it gets lost
@@ -292,7 +292,7 @@ protected:
      */
     inline uint32_t sendUdpRpcCall(const TransportAddress& dest,
                                    BaseCallMessage* msg,
-                                   cPolymorphic* context = NULL,
+                                   cObject* context = NULL,
                                    simtime_t timeout = -1,
                                    int retries = 0, int rpcId = -1,
                                    RpcListener* rpcListener = NULL)
@@ -315,7 +315,7 @@ protected:
      *
      * @param destComp Destination component
      * @param msg RPC Call Message
-     * @param context a pointer to an arbitrary cPolymorphic object,
+     * @param context a pointer to an arbitrary cObject object,
      *        which can be used to store additional state
      * @param timeout RPC timeout in seconds (-1=use default value, 0=no timeout)
      * @param retries How often we try to resent rpc call, if it gets lost
@@ -325,7 +325,7 @@ protected:
      */
     inline uint32_t sendInternalRpcCall(CompType destComp,
                                         BaseCallMessage* msg,
-                                        cPolymorphic* context = NULL,
+                                        cObject* context = NULL,
                                         simtime_t timeout = -1,
                                         int retries = 0,
                                         int rpcId = -1,
@@ -387,7 +387,7 @@ protected:
      * @param dest the node to ping
      * @param timeout RPC timeout
      * @param retries how often to retry after timeout
-     * @param context a pointer to an arbitrary cPolymorphic object,
+     * @param context a pointer to an arbitrary cObject object,
      *        which can be used to store additional state
      * @param caption special name for the ping call (instead of "PING")
      * @param rpcListener RPC Listener
@@ -398,7 +398,7 @@ protected:
     int pingNode(const TransportAddress& dest,
                   simtime_t timeout = -1,
                   int retries = 0,
-                  cPolymorphic* context = NULL,
+                  cObject* context = NULL,
                   const char* caption = "PING",
                   RpcListener* rpcListener = NULL,
                   int rpcId = -1,
@@ -434,12 +434,12 @@ protected:
     };
 
     virtual void pingResponse(PingResponse* pingResponse,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               simtime_t rtt);
 
     virtual void pingTimeout(PingCall* pingCall,
                              const TransportAddress& dest,
-                             cPolymorphic* context,
+                             cObject* context,
                              int rpcId);
 
     NeighborCache *neighborCache; /**< pointer to the neighbor cache */
@@ -476,7 +476,7 @@ private:
      * @param destKey route the RPC to the node that is
      *        responsible for destkey
      * @param msg RPC Call Message
-     * @param context a pointer to an arbitrary cPolymorphic object,
+     * @param context a pointer to an arbitrary cObject object,
      *        which can be used to store additional state
      * @param routingType KBR routing type
      * @param timeout RPC timeout in seconds (-1=use default value, 0=no timeout)
@@ -490,7 +490,7 @@ private:
                          const TransportAddress& dest,
                          const OverlayKey& destKey,
                          BaseCallMessage* msg,
-                         cPolymorphic* context,
+                         cObject* context,
                          RoutingType routingType,
                          simtime_t timeout, int retries,
                          int rpcId, RpcListener* rpcListener);
@@ -512,10 +512,10 @@ private:
                                          BaseResponseMessage* response) = 0;
 
     void pingRpcCall(PingCall* call);
-    void pingRpcResponse(PingResponse* response, cPolymorphic* context,
+    void pingRpcResponse(PingResponse* response, cObject* context,
                          int rpcId, simtime_t rtt);
     void pingRpcTimeout(PingCall* pingCall, const TransportAddress& dest,
-                        cPolymorphic* context, int rpcId);
+                        cObject* context, int rpcId);
 
     typedef UNORDERED_MAP<int,RpcState> RpcStates;
 

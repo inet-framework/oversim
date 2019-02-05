@@ -68,7 +68,7 @@ class Bamboo : public BasePastry, public LookupListener
     //virtual void handleUDPMessage(BaseOverlayMessage* msg);
 
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context, int rpcId,
+                           cObject* context, int rpcId,
                            simtime_t rtt);
 
     void handleRequestLeafSetResponse(RequestLeafSetResponse* response);

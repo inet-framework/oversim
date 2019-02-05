@@ -193,7 +193,7 @@ void SimpleUDP::sendUp(cPacket *payload, UDPControlInfo *udpCtrl, SockDesc *sd)
     numPassedUp++;
 }
 
-void SimpleUDP::processUndeliverablePacket(cPacket *udpPacket, cPolymorphic *ctrl)
+void SimpleUDP::processUndeliverablePacket(cPacket *udpPacket, cObject *ctrl)
 {
     numDroppedWrongPort++;
     EV << "[SimpleUDP::processUndeliverablePacket()]\n"

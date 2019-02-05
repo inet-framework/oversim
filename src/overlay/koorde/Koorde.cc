@@ -262,7 +262,7 @@ bool Koorde::handleRpcCall(BaseCallMessage* msg)
 }
 
 void Koorde::handleRpcResponse(BaseResponseMessage* msg,
-                               cPolymorphic* context,
+                               cObject* context,
                                int rpcId, simtime_t rtt)
 {
     Chord::handleRpcResponse(msg, context, rpcId, rtt);
@@ -282,7 +282,7 @@ void Koorde::handleRpcResponse(BaseResponseMessage* msg,
 
 void Koorde::handleRpcTimeout(BaseCallMessage* msg,
                               const TransportAddress& dest,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               const OverlayKey& destKey)
 {
     Chord::handleRpcTimeout(msg, dest, context, rpcId, destKey);

@@ -100,7 +100,7 @@ bool NTree::handleRpcCall(BaseCallMessage* msg)
 }
 
 void NTree::handleRpcResponse(BaseResponseMessage *msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt)
 {
     if( state == SHUTDOWN ){
@@ -140,7 +140,7 @@ void NTree::handleRpcResponse(BaseResponseMessage *msg,
 
 void NTree::handleRpcTimeout (BaseCallMessage *msg,
                                    const TransportAddress &dest,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    const OverlayKey &destKey)
 {
     if( state == SHUTDOWN ){

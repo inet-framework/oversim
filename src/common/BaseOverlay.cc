@@ -1052,7 +1052,7 @@ void BaseOverlay::handleBaseOverlayMessage(BaseOverlayMessage* msg,
     }
 }
 
-void BaseOverlay::receiveChangeNotification(int category, const cPolymorphic * details)
+void BaseOverlay::receiveChangeNotification(int category, const cObject * details)
 {
     Enter_Method_Silent();
     if (category == NF_OVERLAY_TRANSPORTADDRESS_CHANGED) {
@@ -1187,7 +1187,7 @@ void BaseOverlay::sendMessageToUDP(const TransportAddress& dest,
                                    cPacket* msg, simtime_t delay)
 {
     // if there's still a control info attached to the message, remove it
-    cPolymorphic* ctrlInfo = msg->removeControlInfo();
+    cObject* ctrlInfo = msg->removeControlInfo();
     if (ctrlInfo != NULL)
         delete ctrlInfo;
 
@@ -1735,7 +1735,7 @@ bool BaseOverlay::internalHandleRpcCall(BaseCallMessage* msg)
 }
 
 void BaseOverlay::internalHandleRpcResponse(BaseResponseMessage* msg,
-                                            cPolymorphic* context,
+                                            cObject* context,
                                             int rpcId, simtime_t rtt)
 {
     BaseRpc::internalHandleRpcResponse(msg, context, rpcId, rtt);
@@ -1743,7 +1743,7 @@ void BaseOverlay::internalHandleRpcResponse(BaseResponseMessage* msg,
 
 void BaseOverlay::internalHandleRpcTimeout(BaseCallMessage* msg,
                                            const TransportAddress& dest,
-                                           cPolymorphic* context, int rpcId,
+                                           cObject* context, int rpcId,
                                            const OverlayKey& destKey)
 {
     RPC_SWITCH_START( msg )

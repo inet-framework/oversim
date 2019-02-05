@@ -160,7 +160,7 @@ void Bamboo::handleTimerEvent(cMessage* msg)
 
 
 void Bamboo::handleRpcResponse(BaseResponseMessage* msg,
-                               cPolymorphic* context, int rpcId,
+                               cObject* context, int rpcId,
                                simtime_t rtt)
 {
     BasePastry::handleRpcResponse(msg, context, rpcId, rtt);

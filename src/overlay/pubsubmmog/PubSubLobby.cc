@@ -106,7 +106,7 @@ bool PubSubLobby::handleRpcCall(BaseCallMessage* msg)
 }
 
 void PubSubLobby::handleRpcResponse(BaseResponseMessage *msg,
-                                    cPolymorphic* context,
+                                    cObject* context,
                                     int rpcId, simtime_t rtt)
 {
     RPC_SWITCH_START(msg);
@@ -119,7 +119,7 @@ void PubSubLobby::handleRpcResponse(BaseResponseMessage *msg,
 
 void PubSubLobby::handleRpcTimeout (BaseCallMessage *msg,
                                     const TransportAddress &dest,
-                                    cPolymorphic* context, int rpcId,
+                                    cObject* context, int rpcId,
                                     const OverlayKey &destKey)
 {
     RPC_SWITCH_START(msg)

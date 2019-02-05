@@ -232,13 +232,13 @@ class Broose : public BaseOverlay
 
     // see BaseRpc.h
     virtual void pingResponse(PingResponse* pingResponse,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               simtime_t rtt);
 
     // see BaseRpc.h
     virtual void pingTimeout(PingCall* pingCall,
                              const TransportAddress& dest,
-                             cPolymorphic* context,
+                             cObject* context,
                              int rpcId);
 
     /**

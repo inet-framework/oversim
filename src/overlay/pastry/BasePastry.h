@@ -147,7 +147,7 @@ public:
     int routingTableRowBytesReceived;
 
     void proxCallback(const TransportAddress& node, int rpcId,
-                      cPolymorphic *contextPointer, Prox prox);
+                      cObject *contextPointer, Prox prox);
 
     // see BaseOverlay.h
     virtual OverlayKey estimateMeanDistance();
@@ -164,12 +164,12 @@ public:
     virtual bool handleRpcCall(BaseCallMessage* msg);
 
     virtual void handleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt);
 
     virtual void handleRpcTimeout(BaseCallMessage* call,
                                   const TransportAddress& dest,
-                                  cPolymorphic* context, int rpcId,
+                                  cObject* context, int rpcId,
                                   const OverlayKey& key);
 
     void handleRequestLeafSetCall(RequestLeafSetCall* call);
@@ -271,7 +271,7 @@ public:
         NEIGHBORHOODSET
     };
 
-    struct PingContext : public cPolymorphic
+    struct PingContext : public cObject
     {
         PingContext(StateObject stateObject, uint32_t index, uint32_t nonce)
             : stateObject(stateObject), index(index), nonce(nonce)

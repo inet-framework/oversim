@@ -29,7 +29,7 @@ RpcListener::~RpcListener()
 {}
 
 void RpcListener::handleRpcResponse(BaseResponseMessage* msg,
-                                    cPolymorphic* context,
+                                    cObject* context,
                                     int rpcId, simtime_t rtt)
 {
     //std::cout << "Default RpcListener Response: from="
@@ -44,7 +44,7 @@ void RpcListener::handleRpcResponse(BaseResponseMessage* msg,
 
 void RpcListener::handleRpcTimeout(BaseCallMessage* msg,
                                    const TransportAddress& dest,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    const OverlayKey& destKey)
 {
     //std::cout << "Default RpcListener Timeout: " << msg->getName()

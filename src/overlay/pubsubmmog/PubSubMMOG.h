@@ -40,14 +40,14 @@ class PubSubMMOG : public BaseOverlay
         virtual void handleUDPMessage(BaseOverlayMessage* msg);
         virtual void handleTimerEvent(cMessage* msg);
         virtual void handleAppMessage(cMessage* msg);
-        virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+        virtual void receiveChangeNotification(int category, const cObject *details);
         virtual bool handleRpcCall(BaseCallMessage* msg);
         virtual void handleRpcResponse(BaseResponseMessage *msg,
-                                       cPolymorphic* context,
+                                       cObject* context,
                                        int rpcId, simtime_t rtt);
         virtual void handleRpcTimeout(BaseCallMessage *msg,
                                       const TransportAddress & dest,
-                                      cPolymorphic* context,
+                                      cObject* context,
                                       int rpcId, const OverlayKey &destKey);
 
     protected:

@@ -86,7 +86,7 @@ bool SimMud::handleRpcCall( BaseCallMessage* msg )
 }
 
 void SimMud::handleRpcResponse( BaseResponseMessage* msg,
-                                cPolymorphic* context,
+                                cObject* context,
                                 int rpcId, simtime_t rtt )
 {
 //    RPC_SWITCH_START(msg);

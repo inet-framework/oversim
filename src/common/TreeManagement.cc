@@ -112,7 +112,7 @@ bool TreeManagement::handleRpcCall(BaseCallMessage* msg)
 
 
 void TreeManagement::handleRpcResponse(BaseResponseMessage* msg,
-                                       cPolymorphic* context,
+                                       cObject* context,
                                        int rpcId, simtime_t rtt)
 {
     if (neighborCache->globalStatistics->isMeasuring()) {
@@ -137,7 +137,7 @@ void TreeManagement::handleRpcResponse(BaseResponseMessage* msg,
 
 void TreeManagement::handleRpcTimeout(BaseCallMessage* msg,
                                       const TransportAddress& dest,
-                                      cPolymorphic* context, int rpcId,
+                                      cObject* context, int rpcId,
                                       const OverlayKey& destKey)
 {
     RPC_SWITCH_START(msg)
@@ -310,7 +310,7 @@ void TreeManagement::checkTreeChildNodes()
 
 
 void TreeManagement::handleChildCheckRpcResponse(ChildCheckResponse* response,
-                                                 cPolymorphic* context,
+                                                 cObject* context,
                                                  int rpcId, simtime_t rtt)
 {
     if (treeChildNodes.find(response->getSrcNode()) != treeChildNodes.end()) {
@@ -321,7 +321,7 @@ void TreeManagement::handleChildCheckRpcResponse(ChildCheckResponse* response,
 
 /*
 void TreeManagement::pingTimeout(PingCall* call, const TransportAddress& dest,
-                                 cPolymorphic* context, int rpcId)
+                                 cObject* context, int rpcId)
 {
     EV << "|DD|> TreeManagement::pingTimeout() " << dest << " <||" << endl;
     removeTreeChild(dest);
@@ -509,7 +509,7 @@ void TreeManagement::handleParentRequestRpcCall(ParentRequestCall* msg)
 
 
 void TreeManagement::handleParentRequestRpcResponse(ParentRequestResponse* response,
-                                                    cPolymorphic* context, int rpcId, simtime_t rtt)
+                                                    cObject* context, int rpcId, simtime_t rtt)
 {
     EV << "|DD|> TreeManagement::handleParentRequestRpcResponse ("
        << overlay->getThisNode().getIp() <<" ISCHILDOF "

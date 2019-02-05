@@ -149,16 +149,16 @@ class Nps : public RpcListener, public AbstractNcs
                               simtime_t timeout);
 
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context,
+                           cObject* context,
                            int rpcId, simtime_t rtt);
 
     void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey);
 
     void coordsReqRpcResponse(CoordsReqResponse* response,
-                              cPolymorphic* context,
+                              cObject* context,
                               int rpcId, simtime_t rtt);
 
     void coordsReqRpc(CoordsReqCall* msg);

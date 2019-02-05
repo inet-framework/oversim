@@ -72,7 +72,7 @@ enum NeighborCacheQueryType {
 class ProxListener {
 public:
     virtual void proxCallback(const TransportAddress& node, int rpcId,
-                              cPolymorphic *contextPointer, Prox prox) = 0;
+                              cObject *contextPointer, Prox prox) = 0;
 };
 
 class NeighborCache : public BaseApp
@@ -141,19 +141,19 @@ private:
     {
         WaitingContext() { proxListener = NULL; proxContext = NULL; };
         WaitingContext(ProxListener* listener,
-                       cPolymorphic* context,
+                       cObject* context,
                        uint32_t id)
 
             : proxListener(listener), proxContext(context), id(id) { };
         ProxListener* proxListener;
-        cPolymorphic* proxContext;
+        cObject* proxContext;
         uint32_t id;
     };
     typedef std::vector<WaitingContext> WaitingContexts;
 
     // ping context stuff
     bool insertNodeContext(const TransportAddress& handle,
-                           cPolymorphic* context,
+                           cObject* context,
                            ProxListener* rpcListener,
                            int rpcId);
 
@@ -170,11 +170,11 @@ private:
 
     Rtt getNodeRtt(const TransportAddress& add);
 
-    void pingResponse(PingResponse* response, cPolymorphic* context,
+    void pingResponse(PingResponse* response, cObject* context,
                           int rpcId, simtime_t rtt);
 
     void pingTimeout(PingCall* call, const TransportAddress& dest,
-                              cPolymorphic* context, int rpcId);
+                              cObject* context, int rpcId);
 
     static const double constexpr RTT_TIMEOUT_ADJUSTMENT = 1.3;
     static const double constexpr NCS_TIMEOUT_CONSTANT = 0.350;
@@ -235,7 +235,7 @@ protected:
     void queryProx(const TransportAddress &node,
                    int rpcId,
                    ProxListener *listener,
-                   cPolymorphic *contextPointer);
+                   cObject *contextPointer);
 
     /**
      *  Coord / RTT measuring rpc stuff goes here
@@ -323,7 +323,7 @@ public:
                  NeighborCacheQueryType type = NEIGHBORCACHE_AVAILABLE,
                  int rpcId = -1,
                  ProxListener *listener = NULL,
-                 cPolymorphic *contextPointer = NULL);
+                 cObject *contextPointer = NULL);
 
     /**
      * Estimates a Prox value of node, in relation to this node,

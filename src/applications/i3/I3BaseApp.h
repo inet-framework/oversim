@@ -208,7 +208,7 @@ protected:
     std::set<I3Trigger> &getInsertedTriggers();
 
 
-    void receiveChangeNotification (int category, const cPolymorphic *details);
+    void receiveChangeNotification (int category, const cObject *details);
 
     virtual void doMobilityEvent(I3MobilityStage stage);
 

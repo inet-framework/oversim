@@ -230,7 +230,7 @@ void Pastry::changeState(int toState)
 
 
 void Pastry::pingResponse(PingResponse* pingResponse,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           simtime_t rtt)
 {
     if (state == DISCOVERY) {
@@ -517,7 +517,7 @@ void Pastry::handleRequestRepairResponse(RequestRepairResponse* response)
 
 
 void Pastry::handleRpcResponse(BaseResponseMessage* msg,
-                               cPolymorphic* context, int rpcId,
+                               cObject* context, int rpcId,
                                simtime_t rtt)
 {
     BasePastry::handleRpcResponse(msg, context, rpcId, rtt);
@@ -574,7 +574,7 @@ void Pastry::handleRpcResponse(BaseResponseMessage* msg,
 
 void Pastry::handleRpcTimeout(BaseCallMessage* call,
                               const TransportAddress& dest,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               const OverlayKey& key)
 {
     BasePastry::handleRpcTimeout(call, dest, context, rpcId, key);

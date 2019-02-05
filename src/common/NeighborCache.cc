@@ -231,7 +231,7 @@ NeighborCache::~NeighborCache()
 }
 
 bool NeighborCache::insertNodeContext(const TransportAddress& handle,
-                                      cPolymorphic* context,
+                                      cObject* context,
                                       ProxListener* rpcListener,
                                       int rpcId)
 {
@@ -833,7 +833,7 @@ bool NeighborCache::handleRpcCall(BaseCallMessage* msg)
     return messageHandled;
 }
 
-void NeighborCache::pingResponse(PingResponse* response, cPolymorphic* context,
+void NeighborCache::pingResponse(PingResponse* response, cObject* context,
                                  int rpcId, simtime_t rtt) {
     if(treeManager) {
         //treeManager->pingResponse(response, context, rpcId, rtt);
@@ -842,7 +842,7 @@ void NeighborCache::pingResponse(PingResponse* response, cPolymorphic* context,
 }
 
 void NeighborCache::pingTimeout(PingCall* call, const TransportAddress& dest,
-                                cPolymorphic* context, int rpcId) {
+                                cObject* context, int rpcId) {
     if(treeManager) {
         //treeManager->pingTimeout(call, dest, context, rpcId);
     }
@@ -854,7 +854,7 @@ Prox NeighborCache::getProx(const TransportAddress &node,
                             NeighborCacheQueryType type,
                             int rpcId,
                             ProxListener *listener,
-                            cPolymorphic *contextPointer)
+                            cObject *contextPointer)
 {
     Enter_Method("getProx()");
 
@@ -991,7 +991,7 @@ Prox NeighborCache::estimateProx(const TransportAddress &node)
 void NeighborCache::queryProx(const TransportAddress &node,
                               int rpcId,
                               ProxListener *listener,
-                              cPolymorphic *contextPointer)
+                              cObject *contextPointer)
 {
     Enter_Method("queryProx()");
 

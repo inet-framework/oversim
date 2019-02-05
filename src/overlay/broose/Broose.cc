@@ -1062,7 +1062,7 @@ void Broose::handleBucketTimeout(BucketCall* msg)
     }
 }
 
-void Broose::pingResponse(PingResponse* pingResponse, cPolymorphic* context,
+void Broose::pingResponse(PingResponse* pingResponse, cObject* context,
                           int rpcId, simtime_t rtt) {
     // if node respond reset failedResponses and add lastSeen to node
     routingAdd(pingResponse->getSrcNode(), true, rtt);
@@ -1089,7 +1089,7 @@ void Broose::handleFindNodeTimeout(FindNodeCall* findNode,
 
 void Broose::pingTimeout(PingCall* pingCall,
                         const TransportAddress& dest,
-                        cPolymorphic* context, int rpcId)
+                        cObject* context, int rpcId)
 {
     routingTimeout(dynamic_cast<const NodeHandle&>(dest));
 }

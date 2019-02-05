@@ -67,7 +67,7 @@ class Pastry : public BasePastry
     void handleStateMessage(PastryStateMessage* msg);
 
     virtual void pingResponse(PingResponse* pingResponse,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               simtime_t rtt);
 
   protected:
@@ -83,7 +83,7 @@ class Pastry : public BasePastry
     void handleRequestRepairCall(RequestRepairCall* call);
 
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context, int rpcId,
+                           cObject* context, int rpcId,
                            simtime_t rtt);
 
     void handlePastryJoinResponse(PastryJoinResponse* response);
@@ -98,7 +98,7 @@ class Pastry : public BasePastry
 
     void handleRpcTimeout(BaseCallMessage* call,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& key);
 
     /**

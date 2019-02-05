@@ -492,7 +492,7 @@ protected://methods: message handling
      * @param details ... TODO ...
      */
     virtual void receiveChangeNotification(int category,
-                                           const cPolymorphic* details);
+                                           const cObject* details);
 
     /**
      * This method gets call if the node has a new TransportAddress (IP address)
@@ -739,11 +739,11 @@ protected://methods: statistic helpers for IterativeLookup
 
     bool internalHandleRpcCall( BaseCallMessage* msg );
     void internalHandleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt);
     void internalHandleRpcTimeout(BaseCallMessage* msg,
                                   const TransportAddress& dest,
-                                  cPolymorphic* context,
+                                  cObject* context,
                                   int rpcId, const OverlayKey& destKey);
 
     // TODO rename to internalSendRouteRpcMessage()

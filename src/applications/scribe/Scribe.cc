@@ -156,7 +156,7 @@ bool Scribe::handleRpcCall(BaseCallMessage* msg)
 }
 
 void Scribe::handleRpcResponse(BaseResponseMessage* msg,
-                               cPolymorphic* context, int rpcId,
+                               cObject* context, int rpcId,
                                simtime_t rtt)
 {
     RPC_SWITCH_START(msg);

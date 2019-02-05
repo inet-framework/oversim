@@ -232,7 +232,7 @@ bool MyOverlay::handleRpcCall(BaseCallMessage *msg)
 
 void MyOverlay::handleRpcTimeout(BaseCallMessage* msg,
                          const TransportAddress& dest,
-                         cPolymorphic* context, int rpcId,
+                         cObject* context, int rpcId,
                          const OverlayKey&)
 {
     // Same macros as in handleRpc
@@ -253,7 +253,7 @@ void MyOverlay::handleRpcTimeout(BaseCallMessage* msg,
 // Don't delete msg here!
 
 void MyOverlay::handleRpcResponse(BaseResponseMessage* msg,
-                                  cPolymorphic* context,
+                                  cObject* context,
                                   int rpcId,
                                   simtime_t rtt)
 {

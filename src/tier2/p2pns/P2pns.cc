@@ -196,14 +196,14 @@ void P2pns::deliver(OverlayKey& key, cMessage* msg)
     delete msg;
 }
 
-void P2pns::pingRpcResponse(PingResponse* response, cPolymorphic* context,
+void P2pns::pingRpcResponse(PingResponse* response, cObject* context,
                             int rpcId, simtime_t rtt)
 {
     delete context;
 }
 
 void P2pns::pingTimeout(PingCall* call, const TransportAddress& dest,
-                        cPolymorphic* context, int rpcId)
+                        cObject* context, int rpcId)
 {
     OverlayKeyObject* key = dynamic_cast<OverlayKeyObject*>(context);
     P2pnsIdCacheEntry* entry = NULL;
@@ -347,7 +347,7 @@ bool P2pns::handleRpcCall(BaseCallMessage* msg)
 
 
 void P2pns::handleRpcResponse(BaseResponseMessage* msg,
-                              cPolymorphic* context, int rpcId, simtime_t rtt)
+                              cObject* context, int rpcId, simtime_t rtt)
 {
     RPC_SWITCH_START(msg)
     RPC_ON_RESPONSE( DHTputCAPI ) {

@@ -79,12 +79,12 @@ private:
 
     bool handleRpcCall(BaseCallMessage* msg);
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context, int rpcId, simtime_t rtt);
+                           cObject* context, int rpcId, simtime_t rtt);
 
-    void pingRpcResponse(PingResponse* response, cPolymorphic* context,
+    void pingRpcResponse(PingResponse* response, cObject* context,
                          int rpcId, simtime_t rtt);
     void pingTimeout(PingCall* call, const TransportAddress& dest,
-                     cPolymorphic* context, int rpcId);
+                     cObject* context, int rpcId);
 
     void p2pnsRegisterRpc(P2pnsRegisterCall* registerCall);
     void p2pnsResolveRpc(P2pnsResolveCall* registerCall);

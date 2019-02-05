@@ -239,12 +239,12 @@ protected://fields and classes: rpc distribution
 
 protected://methods: rpcListener
     virtual void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context,
+                           cObject* context,
                            int rpcId, simtime_t rtt);
 
     virtual void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey = OverlayKey::UNSPECIFIED_KEY);
 
 protected://methods: rpc distribution

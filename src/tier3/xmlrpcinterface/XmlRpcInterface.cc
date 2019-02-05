@@ -638,7 +638,7 @@ void XmlRpcInterface::handleMessage(cMessage *msg)
 
 void XmlRpcInterface::handleRpcTimeout(BaseCallMessage* msg,
                                        const TransportAddress& dest,
-                                       cPolymorphic* context, int rpcId,
+                                       cObject* context, int rpcId,
                                        const OverlayKey&)
 {
     curAppFd = rpcId;
@@ -786,7 +786,7 @@ void XmlRpcInterface::handleRealworldPacket(char *buf, uint32_t length)
 }
 
 void XmlRpcInterface::handleRpcResponse(BaseResponseMessage* msg,
-                                        cPolymorphic* context,
+                                        cObject* context,
                                         int rpcId,
                                         simtime_t rtt)
 {

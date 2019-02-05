@@ -496,7 +496,7 @@ bool IterativeLookup::getPinged(const TransportAddress& addr)
 //- Parallel RPC distribution ------------------------------------------------
 //----------------------------------------------------------------------------
 void IterativeLookup::handleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context,
+                                   cObject* context,
                                    int rpcId, simtime_t rtt)
 {
     // check flags
@@ -595,7 +595,7 @@ void IterativeLookup::handleRpcResponse(BaseResponseMessage* msg,
 
 void IterativeLookup::handleRpcTimeout(BaseCallMessage* msg,
                                   const TransportAddress& dest,
-                                  cPolymorphic* context, int rpcId,
+                                  cObject* context, int rpcId,
                                   const OverlayKey& destKey)
 {
     // check flags

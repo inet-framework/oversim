@@ -83,12 +83,12 @@ private:
     // internal handling of RPCs
     bool handleRpcCall(BaseCallMessage *msg);                    // called when we receive an RPC from another node
     void handleRpcResponse(BaseResponseMessage* msg,         // called when we receive an RPC response from another node
-                              cPolymorphic* context,
+                              cObject* context,
                               int rpcId,
                               simtime_t rtt);
     void handleRpcTimeout(BaseCallMessage* msg,                 // called when an RPC times out
                              const TransportAddress& dest,
-                             cPolymorphic* context, int rpcId,
+                             cObject* context, int rpcId,
                              const OverlayKey&);
 
 public:

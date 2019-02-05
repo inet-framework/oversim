@@ -86,7 +86,7 @@ void Nps::handleTimerEvent(cMessage* msg)
 }
 
 void Nps::handleRpcResponse(BaseResponseMessage* msg,
-                            cPolymorphic* context,
+                            cObject* context,
                             int rpcId, simtime_t rtt)
 {
     // call rpc stubs
@@ -106,7 +106,7 @@ void Nps::handleRpcResponse(BaseResponseMessage* msg,
 
 void Nps::handleRpcTimeout(BaseCallMessage* msg,
                            const TransportAddress& dest,
-                           cPolymorphic* context, int rpcId,
+                           cObject* context, int rpcId,
                            const OverlayKey& destKey)
 {
     RPC_SWITCH_START( msg ) {
@@ -206,7 +206,7 @@ void Nps::rttToNodeRpc(RttToNodeCall* msg)
 #endif
 
 void Nps::coordsReqRpcResponse(CoordsReqResponse* response,
-                               cPolymorphic* context, int rpcId, simtime_t rtt)
+                               cObject* context, int rpcId, simtime_t rtt)
 {
     pendingRequests--;
     NodeHandle& srcNode = response->getSrcNode();
@@ -355,7 +355,7 @@ void Nps::coordsReqRpcResponse(CoordsReqResponse* response,
 
 #ifdef EXTJOIN_DISCOVERY
 void Nps::rttToNodeRpcResponse(RttToNodeResponse* response,
-                                               cPolymorphic* context, int rpcId, simtime_t rtt)
+                                               cObject* context, int rpcId, simtime_t rtt)
 {
     uint dim = coordBasedRouting->getXmlDimensions();
     TransportAddress nodeToCheck = response->getPingedNode();

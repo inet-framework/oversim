@@ -38,7 +38,7 @@ public:
     const TransportAddress& getDest() const { return *dest; }
     const OverlayKey& getDestKey() const { return destKey; }
     BaseCallMessage *getCallMsg() const { return callMsg; }
-    cPolymorphic *getContext() const { return context; }
+    cObject *getContext() const { return context; }
 
 private:
     int id;
@@ -54,7 +54,7 @@ private:
     RpcTimeoutMessage *timeoutMsg;
     simtime_t timeSent;
     simtime_t rto;
-    cPolymorphic *context;
+    cObject *context;
 };
 
 #endif

@@ -117,7 +117,7 @@ bool DHT::handleRpcCall(BaseCallMessage* msg)
     return RPC_HANDLED;
 }
 
-void DHT::handleRpcResponse(BaseResponseMessage* msg, cPolymorphic* context,
+void DHT::handleRpcResponse(BaseResponseMessage* msg, cObject* context,
                             int rpcId, simtime_t rtt)
 {
     RPC_SWITCH_START(msg)
@@ -149,7 +149,7 @@ void DHT::handleRpcResponse(BaseResponseMessage* msg, cPolymorphic* context,
 }
 
 void DHT::handleRpcTimeout(BaseCallMessage* msg, const TransportAddress& dest,
-                           cPolymorphic* context, int rpcId,
+                           cObject* context, int rpcId,
                            const OverlayKey& destKey)
 {
     RPC_SWITCH_START(msg)

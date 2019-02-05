@@ -353,7 +353,7 @@ void Gia::handleUDPMessage(BaseOverlayMessage* msg)
     if(debugOutput)
         EV << "(Gia) " << thisGiaNode << " received udp message" << endl;
 
-    cPolymorphic* ctrlInfo = msg->removeControlInfo();
+    cObject* ctrlInfo = msg->removeControlInfo();
     if(ctrlInfo != NULL)
         delete ctrlInfo;
 

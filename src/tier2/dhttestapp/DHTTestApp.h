@@ -56,7 +56,7 @@ private:
      *
      * @author Ingmar Baumgart
      */
-    class DHTStatsContext : public cPolymorphic
+    class DHTStatsContext : public cObject
     {
     public:
         bool measurementPhase;

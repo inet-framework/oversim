@@ -96,7 +96,7 @@ public:
 
     void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey);
 
     /**
@@ -151,11 +151,11 @@ public:
     void handleChildCheckRpcCall(ChildCheckCall* call);
 
     void handleChildCheckRpcResponse(ChildCheckResponse* response,
-                                     cPolymorphic* context,
+                                     cObject* context,
                                      int rpcId, simtime_t rtt);
 
     //void pingTimeout(PingCall* call, const TransportAddress& dest,
-    //                 cPolymorphic* context, int rpcId);
+    //                 cObject* context, int rpcId);
 
     /**
      * finish module and collect statistical data
@@ -212,7 +212,7 @@ protected:
 
     void handleParentRequestRpcCall(ParentRequestCall* msg);
     void handleParentRequestRpcResponse(ParentRequestResponse* response,
-                                        cPolymorphic* context, int rpcId, simtime_t rtt);
+                                        cObject* context, int rpcId, simtime_t rtt);
 
     void handleChildReleaseRpcCall(ChildReleaseCall* msg);
 
@@ -226,7 +226,7 @@ protected:
     void addChildNode(NodeHandle& childNode);
 
     virtual void handleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context,
+                                   cObject* context,
                                    int rpcId, simtime_t rtt);
 
     /**

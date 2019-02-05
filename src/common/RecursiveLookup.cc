@@ -94,7 +94,7 @@ uint32_t RecursiveLookup::getAccumulatedHops() const
 
 void RecursiveLookup::handleRpcTimeout(BaseCallMessage* msg,
                                        const TransportAddress& dest,
-                                       cPolymorphic* context, int rpcId,
+                                       cObject* context, int rpcId,
                                        const OverlayKey& destKey)
 {
     //TODO retry
@@ -110,7 +110,7 @@ void RecursiveLookup::handleRpcTimeout(BaseCallMessage* msg,
 }
 
 void RecursiveLookup::handleRpcResponse(BaseResponseMessage* msg,
-                                        cPolymorphic* context, int rpcId,
+                                        cObject* context, int rpcId,
                                         simtime_t rtt)
 {
     FindNodeResponse* findNodeResponse = check_and_cast<FindNodeResponse*>(msg);

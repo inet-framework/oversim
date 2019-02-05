@@ -117,11 +117,11 @@ class GlobalViewBuilder : public AbstractTreeMsgClient
 
     bool handleRpcCall(BaseCallMessage* msg);
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context,
+                           cObject* context,
                            int rpcId, simtime_t rtt);
     void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey& destKey);
 
     cPar& parProxy(const char *parname);

@@ -76,7 +76,7 @@ public:
     virtual void updateTooltip();
 
     void proxCallback(const TransportAddress &node, int rpcId,
-                      cPolymorphic *contextPointer, Prox prox);
+                      cObject *contextPointer, Prox prox);
 
 protected:
     int joinRetry; /**< */
@@ -239,24 +239,24 @@ protected:
 
     // see BaseOverlay.h
     virtual void handleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt);
 
     // see BaseOverlay.h
     virtual void handleRpcTimeout(BaseCallMessage* msg,
                                   const TransportAddress& dest,
-                                  cPolymorphic* context,
+                                  cObject* context,
                                   int rpcId, const OverlayKey& destKey);
 
     // see BaseRpc.h
     virtual void pingResponse(PingResponse* pingResponse,
-                              cPolymorphic* context, int rpcId,
+                              cObject* context, int rpcId,
                               simtime_t rtt);
 
     // see BaseRpc.h
     virtual void pingTimeout(PingCall* pingCall,
                              const TransportAddress& dest,
-                             cPolymorphic* context,
+                             cObject* context,
                              int rpcId);
 
     virtual void handleRpcJoinResponse(JoinResponse* joinResponse);

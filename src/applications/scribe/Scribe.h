@@ -94,7 +94,7 @@ class Scribe : public BaseApp
 
         virtual bool handleRpcCall( BaseCallMessage* msg );
         virtual void handleRpcResponse( BaseResponseMessage* msg,
-                                        cPolymorphic* context,
+                                        cObject* context,
                                         int rpcId, simtime_t rtt );
 
         virtual void forward(OverlayKey* key, cPacket** msg,

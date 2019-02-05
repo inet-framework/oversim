@@ -59,7 +59,7 @@ class NodeRecord: public BaseLocation
  *
  * @author Bernhard Heep
  */
-class SimpleNodeEntry : public cPolymorphic
+class SimpleNodeEntry : public cObject
 {
 public:
 

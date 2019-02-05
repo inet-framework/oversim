@@ -96,13 +96,13 @@ class NTreeGroupDivideContext
         NTreeScope nodeScope;
 };
 
-class NTreeGroupDivideContextPtr : public cPolymorphic
+class NTreeGroupDivideContextPtr : public cObject
 {
     public:
         NTreeGroupDivideContext* ptr;
 };
 
-class NTreePingContext : public cPolymorphic
+class NTreePingContext : public cObject
 {
     public:
         NTreePingContext(const NTreeScope& _scope, unsigned int _quadrant);

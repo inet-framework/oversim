@@ -175,7 +175,7 @@ uint32_t BaseRpc::sendRpcCall(TransportType transportType,
                               const TransportAddress& dest,
                               const OverlayKey& destKey,
                               BaseCallMessage* msg,
-                              cPolymorphic* context,
+                              cObject* context,
                               RoutingType routingType,
                               simtime_t timeout,
                               int retries,
@@ -499,7 +499,7 @@ bool BaseRpc::internalHandleRpcCall(BaseCallMessage* msg)
 }
 
 void BaseRpc::internalHandleRpcResponse(BaseResponseMessage* msg,
-                                        cPolymorphic* context,
+                                        cObject* context,
                                         int rpcId, simtime_t rtt)
 {
     // call rpc stubs
@@ -512,7 +512,7 @@ void BaseRpc::internalHandleRpcResponse(BaseResponseMessage* msg,
 
 void BaseRpc::internalHandleRpcTimeout(BaseCallMessage* msg,
                                        const TransportAddress& dest,
-                                       cPolymorphic* context,
+                                       cObject* context,
                                        int rpcId, const OverlayKey& destKey)
 {
     RPC_SWITCH_START( msg ) {
@@ -656,13 +656,13 @@ void BaseRpc::sendRpcMessageWithTransport(TransportType transportType,
 }
 
 // ping RPC stuff
-void BaseRpc::pingResponse(PingResponse* response, cPolymorphic* context,
+void BaseRpc::pingResponse(PingResponse* response, cObject* context,
                            int rpcId, simtime_t rtt)
 {
 }
 
 void BaseRpc::pingTimeout(PingCall* call, const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId)
+                          cObject* context, int rpcId)
 {
 }
 
@@ -686,21 +686,21 @@ void BaseRpc::pingRpcCall(PingCall* call)
 }
 
 void BaseRpc::pingRpcResponse(PingResponse* response,
-                              cPolymorphic* context, int rpcId, simtime_t rtt)
+                              cObject* context, int rpcId, simtime_t rtt)
 {
     pingResponse(response, context, rpcId, rtt);
 }
 
 void BaseRpc::pingRpcTimeout(PingCall* pingCall,
                              const TransportAddress& dest,
-                             cPolymorphic* context,
+                             cObject* context,
                              int rpcId)
 {
     pingTimeout(pingCall, dest, context, rpcId);
 }
 
 int BaseRpc::pingNode(const TransportAddress& dest, simtime_t timeout,
-                       int retries, cPolymorphic* context,
+                       int retries, cObject* context,
                        const char* caption, RpcListener* rpcListener,
                        int rpcId, TransportType transportType)
 {

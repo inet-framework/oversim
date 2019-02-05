@@ -1181,7 +1181,7 @@ bool Kademlia::handleRpcCall(BaseCallMessage* msg)
 
 //In Kademlia this method is used to maintain the routing table.
 void Kademlia::handleRpcResponse(BaseResponseMessage* msg,
-                                 cPolymorphic* context, int rpcId,
+                                 cObject* context, int rpcId,
                                  simtime_t rtt)
 {
     bool maintenanceLookup = (msg->getStatType() == MAINTENANCE_STAT);
@@ -1249,7 +1249,7 @@ void Kademlia::handleRpcResponse(BaseResponseMessage* msg,
 // In Kademlia this method is used to maintain the routing table.
 void Kademlia::handleRpcTimeout(BaseCallMessage* msg,
                                 const TransportAddress& dest,
-                                cPolymorphic* context, int rpcId,
+                                cObject* context, int rpcId,
                                 const OverlayKey& destKey)
 {
     if (dest.isUnspecified()) return;
@@ -1288,7 +1288,7 @@ void Kademlia::handleRpcTimeout(BaseCallMessage* msg,
 
 // R/Kademlia
 void Kademlia::proxCallback(const TransportAddress& node, int rpcId,
-                            cPolymorphic *contextPointer, Prox prox)
+                            cObject *contextPointer, Prox prox)
 {
     Enter_Method_Silent();
 

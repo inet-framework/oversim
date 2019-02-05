@@ -26,7 +26,7 @@
 
 #include "INETDefs.h"
 
-class BinaryValue : public std::vector<char>, public cPolymorphic {
+class BinaryValue : public std::vector<char>, public cObject {
   public:
     static const BinaryValue UNSPECIFIED_VALUE;
 

@@ -137,7 +137,7 @@ protected:
      * @param category ...
      * @param details ...
      */
-    virtual void receiveChangeNotification(int category, const cPolymorphic * details);
+    virtual void receiveChangeNotification(int category, const cObject * details);
 
     /**
      * This method gets call if the node has a new TransportAddress (IP address)
@@ -375,7 +375,7 @@ public:
 protected://methods: rpc handling
     bool internalHandleRpcCall(BaseCallMessage* msg);
     void internalHandleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt);
 
     void internalSendRouteRpc(BaseRpcMessage* message,

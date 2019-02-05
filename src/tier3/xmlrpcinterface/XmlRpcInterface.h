@@ -131,7 +131,7 @@ protected:
     void handleRealworldPacket(char *buf, uint32_t len);
     void handleCommonAPIPacket(cMessage *msg);
     void handleRpcResponse(BaseResponseMessage* msg,
-                           cPolymorphic* context,
+                           cObject* context,
                            int rpcId,
                            simtime_t rtt);
     /**
@@ -162,7 +162,7 @@ public:
     // see BaseRpc.cc
     void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
-                          cPolymorphic* context, int rpcId,
+                          cObject* context, int rpcId,
                           const OverlayKey&);
 
     void deliverTunneledMessage(const BinaryValue& payload);

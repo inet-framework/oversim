@@ -271,7 +271,7 @@ void BasePastry::newLeafs(void)
 
 
 void BasePastry::proxCallback(const TransportAddress& node, int rpcId,
-                              cPolymorphic *contextPointer, Prox prox)
+                              cObject *contextPointer, Prox prox)
 {
     Enter_Method("proxCallback()");
 
@@ -495,7 +495,7 @@ bool BasePastry::handleRpcCall(BaseCallMessage* msg)
 
 
 void BasePastry::handleRpcResponse(BaseResponseMessage* msg,
-                                   cPolymorphic* context, int rpcId,
+                                   cObject* context, int rpcId,
                                    simtime_t rtt)
 {
     RPC_SWITCH_START(msg)
@@ -523,7 +523,7 @@ void BasePastry::handleRpcResponse(BaseResponseMessage* msg,
 
 void BasePastry::handleRpcTimeout(BaseCallMessage* call,
                                   const TransportAddress& dest,
-                                  cPolymorphic* context, int rpcId,
+                                  cObject* context, int rpcId,
                                   const OverlayKey& key)
 {
     EV << "[BasePastry::handleRpcTimeout() @ " << thisNode.getIp()
