@@ -240,7 +240,7 @@ public:
  * @param b the buffer
  * @param obj the NodeHandle to serialise
  */
-inline void doPacking(cCommBuffer *b, NodeHandle& obj) {obj.netPack(b);}
+inline void doParsimPacking(cCommBuffer *b, NodeHandle& obj) {obj.netPack(b);}
 
 /**
  * netUnpack for NodeHandles
@@ -248,6 +248,6 @@ inline void doPacking(cCommBuffer *b, NodeHandle& obj) {obj.netPack(b);}
  * @param b the buffer
  * @param obj the NodeHandles to unserialise
  */
-inline void doUnpacking(cCommBuffer *b, NodeHandle& obj) {obj.netUnpack(b);}
+inline void doParsimUnpacking(cCommBuffer *b, NodeHandle& obj) {obj.netUnpack(b);}
 
 #endif

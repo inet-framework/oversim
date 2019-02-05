@@ -184,13 +184,13 @@ std::ostream& operator<<(std::ostream& Stream, const Vector2D& v)
 void Vector2D::netPack(cCommBuffer *b)
 {
     //cMessage::netPack(b);
-    doPacking(b, this->x);
-    doPacking(b, this->y);
+    doParsimPacking(b, this->x);
+    doParsimPacking(b, this->y);
 }
 
 void Vector2D::netUnpack(cCommBuffer *b)
 {
     //cMessage::netUnpack(b);
-    doUnpacking(b, this->x);
-    doUnpacking(b, this->y);
+    doParsimUnpacking(b, this->x);
+    doParsimUnpacking(b, this->y);
 }

@@ -191,17 +191,17 @@ inline void NodeHandle::assertUnspecified( const NodeHandle& handle ) const
 void NodeHandle::netPack(cCommBuffer *b)
 {
     //cMessage::netPack(b);
-    doPacking(b,this->ip);
-    doPacking(b,this->key);
-    doPacking(b,this->port);
+    doParsimPacking(b,this->ip);
+    doParsimPacking(b,this->key);
+    doParsimPacking(b,this->port);
 }
 
 void NodeHandle::netUnpack(cCommBuffer *b)
 {
     //cMessage::netUnpack(b);
-    doUnpacking(b,this->ip);
-    doUnpacking(b,this->key);
-    doUnpacking(b,this->port);
+    doParsimUnpacking(b,this->ip);
+    doParsimUnpacking(b,this->key);
+    doParsimUnpacking(b,this->port);
 }
 
 TransportAddress* NodeHandle::dup() const

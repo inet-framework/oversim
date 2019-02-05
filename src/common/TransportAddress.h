@@ -318,15 +318,14 @@ public:
  * @param buf the buffer
  * @param addr the TransportAddress to serialise
  */
-inline void doPacking(cCommBuffer *buf, TransportAddress& addr)
+inline void doParsimPacking(cCommBuffer *buf, const TransportAddress& addr)
 {
-    doPacking(buf, addr.getIp());
-    doPacking(buf, addr.getPort());
-    doPacking(buf, static_cast<uint8_t>(addr.getNatType()));
-    doPacking(buf, static_cast<uint8_t>(addr.getSourceRouteSize()));
+    doParsimPacking(buf, addr.getIp());
+    doParsimPacking(buf, addr.getPort());
+    doParsimPacking(buf, static_cast<uint8_t>(addr.getNatType()));
+    doParsimPacking(buf, static_cast<uint8_t>(addr.getSourceRouteSize()));
     for (size_t i = 0; i < addr.getSourceRouteSize(); i++) {
-        // TODO: ugly const_cast should be avoided
-        doPacking(buf, const_cast<TransportAddress&>(addr.getSourceRoute()[i]));
+        doParsimPacking(buf, addr.getSourceRoute()[i]);
     }
 }
 
@@ -336,21 +335,21 @@ inline void doPacking(cCommBuffer *buf, TransportAddress& addr)
  * @param buf the buffer
  * @param addr the TransportAddress to unserialise
  */
-inline void doUnpacking(omnetpp::cCommBuffer *buf, TransportAddress& addr)
+inline void doParsimUnpacking(omnetpp::cCommBuffer *buf, TransportAddress& addr)
 {
     IPvXAddress ip;
     int port;
     uint8_t natType = 0;
-    doUnpacking(buf, ip);
-    doUnpacking(buf, port);
-    doUnpacking(buf, natType);
+    doParsimUnpacking(buf, ip);
+    doParsimUnpacking(buf, port);
+    doParsimUnpacking(buf, natType);
     addr.setIp(ip, port, static_cast<TransportAddress::NatType>(natType));
 
     uint8_t sourceRouteSize;
     TransportAddress sourceRouteEntry;
-    doUnpacking(buf, sourceRouteSize);
+    doParsimUnpacking(buf, sourceRouteSize);
     for (size_t i = 0; i < sourceRouteSize; i++) {
-        doUnpacking(buf, sourceRouteEntry);
+        doParsimUnpacking(buf, sourceRouteEntry);
         addr.appendSourceRoute(sourceRouteEntry);
     }
 }

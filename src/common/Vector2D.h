@@ -67,7 +67,7 @@ class Vector2D
 * @param b the buffer
 * @param obj the Vector2D to serialise
 */
-inline void doPacking(cCommBuffer *b, Vector2D& obj) {obj.netPack(b);}
+inline void doParsimPacking(cCommBuffer *b, Vector2D& obj) {obj.netPack(b);}
 
 /**
 * netUnpack for Vector2D
@@ -75,6 +75,6 @@ inline void doPacking(cCommBuffer *b, Vector2D& obj) {obj.netPack(b);}
 * @param b the buffer
 * @param obj the Vector2D to unserialise
 */
-inline void doUnpacking(cCommBuffer *b, Vector2D& obj) {obj.netUnpack(b);}
+inline void doParsimUnpacking(cCommBuffer *b, Vector2D& obj) {obj.netUnpack(b);}
 
 #endif

@@ -574,7 +574,7 @@ class OverlayKeyBit
  * @param b the buffer
  * @param obj the OverlayKey to serialise
  */
-inline void doPacking(omnetpp::cCommBuffer *b, OverlayKey& obj) {obj.netPack(b);}
+inline void doParsimPacking(omnetpp::cCommBuffer *b, OverlayKey& obj) {obj.netPack(b);}
 
 /**
  * netUnpack for OverlayKey
@@ -582,6 +582,6 @@ inline void doPacking(omnetpp::cCommBuffer *b, OverlayKey& obj) {obj.netPack(b);
  * @param b the buffer
  * @param obj the OverlayKey to unserialise
  */
-inline void doUnpacking(omnetpp::cCommBuffer *b, OverlayKey& obj) {obj.netUnpack(b);}
+inline void doParsimUnpacking(omnetpp::cCommBuffer *b, OverlayKey& obj) {obj.netUnpack(b);}
 
 #endif

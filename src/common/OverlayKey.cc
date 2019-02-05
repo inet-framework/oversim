@@ -840,22 +840,22 @@ inline void omnet_random(mp_limb_t *r1p, mp_size_t r1n)
 
 void OverlayKey::netPack(cCommBuffer *b)
 {
-    //doPacking(b,(GMP_TYPE*)this->key, MAX_KEYLENGTH / (8*sizeof(mp_limb_t)) +
+    //doParsimPacking(b,(GMP_TYPE*)this->key, MAX_KEYLENGTH / (8*sizeof(mp_limb_t)) +
               //(MAX_KEYLENGTH % (8*sizeof(mp_limb_t))!=0 ? 1 : 0));
     // Pack an OverlayKey as uint32_t array and hope for the best
     // FIXME: This is probably not exactly portable
-    doPacking(b,(uint32_t*)this->key, MAX_KEYLENGTH / (8*sizeof(uint32_t)) +
+    doParsimPacking(b,(uint32_t*)this->key, MAX_KEYLENGTH / (8*sizeof(uint32_t)) +
               (MAX_KEYLENGTH % (8*sizeof(uint32_t))!=0 ? 1 : 0));
-    doPacking(b,this->isUnspec);
+    doParsimPacking(b,this->isUnspec);
 }
 
 void OverlayKey::netUnpack(cCommBuffer *b)
 {
-    //doUnpacking(b,(GMP_TYPE*)this->key, MAX_KEYLENGTH / (8*sizeof(mp_limb_t)) +
+    //doParsimUnpacking(b,(GMP_TYPE*)this->key, MAX_KEYLENGTH / (8*sizeof(mp_limb_t)) +
                 //(MAX_KEYLENGTH % (8*sizeof(mp_limb_t))!=0 ? 1 : 0));
-    doUnpacking(b,(uint32_t*)this->key, MAX_KEYLENGTH / (8*sizeof(uint32_t)) +
+    doParsimUnpacking(b,(uint32_t*)this->key, MAX_KEYLENGTH / (8*sizeof(uint32_t)) +
                 (MAX_KEYLENGTH % (8*sizeof(uint32_t))!=0 ? 1 : 0));
-    doUnpacking(b,this->isUnspec);
+    doParsimUnpacking(b,this->isUnspec);
 
 }
 

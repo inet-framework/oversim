@@ -94,16 +94,16 @@ bool BinaryValue::operator<(const BinaryValue& rhs)
 
 void BinaryValue::netPack(cCommBuffer *b)
 {
-    doPacking(b,(uint16_t)size());
-    doPacking(b, data(), size());
+    doParsimPacking(b,(uint16_t)size());
+    doParsimPacking(b, data(), size());
 }
 
 void BinaryValue::netUnpack(cCommBuffer *b)
 {
     uint16_t size;
-    doUnpacking(b, size);
+    doParsimUnpacking(b, size);
     resize(size);
-    doUnpacking(b, data(), size);
+    doParsimUnpacking(b, data(), size);
 }
 
 void BinaryValue::packObject(cObject* obj)

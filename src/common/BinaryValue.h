@@ -53,7 +53,7 @@ class BinaryValue : public std::vector<char>, public cPolymorphic {
     bool isUnspecified() const;
 };
 
-inline void doPacking(cCommBuffer *b, BinaryValue& obj) {obj.netPack(b);}
-inline void doUnpacking(cCommBuffer *b, BinaryValue& obj) {obj.netUnpack(b);}
+inline void doParsimPacking(cCommBuffer *b, BinaryValue& obj) {obj.netPack(b);}
+inline void doParsimUnpacking(cCommBuffer *b, BinaryValue& obj) {obj.netUnpack(b);}
 
 #endif
