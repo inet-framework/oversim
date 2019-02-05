@@ -50,9 +50,9 @@ void MessageObserver::initialize() {
     cacheMaxAge = par("cacheMaxAge");
 
     if (gcInterval > 0.0)
-        scheduleAt(OPP::simTime() + gcInterval, gcTimer);
+        scheduleAt(simTime() + gcInterval, gcTimer);
 
-    creationTime = OPP::simTime();
+    creationTime = simTime();
     globalStatistics = GlobalStatisticsAccess().get();
 }
 
@@ -89,7 +89,7 @@ void MessageObserver::finish() {
 
 void MessageObserver::handleMessage(cMessage* msg) {
     if (msg == gcTimer) {
-        simtime_t now = OPP::simTime();
+        simtime_t now = simTime();
         std::map<NodeMessagePair, simtime_t>::iterator i, iPrev;
         i = receivedAt.begin();
         while (i != receivedAt.end()) {
@@ -102,7 +102,7 @@ void MessageObserver::handleMessage(cMessage* msg) {
                 ++i;
             }
         }
-        scheduleAt(OPP::simTime() + gcInterval, gcTimer);
+        scheduleAt(simTime() + gcInterval, gcTimer);
     }
 }
 
@@ -111,7 +111,7 @@ void MessageObserver::handleMessage(cMessage* msg) {
  */
 void MessageObserver::joinedGroup(int moduleId, OverlayKey groupId) {
     groups[groupId].size += 1;
-    joinedAt[NodeGroupPair(moduleId, groupId)] = OPP::simTime();
+    joinedAt[NodeGroupPair(moduleId, groupId)] = simTime();
 }
 
 /**
@@ -211,7 +211,7 @@ std::ostream& operator<< (std::ostream& os, MessageObserver::MulticastGroup cons
 }
 
 std::ostream& operator<< (std::ostream& os, MessageObserver::NodeGroupPair const & ngp) {
-    cModule* module = OPP::cSimulation::getActiveSimulation()->getModule(ngp.first);
+    cModule* module = cSimulation::getActiveSimulation()->getModule(ngp.first);
     return os << "(" << (module != NULL ? module->getFullPath() : "Deleted node")
         << ", " << ngp.second << ")";
 }
