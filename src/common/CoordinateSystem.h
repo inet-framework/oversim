@@ -28,7 +28,7 @@
 
 #include "INETDefs.h"
 
-class Prox;
+struct Prox;
 class NeighborCache;
 class BaseCallMessage;
 

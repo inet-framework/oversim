@@ -33,9 +33,9 @@
 #include <ProxNodeHandle.h>
 
 
-template < class T > class KeyExtractor;
-template < class T > class ProxExtractor;
-template < class T > class AddressExtractor;
+template < class T > struct KeyExtractor;
+template < class T > struct ProxExtractor;
+template < class T > struct AddressExtractor;
 
 template < class T,
            class T_key = KeyExtractor<T>,
