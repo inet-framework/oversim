@@ -38,7 +38,7 @@ void RealworldDevice::initialize(int stage)
 
 InterfaceEntry *RealworldDevice::registerInterface()
 {
-    InterfaceEntry *e = new InterfaceEntry();
+    InterfaceEntry *e = new InterfaceEntry(this);
 
     // interface name: our module name without special characters ([])
     char *interfaceName = new char[strlen(getFullName())+1];
@@ -69,7 +69,7 @@ InterfaceEntry *RealworldDevice::registerInterface()
 
     // add
     IInterfaceTable *ift = InterfaceTableAccess().get();
-    ift->addInterface(e, this);
+    ift->addInterface(e);
 
     return e;
 }
