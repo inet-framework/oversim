@@ -120,7 +120,7 @@ simtime_t SimpleNcs::falsifyDelay(simtime_t oldDelay) const {
     }
 
     // normalize decimal hash value onto 0..1 (decimal number / 2^32-1)
-    double fraction = (double) decimalhash / (uint32_t) ((2 << 31) - 1);
+    double fraction = (double) decimalhash / (uint32_t) (0xffffffffUL);
 
     // flip a coin if faulty rtt is larger or smaller
     char sign = (decimalhash % 2 == 0) ? 1 : -1;
