@@ -316,7 +316,6 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
         re->setDestination(terminal.ipvxAddress.get4());
         re->setNetmask(IPv4Address(IPv4Address::ALLONES_ADDRESS));
         re->setInterface(terminal.remoteInterfaceEntry);
-        re->setType(IPv4Route::DIRECT);
         re->setSourceType(IPv4Route::MANUAL);
         router.routingTable->addRoute(re);
         terminal.remoteRoutingEntry = re;
@@ -327,7 +326,6 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
         te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
         te->setGateway(router.ipvxAddress.get4());
         te->setInterface(terminal.interfaceEntry);
-        te->setType(IPv4Route::REMOTE);
         te->setSourceType(IPv4Route::MANUAL);
         terminal.routingTable->addRoute(te);
         terminal.routingEntry = te;

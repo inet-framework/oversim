@@ -404,7 +404,6 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             defRoute->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
             defRoute->setGateway(IPv4Address(par("gatewayIP").stringValue()));
             defRoute->setInterface(IPvXAddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
-            defRoute->setType(IPv4Route::REMOTE);
             defRoute->setSourceType(IPv4Route::MANUAL);
             IPvXAddressResolver().routingTableOf(destNode->getModule())->addRoute(defRoute);
 
@@ -412,7 +411,6 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             gwRoute->setDestination(IPv4Address(par("gatewayIP").stringValue()));
             gwRoute->setNetmask(IPv4Address(255, 255, 255, 255));
             gwRoute->setInterface(IPvXAddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
-            gwRoute->setType(IPv4Route::DIRECT);
             gwRoute->setSourceType(IPv4Route::MANUAL);
             IPvXAddressResolver().routingTableOf(destNode->getModule())->addRoute(gwRoute);
         }
@@ -458,7 +456,6 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             re->setSourceType(IPv4Route::MANUAL);
             re->setNetmask(IPv4Address(255, 255, 0, 0));
             re->setGateway(IPv4Address(next_hop_ip));
-            re->setType(IPv4Route::REMOTE);
 
             rt->addRoute(re);
 
@@ -471,7 +468,6 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
                 re2->setInterface(ie);
                 re2->setSourceType(IPv4Route::MANUAL);
                 re2->setNetmask(IPv4Address(255, 255, 255, 255));
-                re2->setType(IPv4Route::DIRECT);
 
                 rt->addRoute(re2);
             }
@@ -484,7 +480,6 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
                 defRoute->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
                 defRoute->setGateway(IPv4Address(next_hop_ip));
                 defRoute->setInterface(ie);
-                defRoute->setType(IPv4Route::REMOTE);
                 defRoute->setSourceType(IPv4Route::MANUAL);
 
                 rt->addRoute(defRoute);

@@ -135,7 +135,6 @@ void RUNetworkConfigurator::createInterASPaths()
             e->setDestination(destCore.addr);
             e->setNetmask(netmask);
             e->setInterface(ie);
-            e->setType(IPv4Route::DIRECT);
             e->setSourceType(IPv4Route::MANUAL);
             srcCore.rt->addRoute(e);
 
@@ -310,7 +309,6 @@ void RUNetworkConfigurator::assignAddressAndSetDefaultRoutes(nodeInfoAS &asInfo)
             e->setDestination(IPv4Address());
             e->setNetmask(IPv4Address());
             e->setInterface(mapIt->second.defaultRouteIE);
-            e->setType(IPv4Route::REMOTE);
             e->setSourceType(IPv4Route::MANUAL);
             //e->setMetric(1);
             mapIt->second.rt->addRoute(e);
@@ -372,7 +370,6 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                 e->setDestination(IPv4Address());
                 e->setNetmask(IPv4Address());
                 e->setInterface(destNode.defaultRouteIE);
-                e->setType(IPv4Route::REMOTE);
                 e->setSourceType(IPv4Route::MANUAL);
                 destNode.rt->addRoute(e);
 
@@ -381,7 +378,6 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                 e->setDestination(destNode.addr);
                 e->setNetmask(IPv4Address(255, 255, 255, 255));
                 e->setInterface(ie);
-                e->setType(IPv4Route::DIRECT);
                 e->setSourceType(IPv4Route::MANUAL);
                 srcNode.rt->addRoute(e);
             }
@@ -401,7 +397,6 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                     else
                         e->setNetmask(IPv4Address(255, 255, 255, 255));
                     e->setInterface(ie);
-                    e->setType(IPv4Route::DIRECT);
                     e->setSourceType(IPv4Route::MANUAL);
                     srcNode.rt->addRoute(e);
                 }
