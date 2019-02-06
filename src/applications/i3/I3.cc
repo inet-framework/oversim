@@ -166,7 +166,7 @@ void I3::sendPacket(I3SendPacketMessage *msg)
 
         /* if we were asked to reply, send it now */
         if (msg->getSendReply()) {
-            sendQueryReply(id.getIdentifier(), msg->getSourceType());
+            sendQueryReply(id.getIdentifier(), msg->getSource());
         }
 
         const I3Identifier *i3id = findClosestMatch(id.getIdentifier());
@@ -304,7 +304,7 @@ void I3::sendQueryReply(const I3Identifier &id, const I3IPAddress &add) {
     I3IPAddress myAddress(thisNode.getIp(), par("serverPort"));
 
     pmsg = new I3QueryReplyMessage();
-    pmsg->setSourceType(myAddress);
+    pmsg->setSource(myAddress);
     pmsg->setSendingTime(simTime());
     pmsg->setIdentifier(id);
     pmsg->setBitLength(QUERY_REPLY_L(pmsg));
@@ -330,7 +330,7 @@ void I3::deliver(OverlayKey& key, cMessage* msg)
         insertTrigger(imsg->getTrigger());
 
         if (imsg->getSendReply()) {
-            sendQueryReply(imsg->getTrigger().getIdentifier(), imsg->getSourceType());
+            sendQueryReply(imsg->getTrigger().getIdentifier(), imsg->getSource());
         }
 
         delete msg;

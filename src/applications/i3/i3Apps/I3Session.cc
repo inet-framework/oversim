@@ -155,8 +155,8 @@ void I3SessionClient::deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPac
             SessionMsg *newMsg = new SessionMsg();
             newMsg->setType(TRIGGER_CONFIRMATION);
             newMsg->setValue(0);
-            newMsg->setSourceType(poolIdentifier);
-            sendPacket(smsg->getSourceType(), newMsg);
+            newMsg->setSource(poolIdentifier);
+            sendPacket(smsg->getSource(), newMsg);
         }
         delete smsg;
 
@@ -212,7 +212,7 @@ void I3SessionClient::handleTimerEvent(cMessage *msg) {
         SessionMsg *newMsg = new SessionMsg();
         newMsg->setType(CHANGE_SESSION);
         newMsg->setValue(actualValue);
-        newMsg->setSourceType(poolIdentifier);
+        newMsg->setSource(poolIdentifier);
         sendPacket(sessionId, newMsg);
 
         getParentModule()->bubble("Ceding session...");
