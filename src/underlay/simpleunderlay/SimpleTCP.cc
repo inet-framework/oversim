@@ -37,6 +37,7 @@
 #include <SimpleInfo.h>
 #include <SimpleUDP.h>
 #include "IPv4Datagram.h"
+#include "IPv6Datagram.h"
 #include "TCPSegment.h"
 #include "SimpleTCP.h"
 #include "TCPCommand_m.h"
