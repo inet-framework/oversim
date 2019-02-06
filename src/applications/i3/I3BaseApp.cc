@@ -143,12 +143,12 @@ void I3BaseApp::bootstrapI3()
 
     refreshTriggersTimer = new cMessage();
     refreshTriggersTime = par("triggerRefreshTime");
-    scheduleAt(simTime() + truncnormal(refreshTriggersTime, refreshTriggersTime / 10),
+    scheduleAt(simTime() + RNGCONTEXT truncnormal(refreshTriggersTime, refreshTriggersTime / 10),
                refreshTriggersTimer);
 
     refreshSamplesTimer = new cMessage();
     refreshSamplesTime = par("sampleRefreshTime");
-    scheduleAt(simTime() + truncnormal(refreshSamplesTime, refreshSamplesTime / 10),
+    scheduleAt(simTime() + RNGCONTEXT truncnormal(refreshSamplesTime, refreshSamplesTime / 10),
                refreshSamplesTimer);
 }
 
@@ -170,11 +170,11 @@ void I3BaseApp::handleMessage(cMessage *msg)
             initializeTimer = 0;
         } else if (msg == refreshTriggersTimer) {
             refreshTriggers();
-            scheduleAt(simTime() + truncnormal(refreshTriggersTime, refreshTriggersTime / 10),
+            scheduleAt(simTime() + RNGCONTEXT truncnormal(refreshTriggersTime, refreshTriggersTime / 10),
                        refreshTriggersTimer);
         } else if (msg == refreshSamplesTimer) {
             refreshSamples();
-            scheduleAt(simTime() + truncnormal(refreshSamplesTime, refreshSamplesTime / 10),
+            scheduleAt(simTime() + RNGCONTEXT truncnormal(refreshSamplesTime, refreshSamplesTime / 10),
                        refreshSamplesTimer);
         } else {
             handleTimerEvent(msg);
