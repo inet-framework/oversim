@@ -31,7 +31,7 @@
 
 #include <UDPAppBase.h>
 #include <UDPSocket.h>
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <NotificationBoard.h>
 
 #include <GlobalNodeListAccess.h>
@@ -241,7 +241,7 @@ void BaseOverlay::initialize(int stage)
         }
 
         // set up local nodehandle
-        thisNode.setIp(IPAddressResolver().
+        thisNode.setIp(IPvXAddressResolver().
                       addressOf(getParentModule()->getParentModule()));
         thisNode.setKey(OverlayKey::UNSPECIFIED_KEY);
 
@@ -613,7 +613,7 @@ void BaseOverlay::join(const OverlayKey& nodeID)
     if (state != READY) {
         // set nodeID and IP
         thisNode.setIp(
-            IPAddressResolver().addressOf(getParentModule()->getParentModule()));
+            IPvXAddressResolver().addressOf(getParentModule()->getParentModule()));
 
         if (!nodeID.isUnspecified())  {
             thisNode.setKey(nodeID);
@@ -797,7 +797,7 @@ void BaseOverlay::handleMessage(cMessage* msg)
             for (uint32_t i = 0; i < apiMsg->getSourceRouteArraySize(); ++i)
                 sourceRoute.push_back(apiMsg->getSourceRoute(i));
 
-            route(apiMsg->getDestKey(), static_cast<CompType>(apiMsg->getDestComp()),
+            getRoute(apiMsg->getDestKey(), static_cast<CompType>(apiMsg->getDestComp()),
                   static_cast<CompType>(apiMsg->getSrcComp()), apiMsg->decapsulate(),
                           sourceRoute);
         } else if (dynamic_cast<KBRforward*>(msg) != NULL) {
@@ -1067,7 +1067,7 @@ void BaseOverlay::receiveChangeNotification(int category, const cObject * detail
 void BaseOverlay::handleTransportAddressChangedNotification()
 {
     // get new ip address
-    thisNode.setIp(IPAddressResolver().addressOf(
+    thisNode.setIp(IPvXAddressResolver().addressOf(
                       getParentModule()->getParentModule()));
 
     joinOverlay();
@@ -1351,14 +1351,14 @@ public:
     }
 };
 
-void BaseOverlay::route(const OverlayKey& key, CompType destComp,
+void BaseOverlay::getRoute(const OverlayKey& key, CompType destComp,
                         CompType srcComp, cPacket* msg,
                         const std::vector<TransportAddress>& sourceRoute,
                         RoutingType routingType)
 {
     if (key.isUnspecified() &&
         (!sourceRoute.size() || sourceRoute[0].isUnspecified()))
-        throw cRuntimeError("route(): Key and hint unspecified!");
+        throw cRuntimeError("getRoute(): Key and hint unspecified!");
 
     // encapsulate in a app data message for multiplexing
     // to destination component
@@ -1375,7 +1375,7 @@ void BaseOverlay::route(const OverlayKey& key, CompType destComp,
 
     // debug output
     if (debugOutput) {
-        EV << "[BaseOverlay::route() @ " << thisNode.getIp()
+        EV << "[BaseOverlay::getRoute() @ " << thisNode.getIp()
         << " (" << thisNode.getKey().toString(16) << ")]\n"
         << "    Received message from application"
         << endl;
@@ -1386,7 +1386,7 @@ void BaseOverlay::route(const OverlayKey& key, CompType destComp,
     } else {
         if (internalReadyState == false) {
             // overlay not ready => sendToKey doesn't work yet
-            EV << "[BaseOverlay::route() @ "
+            EV << "[BaseOverlay::getRoute() @ "
                << getThisNode().getIp()
                << " (" << getThisNode().getKey().toString(16) << ")]\n"
                << "    Couldn't route application message to key "
@@ -1933,7 +1933,7 @@ void BaseOverlay::findNodeRpc( FindNodeCall* call )
         findNodeResponse->setClosestNodesArraySize(resultSize);
         for (int i = 0; i < resultSize; i++) {
             findNodeResponse->setClosestNodes(i,
-                    NodeHandle(call->getLookupKey() + i, IPvXAddress(IPAddress(
+                    NodeHandle(call->getLookupKey() + i, IPvXAddress(IPv4Address(
                     isSiblingAttack ? (424242+i) : intuniform(42,123123))), 42));
 #if 0
             // was not used for evaluation

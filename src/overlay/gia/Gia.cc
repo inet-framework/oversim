@@ -24,7 +24,7 @@
 #include <assert.h>
 
 #include <UDPControlInfo_m.h>
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <GlobalStatistics.h>
 #include <CommonMessages_m.h>
 #include <ExtAPIMessages_m.h>
@@ -38,7 +38,7 @@ Define_Module(Gia);
 
 void Gia::initializeOverlay(int stage)
 {
-    // wait until IPAddressResolver initialized all interfaces and assigns addresses
+    // wait until IPvXAddressResolver initialized all interfaces and assigns addresses
     if(stage != MIN_STAGE_OVERLAY)
         return;
 

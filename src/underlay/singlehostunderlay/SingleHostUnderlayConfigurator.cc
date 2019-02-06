@@ -40,7 +40,7 @@
 #include "IInterfaceTable.h"
 #include "InterfaceEntry.h"
 #include "IPv4InterfaceData.h"
-#include "IPAddressResolver.h"
+#include "IPvXAddressResolver.h"
 
 #include <PeerInfo.h>
 #include <IRoutingTable.h>
@@ -83,7 +83,7 @@ void SingleHostUnderlayConfigurator::initializeUnderlay(int stage)
             snprintf(req.ifr_name, sizeof(req.ifr_name), "%s", nodeInterface.c_str());
 
             if (!ioctl(sock_fd, SIOCGIFADDR, &req)) {
-                addr = IPAddress(inet_ntoa(((struct sockaddr_in *)
+                addr = IPv4Address(inet_ntoa(((struct sockaddr_in *)
                         (&req.ifr_addr))->sin_addr));
             } else {
                 throw cRuntimeError("SingleHostConfigurator::"
@@ -98,20 +98,20 @@ void SingleHostUnderlayConfigurator::initializeUnderlay(int stage)
                 "**.nodeInterface parameter not supported on WIN32 yet!");
 #endif
     } else if (nodeIP.size()) {
-        addr = IPAddress(nodeIP.c_str());
+        addr = IPv4Address(nodeIP.c_str());
     }
 
     IPvXAddress gw = addr;
-    InterfaceEntry* ifEntry = IPAddressResolver().interfaceTableOf(node)->
+    InterfaceEntry* ifEntry = IPvXAddressResolver().interfaceTableOf(node)->
 	    getInterfaceByName("outDev");
     IRoutingTable* rTable = check_and_cast<IRoutingTable*>(node->getSubmodule("routingTable", 0));
 
     ifEntry->ipv4Data()->setIPAddress(addr.get4());
-    ifEntry->ipv4Data()->setNetmask(IPAddress::ALLONES_ADDRESS);
+    ifEntry->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
 
     IPRoute* te = new IPRoute();
-    te->setHost(IPAddress::UNSPECIFIED_ADDRESS);
-    te->setNetmask(IPAddress::UNSPECIFIED_ADDRESS);
+    te->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+    te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
     te->setGateway(gw.get4());
     te->setInterface(ifEntry);
     te->setType(IPRoute::REMOTE);
@@ -124,11 +124,11 @@ void SingleHostUnderlayConfigurator::initializeUnderlay(int stage)
 
     if (strlen(par("bootstrapIP")) > 0) {
         PeerInfo* bootstrapInfo = new PeerInfo(0, -1, NULL);
-        globalNodeList->addPeer(IPAddress(par("bootstrapIP").stringValue()),
+        globalNodeList->addPeer(IPv4Address(par("bootstrapIP").stringValue()),
                                 bootstrapInfo);
 
         globalNodeList->registerPeer(NodeHandle(OverlayKey::ONE,
-            IPAddress(par("bootstrapIP").stringValue()), par("bootstrapPort")));
+            IPv4Address(par("bootstrapIP").stringValue()), par("bootstrapPort")));
     }
 
     // update display

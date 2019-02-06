@@ -25,7 +25,7 @@
 #include "UDPSocket.h"
 #include "UDPControlInfo_m.h"
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <CommonMessages_m.h>
 #include <GlobalNodeListAccess.h>
 #include <UnderlayConfiguratorAccess.h>
@@ -159,7 +159,7 @@ void I3::sendPacket(I3SendPacketMessage *msg)
 
     I3SubIdentifier id = idStack.peek();
 
-    if (id.getType() == I3SubIdentifier::IPAddress) {
+    if (id.getType() == I3SubIdentifier::IPv4Address) {
         /* shouldn't happen (how'd they find us anyway?) but just in case */
         sendToNode(msg);
     } else {
@@ -185,7 +185,7 @@ void I3::sendPacket(I3SendPacketMessage *msg)
                 return;
             } else {
                 msg->setBitLength(SEND_PACKET_L(msg)); /* stack size changed, recalculate */
-                if (idStack.peek().getType() == I3SubIdentifier::IPAddress) {
+                if (idStack.peek().getType() == I3SubIdentifier::IPv4Address) {
                     msg->getMatchedTrigger().clear(); // not trigger, but direct IP match
                     sendToNode(msg);
                 } else {
@@ -212,7 +212,7 @@ void I3::sendPacket(I3SendPacketMessage *msg)
 
                 I3SubIdentifier &top = newMsg->getIdentifierStack().peek();
 
-                if (top.getType() == I3SubIdentifier::IPAddress) {
+                if (top.getType() == I3SubIdentifier::IPv4Address) {
                     newMsg->setMatchedTrigger(*it);
                     sendToNode(newMsg);
                 } else {
@@ -283,7 +283,7 @@ void I3::handleUDPMessage(cMessage *msg)
             return;
         }
         I3SubIdentifier &subId = smsg->getIdentifierStack().peek();
-        if (subId.getType() == I3SubIdentifier::IPAddress) {
+        if (subId.getType() == I3SubIdentifier::IPv4Address) {
             /* why didn't they send it directly?! */
             sendToNode(smsg);
         } else {

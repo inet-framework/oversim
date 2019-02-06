@@ -23,7 +23,7 @@
 
 #include <cassert>
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <IPvXAddress.h>
 #include <IInterfaceTable.h>
 #include <IPv4InterfaceData.h>
@@ -1153,7 +1153,7 @@ bool Pastry::mergeState(void)
         if (debugOutput) {
             EV << "[Pastry::mergeState() @ " << thisNode.getIp()
                << " (" << thisNode.getKey().toString(16) << ")]\n"
-               << "    [JOIN] initializing RoutingTable from all hops"
+               << "    [JOIN] initializing IRoutingTable from all hops"
                << endl;
         }
 

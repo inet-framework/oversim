@@ -323,7 +323,7 @@ protected://methods: KBR
      *                    (nextHop is used as a proxy)
      * @param routingType specifies the routing mode (ITERATIVE_ROUTING, ...)
      */
-    virtual void route(const OverlayKey& key, CompType destComp,
+    virtual void getRoute(const OverlayKey& key, CompType destComp,
                        CompType srcComp, cPacket* msg,
                        const std::vector<TransportAddress>& sourceRoute
                            = TransportAddress::UNSPECIFIED_NODES,

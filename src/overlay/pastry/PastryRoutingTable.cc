@@ -447,7 +447,7 @@ const TransportAddress& PastryRoutingTable::repair(const PastryStateMessage* msg
         if (it->node.isUnspecified()) {
             // no more nodes to ask, give up:
             EV << "[PastryRoutingTable::repair()]\n"
-               << "    RoutingTable giving up repair attempt."
+               << "    IRoutingTable giving up repair attempt."
                << endl;
             awaitingRepair.erase(it);
             return TransportAddress::UNSPECIFIED_NODE;
@@ -457,7 +457,7 @@ const TransportAddress& PastryRoutingTable::repair(const PastryStateMessage* msg
 
     // repair done: clean up
     EV << "[PastryRoutingTable::repair()]\n"
-       << "    RoutingTable repair was successful."
+       << "    IRoutingTable repair was successful."
        << endl;
     return TransportAddress::UNSPECIFIED_NODE;
 }

@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 
 #include "CBR-DHT.h"
 

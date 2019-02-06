@@ -27,7 +27,7 @@
 #include "I3Identifier.h"
 #include "I3IPAddress.h"
 #include "I3SubIdentifier.h"
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 
 /** Stack of I3SubIdentifier, implementing the "identifier stack" proposed in Internet Indirection Infrastructure */
 class I3IdentifierStack {

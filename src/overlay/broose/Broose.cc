@@ -24,7 +24,7 @@
 #include "Broose.h"
 #include <RpcMacros.h>
 #include <GlobalStatistics.h>
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <BootstrapList.h>
 #include <LookupListener.h>
 
@@ -65,7 +65,7 @@ Broose::~Broose()
 
 void Broose::initializeOverlay(int stage)
 {
-    // because of IPAddressResolver, we need to wait until interfaces
+    // because of IPvXAddressResolver, we need to wait until interfaces
     // are registered, address auto-assignment takes place etc.
     if (stage != MIN_STAGE_OVERLAY)
         return;

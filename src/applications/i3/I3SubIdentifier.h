@@ -40,7 +40,7 @@ public:
     enum IdentifierType {
         Invalid,       /** Type has not been set yet */
         Identifier,    /** Subidentifier refers to an I3Identifier */
-        IPAddress      /** Subidentifier refers to an I3IPAddress */
+        IPv4Address      /** Subidentifier refers to an I3IPAddress */
     };
 
     /** Constructor */

@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart, Bernhard Heep, Stephan Krause
  */
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <NotificationBoard.h>
 #include <UDPAppBase.h>
 #include <UDPSocket.h>
@@ -84,10 +84,10 @@ void BaseApp::initialize(int stage)
 
         // determine the terminal's transport address
         if (getParentModule()->getSubmodule("interfaceTable", 0) != NULL) {
-            thisNode.setIp(IPAddressResolver()
+            thisNode.setIp(IPvXAddressResolver()
                           .addressOf(getParentModule()));
         } else {
-            thisNode.setIp(IPAddressResolver()
+            thisNode.setIp(IPvXAddressResolver()
                           .addressOf(getParentModule()->getParentModule()));
         }
 

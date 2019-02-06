@@ -32,7 +32,7 @@ I3SubIdentifier::I3SubIdentifier() :
 
 void I3SubIdentifier::setIPAddress(const I3IPAddress &address)
 {
-    type = IPAddress;
+    type = IPv4Address;
     ipAddress = address;
     identifier.clear();
 }
@@ -54,7 +54,7 @@ I3SubIdentifier::IdentifierType I3SubIdentifier::getType() const
 
 I3IPAddress &I3SubIdentifier::getIPAddress()
 {
-    if (type != IPAddress) {
+    if (type != IPv4Address) {
         // error!
     }
     return ipAddress;
@@ -74,7 +74,7 @@ int I3SubIdentifier::compareTo(const I3SubIdentifier &id) const
         return type - id.type;
     } else if (type == Identifier) {
         return identifier.compareTo(id.identifier);
-    } else if (type == IPAddress) {
+    } else if (type == IPv4Address) {
         if (ipAddress.getIp() < id.ipAddress.getIp()) return -1;
         else if (ipAddress.getIp() == id.ipAddress.getIp()) return ipAddress.getPort() - id.ipAddress.getPort();
         else return 1;
@@ -83,8 +83,8 @@ int I3SubIdentifier::compareTo(const I3SubIdentifier &id) const
 }
 
 int I3SubIdentifier::length() const {
-//	return sizeof(type) + (type == IPAddress ? ipAddress.length() : identifier.length());
-    return 1 + (type == IPAddress ? ipAddress.length() : identifier.length());
+//	return sizeof(type) + (type == IPv4Address ? ipAddress.length() : identifier.length());
+    return 1 + (type == IPv4Address ? ipAddress.length() : identifier.length());
 }
 
 std::ostream& operator<<(std::ostream& os, const I3SubIdentifier &s) {

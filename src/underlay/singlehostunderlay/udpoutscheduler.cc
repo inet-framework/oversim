@@ -123,7 +123,7 @@ int UdpOutScheduler::initializeNetwork()
     }
 
     if (strlen(underlayConfigurator->par("nodeIP").stringValue())) {
-        addr.sin_addr.s_addr = htonl(IPAddress(underlayConfigurator->
+        addr.sin_addr.s_addr = htonl(IPv4Address(underlayConfigurator->
                                        par("nodeIP").stringValue()).getInt());
     } else {
         addr.sin_addr.s_addr = htonl(INADDR_ANY);

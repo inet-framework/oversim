@@ -34,10 +34,10 @@
 #include <string>
 #include <iostream>
 #include "INETDefs.h"
-#include "IPAddress.h"
-#include "RoutingTable.h"
-#include "InterfaceTable.h"
-#include "IPAddressResolver.h"
+#include "IPv4Address.h"
+#include "IRoutingTable.h"
+#include "IInterfaceTable.h"
+#include "IPvXAddressResolver.h"
 #include "NetworkConfigurator.h"
 #include "IPv4InterfaceData.h"
 #include "InterfaceEntry.h"
@@ -76,7 +76,7 @@ struct nodeInfoRL
     InterfaceEntry *defaultRouteIE;
     int asId, asType, routerType, moduleId;
     IRoutingTable *rt;
-    IPAddress addr;
+    IPv4Address addr;
     bool usesDefaultRoute;
     cModule *module;
     cTopology::Node *node;
@@ -87,8 +87,8 @@ struct nodeInfoRL
         this->node = node;
         module = node->getModule();
         moduleId = module->getId();
-        ift = IPAddressResolver().findInterfaceTableOf(module);
-        rt = IPAddressResolver().findRoutingTableOf(module);
+        ift = IPvXAddressResolver().findInterfaceTableOf(module);
+        rt = IPvXAddressResolver().findRoutingTableOf(module);
         isIPNode = (rt != NULL);
         int index = 0;
         string fullPath = module->getFullPath();
@@ -196,12 +196,12 @@ struct nodeInfoAS
     cModule *module;
     NODE_MAP nodeMap;
     NODE_INFO_RL_VEC coreNode;
-    IPAddress addr;
-    IPAddress netmask;
-    IPAddress subnetmask;
+    IPv4Address addr;
+    IPv4Address netmask;
+    IPv4Address subnetmask;
     EDGE_ROUTER_VEC edgeRouter;
 
-    nodeInfoAS(cTopology::Node *node, IPAddress a, IPAddress m) {
+    nodeInfoAS(cTopology::Node *node, IPv4Address a, IPv4Address m) {
         this->node = node;
         this->module = node->getModule();
         addr = a;

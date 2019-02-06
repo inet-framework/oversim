@@ -36,7 +36,7 @@
 
 #include <SimpleInfo.h>
 #include <SimpleUDP.h>
-#include "IPDatagram_m.h"
+#include "IPv4Datagram.h"
 #include "TCPSegment.h"
 #include "SimpleTCP.h"
 #include "TCPCommand_m.h"
@@ -44,7 +44,7 @@
 #include "IPv6ControlInfo.h"
 #include "ICMPMessage_m.h"
 #include "ICMPv6Message_m.h"
-#include "IPAddressResolver.h"
+#include "IPvXAddressResolver.h"
 #include "TCPSendQueue.h"
 #include "TCPSACKRexmitQueue.h"
 #include "TCPReceiveQueue.h"
@@ -344,7 +344,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
 
     /* main modifications for SimpleTCP start here */
 
-    const IPvXAddress& src = IPAddressResolver().addressOf(tcpMain->getParentModule());
+    const IPvXAddress& src = IPvXAddressResolver().addressOf(tcpMain->getParentModule());
     //const IPvXAddress& src = localAddr;
     const IPvXAddress& dest = remoteAddr;
 

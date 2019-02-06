@@ -70,12 +70,12 @@ void MyOverlay::setOwnNodeID()
 void MyOverlay::joinOverlay()
 {
     // Set the information of the previous step in the chain
-    prevNode.setIp(IPAddress(BIGBIT | (myKey - 1)));
+    prevNode.setIp(IPv4Address(BIGBIT | (myKey - 1)));
     prevNode.setPort(thisNode.getPort());
     prevNode.setKey(OverlayKey(myKey - 1));
 
     // Set the information of the next step in the chain
-    nextNode.setIp(IPAddress(BIGBIT | (myKey + 1)));
+    nextNode.setIp(IPv4Address(BIGBIT | (myKey + 1)));
     nextNode.setPort(thisNode.getPort());
     nextNode.setKey(OverlayKey(myKey + 1));
 

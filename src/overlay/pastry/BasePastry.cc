@@ -25,7 +25,7 @@
 #include <stdint.h>
 #include <assert.h>
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <IPvXAddress.h>
 #include <IInterfaceTable.h>
 #include <IPv4InterfaceData.h>

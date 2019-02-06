@@ -23,7 +23,7 @@
 
 #include "INETDefs.h"
 
-#include <IPAddress.h>
+#include <IPv4Address.h>
 
 #include "BrooseHandle.h"
 

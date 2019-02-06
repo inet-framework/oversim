@@ -29,7 +29,7 @@
 
 #include <IRoutingTable.h>
 #include <IInterfaceTable.h>
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <IPv4InterfaceData.h>
 
 #include "ConnectReaSE.h"
@@ -155,7 +155,7 @@ AccessInfo ConnectReaSE::getAccessNode()
         if (connectionCandidate->IPAddresses.size() >= ((uint32_t) 1 << AS_Pool[tempASindex].edgeShift)) // maximum reached?
             continue;
 
-//        test_IP = connectionCandidate->IPAddress + 1; // begin with first IP after the edge router
+//        test_IP = connectionCandidate->IPv4Address + 1; // begin with first IP after the edge router
 //        for (int i = 0; i < (1 << AS_Pool[tempASindex].edgeShift); i++ ) {
 //            test_IP += i;
 //            candidateOK = true;
@@ -186,7 +186,7 @@ AccessInfo ConnectReaSE::getAccessNode()
     EV << "Found available IP: " << test_IP;
 
     node.ASindex = tempASindex;
-    node.IPAddress = test_IP;
+    node.IPv4Address = test_IP;
     node.edge = connectionCandidate;
     return node;
 }
@@ -199,19 +199,19 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         terminalInfo terminal;
 
         terminal.module = node;
-        terminal.interfaceTable = IPAddressResolver().interfaceTableOf(node);
+        terminal.interfaceTable = IPvXAddressResolver().interfaceTableOf(node);
         terminal.remoteInterfaceTable = overlayNode->edge->interfaceTable;
-        terminal.routingTable = IPAddressResolver().routingTableOf(node);
+        terminal.routingTable = IPvXAddressResolver().routingTableOf(node);
         terminal.PPPInterface = node->getSubmodule("ppp", 0);
         terminal.createdAt = simTime();
-        terminal.IPAddress = overlayNode->IPAddress;
+        terminal.IPv4Address = overlayNode->IPv4Address;
         terminal.edgeRouter = overlayNode->edge;
         terminal.ASindex = overlayNode->ASindex;
 
         // update display
         if (hasGUI()) {
                 const char* ip_disp = const_cast<char*>
-                (IPAddress(terminal.IPAddress).str().c_str());
+                (IPv4Address(terminal.IPv4Address).str().c_str());
                 terminal.module->getDisplayString().insertTag("t", 0);
                 terminal.module->getDisplayString().setTagArg("t", 0, ip_disp);
                 terminal.module->getDisplayString().setTagArg("t", 1, "l");
@@ -305,13 +305,13 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
 
         // router
         IPv4InterfaceData* interfaceData = new IPv4InterfaceData;
-        interfaceData->setIPAddress(overlayNode->edge->IPAddress);
-        interfaceData->setNetmask(IPAddress::ALLONES_ADDRESS);
+        interfaceData->setIPAddress(overlayNode->edge->IPv4Address);
+        interfaceData->setNetmask(IPv4Address::ALLONES_ADDRESS);
         terminal.remoteInterfaceEntry->setIPv4Data(interfaceData);
 
         // terminal
-        terminal.interfaceEntry->ipv4Data()->setIPAddress(IPAddress(terminal.IPAddress));
-        terminal.interfaceEntry->ipv4Data()->setNetmask(IPAddress::ALLONES_ADDRESS);
+        terminal.interfaceEntry->ipv4Data()->setIPAddress(IPv4Address(terminal.IPv4Address));
+        terminal.interfaceEntry->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
 
         //
         // Fill in routing table.
@@ -321,8 +321,8 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         // add edge routing entry
 
         IPRoute* re = new IPRoute();
-        re->setHost(IPAddress(terminal.IPAddress));
-        re->setNetmask(IPAddress::ALLONES_ADDRESS);
+        re->setHost(IPv4Address(terminal.IPv4Address));
+        re->setNetmask(IPv4Address::ALLONES_ADDRESS);
         re->setInterface(terminal.remoteInterfaceEntry);
         re->setType(IPRoute::DIRECT);
         re->setSource(IPRoute::MANUAL);
@@ -332,9 +332,9 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
 
         //  add terminal routing entry
         IPRoute* te = new IPRoute();
-        te->setHost(IPAddress::UNSPECIFIED_ADDRESS);
-        te->setNetmask(IPAddress::UNSPECIFIED_ADDRESS);
-        te->setGateway(overlayNode->edge->IPAddress);
+        te->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+        te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
+        te->setGateway(overlayNode->edge->IPv4Address);
         te->setInterface(terminal.interfaceEntry);
         te->setType(IPRoute::REMOTE);
         te->setSource(IPRoute::MANUAL);
@@ -370,7 +370,7 @@ cModule* ConnectReaSE::removeOverlayNode(int ID)
     if (node == NULL) return NULL;
 
 
-    releasedIP = IPAddressResolver().addressOf(terminal.module).get4().getInt();;
+    releasedIP = IPvXAddressResolver().addressOf(terminal.module).get4().getInt();;
 
     // free IP address
     for (unsigned int i=0; i < terminal.edgeRouter->IPAddresses.size(); i++) {
@@ -541,10 +541,10 @@ void ConnectReaSE::setUpAS(cModule* currAS)
     for (int i=0; i< edgeTopo.getNumNodes(); i++) {
 
         tempEdge.Router = edgeTopo.getNode(i)->getModule();
-        tempEdge.IPAddress = IPAddressResolver().addressOf(tempEdge.Router).get4().getInt();
-        tempEdge.IPAddresses.push_back(IPAddressResolver().addressOf(tempEdge.Router).get4().getInt());
-        tempEdge.interfaceTable = IPAddressResolver().interfaceTableOf(tempEdge.Router);
-        tempEdge.routingTable = IPAddressResolver().routingTableOf(tempEdge.Router);
+        tempEdge.IPv4Address = IPvXAddressResolver().addressOf(tempEdge.Router).get4().getInt();
+        tempEdge.IPAddresses.push_back(IPvXAddressResolver().addressOf(tempEdge.Router).get4().getInt());
+        tempEdge.interfaceTable = IPvXAddressResolver().interfaceTableOf(tempEdge.Router);
+        tempEdge.routingTable = IPvXAddressResolver().routingTableOf(tempEdge.Router);
 
         k = 0;
         while ( tempEdge.Router->findSubmodule("ppp", k) != -1 )
@@ -552,7 +552,7 @@ void ConnectReaSE::setUpAS(cModule* currAS)
         tempEdge.countPPPInterfaces = k;
 
         // the last allocated IP is the router address plus the (k - 1) connected ReaSE hosts
-        tempEdge.lastIP = tempEdge.IPAddress + k - 1; // FIXME: check overlays for side effects of reused IP addresses
+        tempEdge.lastIP = tempEdge.IPv4Address + k - 1; // FIXME: check overlays for side effects of reused IP addresses
 
         // find hosts
 
@@ -570,7 +570,7 @@ void ConnectReaSE::setUpAS(cModule* currAS)
                 continue;
 
             //fill IP table
-            tempIP = IPAddressResolver().addressOf(Topo.getNode(j)->getModule()).get4().getInt();
+            tempIP = IPvXAddressResolver().addressOf(Topo.getNode(j)->getModule()).get4().getInt();
             tempEdge.IPAddresses.push_back(tempIP);
         }
 

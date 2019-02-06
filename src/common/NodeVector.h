@@ -125,7 +125,7 @@ struct ProxExtractor< ProxTransportAddress >{
 
 template <class T>
 struct AddressExtractor {
-    static TransportAddress address(const T&)
+    static TransportAddress getAddress(const T&)
     {
         return TransportAddress::UNSPECIFIED_NODE;
     };
@@ -133,7 +133,7 @@ struct AddressExtractor {
 
 template <>
 struct AddressExtractor< NodeHandle >{
-    static TransportAddress address(const NodeHandle& node)
+    static TransportAddress getAddress(const NodeHandle& node)
     {
         return node;
     };
@@ -141,7 +141,7 @@ struct AddressExtractor< NodeHandle >{
 
 template <>
 struct AddressExtractor< ProxTransportAddress >{
-    static TransportAddress address(const ProxTransportAddress& address)
+    static TransportAddress getAddress(const ProxTransportAddress& address)
     {
         return address;
     };
@@ -481,7 +481,7 @@ public://methods: sorted add support
                             return -1;
                         }
                     } else {
-                        if (T_address::address(element) == T_address::address(*i)) {
+                        if (T_address::getAddress(element) == T_address::getAddress(*i)) {
                             return -1;
                         }
                     }

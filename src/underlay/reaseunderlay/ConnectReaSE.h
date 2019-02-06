@@ -42,7 +42,7 @@ public:
         int countPPPInterfaces;
         IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
         IRoutingTable* routingTable; //!< pointer to routing table of this node
-        uint32 IPAddress; //!< the IP Address
+        uint32 IPv4Address; //!< the IP Address
         uint32 lastIP;  //!< last assigned IP address FIXME: check overlays for side effects of reused IP addresses
         cModule* Router;
         std::vector<uint32> IPAddresses; //!< the IP Addresses in use of edge router
@@ -76,7 +76,7 @@ public:
 class terminalInfo
 {
 public:
-    uint32 IPAddress; //!< the IP Address
+    uint32 IPv4Address; //!< the IP Address
     cModule* module;
     IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
     IRoutingTable* routingTable; //!< pointer to routing table of this node
@@ -99,7 +99,7 @@ class AccessInfo
 public:
     edgeRoutes* edge;
     cModule* terminal;
-    uint32 IPAddress;
+    uint32 IPv4Address;
     int ASindex;
 };
 

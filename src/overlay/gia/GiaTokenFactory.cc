@@ -32,7 +32,7 @@ Define_Module(GiaTokenFactory);
 
 void GiaTokenFactory::initialize( int stage )
 {
-    // wait until IPAddressResolver finished his initialization
+    // wait until IPvXAddressResolver finished his initialization
     if(stage != MIN_STAGE_OVERLAY)
         return;
 

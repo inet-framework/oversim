@@ -37,7 +37,7 @@
 #include "IPv4InterfaceData.h"
 #include "IPv6InterfaceData.h"
 #include "TransportAddress.h"
-#include "IPAddressResolver.h"
+#include "IPvXAddressResolver.h"
 //#include <cenvir.h>
 //#include <cxmlelement.h>
 #include "ChurnGenerator.h"
@@ -148,7 +148,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
     if (useIPv6) {
         addr = IPv6Address(0, nextFreeAddress++, 0, 0);
     } else {
-        addr = IPAddress(nextFreeAddress++);
+        addr = IPv4Address(nextFreeAddress++);
     }
 
     int chanIndex = intuniform(0, type.channelTypesRx.size() - 1);
@@ -205,17 +205,17 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
         InterfaceEntry* e = new InterfaceEntry;
         e->setName("dummy interface");
         e->setIPv6Data(ifdata);
-        IPAddressResolver().interfaceTableOf(node)->addInterface(e, NULL);
+        IPvXAddressResolver().interfaceTableOf(node)->addInterface(e, NULL);
     }
     else {
         IPv4InterfaceData* ifdata = new IPv4InterfaceData;
         ifdata->setIPAddress(addr.get4());
-        ifdata->setNetmask(IPAddress("255.255.255.255"));
+        ifdata->setNetmask(IPv4Address("255.255.255.255"));
         InterfaceEntry* e = new InterfaceEntry;
         e->setName("dummy interface");
         e->setIPv4Data(ifdata);
 
-        IPAddressResolver().interfaceTableOf(node)->addInterface(e, NULL);
+        IPvXAddressResolver().interfaceTableOf(node)->addInterface(e, NULL);
     }
 
     // create meta information
@@ -355,11 +355,11 @@ void SimpleUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* ad
     }
 
     // remove node from bootstrap oracle
-    globalNodeList->removePeer(IPAddressResolver().addressOf(node));
+    globalNodeList->removePeer(IPvXAddressResolver().addressOf(node));
 
     // put node into the kill list and schedule a message for final removal
     // of the node
-    killList.push_front(IPAddressResolver().addressOf(node));
+    killList.push_front(IPvXAddressResolver().addressOf(node));
     scheduledID.insert(node->getId());
 
     overlayTerminalCount--;
@@ -415,9 +415,9 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
     //std::cout << "migration @ " << tmp_ip << " --> " << address << std::endl;
 
     // FIXME use only IPv4?
-    IPvXAddress address = IPAddress(nextFreeAddress++);
+    IPvXAddress address = IPv4Address(nextFreeAddress++);
 
-    IPvXAddress tmp_ip = IPAddressResolver().addressOf(node);
+    IPvXAddress tmp_ip = IPvXAddressResolver().addressOf(node);
     SimpleNodeEntry* newentry;
 
     int chanIndex = intuniform(0, type.channelTypesRx.size() - 1);
@@ -448,14 +448,14 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
     SimpleUDP* simple = check_and_cast<SimpleUDP*> (gate->getOwnerModule());
     simple->setNodeEntry(newentry);
 
-    InterfaceEntry* ie = IPAddressResolver().interfaceTableOf(node)->
+    InterfaceEntry* ie = IPvXAddressResolver().interfaceTableOf(node)->
                                       getInterfaceByName("dummy interface");
     delete ie->ipv4Data();
 
     // Add pseudo-Interface to node's interfaceTable
     IPv4InterfaceData* ifdata = new IPv4InterfaceData;
     ifdata->setIPAddress(address.get4());
-    ifdata->setNetmask(IPAddress("255.255.255.255"));
+    ifdata->setNetmask(IPv4Address("255.255.255.255"));
     ie->setIPv4Data(ifdata);
 
     // create meta information
@@ -502,7 +502,7 @@ void SimpleUnderlayConfigurator::handleTimerEvent(cMessage* msg)
     scheduledID.erase(node->getId());
     globalNodeList->killPeer(addr);
 
-    InterfaceEntry* ie = IPAddressResolver().interfaceTableOf(node)->
+    InterfaceEntry* ie = IPvXAddressResolver().interfaceTableOf(node)->
                                          getInterfaceByName("dummy interface");
     delete ie->ipv4Data();
 
@@ -564,7 +564,7 @@ IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress a
         return addr;
 
     // FIXME use only IPv4?
-    IPvXAddress address = IPAddress(nextFreeAddress++);
+    IPvXAddress address = IPv4Address(nextFreeAddress++);
     EV << addr << " migrates to ";
     EV << address << "!" << endl;
 
@@ -604,14 +604,14 @@ IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress a
     SimpleUDP* simple = check_and_cast<SimpleUDP*> (gate->getOwnerModule());
     simple->setNodeEntry(newentry);
 
-    InterfaceEntry* ie = IPAddressResolver().interfaceTableOf(node)->
+    InterfaceEntry* ie = IPvXAddressResolver().interfaceTableOf(node)->
                                       getInterfaceByName("dummy interface");
     delete ie->ipv4Data();
 
     // Add pseudo-Interface to node's interfaceTable
     IPv4InterfaceData* ifdata = new IPv4InterfaceData;
     ifdata->setIPAddress(address.get4());
-    ifdata->setNetmask(IPAddress("255.255.255.255"));
+    ifdata->setNetmask(IPv4Address("255.255.255.255"));
     ie->setIPv4Data(ifdata);
 
     // create meta information

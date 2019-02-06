@@ -120,7 +120,7 @@ void I3IdentifierStack::replaceAddress(const I3IPAddress &source, const I3IPAddr
     list<I3SubIdentifier>::iterator it;
 
     for (it = stack.begin(); it != stack.end(); it++) {
-        if (it->getType() == I3SubIdentifier::IPAddress && it->getIPAddress() == source) {
+        if (it->getType() == I3SubIdentifier::IPv4Address && it->getIPAddress() == source) {
             it->setIPAddress(dest);
         }
     }

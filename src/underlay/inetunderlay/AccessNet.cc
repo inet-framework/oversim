@@ -29,7 +29,7 @@
 #include <IRoutingTable.h>
 #include <IInterfaceTable.h>
 #include <RoutingTable6.h>
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <IPv4InterfaceData.h>
 #include <IPv6InterfaceData.h>
 
@@ -39,7 +39,7 @@ Define_Module(AccessNet);
 
 std::ostream& operator<<(std::ostream& os, NodeInfo& n)
 {
-    os << n.IPAddress;
+    os << n.IPv4Address;
     return os;
 }
 
@@ -49,14 +49,14 @@ void AccessNet::initialize(int stage)
         return;
 
     router.module = getParentModule();
-    router.interfaceTable = IPAddressResolver().interfaceTableOf(getParentModule());
+    router.interfaceTable = IPvXAddressResolver().interfaceTableOf(getParentModule());
     useIPv6 = par("useIPv6Addresses").boolValue();
     if (useIPv6){
-        router.routingTable6 = IPAddressResolver().routingTable6Of(getParentModule());
-        router.IPAddress = getAssignedPrefix(router.interfaceTable);
+        router.routingTable6 = IPvXAddressResolver().routingTable6Of(getParentModule());
+        router.IPv4Address = getAssignedPrefix(router.interfaceTable);
     } else {
-        router.routingTable = IPAddressResolver().routingTableOf(getParentModule());
-        router.IPAddress = IPAddressResolver().addressOf(getParentModule());
+        router.routingTable = IPvXAddressResolver().routingTableOf(getParentModule());
+        router.IPv4Address = IPvXAddressResolver().addressOf(getParentModule());
     }
 
     channelTypesTx = cStringTokenizer(par("channelTypes"), " ").asVector();
@@ -91,13 +91,13 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 
     TerminalInfo terminal;
     terminal.module = node;
-    terminal.interfaceTable = IPAddressResolver().interfaceTableOf(node);
+    terminal.interfaceTable = IPvXAddressResolver().interfaceTableOf(node);
     terminal.remoteInterfaceTable = router.interfaceTable;
     if (useIPv6) {
-        terminal.routingTable6 = IPAddressResolver().routingTable6Of(node);
+        terminal.routingTable6 = IPvXAddressResolver().routingTable6Of(node);
     }
     else {
-        terminal.routingTable = IPAddressResolver().routingTableOf(node);
+        terminal.routingTable = IPvXAddressResolver().routingTableOf(node);
     }
     terminal.PPPInterface = node->getSubmodule("ppp", 0);
     terminal.createdAt = simTime();
@@ -106,17 +106,17 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
     // check list of returned IPs
     // TODO: check overlays for side effects of reused IP addresses
 //    if (returnedIPs.size() != 0) {
-//      terminal.IPAddress = returnedIPs.back();
+//      terminal.IPv4Address = returnedIPs.back();
 //      returnedIPs.pop_back();
 //    }
 //    else {
     if (useIPv6) {
-        IPv6Words candidate(router.IPAddress);
+        IPv6Words candidate(router.IPv4Address);
         // we dont need to check for duplicates because of the giant address space and reuse of old IPs
         candidate.d1 += ++lastIP;
-        terminal.IPAddress = IPvXAddress(IPv6Address(candidate.d0, candidate.d1, candidate.d2, candidate.d3));
+        terminal.IPv4Address = IPvXAddress(IPv6Address(candidate.d0, candidate.d1, candidate.d2, candidate.d3));
     } else {
-        uint32_t routerAddr = router.IPAddress.get4().getInt();
+        uint32_t routerAddr = router.IPv4Address.get4().getInt();
 
         // Start at last given address, check if next address is valid and free.
         bool ip_test = false;
@@ -139,7 +139,7 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
             // Check if IP is free
             ip_test = true;
             for (uint32_t i = 0; i < overlayTerminal.size(); i++) {
-                if (overlayTerminal[i].IPAddress == ip) {
+                if (overlayTerminal[i].IPv4Address == ip) {
                     ip_test = false;
                     break;
                 }
@@ -147,7 +147,7 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 
             // found valid IP
             if (ip_test) {
-                terminal.IPAddress = IPvXAddress(ip);
+                terminal.IPv4Address = IPvXAddress(ip);
                 lastIP = ipOffset;
                 break;
             }
@@ -160,7 +160,7 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
     // update ip display string
     if (hasGUI()) {
         const char* ip_disp = const_cast<char*>
-        (terminal.IPAddress.str().c_str());
+        (terminal.IPv4Address.str().c_str());
         terminal.module->getDisplayString().insertTag("t", 0);
         terminal.module->getDisplayString().setTagArg("t", 0, ip_disp);
         terminal.module->getDisplayString().setTagArg("t", 1, "l");
@@ -277,7 +277,7 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 
         // terminal
         terminal.interfaceEntry->ipv6Data()->setAdvSendAdvertisements(false); // host
-        terminal.interfaceEntry->ipv6Data()->assignAddress(terminal.IPAddress.get6(), false, 0, 0);
+        terminal.interfaceEntry->ipv6Data()->assignAddress(terminal.IPv4Address.get6(), false, 0, 0);
         terminal.interfaceEntry->ipv6Data()->assignAddress(IPv6Address::formLinkLocalAddress(terminal.interfaceEntry->getInterfaceToken()), false, 0, 0);
         terminal.interfaceEntry->setMACAddress(MACAddress::generateAutoAddress());
 
@@ -286,7 +286,7 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
         //
 
         // router
-        router.routingTable6->addStaticRoute(terminal.IPAddress.get6(),64, terminal.remoteInterfaceEntry->getInterfaceId(), terminal.interfaceEntry->ipv6Data()->getLinkLocalAddress());
+        router.routingTable6->addStaticRoute(terminal.IPv4Address.get6(),64, terminal.remoteInterfaceEntry->getInterfaceId(), terminal.interfaceEntry->ipv6Data()->getLinkLocalAddress());
 
         // terminal
         terminal.routingTable6->addDefaultRoute(terminal.remoteInterfaceEntry->ipv6Data()->getLinkLocalAddress(), terminal.interfaceEntry->getInterfaceId(), 0);
@@ -299,13 +299,13 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 
         // router
         IPv4InterfaceData* interfaceData = new IPv4InterfaceData;
-        interfaceData->setIPAddress(router.IPAddress.get4());
-        interfaceData->setNetmask(IPAddress::ALLONES_ADDRESS);
+        interfaceData->setIPAddress(router.IPv4Address.get4());
+        interfaceData->setNetmask(IPv4Address::ALLONES_ADDRESS);
         terminal.remoteInterfaceEntry->setIPv4Data(interfaceData);
 
         // terminal
-        terminal.interfaceEntry->ipv4Data()->setIPAddress(terminal.IPAddress.get4());
-        terminal.interfaceEntry->ipv4Data()->setNetmask(IPAddress::ALLONES_ADDRESS);
+        terminal.interfaceEntry->ipv4Data()->setIPAddress(terminal.IPv4Address.get4());
+        terminal.interfaceEntry->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
 
         //
         // Fill in routing table.
@@ -313,8 +313,8 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 
         // router
         IPRoute* re = new IPRoute();
-        re->setHost(terminal.IPAddress.get4());
-        re->setNetmask(IPAddress(IPAddress::ALLONES_ADDRESS));
+        re->setHost(terminal.IPv4Address.get4());
+        re->setNetmask(IPv4Address(IPv4Address::ALLONES_ADDRESS));
         re->setInterface(terminal.remoteInterfaceEntry);
         re->setType(IPRoute::DIRECT);
         re->setSource(IPRoute::MANUAL);
@@ -323,9 +323,9 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 
         // terminal
         IPRoute* te = new IPRoute();
-        te->setHost(IPAddress::UNSPECIFIED_ADDRESS);
-        te->setNetmask(IPAddress::UNSPECIFIED_ADDRESS);
-        te->setGateway(router.IPAddress.get4());
+        te->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+        te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
+        te->setGateway(router.IPv4Address.get4());
         te->setInterface(terminal.interfaceEntry);
         te->setType(IPRoute::REMOTE);
         te->setSource(IPRoute::MANUAL);
@@ -341,7 +341,7 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
 
     updateDisplayString();
 
-    return terminal.IPAddress;
+    return terminal.IPv4Address;
 }
 
 int AccessNet::getRandomNodeId()
@@ -404,7 +404,7 @@ cModule* AccessNet::removeOverlayNode(int ID)
 
         for (int i = 0; i < router.routingTable6->getNumRoutes(); i++) {
             IPv6Route* route = router.routingTable6->getRoute(i);
-            if (route->getDestPrefix() == terminal.IPAddress.get6()) {
+            if (route->getDestPrefix() == terminal.IPv4Address.get6()) {
                 router.routingTable6->purgeDestCacheEntriesToNeighbour(terminal.interfaceEntry->ipv6Data()->getLinkLocalAddress(), route->getInterfaceId());
                 router.routingTable6->removeRoute(route);
                 break;

@@ -61,7 +61,7 @@ void RUNetworkConfigurator::initialize(int stage)
     // extract topology nodes and assign IP addresses
     extractTopology();
 
-    // assign an IPAddress to all nodes in the network
+    // assign an IPv4Address to all nodes in the network
     //FIXME: does asNodeVec.size() work as intended? may need to use noAS instead
     for (unsigned int i = 0; i < asNodeVec.size(); i++) {
         if ((unsigned int) rlTopology[i]->getNumNodes() > (0xffffffff - NET_MASK))
@@ -101,7 +101,7 @@ void RUNetworkConfigurator::initialize(int stage)
 
 void RUNetworkConfigurator::createInterASPaths()
 {
-    IPAddress netmask(NET_MASK);
+    IPv4Address netmask(NET_MASK);
     int asIdHistory = 0;
     unsigned int tmpAddr = 0;
     for (int i = 0; i < asTopology.getNumNodes(); i++) {
@@ -109,7 +109,7 @@ void RUNetworkConfigurator::createInterASPaths()
         nodeInfoRL destCore(asTopology.getNode(i));
         tmpAddr = destCore.addr.getInt() >> IP_NET_SHIFT;
         tmpAddr = tmpAddr << IP_NET_SHIFT;
-        destCore.addr = IPAddress(tmpAddr);
+        destCore.addr = IPv4Address(tmpAddr);
         asIdHistory = -1;
         for (int j = 0; j < asTopology.getNumNodes(); j++) {
             if (i == j)
@@ -117,7 +117,7 @@ void RUNetworkConfigurator::createInterASPaths()
             nodeInfoRL srcCore(asTopology.getNode(j));
             tmpAddr = srcCore.addr.getInt() >> IP_NET_SHIFT;
             tmpAddr = tmpAddr << IP_NET_SHIFT;
-            srcCore.addr = IPAddress(tmpAddr);
+            srcCore.addr = IPv4Address(tmpAddr);
 
             // do not calculate paths between nodes of the same AS
             if (destCore.asId == srcCore.asId)
@@ -200,7 +200,7 @@ void RUNetworkConfigurator::extractTopology()
         tmpTopo->extractFromNetwork(getRouterLevelNodes, (void *) currentAS.getNode(i)->getModule()->getName());
         rlTopology.push_back(tmpTopo);
         // assign unique /16 IP address prefix to each AS
-        asNodeVec.push_back(nodeInfoAS(currentAS.getNode(i), IPAddress(netIP), IPAddress(NET_MASK)));
+        asNodeVec.push_back(nodeInfoAS(currentAS.getNode(i), IPv4Address(netIP), IPv4Address(NET_MASK)));
         netIP += 1 << IP_NET_SHIFT;
     }
 
@@ -262,7 +262,7 @@ void RUNetworkConfigurator::assignAddressAndSetDefaultRoutes(nodeInfoAS &asInfo)
     }
 
     edgeShift = IP_NET_SHIFT - nextPow;
-    asInfo.subnetmask = IPAddress(0xffffffff << edgeShift);
+    asInfo.subnetmask = IPv4Address(0xffffffff << edgeShift);
     countEdgeRouter = 1;
 
     mapIt = asInfo.nodeMap.begin();
@@ -290,12 +290,12 @@ void RUNetworkConfigurator::assignAddressAndSetDefaultRoutes(nodeInfoAS &asInfo)
             //
             InterfaceEntry *ie = mapIt->second.ift->getInterface(j);
             if (!ie->isLoopback()) {
-                ie->ipv4Data()->setIPAddress(IPAddress(currentIP));
-                ie->ipv4Data()->setNetmask(IPAddress::ALLONES_ADDRESS);
+                ie->ipv4Data()->setIPAddress(IPv4Address(currentIP));
+                ie->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
             }
         }
         if (mapIt->second.rt->getRouterId().isUnspecified())
-            mapIt->second.rt->setRouterId(IPAddress(currentIP));
+            mapIt->second.rt->setRouterId(IPv4Address(currentIP));
         mapIt->second.addr.set(currentIP);
 
         // remember core nodes of each AS in additional list for assignment
@@ -307,8 +307,8 @@ void RUNetworkConfigurator::assignAddressAndSetDefaultRoutes(nodeInfoAS &asInfo)
             // add default route in case of gw, edge, or host
             //
             IPRoute *e = new IPRoute();
-            e->setHost(IPAddress());
-            e->setNetmask(IPAddress());
+            e->setHost(IPv4Address());
+            e->setNetmask(IPv4Address());
             e->setInterface(mapIt->second.defaultRouteIE);
             e->setType(IPRoute::REMOTE);
             e->setSource(IPRoute::MANUAL);
@@ -353,7 +353,7 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
 
                     if (srcNode.module == asInfo.edgeRouter[i].module) {
 
-                        destNode.addr = IPAddress(asInfo.edgeRouter[i].edgeIP + asInfo.edgeRouter[i].usedIPs);
+                        destNode.addr = IPv4Address(asInfo.edgeRouter[i].edgeIP + asInfo.edgeRouter[i].usedIPs);
                         asInfo.edgeRouter[i].usedIPs++;
                     }
                 }
@@ -365,12 +365,12 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                     InterfaceEntry *ie = destNode.ift->getInterface(j);
                     if (!ie->isLoopback()) {
                         ie->ipv4Data()->setIPAddress(destNode.addr);
-                        ie->ipv4Data()->setNetmask(IPAddress::ALLONES_ADDRESS);
+                        ie->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
                     }
                 }
                 IPRoute *e = new IPRoute();
-                e->setHost(IPAddress());
-                e->setNetmask(IPAddress());
+                e->setHost(IPv4Address());
+                e->setNetmask(IPv4Address());
                 e->setInterface(destNode.defaultRouteIE);
                 e->setType(IPRoute::REMOTE);
                 e->setSource(IPRoute::MANUAL);
@@ -379,7 +379,7 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                 ie = srcNode.ift->getInterfaceByNodeOutputGateId(srcNode.node->getPath(0)->getLocalGate()->getId());
                 e = new IPRoute();
                 e->setHost(destNode.addr);
-                e->setNetmask(IPAddress(255, 255, 255, 255));
+                e->setNetmask(IPv4Address(255, 255, 255, 255));
                 e->setInterface(ie);
                 e->setType(IPRoute::DIRECT);
                 e->setSource(IPRoute::MANUAL);
@@ -399,7 +399,7 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                     if (destNode.routerType == EDGE)
                         e->setNetmask(asInfo.subnetmask);
                     else
-                        e->setNetmask(IPAddress(255, 255, 255, 255));
+                        e->setNetmask(IPv4Address(255, 255, 255, 255));
                     e->setInterface(ie);
                     e->setType(IPRoute::DIRECT);
                     e->setSource(IPRoute::MANUAL);

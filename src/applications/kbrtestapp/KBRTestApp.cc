@@ -21,7 +21,7 @@
  * @author Bernhard Heep, Ingmar Baumgart
  */
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <CommonMessages_m.h>
 #include <GlobalStatistics.h>
 #include <UnderlayConfigurator.h>

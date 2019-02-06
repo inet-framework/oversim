@@ -21,7 +21,7 @@
  */
 
 #include "INETDefs.h"
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <GlobalNodeListAccess.h>
 #include <InitStages.h>
 #include <NotificationBoard.h>
@@ -72,7 +72,7 @@ void I3BaseApp::initialize(int stage)
 {
     if (stage != MIN_STAGE_APP) return;
 
-    nodeIPAddress = IPAddressResolver().addressOf(getParentModule());
+    nodeIPAddress = IPvXAddressResolver().addressOf(getParentModule());
 
     bindToPort(par("clientPort"));
     /*    NotificationBoardAccess().get()->subscribe(this, NF_HOSTPOSITION_BEFOREUPDATE);
@@ -397,7 +397,7 @@ void I3BaseApp::sendPacket(const I3IdentifierStack &stack, cPacket *msg, bool us
     sentBytes += smsg->getByteLength();
 
     I3SubIdentifier subid = stack.peek(); // first check where the packet should go
-    if (subid.getType() == I3SubIdentifier::IPAddress) { // if it's an IP address
+    if (subid.getType() == I3SubIdentifier::IPv4Address) { // if it's an IP address
         smsg->getIdentifierStack().pop(); // pop it
         sendThroughUDP(smsg, subid.getIPAddress()); // and send directly to host
     } else { // else if it's an identifier
@@ -514,7 +514,7 @@ void I3BaseApp::receiveChangeNotification (int category, const cObject *details)
 //     }
 //     if (category == NF_HOSTPOSITION_UPDATED) { /* part 2: both for 1-stage and stage 2 of 2-stage mobility */
 //         I3IPAddress oldAddress(nodeIPAddress, par("clientPort"));
-//         nodeIPAddress = IPAddressResolver().addressOf(getParentModule()).get4();
+//         nodeIPAddress = IPvXAddressResolver().addressOf(getParentModule()).get4();
 //         I3IPAddress newAddress(nodeIPAddress, par("clientPort"));
 //
 //         cout << "After from " << oldAddress << " to " << newAddress << endl;

@@ -26,7 +26,7 @@
 
 void ChurnGenerator::initialize(int stage)
 {
-    // because of IPAddressResolver, we need to wait until interfaces are registered,
+    // because of IPvXAddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
     if (stage != MAX_STAGE_UNDERLAY)
         return;

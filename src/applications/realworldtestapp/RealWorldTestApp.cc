@@ -21,7 +21,7 @@
  * @author Bernhard Heep
  */
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <CommonMessages_m.h>
 
 

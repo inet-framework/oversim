@@ -40,9 +40,9 @@
 #include "IPControlInfo.h"
 #include "IPv6ControlInfo.h"
 
-#include "IPAddressResolver.h"
+#include "IPvXAddressResolver.h"
 
-#include "IPDatagram_m.h"
+#include "IPv4Datagram.h"
 #include "IPv6Datagram_m.h"
 
 #include "ICMPMessage_m.h"
@@ -297,7 +297,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
     numSent++;
 
     if (info == NULL) {
-        EV << "[SimpleUDP::processMsgFromApp() @ " << IPAddressResolver().addressOf(node) << "]\n"
+        EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
            << "    No route to host " << destAddr
            << endl;
 
@@ -323,7 +323,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
         if (useCoordinateBasedDelay == false) {
             totalDelay = constantDelay;
         } else if (temp.second == false) {
-            EV << "[SimpleUDP::processMsgFromApp() @ " << IPAddressResolver().addressOf(node) << "]\n"
+            EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
                << "    Send queue full: packet " << appData << " dropped"
                << endl;
 
@@ -338,7 +338,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
     SimpleInfo* thisInfo = dynamic_cast<SimpleInfo*>(globalNodeList->getPeerInfo(srcAddr));
 
     if (!globalNodeList->areNodeTypesConnected(thisInfo->getTypeID(), info->getTypeID())) {
-        EV << "[SimpleUDP::processMsgFromApp() @ " << IPAddressResolver().addressOf(node) << "]\n"
+        EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
                    << "    Partition " << thisInfo->getTypeID() << "->" << info->getTypeID()
                    << " is not connected"
                    << endl;
@@ -384,7 +384,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
         }
     }
 
-    EV << "[SimpleUDP::processMsgFromApp() @ " << IPAddressResolver().addressOf(node) << "]\n"
+    EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
        << "    Packet " << appData << " sent with delay = " << SIMTIME_DBL(totalDelay)
        << endl;
 

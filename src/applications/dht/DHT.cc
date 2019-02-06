@@ -21,7 +21,7 @@
  * @author Gregoire Menuel, Ingmar Baumgart
  */
 
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 
 #include "DHT.h"
 

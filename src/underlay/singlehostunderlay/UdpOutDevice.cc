@@ -24,9 +24,9 @@
 #define WANT_WINSOCK2
 #include <platdep/sockets.h>
 
-#include "IPDatagram_m.h"
+#include "IPv4Datagram.h"
 #include "UDPPacket.h"
-#include "IPAddressResolver.h"
+#include "IPvXAddressResolver.h"
 
 #include "UdpOutDevice.h"
 
@@ -44,7 +44,7 @@ char* UdpOutDevice::encapsulate(cPacket *msg,
 
     unsigned int payloadLen;
 
-    IPDatagram* IP = check_and_cast<IPDatagram*>(msg);
+    IPv4Datagram* IP = check_and_cast<IPv4Datagram*>(msg);
     // FIXME: Cast ICMP-Messages
     UDPPacket* UDP = dynamic_cast<UDPPacket*>(IP->decapsulate());
 
@@ -122,7 +122,7 @@ cPacket* UdpOutDevice::decapsulate(char* buf,
     }
     sockaddr_in* addrbuf = (sockaddr_in*) addr;
 
-    IPDatagram* IP = new IPDatagram;
+    IPv4Datagram* IP = new IPv4Datagram;
     UDPPacket* UDP = new UDPPacket;
     cPacket* payload = 0;
 
@@ -137,8 +137,8 @@ cPacket* UdpOutDevice::decapsulate(char* buf,
     }
 
     // Create IP + UDP header
-    IP->setSrcAddress(IPAddress(ntohl(addrbuf->sin_addr.s_addr)));
-    IP->setDestAddress(IPAddressResolver().addressOf(getParentModule()).get4());
+    IP->setSrcAddress(IPv4Address(ntohl(addrbuf->sin_addr.s_addr)));
+    IP->setDestAddress(IPvXAddressResolver().addressOf(getParentModule()).get4());
     IP->setTransportProtocol(IPPROTO_UDP);
     IP->setTimeToLive(42); // Does not matter, packet ends here
     IP->setIdentification(42); // Faked: There is no way to get the real ID

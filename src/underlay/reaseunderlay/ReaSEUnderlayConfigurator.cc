@@ -31,7 +31,7 @@
 #include <ConnectReaSE.h>
 #include <IRoutingTable.h>
 #include <IInterfaceTable.h>
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <IPv4InterfaceData.h>
 #include <NotificationBoard.h>
 
@@ -108,7 +108,7 @@ TransportAddress* ReaSEUnderlayConfigurator::createNode(NodeType type, bool init
 
 
     // add node to bootstrap oracle
-    globalNodeList->addPeer(IPAddressResolver().addressOf(node), info);
+    globalNodeList->addPeer(IPvXAddressResolver().addressOf(node), info);
 
     // if the node was not created during startup we have to
     // finish the initialization process manually
@@ -124,7 +124,7 @@ TransportAddress* ReaSEUnderlayConfigurator::createNode(NodeType type, bool init
     churnGenerator[type.typeID]->terminalCount++;
 
     TransportAddress *address = new TransportAddress(
-                                       IPAddressResolver().addressOf(node));
+                                       IPvXAddressResolver().addressOf(node));
 
     // update display
     setDisplayString();
@@ -170,10 +170,10 @@ void ReaSEUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* add
         return;
     //TODO: get overlay node
     cModule* node = TerminalConnector->getOverlayNode(nodeID);
-    globalNodeList->removePeer(IPAddressResolver().addressOf(node));
+    globalNodeList->removePeer(IPvXAddressResolver().addressOf(node));
 
     //put node into the kill list and schedule a message for final removal of the node
-    killList.push_front(IPAddressResolver().addressOf(node));
+    killList.push_front(IPvXAddressResolver().addressOf(node));
     scheduledID.insert(nodeID);
 
     overlayTerminalCount--;
@@ -233,7 +233,7 @@ void ReaSEUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* add
         opp_error("ReaSEUnderlayConfigurator: Trying to remove node which is not an overlay node in network!");
 
     //remove node from bootstrap oracle
-    globalNodeList->killPeer(IPAddressResolver().addressOf(node));
+    globalNodeList->killPeer(IPvXAddressResolver().addressOf(node));
 
     node->bubble("I am migrating!");
     // connect the node to another access net
@@ -247,7 +247,7 @@ void ReaSEUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* add
         info->setNodeID(TerminalConnector->addOverlayNode(&newAccessModule));
 
     //add node to bootstrap oracle
-    globalNodeList->addPeer(IPAddressResolver().addressOf(node), newinfo);
+    globalNodeList->addPeer(IPvXAddressResolver().addressOf(node), newinfo);
 
     // inform the notification board about the migration
     NotificationBoard* nb = check_and_cast<NotificationBoard*>(node->getSubmodule("notificationBoard"));

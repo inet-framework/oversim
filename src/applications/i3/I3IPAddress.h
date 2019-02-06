@@ -25,7 +25,7 @@
 #define __I3IPADDRESS_H__
 
 #include "INETDefs.h"
-#include <IPAddressResolver.h>
+#include <IPvXAddressResolver.h>
 #include <TransportAddress.h>
 
 /** A simple wrapper around an IPvXAddress and a port. */
