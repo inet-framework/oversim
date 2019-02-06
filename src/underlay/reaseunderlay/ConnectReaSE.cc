@@ -305,7 +305,7 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
 
         // router
         IPv4InterfaceData* interfaceData = new IPv4InterfaceData;
-        interfaceData->setIPAddress(overlayNode->edge->IPv4Address);
+        interfaceData->setIPAddress(IPv4Address(overlayNode->edge->IPv4Address));
         interfaceData->setNetmask(IPv4Address::ALLONES_ADDRESS);
         terminal.remoteInterfaceEntry->setIPv4Data(interfaceData);
 
@@ -334,7 +334,7 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         IPRoute* te = new IPRoute();
         te->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
         te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
-        te->setGateway(overlayNode->edge->IPv4Address);
+        te->setGateway(IPv4Address(overlayNode->edge->IPv4Address));
         te->setInterface(terminal.interfaceEntry);
         te->setType(IPRoute::REMOTE);
         te->setSource(IPRoute::MANUAL);

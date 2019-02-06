@@ -391,7 +391,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
                 (strcmp(destNode->getModule()->getName(), "overlayAccessRouter") == 0)) {
             //add node to bootstrap oracle
             PeerInfo* info = new PeerInfo(0, destNode->getModule()->getId(), NULL);
-            globalNodeList->addPeer(IPvXAddress(nodeAddresses[i]), info);
+            globalNodeList->addPeer(IPvXAddress(IPv4Address(nodeAddresses[i])), info);
         }
 
 

@@ -66,7 +66,7 @@ public:
 class NodeInfo
 {
 public:
-    IPvXAddress IPv4Address; //!< the IP Address
+    IPvXAddress ipvxAddress; //!< the IP Address
     cModule* module; //!< pointer to node getModule(not this module)
     IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
     IRoutingTable* routingTable; //!< pointer to routing table of this node
