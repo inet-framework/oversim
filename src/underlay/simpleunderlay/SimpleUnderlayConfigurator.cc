@@ -200,7 +200,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
     if (useIPv6) {
         IPv6InterfaceData* ifdata = new IPv6InterfaceData;
         ifdata->assignAddress(addr.get6(),false, 0, 0);
-        IPv6InterfaceData::AdvPrefix prefix = {addr.get6(), 64};
+        IPv6InterfaceData::AdvPrefix prefix = IPv6InterfaceData::AdvPrefix(addr.get6(), 64);
         ifdata->addAdvPrefix(prefix);
         InterfaceEntry* e = new InterfaceEntry(NULL);
         e->setName("dummy interface");
