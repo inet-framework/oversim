@@ -57,7 +57,7 @@ void
 XmlRpcDispatch::removeSource(XmlRpcSource* source)
 {
   for (SourceList::iterator it=_sources.begin(); it!=_sources.end(); ++it)
-    if (it->getSource() == source)
+    if (it->getSourceType() == source)
     {
       _sources.erase(it);
       break;
@@ -70,7 +70,7 @@ void
 XmlRpcDispatch::setSourceEvents(XmlRpcSource* source, unsigned eventMask)
 {
   for (SourceList::iterator it=_sources.begin(); it!=_sources.end(); ++it)
-    if (it->getSource() == source)
+    if (it->getSourceType() == source)
     {
       it->getMask() = eventMask;
       break;
@@ -106,7 +106,7 @@ XmlRpcDispatch::work(double timeout)
       SourceList closeList = _sources;
       _sources.clear();
       for (SourceList::iterator it=closeList.begin(); it!=closeList.end(); ++it) {
-        XmlRpcSource *src = it->getSource();
+        XmlRpcSource *src = it->getSourceType();
         src->close();
       }
 
@@ -155,7 +155,7 @@ XmlRpcDispatch::clear()
     SourceList closeList = _sources;
     _sources.clear();
     for (SourceList::iterator it=closeList.begin(); it!=closeList.end(); ++it)
-      it->getSource()->close();
+      it->getSourceType()->close();
   }
 }
 
@@ -189,7 +189,7 @@ XmlRpcDispatch::waitForAndProcessEvents(double timeout)
   int nHandles = 0;
   SourceList::iterator it;
   for (it=_sources.begin(); it!=_sources.end(); ++it) {
-    int fd = it->getSource()->getfd();
+    int fd = it->getSourceType()->getfd();
     int mask = 0;
     if (it->getMask() & ReadableEvent) mask = (FD_READ | PACKET_FD_CLOSE | FD_ACCEPT);
     if (it->getMask() & WritableEvent) mask |= (FD_WRITE | PACKET_FD_CLOSE);
@@ -205,7 +205,7 @@ XmlRpcDispatch::waitForAndProcessEvents(double timeout)
   int maxFd = -1;
   SourceList::iterator it;
   for (it=_sources.begin(); it!=_sources.end(); ++it) {
-    int fd = it->getSource()->getfd();
+    int fd = it->getSourceType()->getfd();
     if (it->getMask() & ReadableEvent) FD_SET(fd, &inFd);
     if (it->getMask() & WritableEvent) FD_SET(fd, &outFd);
     if (it->getMask() & Exception)     FD_SET(fd, &excFd);
@@ -234,7 +234,7 @@ XmlRpcDispatch::waitForAndProcessEvents(double timeout)
   for (it=_sources.begin(); it != _sources.end(); )
   {
     SourceList::iterator thisIt = it++;
-    XmlRpcSource* src = thisIt->getSource();
+    XmlRpcSource* src = thisIt->getSourceType();
     int fd = src->getfd();
 
     if (fd <= maxFd) {

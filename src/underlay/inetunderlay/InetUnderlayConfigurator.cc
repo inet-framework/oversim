@@ -399,21 +399,21 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
         // to outside network via the TunOutDevice and a route to the
         // Gateway
         if ( strcmp(destNode->getModule()->getName(), "outRouter" ) == 0 ) {
-            IPRoute* defRoute = new IPRoute();
-            defRoute->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+            IPv4Route* defRoute = new IPv4Route();
+            defRoute->setDestination(IPv4Address::UNSPECIFIED_ADDRESS);
             defRoute->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
             defRoute->setGateway(IPv4Address(par("gatewayIP").stringValue()));
             defRoute->setInterface(IPvXAddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
-            defRoute->setType(IPRoute::REMOTE);
-            defRoute->setSource(IPRoute::MANUAL);
+            defRoute->setType(IPv4Route::REMOTE);
+            defRoute->setSourceType(IPv4Route::MANUAL);
             IPvXAddressResolver().routingTableOf(destNode->getModule())->addRoute(defRoute);
 
-            IPRoute* gwRoute = new IPRoute();
-            gwRoute->setHost(IPv4Address(par("gatewayIP").stringValue()));
+            IPv4Route* gwRoute = new IPv4Route();
+            gwRoute->setDestination(IPv4Address(par("gatewayIP").stringValue()));
             gwRoute->setNetmask(IPv4Address(255, 255, 255, 255));
             gwRoute->setInterface(IPvXAddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
-            gwRoute->setType(IPRoute::DIRECT);
-            gwRoute->setSource(IPRoute::MANUAL);
+            gwRoute->setType(IPv4Route::DIRECT);
+            gwRoute->setSourceType(IPv4Route::MANUAL);
             IPvXAddressResolver().routingTableOf(destNode->getModule())->addRoute(gwRoute);
         }
 
@@ -451,27 +451,27 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
 
             // Requirement 1: Each router has exactly one routing entry
             // (netmask 255.255.0.0) to each other router
-            IPRoute* re = new IPRoute();
+            IPv4Route* re = new IPv4Route();
 
-            re->setHost(IPv4Address(destAddr));
+            re->setDestination(IPv4Address(destAddr));
             re->setInterface(ie);
-            re->setSource(IPRoute::MANUAL);
+            re->setSourceType(IPv4Route::MANUAL);
             re->setNetmask(IPv4Address(255, 255, 0, 0));
             re->setGateway(IPv4Address(next_hop_ip));
-            re->setType(IPRoute::REMOTE);
+            re->setType(IPv4Route::REMOTE);
 
             rt->addRoute(re);
 
             // Requirement 2: Each router has a point-to-point routing
             // entry (netmask 255.255.255.255) for each immediate neighbour
             if (atNode->getDistanceToTarget() == 1) {
-                IPRoute* re2 = new IPRoute();
+                IPv4Route* re2 = new IPv4Route();
 
-                re2->setHost(IPv4Address(destAddr));
+                re2->setDestination(IPv4Address(destAddr));
                 re2->setInterface(ie);
-                re2->setSource(IPRoute::MANUAL);
+                re2->setSourceType(IPv4Route::MANUAL);
                 re2->setNetmask(IPv4Address(255, 255, 255, 255));
-                re2->setType(IPRoute::DIRECT);
+                re2->setType(IPv4Route::DIRECT);
 
                 rt->addRoute(re2);
             }
@@ -479,13 +479,13 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             // If destNode is the outRouter, add a default route
             // to the next hop in the direction of the outRouter
             if (strcmp(destNode->getModule()->getName(), "outRouter" ) == 0) {
-                IPRoute* defRoute = new IPRoute();
-                defRoute->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+                IPv4Route* defRoute = new IPv4Route();
+                defRoute->setDestination(IPv4Address::UNSPECIFIED_ADDRESS);
                 defRoute->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
                 defRoute->setGateway(IPv4Address(next_hop_ip));
                 defRoute->setInterface(ie);
-                defRoute->setType(IPRoute::REMOTE);
-                defRoute->setSource(IPRoute::MANUAL);
+                defRoute->setType(IPv4Route::REMOTE);
+                defRoute->setSourceType(IPv4Route::MANUAL);
 
                 rt->addRoute(defRoute);
             }

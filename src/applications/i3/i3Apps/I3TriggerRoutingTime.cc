@@ -103,7 +103,7 @@ void I3TRTClient::handleTimerEvent(cMessage *msg) {
 
         imsg->setTrigger(t);
         imsg->setSendReply(true);
-        imsg->setSource(myAddress);
+        imsg->setSourceType(myAddress);
         imsg->setBitLength(INSERT_TRIGGER_L(imsg));
         imsg->setContextPointer(new simtime_t(simTime()));
 

@@ -43,7 +43,7 @@ class GlobalNodeList;
 class SimpleNodeEntry;
 class GlobalStatistics;
 
-class IPControlInfo;
+class IPv4ControlInfo;
 class IPv6ControlInfo;
 class ICMP;
 class ICMPv6;

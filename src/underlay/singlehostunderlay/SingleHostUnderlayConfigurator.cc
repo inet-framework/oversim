@@ -109,13 +109,13 @@ void SingleHostUnderlayConfigurator::initializeUnderlay(int stage)
     ifEntry->ipv4Data()->setIPAddress(addr.get4());
     ifEntry->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
 
-    IPRoute* te = new IPRoute();
-    te->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+    IPv4Route* te = new IPv4Route();
+    te->setDestination(IPv4Address::UNSPECIFIED_ADDRESS);
     te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
     te->setGateway(gw.get4());
     te->setInterface(ifEntry);
-    te->setType(IPRoute::REMOTE);
-    te->setSource(IPRoute::MANUAL);
+    te->setType(IPv4Route::REMOTE);
+    te->setSourceType(IPv4Route::MANUAL);
     rTable->addRoute(te);
 
     //add node to bootstrap oracle

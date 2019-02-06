@@ -40,7 +40,7 @@
 #include "TCPSegment.h"
 #include "SimpleTCP.h"
 #include "TCPCommand_m.h"
-#include "IPControlInfo.h"
+#include "IPv4ControlInfo.h"
 #include "IPv6ControlInfo.h"
 #include "ICMPMessage_m.h"
 #include "ICMPv6Message_m.h"
@@ -163,9 +163,9 @@ void SimpleTCP::handleMessage(cMessage *msg)
 
             // get src/dest addresses
             IPvXAddress srcAddr, destAddr;
-            if (dynamic_cast<IPControlInfo *>(tcpseg->getControlInfo())!=NULL)
+            if (dynamic_cast<IPv4ControlInfo *>(tcpseg->getControlInfo())!=NULL)
             {
-                IPControlInfo *controlInfo = (IPControlInfo *)tcpseg->removeControlInfo();
+                IPv4ControlInfo *controlInfo = (IPv4ControlInfo *)tcpseg->removeControlInfo();
                 srcAddr = controlInfo->getSrcAddr();
                 destAddr = controlInfo->getDestAddr();
                 delete controlInfo;
@@ -430,7 +430,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
     if (!remoteAddr.isIPv6())
     {
         // send over IPv4
-        IPControlInfo *controlInfo = new IPControlInfo();
+        IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
         controlInfo->setProtocol(IP_PROT_TCP);
         controlInfo->setSrcAddr(src.get4());
         controlInfo->setDestAddr(dest.get4());
@@ -542,7 +542,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, IPvXAddress src, IPvXAddr
     if (!dest.isIPv6())
     {
         // send over IPv4
-        IPControlInfo *controlInfo = new IPControlInfo();
+        IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
         controlInfo->setProtocol(IP_PROT_TCP);
         controlInfo->setSrcAddr(src.get4());
         controlInfo->setDestAddr(dest.get4());

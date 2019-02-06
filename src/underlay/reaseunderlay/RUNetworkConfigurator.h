@@ -38,7 +38,7 @@
 #include "IRoutingTable.h"
 #include "IInterfaceTable.h"
 #include "IPvXAddressResolver.h"
-#include "NetworkConfigurator.h"
+#include "IPv4NetworkConfigurator.h"
 #include "IPv4InterfaceData.h"
 #include "InterfaceEntry.h"
 

@@ -32,7 +32,7 @@
 class IInterfaceTable;
 class InterfaceEntry;
 class IRoutingTable;
-class IPRoute;
+class IPv4Route;
 
 
 
@@ -85,8 +85,8 @@ public:
     InterfaceEntry* interfaceEntry; //!< pointer to interface entry
     InterfaceEntry* remoteInterfaceEntry; //!< pointer to remote interface entry
     IInterfaceTable* remoteInterfaceTable; //!< pointer to remote interface table
-    IPRoute* routingEntry; //!< pointer to routing entry
-    IPRoute* remoteRoutingEntry;
+    IPv4Route* routingEntry; //!< pointer to routing entry
+    IPv4Route* remoteRoutingEntry;
     edgeRoutes* edgeRouter; //!< pointer to connected edge router
     int ASindex; // deleteable?
     simtime_t createdAt; //!< creation timestamp

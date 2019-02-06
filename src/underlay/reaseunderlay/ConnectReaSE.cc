@@ -320,24 +320,24 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
 
         // add edge routing entry
 
-        IPRoute* re = new IPRoute();
-        re->setHost(IPv4Address(terminal.IPv4Address));
+        IPv4Route* re = new IPv4Route();
+        re->setDestination(IPv4Address(terminal.IPv4Address));
         re->setNetmask(IPv4Address::ALLONES_ADDRESS);
         re->setInterface(terminal.remoteInterfaceEntry);
-        re->setType(IPRoute::DIRECT);
-        re->setSource(IPRoute::MANUAL);
+        re->setType(IPv4Route::DIRECT);
+        re->setSourceType(IPv4Route::MANUAL);
         overlayNode->edge->routingTable->addRoute(re);
         terminal.remoteRoutingEntry = re;
 
 
         //  add terminal routing entry
-        IPRoute* te = new IPRoute();
-        te->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+        IPv4Route* te = new IPv4Route();
+        te->setDestination(IPv4Address::UNSPECIFIED_ADDRESS);
         te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
         te->setGateway(IPv4Address(overlayNode->edge->IPv4Address));
         te->setInterface(terminal.interfaceEntry);
-        te->setType(IPRoute::REMOTE);
-        te->setSource(IPRoute::MANUAL);
+        te->setType(IPv4Route::REMOTE);
+        te->setSourceType(IPv4Route::MANUAL);
         terminal.routingTable->addRoute(te);
         terminal.routingEntry = te;
 

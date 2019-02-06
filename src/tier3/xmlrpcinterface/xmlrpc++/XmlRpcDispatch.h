@@ -75,7 +75,7 @@ namespace XmlRpc {
     // A source to monitor and what to monitor it for
     struct MonitoredSource {
       MonitoredSource(XmlRpcSource* src, unsigned mask) : _src(src), _mask(mask) {}
-      XmlRpcSource* getSource() const { return _src; }
+      XmlRpcSource* getSourceType() const { return _src; }
       unsigned& getMask() { return _mask; }
       XmlRpcSource* _src;
       unsigned _mask;

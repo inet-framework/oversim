@@ -131,12 +131,12 @@ void RUNetworkConfigurator::createInterASPaths()
             }
             // add routing entry from srcCore to destCore into routing table of srcCore
             InterfaceEntry *ie = srcCore.ift->getInterfaceByNodeOutputGateId(srcCore.node->getPath(0)->getLocalGate()->getId());
-            IPRoute *e = new IPRoute();
-            e->setHost(destCore.addr);
+            IPv4Route *e = new IPv4Route();
+            e->setDestination(destCore.addr);
             e->setNetmask(netmask);
             e->setInterface(ie);
-            e->setType(IPRoute::DIRECT);
-            e->setSource(IPRoute::MANUAL);
+            e->setType(IPv4Route::DIRECT);
+            e->setSourceType(IPv4Route::MANUAL);
             srcCore.rt->addRoute(e);
 
             // re-enable all stub links
@@ -306,12 +306,12 @@ void RUNetworkConfigurator::assignAddressAndSetDefaultRoutes(nodeInfoAS &asInfo)
             //
             // add default route in case of gw, edge, or host
             //
-            IPRoute *e = new IPRoute();
-            e->setHost(IPv4Address());
+            IPv4Route *e = new IPv4Route();
+            e->setDestination(IPv4Address());
             e->setNetmask(IPv4Address());
             e->setInterface(mapIt->second.defaultRouteIE);
-            e->setType(IPRoute::REMOTE);
-            e->setSource(IPRoute::MANUAL);
+            e->setType(IPv4Route::REMOTE);
+            e->setSourceType(IPv4Route::MANUAL);
             //e->setMetric(1);
             mapIt->second.rt->addRoute(e);
         }
@@ -368,21 +368,21 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                         ie->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
                     }
                 }
-                IPRoute *e = new IPRoute();
-                e->setHost(IPv4Address());
+                IPv4Route *e = new IPv4Route();
+                e->setDestination(IPv4Address());
                 e->setNetmask(IPv4Address());
                 e->setInterface(destNode.defaultRouteIE);
-                e->setType(IPRoute::REMOTE);
-                e->setSource(IPRoute::MANUAL);
+                e->setType(IPv4Route::REMOTE);
+                e->setSourceType(IPv4Route::MANUAL);
                 destNode.rt->addRoute(e);
 
                 ie = srcNode.ift->getInterfaceByNodeOutputGateId(srcNode.node->getPath(0)->getLocalGate()->getId());
-                e = new IPRoute();
-                e->setHost(destNode.addr);
+                e = new IPv4Route();
+                e->setDestination(destNode.addr);
                 e->setNetmask(IPv4Address(255, 255, 255, 255));
                 e->setInterface(ie);
-                e->setType(IPRoute::DIRECT);
-                e->setSource(IPRoute::MANUAL);
+                e->setType(IPv4Route::DIRECT);
+                e->setSourceType(IPv4Route::MANUAL);
                 srcNode.rt->addRoute(e);
             }
             else {
@@ -394,15 +394,15 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                     continue;
                 else {
                     // add specific routing entry into routing table
-                    IPRoute *e = new IPRoute();
-                    e->setHost(destNode.addr);
+                    IPv4Route *e = new IPv4Route();
+                    e->setDestination(destNode.addr);
                     if (destNode.routerType == EDGE)
                         e->setNetmask(asInfo.subnetmask);
                     else
                         e->setNetmask(IPv4Address(255, 255, 255, 255));
                     e->setInterface(ie);
-                    e->setType(IPRoute::DIRECT);
-                    e->setSource(IPRoute::MANUAL);
+                    e->setType(IPv4Route::DIRECT);
+                    e->setSourceType(IPv4Route::MANUAL);
                     srcNode.rt->addRoute(e);
                 }
             }

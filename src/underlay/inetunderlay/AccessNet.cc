@@ -312,23 +312,23 @@ IPvXAddress AccessNet::addOverlayNode(cModule* node, bool migrate)
         //
 
         // router
-        IPRoute* re = new IPRoute();
-        re->setHost(terminal.ipvxAddress.get4());
+        IPv4Route* re = new IPv4Route();
+        re->setDestination(terminal.ipvxAddress.get4());
         re->setNetmask(IPv4Address(IPv4Address::ALLONES_ADDRESS));
         re->setInterface(terminal.remoteInterfaceEntry);
-        re->setType(IPRoute::DIRECT);
-        re->setSource(IPRoute::MANUAL);
+        re->setType(IPv4Route::DIRECT);
+        re->setSourceType(IPv4Route::MANUAL);
         router.routingTable->addRoute(re);
         terminal.remoteRoutingEntry = re;
 
         // terminal
-        IPRoute* te = new IPRoute();
-        te->setHost(IPv4Address::UNSPECIFIED_ADDRESS);
+        IPv4Route* te = new IPv4Route();
+        te->setDestination(IPv4Address::UNSPECIFIED_ADDRESS);
         te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
         te->setGateway(router.ipvxAddress.get4());
         te->setInterface(terminal.interfaceEntry);
-        te->setType(IPRoute::REMOTE);
-        te->setSource(IPRoute::MANUAL);
+        te->setType(IPv4Route::REMOTE);
+        te->setSourceType(IPv4Route::MANUAL);
         terminal.routingTable->addRoute(te);
         terminal.routingEntry = te;
 

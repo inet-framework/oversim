@@ -166,7 +166,7 @@ void I3::sendPacket(I3SendPacketMessage *msg)
 
         /* if we were asked to reply, send it now */
         if (msg->getSendReply()) {
-            sendQueryReply(id.getIdentifier(), msg->getSource());
+            sendQueryReply(id.getIdentifier(), msg->getSourceType());
         }
 
         const I3Identifier *i3id = findClosestMatch(id.getIdentifier());
@@ -259,7 +259,7 @@ void I3::handleUDPMessage(cMessage *msg)
         key = imsg->getTrigger().getIdentifier().asOverlayKey();
         callRoute(key, imsg);
 
-        /*            if ((imsg->getSource().address.d[0] & 0xff) == 56) {
+        /*            if ((imsg->getSourceType().address.d[0] & 0xff) == 56) {
                     cout << "UDP Server " << thisNode.getIp()<< " trigger " << imsg->getTrigger() << " key " << key << endl;
             }*/
 
@@ -304,7 +304,7 @@ void I3::sendQueryReply(const I3Identifier &id, const I3IPAddress &add) {
     I3IPAddress myAddress(thisNode.getIp(), par("serverPort"));
 
     pmsg = new I3QueryReplyMessage();
-    pmsg->setSource(myAddress);
+    pmsg->setSourceType(myAddress);
     pmsg->setSendingTime(simTime());
     pmsg->setIdentifier(id);
     pmsg->setBitLength(QUERY_REPLY_L(pmsg));
@@ -330,7 +330,7 @@ void I3::deliver(OverlayKey& key, cMessage* msg)
         insertTrigger(imsg->getTrigger());
 
         if (imsg->getSendReply()) {
-            sendQueryReply(imsg->getTrigger().getIdentifier(), imsg->getSource());
+            sendQueryReply(imsg->getTrigger().getIdentifier(), imsg->getSourceType());
         }
 
         delete msg;

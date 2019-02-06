@@ -37,7 +37,7 @@
 #include <SimpleInfo.h>
 #include "UDPPacket.h"
 #include "SimpleUDP.h"
-#include "IPControlInfo.h"
+#include "IPv4ControlInfo.h"
 #include "IPv6ControlInfo.h"
 
 #include "IPvXAddressResolver.h"

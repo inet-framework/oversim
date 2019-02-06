@@ -33,7 +33,7 @@ class IInterfaceTable;
 class InterfaceEntry;
 class IRoutingTable;
 class RoutingTable6;
-class IPRoute;
+class IPv4Route;
 class IPv6Route;
 
 /**
@@ -94,8 +94,8 @@ public:
     InterfaceEntry* interfaceEntry; //!< pointer to interface entry
     InterfaceEntry* remoteInterfaceEntry; //!< pointer to remote interface entry
     IInterfaceTable* remoteInterfaceTable; //!< pointer to remote interface table
-    IPRoute* remoteRoutingEntry; //!< pointer to remote routing table
-    IPRoute* routingEntry; //!< pointer to routing entry
+    IPv4Route* remoteRoutingEntry; //!< pointer to remote routing table
+    IPv4Route* routingEntry; //!< pointer to routing entry
     IPv6Route* remoteIpv6RoutingEntry; //!< pointer to remote routing table
     IPv6Route* ipv6routingEntry; //!< pointer to routing entry
 };

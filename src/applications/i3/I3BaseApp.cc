@@ -223,7 +223,7 @@ void I3BaseApp::handleUDPMessage(cMessage *msg)
             pmsg = check_and_cast<I3QueryReplyMessage*>(msg);
             I3Identifier &id = pmsg->getIdentifier();
 
-            identifierCache[id].address = pmsg->getSource();
+            identifierCache[id].address = pmsg->getSourceType();
             identifierCache[id].lastReply = simTime();
             identifierCache[id].roundTripTime = simTime() - pmsg->getSendingTime();
 
@@ -390,7 +390,7 @@ void I3BaseApp::sendPacket(const I3IdentifierStack &stack, cPacket *msg, bool us
     smsg->setSendReply(useHint);
     if (useHint) {
         I3IPAddress add(nodeIPAddress, par("clientPort"));
-        smsg->setSource(add);
+        smsg->setSourceType(add);
     }
 
     numSent++;
@@ -440,7 +440,7 @@ void I3BaseApp::insertTrigger(const I3Trigger &t, bool store) {
 
     msg->setTrigger(t);
     msg->setSendReply(true);
-    msg->setSource(myAddress);
+    msg->setSourceType(myAddress);
     msg->setBitLength(INSERT_TRIGGER_L(msg));
 
     sendThroughUDP(msg, gateway.address);
