@@ -23,13 +23,12 @@
 
 package oversim.underlay.reaseunderlay;
 
-import inet.base.NotificationBoard;
 import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.nodes.inet.NetworkLayer;
-import inet.transport.udp.UDP;
-import inet.transport.tcp.TCP;
+import inet.networklayer.ipv4.IPv4RoutingTable;
+import inet.networklayer.ipv4.IPv4NetworkLayer;
+import inet.transportlayer.udp.UDP;
+import inet.transportlayer.tcp.TCP;
 import oversim.common.BootstrapList;
 import oversim.common.CryptoModule;
 import oversim.common.IOverlay;
@@ -49,7 +48,7 @@ module ReaSEOverlayHost
         string tier3Type; // tier 3 module to use
         int numTiers; // number of tiers
         string routingFile = default("");
-        bool IPForward = default(false);
+        bool forwarding = default(false);
         @display("bgb=537,472;i=device/wifilaptop_l;i2=block/circle_s");
     gates:
         inout pppg[]; // gates from router
@@ -58,17 +57,13 @@ module ReaSEOverlayHost
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=68,208");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=68,293");
         }
-        routingTable: RoutingTable {
+        routingTable: IPv4RoutingTable {
             parameters:
-                IPForward = IPForward; // true if ip packets should be forwarded
+                forwarding = forwarding; // true if ip packets should be forwarded
                 routerId = ""; // id of the router
                 routingFile = routingFile; // use predefined routing file if given
                 @display("p=68,371");
@@ -97,7 +92,7 @@ module ReaSEOverlayHost
             parameters:
                 @display("p=285,247");
         }
-        networkLayer: NetworkLayer {
+        networkLayer: IPv4NetworkLayer {
             parameters:
                 proxyARP = false; // sets proxy \ARP mode (replying to \ARP requests for the addresses for which a routing table entry exists)
                 @display("p=374,332;q=queue");
@@ -152,17 +147,17 @@ module ReaSEOverlayHost
         bootstrapList.udpOut --> udp.appIn++;
         bootstrapList.udpIn <-- udp.appOut++;
 
-        udp.ipOut --> networkLayer.udpIn;
-        udp.ipIn <-- networkLayer.udpOut;
+        udp.ipOut --> networkLayer.transportIn++;
+        udp.ipIn <-- networkLayer.transportOut++;
 
-        tcp.ipOut --> networkLayer.tcpIn;
-        tcp.ipIn <-- networkLayer.tcpOut;
+        tcp.ipOut --> networkLayer.transportIn++;
+        tcp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
 }

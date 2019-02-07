@@ -21,7 +21,7 @@
  * @author Gregoire Menuel, Ingmar Baumgart
  */
 
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 
 #include "DHT.h"
 
@@ -70,7 +70,7 @@ void DHT::initializeApp(int stage)
     maintenanceAttack = par("maintenanceAttack");
 
     if ((int)numReplica > overlay->getMaxNumSiblings()) {
-        opp_error("DHT::initialize(): numReplica bigger than what this "
+        throw cRuntimeError("DHT::initialize(): numReplica bigger than what this "
                   "overlay can handle (%d)", overlay->getMaxNumSiblings());
     }
 

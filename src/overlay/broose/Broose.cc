@@ -24,7 +24,7 @@
 #include "Broose.h"
 #include <RpcMacros.h>
 #include <GlobalStatistics.h>
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <BootstrapList.h>
 #include <LookupListener.h>
 
@@ -65,7 +65,7 @@ Broose::~Broose()
 
 void Broose::initializeOverlay(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces
+    // because of L3AddressResolver, we need to wait until interfaces
     // are registered, address auto-assignment takes place etc.
     if (stage != MIN_STAGE_OVERLAY)
         return;
@@ -834,7 +834,7 @@ bool Broose::isSiblingFor(const NodeHandle& node,
               "node != thisNode is not implemented!");
 
     if (numSiblings > getMaxNumSiblings()) {
-        opp_error("Broose::isSiblingFor(): numSiblings too big!");
+        throw cRuntimeError("Broose::isSiblingFor(): numSiblings too big!");
     }
     // set default number of siblings to consider
     if (numSiblings == -1) numSiblings = getMaxNumSiblings();

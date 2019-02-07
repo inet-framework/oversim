@@ -31,12 +31,11 @@ class NodeHandle;
 class OverlayKey;
 class CommonAPIMessage;
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include "NodeVector.h"
 #include <BaseRpc.h>
 #include <BaseTcpSupport.h>
-#include <INotifiable.h>
 #include <BaseOverlay.h>
 
 
@@ -73,7 +72,7 @@ class CommonAPIMessage;
  * @see KBRTestApp
  * @author Bernhard Heep
  */
-class BaseApp : public INotifiable, public BaseRpc, public BaseTcpSupport
+class BaseApp : public cListener, public BaseRpc, public BaseTcpSupport
 {
 private:
 
@@ -132,12 +131,12 @@ protected:
     void handleMessage(cMessage* msg);
 
     /**
-     * callback-method for events at the NotificationBoard
+     * callback-method for events at the cModule
      *
      * @param category ...
      * @param details ...
      */
-    virtual void receiveChangeNotification(int category, const cObject * details);
+    virtual void receiveSignal(cComponent *source, simsignal_t category, const cObject * details);
 
     /**
      * This method gets call if the node has a new TransportAddress (IP address)
@@ -343,8 +342,8 @@ protected:
     GlobalStatistics* globalStatistics; /**< pointer to GlobalStatistics module
 					 in this node*/
 
-    NotificationBoard* notificationBoard; /**< pointer to
-                                               NotificationBoard in this node */
+    cModule* notificationBoard; /**< pointer to
+                                               cModule in this node */
 
     // parameters
     bool debugOutput; /**< debug output yes/no?*/

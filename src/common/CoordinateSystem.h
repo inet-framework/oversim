@@ -26,7 +26,7 @@
 #include <stdint.h>
 #include <vector>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 struct Prox;
 class NeighborCache;

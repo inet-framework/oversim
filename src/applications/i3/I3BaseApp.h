@@ -26,9 +26,8 @@
 #define __I3BASEAPP_H__
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <UDPAppBase.h>
-#include <INotifiable.h>
 
 
 #include "I3Trigger.h"
@@ -39,7 +38,7 @@
 
 /** Basic template class for I3 applications. */
 class I3BaseApp : public UDPAppBase,
-                  public INotifiable
+                  public cListener
 {
 public:
     struct I3CachedServer {
@@ -78,7 +77,7 @@ protected:
     int numIsolations;
 
     /** Cached IP address of this node */
-    IPvXAddress nodeIPAddress;
+    L3Address nodeIPAddress;
 
     /** Stored I3 triggers sent from this node, to be refreshed automatically */
     std::set<I3Trigger> insertedTriggers;

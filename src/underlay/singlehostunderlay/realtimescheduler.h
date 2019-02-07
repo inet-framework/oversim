@@ -26,7 +26,7 @@
 
 #define WANT_WINSOCK2
 #include <platdep/sockets.h>
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <list>
 #include <climits>
 
@@ -58,9 +58,9 @@ public:
 typedef std::list<PacketBufferEntry> PacketBuffer;
 
 /** This class implements a event scheduler for OMNeT++
- *  It makes the simulation run in realtime (i.e. 1 simsec == 1 sec)
+ *  It makes the (*getSimulation()) run in realtime (i.e. 1 simsec == 1 sec)
  *  It must be subclassed; its subclasses must handle network
- *  traffic from/to the simulation
+ *  traffic from/to the (*getSimulation())
  **/
 class RealtimeScheduler : public cScheduler
 {
@@ -144,12 +144,12 @@ public:
     virtual ~RealtimeScheduler();
 
     /**
-     * Called at the beginning of a simulation run.
+     * Called at the beginning of a (*getSimulation()) run.
      */
     virtual void startRun();
 
     /**
-     * Called at the end of a simulation run.
+     * Called at the end of a (*getSimulation()) run.
      */
     virtual void endRun();
 

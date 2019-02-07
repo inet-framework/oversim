@@ -23,9 +23,9 @@
 
 #include "BaseTcpSupport.h"
 #include <GlobalStatisticsAccess.h>
-#include <UDPSocket.h>
-#include <TCPCommand_m.h>
-#include "INETDefs.h"
+#include <inet/transportlayer/contract/udp/UDPSocket.h>
+#include <inet/transportlayer/contract/tcp/TCPCommand_m.h>
+#include "inet/common/INETDefs.h"
 
 void BaseTcpSupport::handleTCPMessage(cMessage* msg)
 {
@@ -151,7 +151,7 @@ void BaseTcpSupport::socketEstablished(int connId, void *yourPtr)
     transQueue::iterator tx = queuedTx.find(remoteAddress);
 
     if (tx != queuedTx.end()) {
-        for (uint32 i = 0 ; i < tx->second->size(); i++) {
+        for (uint32_t i = 0 ; i < tx->second->size(); i++) {
             socket->send(tx->second->at(i));
         }
 

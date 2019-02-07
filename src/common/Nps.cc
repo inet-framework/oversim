@@ -700,7 +700,7 @@ double CoordCalcFunction::f(const Vec_DP& initCoordinates) const
         if (SIMTIME_DBL(landmarks[i].rtt) != 0) {
             rel_diff = diff / (SIMTIME_DBL(landmarks[i].rtt) / 2 * 1000);
         } else {
-            opp_error("[CBR] RTT == 0. Node is landmark? This shouldn't happen.");
+            throw cRuntimeError("[CBR] RTT == 0. Node is landmark? This shouldn't happen.");
         }
         sum += rel_diff * rel_diff;
     }

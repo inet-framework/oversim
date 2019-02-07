@@ -24,7 +24,7 @@
 #ifndef __REALWORLDTESTAPP_H_
 #define __REALWORLDTESTAPP_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <OverlayKey.h>
 

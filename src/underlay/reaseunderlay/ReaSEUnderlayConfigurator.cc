@@ -29,11 +29,10 @@
 #include <StringConvert.h>
 
 #include <ConnectReaSE.h>
-#include <IRoutingTable.h>
-#include <IInterfaceTable.h>
-#include <IPvXAddressResolver.h>
-#include <IPv4InterfaceData.h>
-#include <NotificationBoard.h>
+#include <inet/networklayer/contract/IRoutingTable.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
 
 
 #include <ReaSEInfo.h>
@@ -108,7 +107,7 @@ TransportAddress* ReaSEUnderlayConfigurator::createNode(NodeType type, bool init
 
 
     // add node to bootstrap oracle
-    globalNodeList->addPeer(IPvXAddressResolver().addressOf(node), info);
+    globalNodeList->addPeer(L3AddressResolver().addressOf(node), info);
 
     // if the node was not created during startup we have to
     // finish the initialization process manually
@@ -124,7 +123,7 @@ TransportAddress* ReaSEUnderlayConfigurator::createNode(NodeType type, bool init
     churnGenerator[type.typeID]->terminalCount++;
 
     TransportAddress *address = new TransportAddress(
-                                       IPvXAddressResolver().addressOf(node));
+                                       L3AddressResolver().addressOf(node));
 
     // update display
     setDisplayString();
@@ -159,7 +158,7 @@ void ReaSEUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* add
         //accessNetModule = info->getAccessNetModule();
         nodeID = info->getNodeID();
     } else {
-        opp_error("IPv4UnderlayConfigurator: Trying to pre kill node "
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to pre kill node "
                   "with nonexistant TransportAddress!");
     }
 
@@ -170,10 +169,10 @@ void ReaSEUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* add
         return;
     //TODO: get overlay node
     cModule* node = TerminalConnector->getOverlayNode(nodeID);
-    globalNodeList->removePeer(IPvXAddressResolver().addressOf(node));
+    globalNodeList->removePeer(L3AddressResolver().addressOf(node));
 
     //put node into the kill list and schedule a message for final removal of the node
-    killList.push_front(IPvXAddressResolver().addressOf(node));
+    killList.push_front(L3AddressResolver().addressOf(node));
     scheduledID.insert(nodeID);
 
     overlayTerminalCount--;
@@ -185,7 +184,7 @@ void ReaSEUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* add
     setDisplayString();
 
     // inform the notification board about the removal
-    NotificationBoard* nb = check_and_cast<NotificationBoard*>(
+    cModule* nb = check_and_cast<cModule*>(
             node->getSubmodule("notificationBoard"));
     nb->fireChangeNotification(NF_OVERLAY_NODE_LEAVE);
 
@@ -220,7 +219,7 @@ void ReaSEUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* add
         //accessNetModule = info->getAccessNetModule();
         nodeID = info->getNodeID();
     } else {
-        opp_error("ReaSEUnderlayConfigurator: Trying to pre kill node with nonexistant TransportAddress!");
+        throw cRuntimeError("ReaSEUnderlayConfigurator: Trying to pre kill node with nonexistant TransportAddress!");
     }
 
     // do not migrate node that is already scheduled
@@ -230,10 +229,10 @@ void ReaSEUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* add
     cModule* node = TerminalConnector->removeOverlayNode(nodeID);//intuniform(0, accessNetModule->size() - 1));
 
     if (node == NULL)
-        opp_error("ReaSEUnderlayConfigurator: Trying to remove node which is not an overlay node in network!");
+        throw cRuntimeError("ReaSEUnderlayConfigurator: Trying to remove node which is not an overlay node in network!");
 
     //remove node from bootstrap oracle
-    globalNodeList->killPeer(IPvXAddressResolver().addressOf(node));
+    globalNodeList->killPeer(L3AddressResolver().addressOf(node));
 
     node->bubble("I am migrating!");
     // connect the node to another access net
@@ -247,10 +246,10 @@ void ReaSEUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* add
         info->setNodeID(TerminalConnector->addOverlayNode(&newAccessModule));
 
     //add node to bootstrap oracle
-    globalNodeList->addPeer(IPvXAddressResolver().addressOf(node), newinfo);
+    globalNodeList->addPeer(L3AddressResolver().addressOf(node), newinfo);
 
     // inform the notification board about the migration
-    NotificationBoard* nb = check_and_cast<NotificationBoard*>(node->getSubmodule("notificationBoard"));
+    cModule* nb = check_and_cast<cModule*>(node->getSubmodule("notificationBoard"));
     nb->fireChangeNotification(NF_OVERLAY_TRANSPORTADDRESS_CHANGED);
 }
 
@@ -259,7 +258,7 @@ void ReaSEUnderlayConfigurator::handleTimerEvent(cMessage* msg)
     Enter_Method_Silent();
 
     // get next scheduled node from the kill list
-    IPvXAddress addr = killList.back();
+    L3Address addr = killList.back();
     killList.pop_back();
 
     //AccessNet* accessNetModule = NULL;
@@ -270,7 +269,7 @@ void ReaSEUnderlayConfigurator::handleTimerEvent(cMessage* msg)
         //accessNetModule = info->getAccessNetModule();
         nodeID = info->getNodeID();
     } else {
-        opp_error("IPv4UnderlayConfigurator: Trying to kill node with nonexistant TransportAddress!");
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to kill node with nonexistant TransportAddress!");
     }
 
     scheduledID.erase(nodeID);
@@ -279,7 +278,7 @@ void ReaSEUnderlayConfigurator::handleTimerEvent(cMessage* msg)
     cModule* node = TerminalConnector->removeOverlayNode(nodeID);
 
     if (node == NULL)
-        opp_error("IPv4UnderlayConfigurator: Trying to remove node which is nonexistant in AccessNet!");
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to remove node which is nonexistant in AccessNet!");
 
     node->callFinish();
     node->deleteModule();

@@ -33,7 +33,7 @@ void I3IdentifierStack::push(const I3Identifier &identifier)
     stack.push_back(id);
 }
 
-void I3IdentifierStack::push(const IPvXAddress &ip, int port)
+void I3IdentifierStack::push(const L3Address &ip, int port)
 {
     I3IPAddress ipAddress;
 

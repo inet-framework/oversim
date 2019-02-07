@@ -29,7 +29,7 @@
 #include <SimpleGameClient.h>
 #include <NodeHandle.h>
 #include <Vector2D.h>
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include "GlobalStatisticsAccess.h"
 
 class ConnectivityProbeApp : public cSimpleModule

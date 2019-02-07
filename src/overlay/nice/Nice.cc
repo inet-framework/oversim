@@ -122,7 +122,7 @@ Nice::~Nice()
 void Nice::initializeOverlay( int stage )
 {
 
-    /* Because of IPvXAddressResolver, we need to wait until interfaces
+    /* Because of L3AddressResolver, we need to wait until interfaces
      * are registered, address auto-assignment takes place etc. */
     if (stage != MIN_STAGE_OVERLAY)
         return;
@@ -235,9 +235,9 @@ void Nice::joinOverlay()
 
 void Nice::handleNodeLeaveNotification() {
     if (isRendevouzPoint) {
-        opp_error("The NICE Rendevouz Point is being churned out and the simulation cannot continue. "
+        throw cRuntimeError("The NICE Rendevouz Point is being churned out and the (*getSimulation()) cannot continue. "
                 "Please, check your config and make sure that the Chrun Generator's configuration is correct. "
-                "Specifically, the Rendevouz Point must not get churned out during the simulation.");
+                "Specifically, the Rendevouz Point must not get churned out during the (*getSimulation()).");
     }
 }
 
@@ -2776,7 +2776,7 @@ void Nice::ClusterSplit(int layer)
         else {
             scLeader = cl1_center;
             if (isRendevouzPoint) {
-                opp_error("Something went wrong in Nice::ClusterSplit and the RendevouzPoint is trying to give up leadership. This is a bug in OverSim's implementation of Nice. Please fix it, or file a bug.");
+                throw cRuntimeError("Something went wrong in Nice::ClusterSplit and the RendevouzPoint is trying to give up leadership. This is a bug in OverSim's implementation of Nice. Please fix it, or file a bug.");
             }
         }
 
@@ -3173,7 +3173,7 @@ void Nice::LeaderTransfer(int layer, TransportAddress leader)
     ASSERT(clusters[layer].contains(leader));
 
     if (isRendevouzPoint) {
-        opp_error("The RendevouzPoint is handing off leadership and the simulation cannot continue. This is a bug in the Nice implementation in OverSim, please check the backtrace and fix it or submit a bug report.");
+        throw cRuntimeError("The RendevouzPoint is handing off leadership and the (*getSimulation()) cannot continue. This is a bug in the Nice implementation in OverSim, please check the backtrace and fix it or submit a bug report.");
     }
 
     TaSet cluster(clusters[layer].begin(), clusters[layer].end());
@@ -3240,7 +3240,7 @@ void Nice::gracefulLeave(short bottomLayer)
     ASSERT(layer >= bottomLayer);
 
     if (isRendevouzPoint) {
-        opp_error("The RendevouzPoint is trying to leave a layer and the simulation cannot continue. This is a bug in the Nice implementation in OverSim, please check the backtrace and fix it or submit a bug report.");
+        throw cRuntimeError("The RendevouzPoint is trying to leave a layer and the (*getSimulation()) cannot continue. This is a bug in the Nice implementation in OverSim, please check the backtrace and fix it or submit a bug report.");
     }
 
     if (!clusters[layer].getLeader().isUnspecified() && clusters[layer].getLeader() != thisNode) {

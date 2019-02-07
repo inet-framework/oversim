@@ -22,7 +22,7 @@
  */
 
 #include "udpoutscheduler.h"
-#include "IPvXAddress.h"
+#include "inet/networklayer/common/L3Address.h"
 //#include <regmacros.h>
 
 Register_Class(UdpOutScheduler);
@@ -56,7 +56,7 @@ int UdpOutScheduler::initializeNetwork()
         sock = socket(AF_INET, SOCK_STREAM, 0);
 
         if (sock == INVALID_SOCKET) {
-            opp_error("Error creating socket");
+            throw cRuntimeError("Error creating socket");
             return -1;
         }
 
@@ -69,12 +69,12 @@ int UdpOutScheduler::initializeNetwork()
         server.sin_port = htons(appPort);
 
         if (bind( sock, (struct sockaddr*)&server, sizeof( server)) < 0) {
-            opp_error("Error binding to app socket");
+            throw cRuntimeError("Error binding to app socket");
             return -1;
         }
 
         if (listen( sock, 5 ) == -1) {
-            opp_error("Error listening on app socket");
+            throw cRuntimeError("Error listening on app socket");
             return -1;
         }
         // Set additional_fd so we will be called if data
@@ -103,7 +103,7 @@ int UdpOutScheduler::initializeNetwork()
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
 
-    cModule* overlay = simulation.getModuleByPath(
+    cModule* overlay = (*getSimulation()).getModuleByPath(
             "SingleHostUnderlayNetwork.overlayTerminal[0].overlay");
 
     if (overlay == NULL) {
@@ -115,7 +115,7 @@ int UdpOutScheduler::initializeNetwork()
                           getOwnerModule()->par("localPort").longValue());
 
     cModule* underlayConfigurator =
-        simulation.getModuleByPath("SingleHostUnderlayNetwork.underlayConfigurator");
+        (*getSimulation()).getModuleByPath("SingleHostUnderlayNetwork.underlayConfigurator");
 
     if (underlayConfigurator == NULL) {
         throw cRuntimeError("UdpOutScheduler::initializeNetwork(): "
@@ -130,7 +130,7 @@ int UdpOutScheduler::initializeNetwork()
     }
 
     if (bind( netw_fd, (sockaddr*)&addr, sizeof(addr)) < 0) {
-        opp_error("Error binding to UDP socket");
+        throw cRuntimeError("Error binding to UDP socket");
         return -1;
     }
 
@@ -150,7 +150,7 @@ void UdpOutScheduler::additionalFD() {
     SOCKET new_sock = accept( additional_fd, from, &addrlen );
 
     if (new_sock == INVALID_SOCKET) {
-        opp_error("Error connecting to remote app");
+        throw cRuntimeError("Error connecting to remote app");
         return;
     }
 
@@ -171,7 +171,7 @@ void UdpOutScheduler::additionalFD() {
 #else
             close(new_sock);
 #endif
-            ev << "[UdpOutScheduler::additionalFD()]\n"
+            EV << "[UdpOutScheduler::additionalFD()]\n"
                << "    Rejecting new app connection (FD: " << new_sock << ")"
                << endl;
 
@@ -191,7 +191,7 @@ void UdpOutScheduler::additionalFD() {
 
     sendNotificationMsg(appNotificationMsg, appModule);
 
-    ev << "[UdpOutScheduler::additionalFD()]\n"
+    EV << "[UdpOutScheduler::additionalFD()]\n"
        << "    Accepting new app connection (FD: " << new_sock << ")"
        << endl;
 }

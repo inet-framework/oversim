@@ -23,7 +23,7 @@
 
 #include <assert.h>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include "GiaMessageBookkeeping.h"
 
 

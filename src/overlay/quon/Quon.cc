@@ -30,7 +30,7 @@ Define_Module(Quon);
 
 void Quon::initializeOverlay(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces are registered,
+    // because of L3AddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
     if(stage != MIN_STAGE_OVERLAY) {
         return;
@@ -55,7 +55,7 @@ void Quon::initializeOverlay(int stage)
 
     bindingBackup = new NodeHandle[numBackups][4];
 
-    loginCache = dynamic_cast<LoginCache*>(simulation.getModuleByPath("globalObserver.globalFunctions[0].function.loginCache"));
+    loginCache = dynamic_cast<LoginCache*>((*getSimulation()).getModuleByPath("globalObserver.globalFunctions[0].function.loginCache"));
     cacheInterval = par("cacheInterval");
     timeSinceCache = 0;
 

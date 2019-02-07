@@ -24,14 +24,14 @@
 #ifndef __DHTTESTAPP_H_
 #define __DHTTESTAPP_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <GlobalNodeList.h>
 #include <GlobalStatistics.h>
 #include <UnderlayConfigurator.h>
 #include <TransportAddress.h>
 #include <OverlayKey.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 #include <BinaryValue.h>
 #include <BaseApp.h>
 #include <set>

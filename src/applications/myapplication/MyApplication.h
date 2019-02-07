@@ -23,7 +23,7 @@
 #ifndef MYAPPLICATION_H
 #define MYAPPLICATION_H
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include "BaseApp.h"
 

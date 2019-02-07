@@ -27,11 +27,11 @@
 #define __SIMPLENODEENTRY_H
 
 
-#include "INETDefs.h"
-#include <IPvXAddress.h>
+#include "inet/common/INETDefs.h"
+#include <inet/networklayer/common/L3Address.h>
 
-#include "UDPPacket_m.h"
-#include "TCPSegment.h"
+#include "inet/transportlayer/udp/UDPPacket_m.h"
+#include "inet/transportlayer/tcp_common/TCPSegment.h"
 
 #include "BaseLocation.h"
 
@@ -48,7 +48,7 @@ class NodeRecord: public BaseLocation
     void debugOutput(int dim);
 
     double* coords;
-    //IPvXAddress ip;
+    //L3Address ip;
     static uint8_t dim;
     static void setDim(uint8_t dimension) { dim = dimension; };
     uint8_t getDim() const { return dim; };

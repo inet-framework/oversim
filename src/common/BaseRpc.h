@@ -28,7 +28,7 @@
 
 #include <oversim_mapset.h>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <RpcState.h>
 #include <RpcListener.h>
@@ -187,7 +187,7 @@ protected:
                                      RpcListener* rpcListener = NULL)
     {
         if (dest.isUnspecified() && destKey.isUnspecified())
-            opp_error("BaseRpc::sendRouteRpcCall() with both key and "
+            throw cRuntimeError("BaseRpc::sendRouteRpcCall() with both key and "
                       "transportAddress unspecified!");
         return sendRpcCall(ROUTE_TRANSPORT, destComp, dest, destKey, msg,
                            context, routingType, timeout, retries,

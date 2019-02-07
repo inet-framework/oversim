@@ -28,7 +28,7 @@
  * made to let the SimpleTCP module create SimpleTCPConnection.
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <CommonMessages_m.h>
 #include <GlobalNodeListAccess.h>
@@ -36,20 +36,20 @@
 
 #include <SimpleInfo.h>
 #include <SimpleUDP.h>
-#include "IPv4Datagram.h"
-#include "IPv6Datagram.h"
-#include "TCPSegment.h"
+#include "inet/networklayer/ipv4/IPv4Datagram.h"
+#include "inet/networklayer/ipv6/IPv6Datagram.h"
+#include "inet/transportlayer/tcp_common/TCPSegment.h"
 #include "SimpleTCP.h"
-#include "TCPCommand_m.h"
-#include "IPv4ControlInfo.h"
-#include "IPv6ControlInfo.h"
-#include "ICMPMessage_m.h"
-#include "ICMPv6Message_m.h"
-#include "IPvXAddressResolver.h"
-#include "TCPSendQueue.h"
-#include "TCPSACKRexmitQueue.h"
-#include "TCPReceiveQueue.h"
-#include "TCPAlgorithm.h"
+#include "inet/transportlayer/contract/tcp/TCPCommand_m.h"
+#include "inet/networklayer/contract/ipv4/IPv4ControlInfo.h"
+#include "inet/networklayer/contract/ipv6/IPv6ControlInfo.h"
+#include "inet/networklayer/ipv4/ICMPMessage_m.h"
+#include "inet/networklayer/icmpv6/ICMPv6Message_m.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/transportlayer/tcp/TCPSendQueue.h"
+#include "inet/transportlayer/tcp/TCPSACKRexmitQueue.h"
+#include "inet/transportlayer/tcp/TCPReceiveQueue.h"
+#include "inet/transportlayer/tcp/TCPAlgorithm.h"
 
 #define EPHEMERAL_PORTRANGE_START 1024
 #define EPHEMERAL_PORTRANGE_END   5000
@@ -60,8 +60,8 @@ Define_Module( SimpleTCP );
 
 static std::ostream& operator<<(std::ostream& os, const TCP::SockPair& sp)
 {
-    os << "loc=" << IPvXAddress(sp.localAddr) << ":" << sp.localPort << " "
-       << "rem=" << IPvXAddress(sp.remoteAddr) << ":" << sp.remotePort;
+    os << "loc=" << L3Address(sp.localAddr) << ":" << sp.localPort << " "
+       << "rem=" << L3Address(sp.remoteAddr) << ":" << sp.remotePort;
     return os;
 }
 
@@ -89,7 +89,7 @@ void SimpleTCP::initialize(int stage)
 
         recordStatistics = par("recordStats");
 
-        cModule *netw = simulation.getSystemModule();
+        cModule *netw = (*getSimulation()).getSystemModule();
         testing = netw->hasPar("testing") && netw->par("testing").boolValue();
         logverbose = !testing && netw->hasPar("logverbose") && netw->par("logverbose").boolValue();
 
@@ -111,7 +111,7 @@ void SimpleTCP::initialize(int stage)
         sad.delayFaultTypeString = par("delayFaultType").stdstringValue();
         sad.delayFaultTypeMap["live_all"] = sad.delayFaultLiveAll;
         sad.delayFaultTypeMap["live_planetlab"] = sad.delayFaultLivePlanetlab;
-        sad.delayFaultTypeMap["simulation"] = sad.delayFaultSimulation;
+        sad.delayFaultTypeMap["(*getSimulation())"] = sad.delayFaultSimulation;
 
         switch (sad.delayFaultTypeMap[sad.delayFaultTypeString]) {
         case StatisticsAndDelay::delayFaultLiveAll:
@@ -163,7 +163,7 @@ void SimpleTCP::handleMessage(cMessage *msg)
             TCPSegment *tcpseg = check_and_cast<TCPSegment *>(msg);
 
             // get src/dest addresses
-            IPvXAddress srcAddr, destAddr;
+            L3Address srcAddr, destAddr;
             if (dynamic_cast<IPv4ControlInfo *>(tcpseg->getControlInfo())!=NULL)
             {
                 IPv4ControlInfo *controlInfo = (IPv4ControlInfo *)tcpseg->removeControlInfo();
@@ -238,7 +238,7 @@ SimpleTCPConnection *SimpleTCP::createConnection(int appGateIndex, int connId)
     return new SimpleTCPConnection(this, appGateIndex, connId);
 }
 
-void SimpleTCP::segmentArrivalWhileClosed(TCPSegment *tcpseg, IPvXAddress srcAddr, IPvXAddress destAddr)
+void SimpleTCP::segmentArrivalWhileClosed(TCPSegment *tcpseg, L3Address srcAddr, L3Address destAddr)
 {
     SimpleTCPConnection *tmp = new SimpleTCPConnection();
     tmp->segmentArrivalWhileClosed(tcpseg, srcAddr, destAddr);
@@ -282,7 +282,7 @@ SimpleTCPConnection *SimpleTCPConnection::cloneListeningConnection()
 }
 
 
-void SimpleTCPConnection::sendRst(uint32 seq, IPvXAddress src, IPvXAddress dest, int srcPort, int destPort)
+void SimpleTCPConnection::sendRst(uint32_t seq, L3Address src, L3Address dest, int srcPort, int destPort)
 {
     TCPSegment *tcpseg = createTCPSegment("RST");
 
@@ -296,7 +296,7 @@ void SimpleTCPConnection::sendRst(uint32 seq, IPvXAddress src, IPvXAddress dest,
     SimpleTCPConnection::sendToIP(tcpseg, src, dest);
 }
 
-void SimpleTCPConnection::sendRstAck(uint32 seq, uint32 ack, IPvXAddress src, IPvXAddress dest, int srcPort, int destPort)
+void SimpleTCPConnection::sendRstAck(uint32_t seq, uint32_t ack, L3Address src, L3Address dest, int srcPort, int destPort)
 {
     TCPSegment *tcpseg = createTCPSegment("RST+ACK");
 
@@ -329,7 +329,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
 
     // add header byte length for the skipped IP header
     int ipHeaderBytes = 0;
-    if (remoteAddr.isIPv6()) {
+    if (remoteAddr.getType() == L3Address::AddressType::IPv6) {
         ipHeaderBytes = IPv6_HEADER_BYTES;
     } else {
         ipHeaderBytes = IP_HEADER_BYTES;
@@ -345,9 +345,9 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
 
     /* main modifications for SimpleTCP start here */
 
-    const IPvXAddress& src = IPvXAddressResolver().addressOf(tcpMain->getParentModule());
-    //const IPvXAddress& src = localAddr;
-    const IPvXAddress& dest = remoteAddr;
+    const L3Address& src = L3AddressResolver().addressOf(tcpMain->getParentModule());
+    //const L3Address& src = localAddr;
+    const L3Address& dest = remoteAddr;
 
     SimpleInfo* info = dynamic_cast<SimpleInfo*>(sad.globalNodeList->getPeerInfo(dest));
     sad.numSent++;
@@ -428,13 +428,13 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
 
     /* main modifications for SimpleTCP end here */
 
-    if (!remoteAddr.isIPv6())
+    if (!remoteAddr.getType() == L3Address::AddressType::IPv6)
     {
         // send over IPv4
         IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
         controlInfo->setProtocol(IP_PROT_TCP);
-        controlInfo->setSrcAddr(src.get4());
-        controlInfo->setDestAddr(dest.get4());
+        controlInfo->setSrcAddr(src.toIPv4());
+        controlInfo->setDestAddr(dest.toIPv4());
         tcpseg->setControlInfo(controlInfo);
 
         tcpMain->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv4Gate());
@@ -444,15 +444,15 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
         // send over IPv6
         IPv6ControlInfo *controlInfo = new IPv6ControlInfo();
         controlInfo->setProtocol(IP_PROT_TCP);
-        controlInfo->setSrcAddr(src.get6());
-        controlInfo->setDestAddr(dest.get6());
+        controlInfo->setSrcAddr(src.toIPv6());
+        controlInfo->setDestAddr(dest.toIPv6());
         tcpseg->setControlInfo(controlInfo);
 
         tcpMain->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv6Gate());
     }
 }
 
-void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, IPvXAddress src, IPvXAddress dest)
+void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address dest)
 {
 
     /* main modifications for SimpleTCP start here */
@@ -540,26 +540,26 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, IPvXAddress src, IPvXAddr
     tcpEV << "Sending: ";
     printSegmentBrief(tcpseg);
 
-    if (!dest.isIPv6())
+    if (!dest.getType() == L3Address::AddressType::IPv6)
     {
         // send over IPv4
         IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
         controlInfo->setProtocol(IP_PROT_TCP);
-        controlInfo->setSrcAddr(src.get4());
-        controlInfo->setDestAddr(dest.get4());
+        controlInfo->setSrcAddr(src.toIPv4());
+        controlInfo->setDestAddr(dest.toIPv4());
         tcpseg->setControlInfo(controlInfo);
 
-        check_and_cast<TCP *>(simulation.getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv4Gate());
+        check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv4Gate());
     }
     else
     {
         // send over IPv6
         IPv6ControlInfo *controlInfo = new IPv6ControlInfo();
         controlInfo->setProtocol(IP_PROT_TCP);
-        controlInfo->setSrcAddr(src.get6());
-        controlInfo->setDestAddr(dest.get6());
+        controlInfo->setSrcAddr(src.toIPv6());
+        controlInfo->setDestAddr(dest.toIPv6());
         tcpseg->setControlInfo(controlInfo);
 
-        check_and_cast<TCP *>(simulation.getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv6Gate());
+        check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv6Gate());
     }
 }

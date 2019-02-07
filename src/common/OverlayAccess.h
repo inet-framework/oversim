@@ -25,10 +25,9 @@
 #define __OVERLAY_ACCESS_H__
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <BaseOverlay.h>
-#include <NotificationBoard.h>
 
 /**
  * Gives access to the overlay.
@@ -45,14 +44,14 @@ public:
         cModule *tmpMod = refMod;
         cModule *tmpParent = NULL; // parent of tmpMod
 
-        // go up from refMod until we get a NotificationBoard module, then we're at root
+        // go up from refMod until we get a cModule module, then we're at root
         // this will fail if the overlay is not in a container module!
         while (true) {
             tmpParent = tmpMod->getParentModule(); // get parent
             // search for a "notificationBoard" module
             cModule *notBoard = tmpParent->getSubmodule("notificationBoard"); 
-            // is this a real NotificationBoard? then we're at root
-            if (dynamic_cast<NotificationBoard*>(notBoard) != NULL) break; 
+            // is this a real cModule? then we're at root
+            if (dynamic_cast<cModule*>(notBoard) != NULL) break; 
             tmpMod = tmpParent; // else keep going up
             if (!tmpParent) throw cRuntimeError("OverlayAccess::get(): Overlay module not found!");
         }

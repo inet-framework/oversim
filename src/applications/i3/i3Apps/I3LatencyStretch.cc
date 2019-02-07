@@ -160,7 +160,7 @@ void I3LatencyStretch::handleUDPMessage(cMessage *msg) {
     if (msg->getContextPointer() != 0) {
         MsgContent *mc = (MsgContent*)msg->getContextPointer();
 
-        if (!latencies.count(mc->sourceIp)) opp_error("Unknown Id!");
+        if (!latencies.count(mc->sourceIp)) throw cRuntimeError("Unknown Id!");
 
         LatencyInfo &info = latencies[mc->sourceIp];
 
@@ -200,7 +200,7 @@ void I3LatencyStretch::deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPa
 
         MsgContent *mc = (MsgContent*)msg->getContextPointer();
 
-        if (!latencies.count(mc->sourceIp)) opp_error("Unknown Id!");
+        if (!latencies.count(mc->sourceIp)) throw cRuntimeError("Unknown Id!");
 
         LatencyInfo &info = latencies[ mc->sourceIp ];
 

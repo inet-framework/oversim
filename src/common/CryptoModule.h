@@ -25,7 +25,7 @@
 #ifndef __CRYPTOMODULE_H_
 #define __CRYPTOMODULE_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <cnetcommbuffer.h>
 
 class GlobalStatistics;

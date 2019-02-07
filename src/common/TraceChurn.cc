@@ -56,7 +56,7 @@ void TraceChurn::createNode(int nodeId)
 
     TransportAddress* ta = underlayConfigurator->createNode(type);
     PeerInfo* peer = GlobalNodeListAccess().get()->getPeerInfo(*ta);
-    cGate* inGate = simulation.getModule(peer->getModuleID())->getSubmodule(maxTier)->gate("trace_in");
+    cGate* inGate = (*getSimulation()).getModule(peer->getModuleID())->getSubmodule(maxTier)->gate("trace_in");
     if (!inGate) {
         throw cRuntimeError("Application has no trace_in gate. Most probably "
                              "that means it is not able to handle trace data.");

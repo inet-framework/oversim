@@ -23,11 +23,11 @@
 
 #include <ExtTCPSocketMap.h>
 
-TCPSocket *ExtTCPSocketMap::findSocketFor(IPvXAddress remoteAddress, int remotePort)
+TCPSocket *ExtTCPSocketMap::findSocketFor(L3Address remoteAddress, int remotePort)
 {
     SocketMap::iterator i = socketMap.begin();
     while (i != socketMap.end()) {
-        if (i->second->getRemoteAddress().equals(remoteAddress)) {
+        if (i->second->getRemoteAddress().operator==(remoteAddress)) {
             if (i->second->getRemotePort() == remotePort) {
                 return i->second;
             }

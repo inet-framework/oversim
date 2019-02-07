@@ -24,12 +24,12 @@
 #ifndef __VAST_H_
 #define __VAST_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <BaseOverlay.h>
 #include <float.h>
 #include <VastDefs.h>
 #include <Vast_m.h>
-//#include <IPvXAddress.h>
+//#include <inet/networklayer/common/L3Address.h>
 //#include <NodeHandle.h>
 //#include <NeighborsList.h>
 

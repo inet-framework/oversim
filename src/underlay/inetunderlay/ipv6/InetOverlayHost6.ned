@@ -16,13 +16,12 @@
 
 package oversim.underlay.inetunderlay.ipv6;
 
-import inet.base.NotificationBoard;
 import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv6.RoutingTable6;
-import inet.nodes.ipv6.NetworkLayer6;
-import inet.transport.udp.UDP;
-import inet.transport.tcp.TCP;
+import inet.networklayer.ipv6.IPv6RoutingTable;
+import inet.networklayer.ipv6.IPv6NetworkLayer;
+import inet.transportlayer.udp.UDP;
+import inet.transportlayer.tcp.TCP;
 import oversim.common.BootstrapList;
 import oversim.common.CryptoModule;
 import oversim.common.IOverlay;
@@ -43,7 +42,7 @@ module InetOverlayHost6
         string tier2Type; // tier 2 module to use
         string tier3Type; // tier 3 module to use
         int numTiers; // number of tiers
-        bool IPForward = default(false);
+        bool forwarding = default(false);
         @display("bgb=537,472;i=device/wifilaptop_l;i2=block/circle_s");
     gates:
         inout pppg[]; // gates from router
@@ -52,15 +51,11 @@ module InetOverlayHost6
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=68,233");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=68,317");
         }
-        routingTable6: RoutingTable6 {
+        routingTable6: IPv6RoutingTable {
             parameters:
                 isRouter = false;
                 @display("p=68,414");
@@ -89,7 +84,7 @@ module InetOverlayHost6
             parameters:
                 @display("p=289,247");
         }
-        networkLayer: NetworkLayer6 {
+        networkLayer: IPv6NetworkLayer {
             parameters:
                 @display("p=374,332;q=queue");
             gates:
@@ -143,17 +138,17 @@ module InetOverlayHost6
         bootstrapList.udpOut --> udp.appIn++;
         bootstrapList.udpIn <-- udp.appOut++;
 
-        udp.ipv6Out --> networkLayer.udpIn;
-        udp.ipv6In <-- networkLayer.udpOut;
+        udp.ipOut --> networkLayer.transportIn++;
+        udp.ipIn <-- networkLayer.transportOut++;
 
-        tcp.ipv6Out --> networkLayer.tcpIn;
-        tcp.ipv6In <-- networkLayer.tcpOut;
+        tcp.ipOut --> networkLayer.transportIn++;
+        tcp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
 }

@@ -21,9 +21,9 @@
  * @author Robert Palmer, Bernhard Heep
  */
 
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 #include <CommonMessages_m.h>
 #include <ExtAPIMessages_m.h>
 #include <GiaMessage_m.h>

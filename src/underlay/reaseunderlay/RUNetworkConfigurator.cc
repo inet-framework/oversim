@@ -65,7 +65,7 @@ void RUNetworkConfigurator::initialize(int stage)
     //FIXME: does asNodeVec.size() work as intended? may need to use noAS instead
     for (unsigned int i = 0; i < asNodeVec.size(); i++) {
         if ((unsigned int) rlTopology[i]->getNumNodes() > (0xffffffff - NET_MASK))
-            opp_error("to many nodes in current topology");
+            throw cRuntimeError("to many nodes in current topology");
         cerr << asNodeVec[i].module->getFullPath() << endl;
         //
         //  insert each router-level node into a node map
@@ -182,13 +182,13 @@ void RUNetworkConfigurator::extractTopology()
     if (noAS > 0) {
         currentAS.extractByProperty("AS"); //TODO: check if this is acceptable
         if (currentAS.getNumNodes() != noAS)
-            opp_error("Error: AS-Topology contains %u elements - expected %u\n", currentAS.getNumNodes(), noAS);
+            throw cRuntimeError("Error: AS-Topology contains %u elements - expected %u\n", currentAS.getNumNodes(), noAS);
     }
     else if (noAS == 0) {
         // Network is router-level only
         currentAS.extractByProperty("Internet"); //TODO: check if this is acceptable
         if (currentAS.getNumNodes() != 1)
-            opp_error("Error: tried to extract router-level only topology, but found more than 1 Inet module\n");
+            throw cRuntimeError("Error: tried to extract router-level only topology, but found more than 1 Inet module\n");
     }
 
     // get each router-level topology
@@ -213,7 +213,7 @@ bool RUNetConf::getRouterLevelNodes(cModule *curMod, void *name)
 {
     char *curName = (char*) name;
     if (curName == NULL)
-        opp_error("Error while casting void* name to char*\n");
+        throw cRuntimeError("Error while casting void* name to char*\n");
 
     string sCurName = curName;
     sCurName += ".";
@@ -347,7 +347,7 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                 if (ie == srcNode.defaultRouteIE)
                     continue;
 
-                for (uint32 i = 0; i < asInfo.edgeRouter.size(); i++) {
+                for (uint32_t i = 0; i < asInfo.edgeRouter.size(); i++) {
 
                     if (srcNode.module == asInfo.edgeRouter[i].module) {
 

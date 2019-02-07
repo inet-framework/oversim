@@ -38,7 +38,7 @@ Define_Module(PubSubLobby);
 
 void PubSubLobby::initializeOverlay(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces are registered,
+    // because of L3AddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
     if(stage != MIN_STAGE_OVERLAY) return;
 
@@ -378,7 +378,7 @@ void PubSubLobby::replaceResponsibleNode( PubSubSubspaceId subspaceId, NodeHandl
         // FIXME: How to react?
         // Best would be: reinsert node. But most probable we have two nodes that want to be
         // responsible, so how to avoid the resulting inconsostency?
-        opp_error("PlayerMap inconsistent: Allegedly failed node wants to become Responsible node");
+        throw cRuntimeError("PlayerMap inconsistent: Allegedly failed node wants to become Responsible node");
     }
 //    ChildEntry* respNodeEntry = &(plIt->second);
 //    resRange = playerRessourceMap.equal_range( respNodeEntry->ressources );
@@ -425,7 +425,7 @@ void PubSubLobby::failedNode(const TransportAddress& node)
 
 // FIXME: only for debugging
 if( GlobalNodeListAccess().get()->getPeerInfo( node ) ){
-    opp_error("Trying to delete node that's still there...");
+    throw cRuntimeError("Trying to delete node that's still there...");
 }
 
     // check if node was responsible for a subspace

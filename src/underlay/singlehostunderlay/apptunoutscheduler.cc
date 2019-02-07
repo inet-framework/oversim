@@ -22,7 +22,7 @@
  */
 
 #include "apptunoutscheduler.h"
-#include "IPvXAddress.h"
+#include "inet/networklayer/common/L3Address.h"
 //#include <regmacros.h>
 
 Register_Class(AppTunOutScheduler);
@@ -61,7 +61,7 @@ int AppTunOutScheduler::initializeNetwork()
         sock = socket(AF_INET, SOCK_STREAM, 0);
 
         if (sock == INVALID_SOCKET) {
-            opp_error("Error creating socket");
+            throw cRuntimeError("Error creating socket");
             return -1;
         }
 
@@ -74,12 +74,12 @@ int AppTunOutScheduler::initializeNetwork()
         server.sin_port = htons(appPort);
 
         if (bind( sock, (struct sockaddr*)&server, sizeof( server)) < 0) {
-            opp_error("Error binding to app socket");
+            throw cRuntimeError("Error binding to app socket");
             return -1;
         }
 
         if (listen( sock, 5 ) == -1) {
-            opp_error("Error listening on app socket");
+            throw cRuntimeError("Error listening on app socket");
             return -1;
         }
         // Set additional_fd so we will be called if data
@@ -106,7 +106,7 @@ int AppTunOutScheduler::initializeNetwork()
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
 
-    cModule* overlay = simulation.getModuleByPath(
+    cModule* overlay = (*getSimulation()).getModuleByPath(
             "SingleHostUnderlayNetwork.overlayTerminal[0].overlay");
 
     if (overlay == NULL) {
@@ -118,7 +118,7 @@ int AppTunOutScheduler::initializeNetwork()
                           getOwnerModule()->par("localPort").longValue());
 
     cModule* underlayConfigurator =
-        simulation.getModuleByPath("SingleHostUnderlayNetwork.underlayConfigurator");
+        (*getSimulation()).getModuleByPath("SingleHostUnderlayNetwork.underlayConfigurator");
 
     if (underlayConfigurator == NULL) {
         throw cRuntimeError("UdpOutScheduler::initializeNetwork(): "
@@ -133,7 +133,7 @@ int AppTunOutScheduler::initializeNetwork()
     }
 
     if (bind( netw_fd, (sockaddr*)&addr, sizeof(addr)) < 0) {
-        opp_error("Error binding to UDP socket");
+        throw cRuntimeError("Error binding to UDP socket");
         return -1;
     }
 
@@ -150,15 +150,15 @@ int AppTunOutScheduler::initializeNetwork()
     dev = new char[IFNAMSIZ];
 
     if (apptun_fd != INVALID_SOCKET) {
-        opp_error("Already bound to application TUN device!");
+        throw cRuntimeError("Already bound to application TUN device!");
         return -1;
     }
 
     if ((apptun_fd = open("/dev/net/tun", O_RDWR)) < 0 ) {
-        opp_error("Error opening application tun device");
+        throw cRuntimeError("Error opening application tun device");
         return 0;
     } else {
-        ev << "[AppTunOutScheduler::initializeNetwork()]\n"
+        EV << "[AppTunOutScheduler::initializeNetwork()]\n"
         << "\t Successfully opened application TUN device"
         << endl;
     }
@@ -175,12 +175,12 @@ int AppTunOutScheduler::initializeNetwork()
 
     if((err = ioctl(apptun_fd, TUNSETIFF, (void *) &ifr)) < 0 ) {
         close(apptun_fd);
-        opp_error("Error ioctl application tun device");
+        throw cRuntimeError("Error ioctl application tun device");
         return -1;
     }
 
     strncpy(dev, ifr.ifr_name, IFNAMSIZ);
-    ev << "[AppTunOutScheduler::initializeNetwork()]\n"
+    EV << "[AppTunOutScheduler::initializeNetwork()]\n"
        << "    Bound to device " << dev << "\n"
        << "    Remember to bring up application TUN device with "
        << "ifconfig before proceeding"
@@ -199,7 +199,7 @@ void AppTunOutScheduler::additionalFD() {
     SOCKET new_sock = accept( additional_fd, from, &addrlen );
 
     if (new_sock == INVALID_SOCKET) {
-        opp_error("Error connecting to remote app");
+        throw cRuntimeError("Error connecting to remote app");
         return;
     }
 
@@ -220,7 +220,7 @@ void AppTunOutScheduler::additionalFD() {
 #else
             close(new_sock);
 #endif
-            ev << "[UdpOutScheduler::additionalFD()]\n"
+            EV << "[UdpOutScheduler::additionalFD()]\n"
                << "    Rejecting new app connection (FD: " << new_sock << ")"
                << endl;
 
@@ -240,7 +240,7 @@ void AppTunOutScheduler::additionalFD() {
 
     sendNotificationMsg(appNotificationMsg, appModule);
 
-    ev << "[UdpOutScheduler::additionalFD()]\n"
+    EV << "[UdpOutScheduler::additionalFD()]\n"
        << "    Accepting new app connection (FD: " << new_sock << ")"
        << endl;
 }

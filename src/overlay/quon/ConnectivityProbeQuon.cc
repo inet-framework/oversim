@@ -34,7 +34,7 @@ QuonTopologyNode::QuonTopologyNode(int moduleID)
 
 Quon* QuonTopologyNode::getModule() const
 {
-    return check_and_cast<Quon*>(simulation.getModule(moduleID));
+    return check_and_cast<Quon*>((*getSimulation()).getModule(moduleID));
 }
 
 void ConnectivityProbeQuon::initialize()
@@ -265,7 +265,7 @@ void ConnectivityProbeQuon::handleMessage(cMessage* msg)
 void ConnectivityProbeQuon::extractTopology()
 {
     for(int i=0; i<=getSimulation()->getLastComponentId(); i++) {
-        cModule* module = simulation.getModule(i);
+        cModule* module = (*getSimulation()).getModule(i);
         if(module && dynamic_cast<Quon*>(module)) {
             Quon* quonp = check_and_cast<Quon*>(module);
             if(quonp->getState() == QREADY) {

@@ -70,7 +70,7 @@ NodeHandle::NodeHandle( const TransportAddress& ta )
 
 //complete constructor
 NodeHandle::NodeHandle( const OverlayKey& key,
-                              const IPvXAddress& ip, int port )
+                              const L3Address& ip, int port )
 {
     this->setIp(ip);
     this->setPort(port);
@@ -184,7 +184,7 @@ const OverlayKey& NodeHandle::getKey() const
 inline void NodeHandle::assertUnspecified( const NodeHandle& handle ) const
 {
     if ( this->isUnspecified() || handle.isUnspecified() )
-        opp_error("NodeHandle: Trying to compare unspecified NodeHandle!");
+        throw cRuntimeError("NodeHandle: Trying to compare unspecified NodeHandle!");
 }
 
 

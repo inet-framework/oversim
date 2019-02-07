@@ -21,7 +21,7 @@
 
 package oversim.underlay.simpleunderlay;
 
-import inet.transport.tcp.TCP;
+import inet.transportlayer.tcp.TCP;
 
 //
 // UDP protocol implementation, for IPv4 and IPv6.

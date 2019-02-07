@@ -30,9 +30,8 @@
 #include <RpcMacros.h>
 
 #include <UDPAppBase.h>
-#include <UDPSocket.h>
-#include <IPvXAddressResolver.h>
-#include <NotificationBoard.h>
+#include <inet/transportlayer/contract/udp/UDPSocket.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 
 #include <GlobalNodeListAccess.h>
 #include <UnderlayConfiguratorAccess.h>
@@ -89,7 +88,7 @@ void BaseOverlay::initialize(int stage)
         // find friend modules
         globalNodeList = GlobalNodeListAccess().get();
         underlayConfigurator = UnderlayConfiguratorAccess().get();
-        notificationBoard = NotificationBoardAccess().get();
+        notificationBoard = getContainingNode(this);
         globalParameters = GlobalParametersAccess().get();
         bootstrapList = check_and_cast<BootstrapList*>(getParentModule()->
                 getParentModule()->getSubmodule("bootstrapList", 0));
@@ -241,7 +240,7 @@ void BaseOverlay::initialize(int stage)
         }
 
         // set up local nodehandle
-        thisNode.setIp(IPvXAddressResolver().
+        thisNode.setIp(L3AddressResolver().
                       addressOf(getParentModule()->getParentModule()));
         thisNode.setKey(OverlayKey::UNSPECIFIED_KEY);
 
@@ -255,9 +254,9 @@ void BaseOverlay::initialize(int stage)
         bindToPort(localPort);
 
         // subscribe to the notification board
-        notificationBoard->subscribe(this, NF_OVERLAY_TRANSPORTADDRESS_CHANGED);
-        notificationBoard->subscribe(this, NF_OVERLAY_NODE_LEAVE);
-        notificationBoard->subscribe(this, NF_OVERLAY_NODE_GRACEFUL_LEAVE);
+        notificationBoard->subscribe(NF_OVERLAY_TRANSPORTADDRESS_CHANGED, this);
+        notificationBoard->subscribe(NF_OVERLAY_NODE_LEAVE, this);
+        notificationBoard->subscribe(NF_OVERLAY_NODE_GRACEFUL_LEAVE, this);
 
         // init visualization with terminal ptr
         if (drawOverlayTopology)
@@ -613,7 +612,7 @@ void BaseOverlay::join(const OverlayKey& nodeID)
     if (state != READY) {
         // set nodeID and IP
         thisNode.setIp(
-            IPvXAddressResolver().addressOf(getParentModule()->getParentModule()));
+            L3AddressResolver().addressOf(getParentModule()->getParentModule()));
 
         if (!nodeID.isUnspecified())  {
             thisNode.setKey(nodeID);
@@ -1052,7 +1051,7 @@ void BaseOverlay::handleBaseOverlayMessage(BaseOverlayMessage* msg,
     }
 }
 
-void BaseOverlay::receiveChangeNotification(int category, const cObject * details)
+void BaseOverlay::receiveSignal(cComponent *source, simsignal_t category, const cObject * details)
 {
     Enter_Method_Silent();
     if (category == NF_OVERLAY_TRANSPORTADDRESS_CHANGED) {
@@ -1067,7 +1066,7 @@ void BaseOverlay::receiveChangeNotification(int category, const cObject * detail
 void BaseOverlay::handleTransportAddressChangedNotification()
 {
     // get new ip address
-    thisNode.setIp(IPvXAddressResolver().addressOf(
+    thisNode.setIp(L3AddressResolver().addressOf(
                       getParentModule()->getParentModule()));
 
     joinOverlay();
@@ -1933,7 +1932,7 @@ void BaseOverlay::findNodeRpc( FindNodeCall* call )
         findNodeResponse->setClosestNodesArraySize(resultSize);
         for (int i = 0; i < resultSize; i++) {
             findNodeResponse->setClosestNodes(i,
-                    NodeHandle(call->getLookupKey() + i, IPvXAddress(IPv4Address(
+                    NodeHandle(call->getLookupKey() + i, L3Address(IPv4Address(
                     isSiblingAttack ? (424242+i) : intuniform(42,123123))), 42));
 #if 0
             // was not used for evaluation

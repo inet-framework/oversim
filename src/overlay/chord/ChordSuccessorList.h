@@ -26,9 +26,9 @@
 
 #include <map>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 #include <NodeHandle.h>
 
 class OverlayKey;

@@ -24,10 +24,10 @@
 #ifndef __GLOBALPARAMETERS_H__
 #define __GLOBALPARAMETERS_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 /**
- * Modul for storing global simulation parameters
+ * Modul for storing global (*getSimulation()) parameters
  *
  * @author Ingmar Baumgart
  */

@@ -48,7 +48,7 @@ void ALMTest::initializeApp(int stage)
         return;
     }
     observer = check_and_cast<MessageObserver*>(
-            simulation.getModuleByPath("globalObserver.globalFunctions[0].function.observer"));
+            (*getSimulation()).getModuleByPath("globalObserver.globalFunctions[0].function.observer"));
     joinGroups = par("joinGroups");
     msglen = par("messageLength");
     sendMessages = par("sendMessages");

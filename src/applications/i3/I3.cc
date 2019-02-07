@@ -21,16 +21,16 @@
  */
 
 #include <UDPAppBase.h>
-#include <UDPControlInfo_m.h>
-#include "UDPSocket.h"
-#include "UDPControlInfo_m.h"
+#include <inet/transportlayer/contract/udp/UDPControlInfo_m.h>
+#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
 
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <CommonMessages_m.h>
 #include <GlobalNodeListAccess.h>
 #include <UnderlayConfiguratorAccess.h>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <OverlayKey.h>
 #include "SHA1.h"
 

@@ -28,9 +28,9 @@
 #include <vector>
 #include <queue>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 class Gia;
 #include "GiaNeighbors.h"

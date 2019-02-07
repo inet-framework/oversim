@@ -26,13 +26,13 @@
 
 void ChurnGenerator::initialize(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces are registered,
+    // because of L3AddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
     if (stage != MAX_STAGE_UNDERLAY)
         return;
 
     if (type.typeID == -1) {
-        opp_error("NodeType not set when initializing ChurnGenerator");
+        throw cRuntimeError("NodeType not set when initializing ChurnGenerator");
     }
 
     underlayConfigurator = UnderlayConfiguratorAccess().get();

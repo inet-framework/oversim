@@ -25,7 +25,7 @@
 #ifndef __I3IDENTIFIER_H__
 #define __I3IDENTIFIER_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <OverlayKey.h>
 
 /** Implementation of an Internet Indirection Infrastructure identifier.

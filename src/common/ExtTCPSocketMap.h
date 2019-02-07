@@ -24,8 +24,8 @@
 #ifndef EXTTCPSOCKETMAP_H_
 #define EXTTCPSOCKETMAP_H_
 
-#include <TCPSocketMap.h>
-#include <IPvXAddress.h>
+#include <inet/transportlayer/contract/tcp/TCPSocketMap.h>
+#include <inet/networklayer/common/L3Address.h>
 
 class ExtTCPSocketMap : public TCPSocketMap
 {
@@ -33,12 +33,12 @@ public:
     /**
          * Member function to find the TCPSocket by the remote address and port
          *
-         * @param remoteAddress IPvXAddress of the remote host
+         * @param remoteAddress L3Address of the remote host
          * @param remotePort portnumber of the connection to connect with remote host
          *
          * @returns The TCPSocket object of the connection with the specified address and port of the remote host
      */
-    virtual TCPSocket *findSocketFor(IPvXAddress remoteAddress, int remotePort);
+    virtual TCPSocket *findSocketFor(L3Address remoteAddress, int remotePort);
 
     /**
          * Member function to find the TCPSocket by an incoming tcp message

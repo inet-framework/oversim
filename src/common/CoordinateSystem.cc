@@ -22,7 +22,7 @@
 
 #include <ProxNodeHandle.h>
 
-#include <CoordinateSystem.h>
+#include <inet/common/geometry/common/CoordinateSystem.h>
 
 
 uint8_t EuclideanNcsNodeInfo::dim;

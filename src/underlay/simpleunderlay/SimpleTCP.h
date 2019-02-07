@@ -32,10 +32,10 @@
 
 //#include <map>
 //#include <set>
-#include "INETDefs.h"
-#include "IPvXAddress.h"
-#include <TCPConnection.h>
-#include <InitStages.h>
+#include "inet/common/INETDefs.h"
+#include "inet/networklayer/common/L3Address.h"
+#include <inet/transportlayer/tcp/TCPConnection.h>
+#include <inet/common/InitStages.h>
 
 class SimpleNodeEntry;
 
@@ -82,13 +82,13 @@ public:
     static StatisticsAndDelay sad;
 
     /** Utility: sends RST; does not use connection state */
-    void sendRst(uint32 seq, IPvXAddress src, IPvXAddress dest, int srcPort, int destPort);
+    void sendRst(uint32_t seq, L3Address src, L3Address dest, int srcPort, int destPort);
     /** Utility: sends RST+ACK; does not use connection state */
-    void sendRstAck(uint32 seq, uint32 ack, IPvXAddress src, IPvXAddress dest, int srcPort, int destPort);
+    void sendRstAck(uint32_t seq, uint32_t ack, L3Address src, L3Address dest, int srcPort, int destPort);
 
 protected:
     /** Utility: send IP packet to destination node */
-    virtual void sendToIP(TCPSegment *tcpseg, IPvXAddress src, IPvXAddress dest);
+    virtual void sendToIP(TCPSegment *tcpseg, L3Address src, L3Address dest);
 
     /** Utility: clone a listening connection. Used for forking. */
     SimpleTCPConnection *cloneListeningConnection();
@@ -107,7 +107,7 @@ public:
 
 protected:
   // utility methods
-  void segmentArrivalWhileClosed(TCPSegment *tcpseg, IPvXAddress srcAddr, IPvXAddress destAddr);
+  void segmentArrivalWhileClosed(TCPSegment *tcpseg, L3Address srcAddr, L3Address destAddr);
   SimpleTCPConnection *createConnection(int appGateIndex, int connId);
   virtual void initialize(int stage);
   virtual void handleMessage(cMessage *msg);

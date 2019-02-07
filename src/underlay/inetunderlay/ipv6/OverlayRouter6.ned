@@ -21,14 +21,12 @@ import oversim.common.ITier;
 import oversim.common.IOverlay;
 import oversim.common.CryptoModule;
 import oversim.common.BootstrapList;
-import inet.util.NAMTraceWriter;
-import inet.transport.udp.UDP;
-import inet.transport.tcp.TCP;
-import inet.nodes.ipv6.NetworkLayer6;
-import inet.networklayer.ipv6.RoutingTable6;
+import inet.transportlayer.udp.UDP;
+import inet.transportlayer.tcp.TCP;
+import inet.networklayer.ipv6.IPv6NetworkLayer;
+import inet.networklayer.ipv6.IPv6RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.linklayer.ppp.PPPInterface;
-import inet.base.NotificationBoard;
 
 
 //
@@ -37,7 +35,7 @@ import inet.base.NotificationBoard;
 module OverlayRouter6
 {
     parameters:
-        @node();
+        @networkNode;
         string overlayType;    // overlay protocol compound module to use
         string tier1Type;    // the application on top off the overly used in the simulation
         string tier2Type;    // tier 2 module to use
@@ -52,20 +50,11 @@ module OverlayRouter6
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        namTrace: NAMTraceWriter {
-            parameters:
-                namid = -1; // auto
-                @display("p=84,422");
-        }
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=84,214");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=84,278");
         }
-        routingTable6: RoutingTable6 {
+        routingTable6: IPv6RoutingTable {
             parameters:
                 isRouter = true;
                 @display("p=84,348");
@@ -94,7 +83,7 @@ module OverlayRouter6
             parameters:
                 @display("p=230,262");
         }
-        networkLayer: NetworkLayer6 {
+        networkLayer: IPv6NetworkLayer {
             parameters:
                 @display("p=282,340;q=queue");
             gates:
@@ -149,17 +138,17 @@ module OverlayRouter6
         bootstrapList.udpOut --> udp.appIn++;
         bootstrapList.udpIn <-- udp.appOut++;
 
-        udp.ipv6Out --> networkLayer.udpIn;
-        udp.ipv6In <-- networkLayer.udpOut;
+        udp.ipOut --> networkLayer.transportIn++;
+        udp.ipIn <-- networkLayer.transportOut++;
 
-        tcp.ipv6Out --> networkLayer.tcpIn;
-        tcp.ipv6In <-- networkLayer.tcpOut;
+        tcp.ipOut --> networkLayer.transportIn++;
+        tcp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
 }

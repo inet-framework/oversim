@@ -24,9 +24,9 @@
 #ifndef __KOORDE_H_
 #define __KOORDE_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 
 #include <OverlayKey.h>
 #include <NodeHandle.h>

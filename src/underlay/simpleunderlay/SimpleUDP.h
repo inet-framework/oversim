@@ -34,10 +34,10 @@
 #include <map>
 #include <list>
 
-#include <InitStages.h>
-#include <UDP.h>
+#include <inet/common/InitStages.h>
+#include <inet/transportlayer/udp/UDP.h>
 
-#include "UDPControlInfo_m.h"
+#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
 
 class GlobalNodeList;
 class SimpleNodeEntry;

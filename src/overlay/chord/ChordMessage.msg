@@ -21,7 +21,7 @@
 //
 
 cplusplus {{
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <NodeHandle.h>
 #include <TransportAddress.h>
 #include <CommonMessages_m.h>
@@ -57,7 +57,7 @@ static const int PRENODESET_L = 1;
 }}
 //todo add more Koorde message lengths
 
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject NodeHandle;
 class noncobject OverlayKey;
 class noncobject TransportAddress;

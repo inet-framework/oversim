@@ -58,7 +58,7 @@ public:
     }
 
     BootstrapNodeHandle(const OverlayKey &key,
-                        const IPvXAddress &ip,
+                        const L3Address &ip,
                         int port,
                         BootstrapNodePrioType prio = CACHE)
                         : NodeHandle(key, ip, port)   {

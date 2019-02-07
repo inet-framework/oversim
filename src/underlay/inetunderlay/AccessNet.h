@@ -24,15 +24,15 @@
 #ifndef __ACCESSNET_H__
 #define __ACCESSNET_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <InitStages.h>
-#include <IPvXAddress.h>
+#include <inet/common/InitStages.h>
+#include <inet/networklayer/common/L3Address.h>
 
 class IInterfaceTable;
 class InterfaceEntry;
 class IRoutingTable;
-class RoutingTable6;
+class IPv6RoutingTable;
 class IPv4Route;
 class IPv6Route;
 
@@ -42,10 +42,10 @@ class IPv6Route;
 struct IPv6Words
 {
 public:
-    uint32 d0, d1, d2, d3;
+    uint32_t d0, d1, d2, d3;
 
-    IPv6Words(IPvXAddress addr) {
-        const uint32* words = addr.words();
+    IPv6Words(L3Address addr) {
+        const uint32_t* words = addr.words();
         d0 = words[0];
         d1 = words[1];
         d2 = words[2];
@@ -66,11 +66,11 @@ public:
 class NodeInfo
 {
 public:
-    IPvXAddress ipvxAddress; //!< the IP Address
+    L3Address ipvxAddress; //!< the IP Address
     cModule* module; //!< pointer to node getModule(not this module)
     IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
     IRoutingTable* routingTable; //!< pointer to routing table of this node
-    RoutingTable6* routingTable6;
+    IPv6RoutingTable* routingTable6;
     simtime_t createdAt; //!< creation timestamp
 
     /**
@@ -135,7 +135,7 @@ public:
      * the overlay terminal vector.
      * (called by InetUnderlayConfigurator in stage MAX_STAGE_UNDERLAY)
      */
-    virtual IPvXAddress addOverlayNode(cModule* overlayNode, bool migrate = false);
+    virtual L3Address addOverlayNode(cModule* overlayNode, bool migrate = false);
 
     /**
      * returns a random ID
@@ -171,9 +171,9 @@ protected:
 
     NodeInfo router; //!< this access router
     std::vector<TerminalInfo> overlayTerminal; //!< the terminals at this access router
-    std::vector<IPvXAddress> returnedIPs; //!< list of IP addresses wich are no longer in use
+    std::vector<L3Address> returnedIPs; //!< list of IP addresses wich are no longer in use
 
-    IPvXAddress getAssignedPrefix(IInterfaceTable* ift);
+    L3Address getAssignedPrefix(IInterfaceTable* ift);
     /**
      * OMNeT number of init stages
      *

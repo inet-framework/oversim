@@ -24,9 +24,9 @@
 #ifndef __GIAKEYLISTMODULE_H_
 #define __GIAKEYLISTMODULE_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 #include "GiaKeyList.h"
 

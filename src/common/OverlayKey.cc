@@ -21,7 +21,7 @@
  * @author Sebastian Mies, Ingmar Baumgart
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include "OverlayKey.h"
 #include "Comparator.h"
@@ -133,7 +133,7 @@ OverlayKey::~OverlayKey()
 void OverlayKey::setKeyLength(uint32_t length)
 {
     if ((length < 1) || (length > OverlayKey::keyLength)) {
-        opp_error("OverlayKey::setKeyLength(): length must be <= %i "
+        throw cRuntimeError("OverlayKey::setKeyLength(): length must be <= %i "
                   "and setKeyLength() must not be called twice "
                   "with different length!", MAX_KEYLENGTH);
     }
@@ -806,7 +806,7 @@ inline void OverlayKey::trim()
 int OverlayKey::compareTo( const OverlayKey& compKey ) const
 {
     if (compKey.isUnspec || isUnspec)
-        opp_error("OverlayKey::compareTo(): key is unspecified!");
+        throw cRuntimeError("OverlayKey::compareTo(): key is unspecified!");
     return mpn_cmp(key,compKey.key,aSize);
 }
 

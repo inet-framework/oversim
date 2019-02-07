@@ -28,7 +28,7 @@
 #include <vector>
 #include <oversim_mapset.h>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <ChurnGenerator.h>
 
@@ -63,13 +63,13 @@ public:
      * Called automatically by the underlay,
      * when new peers are created.
      *
-     * @param ip IPvXAddress of the peer to add
+     * @param ip L3Address of the peer to add
      * @param info underlay specific info of the peer to add
      */
-    void addPeer(const IPvXAddress& ip, PeerInfo* info);
+    void addPeer(const L3Address& ip, PeerInfo* info);
 
     /**
-     * Sends a NotificationBoard message to all registered peers.
+     * Sends a cModule message to all registered peers.
      *
      * @param category Type of notification
      */
@@ -81,9 +81,9 @@ public:
      * Called automatically by the underlay,
      * when peers are removed.
      *
-     * @param ip IPvXAddress of the peer to remove
+     * @param ip L3Address of the peer to remove
      */
-    virtual void killPeer(const IPvXAddress& ip);
+    virtual void killPeer(const L3Address& ip);
 
     /**
      * Returns a random NodeHandle
@@ -232,10 +232,10 @@ public:
     /**
      * Searches the peerSet for the specified node
      *
-     * @param ip IPvXAddress of the specified node
+     * @param ip L3Address of the specified node
      * @return PeerInfo of the node or NULL if node is not in peerSet
      */
-    virtual PeerInfo* getPeerInfo(const IPvXAddress& ip);
+    virtual PeerInfo* getPeerInfo(const L3Address& ip);
 
     size_t getNumNodes() { return peerStorage.size(); };
 
@@ -248,8 +248,8 @@ public:
     inline uint16_t getLandmarkPeerSize() { return landmarkPeerSize; }
     inline void incLandmarkPeerSizePerType(uint16_t type) { landmarkPeerSizePerType[type]++; }
 
-    std::vector<IPvXAddress>* getAllIps();
-    NodeHandle* getNodeHandle(const IPvXAddress& address);
+    std::vector<L3Address>* getAllIps();
+    NodeHandle* getNodeHandle(const L3Address& address);
 
 protected:
     /**

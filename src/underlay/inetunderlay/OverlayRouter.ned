@@ -21,14 +21,12 @@ import oversim.common.ITier;
 import oversim.common.IOverlay;
 import oversim.common.CryptoModule;
 import oversim.common.BootstrapList;
-import inet.util.NAMTraceWriter;
-import inet.transport.udp.UDP;
-import inet.transport.tcp.TCP;
-import inet.nodes.inet.NetworkLayer;
-import inet.networklayer.ipv4.RoutingTable;
+import inet.transportlayer.udp.UDP;
+import inet.transportlayer.tcp.TCP;
+import inet.networklayer.ipv4.IPv4NetworkLayer;
+import inet.networklayer.ipv4.IPv4RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.linklayer.ppp.PPPInterface;
-import inet.base.NotificationBoard;
 
 
 //
@@ -37,7 +35,7 @@ import inet.base.NotificationBoard;
 module OverlayRouter
 {
     parameters:
-        @node();
+        @networkNode;
         string overlayType;    // overlay protocol compound module to use
         string tier1Type;    // the application on top off the overly used in the simulation
         string tier2Type;    // tier 2 module to use
@@ -53,22 +51,13 @@ module OverlayRouter
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        namTrace: NAMTraceWriter {
-            parameters:
-                namid = -1; // auto
-                @display("p=84,422");
-        }
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=84,214");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=84,278");
         }
-        routingTable: RoutingTable {
+        routingTable: IPv4RoutingTable {
             parameters:
-                IPForward = true;
+                forwarding = true;
                 routerId = "auto";
                 routingFile = routingFile;    // use predefined routing file if given
                 @display("p=84,348");
@@ -97,7 +86,7 @@ module OverlayRouter
             parameters:
                 @display("p=230,262");
         }
-        networkLayer: NetworkLayer {
+        networkLayer: IPv4NetworkLayer {
             parameters:
                 proxyARP = false;    // sets proxy \ARP mode (replying to \ARP requests for the addresses for which a routing table entry exists)
                 @display("p=282,340;q=queue");
@@ -153,17 +142,17 @@ module OverlayRouter
         bootstrapList.udpOut --> udp.appIn++;
         bootstrapList.udpIn <-- udp.appOut++;
 
-        udp.ipOut --> networkLayer.udpIn;
-        udp.ipIn <-- networkLayer.udpOut;
+        udp.ipOut --> networkLayer.transportIn++;
+        udp.ipIn <-- networkLayer.transportOut++;
 
-        tcp.ipOut --> networkLayer.tcpIn;
-        tcp.ipIn <-- networkLayer.tcpOut;
+        tcp.ipOut --> networkLayer.transportIn++;
+        tcp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
 }

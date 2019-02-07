@@ -21,7 +21,7 @@
  * @author Bernhard Heep, Ingmar Baumgart
  */
 
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <CommonMessages_m.h>
 #include <GlobalStatistics.h>
 #include <UnderlayConfigurator.h>
@@ -494,7 +494,7 @@ void KBRTestApp::deliver(OverlayKey& key, cMessage* msg)
     }
 
     // Return statistical data to the sender.
-    if (cModule* mod = simulation.getModule(testMsg->getId())) {
+    if (cModule* mod = (*getSimulation()).getModule(testMsg->getId())) {
         if (KBRTestApp* sender = dynamic_cast<KBRTestApp*>(mod)) {
             if ((!lookupNodeIds) || (overlay->getThisNode().getKey() == key)) {
                 if (testMsg->getMeasurementPhase() == true) {

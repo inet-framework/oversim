@@ -18,7 +18,7 @@
 
 cplusplus {{
 #include <OverlayKey.h>
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <CommonMessages_m.h>
 }}
 
@@ -27,7 +27,7 @@ class BaseCallMessage;
 class BaseResponseMessage;
 
 class noncobject OverlayKey;
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject TransportAddress;
 
 //
@@ -38,7 +38,7 @@ packet KBRTestMessage
     int id;                 // the message ID
     int seqNum;             // the sequence number of the message
     bool measurementPhase;  // if false, this msg doesn't count for statistics
-    IPvXAddress visitedNodes[];
+    L3Address visitedNodes[];
 }
 
 //

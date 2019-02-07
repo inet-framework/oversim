@@ -40,7 +40,7 @@ size_t PeerStorage::size()
     return peerHashMap.size();
 }
 
-const PeerHashMap::iterator PeerStorage::find(const IPvXAddress& ip)
+const PeerHashMap::iterator PeerStorage::find(const L3Address& ip)
 {
     return peerHashMap.find(ip);
 }
@@ -148,7 +148,7 @@ void PeerStorage::removeMapIteratorFromVector(PeerVector& peerVector,
     //          << " index: " << index << std::endl;
 }
 
-std::pair<const PeerHashMap::iterator, bool> PeerStorage::insert(const std::pair<IPvXAddress, BootstrapEntry>& element)
+std::pair<const PeerHashMap::iterator, bool> PeerStorage::insert(const std::pair<L3Address, BootstrapEntry>& element)
 {
     std::pair<PeerHashMap::iterator, bool> ret;
 

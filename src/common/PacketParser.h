@@ -24,7 +24,7 @@
 #ifndef __PACKETPARSER_H__
 #define __PACKETPARSER_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 /**
  * Class that performes parsing of the payload of packets that are send to or received by the tun device
@@ -45,7 +45,7 @@ public:
      */
     virtual void handleMessage(cMessage *msg)
     {
-        opp_error("A PacketParser is not intendet to receive Messages!");
+        throw cRuntimeError("A PacketParser is not intendet to receive Messages!");
     };
 
     /**

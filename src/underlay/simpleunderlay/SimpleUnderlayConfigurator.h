@@ -24,13 +24,13 @@
 #ifndef __SIMPLEUNDERLAYCONFIGURATOR_H__
 #define __SIMPLEUNDERLAYCONFIGURATOR_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <BasicModule.h>
 #include <deque>
 #include <set>
 
 #include <UnderlayConfigurator.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 #include <SimpleInfo.h>
 #include <BaseLocation.h>
 
@@ -73,10 +73,10 @@ public:
     uint32_t getSendQueueLenghth() { return sendQueueLength; };
 
     // new functions for working day model
-    IPvXAddress migrateNode(NodeType type, IPvXAddress addr, const BaseLocation& locID);
+    L3Address migrateNode(NodeType type, L3Address addr, const BaseLocation& locID);
     double getDistance(const BaseLocation& IDa, const BaseLocation& IDb);
     BaseLocation* getNearLocation(const BaseLocation& ID, double radius);
-    BaseLocation* getLocation(IPvXAddress addr);
+    BaseLocation* getLocation(L3Address addr);
 
 protected:
 
@@ -91,7 +91,7 @@ protected:
     void handleTimerEvent(cMessage* msg);
 
     /**
-     * Saves statistics, prints simulation time
+     * Saves statistics, prints (*getSimulation()) time
      */
     void finishUnderlay();
 
@@ -101,8 +101,8 @@ protected:
     void setDisplayString();
     uint32_t parseCoordFile(const char * nodeCoordinateSource);
 
-    uint32 nextFreeAddress; /**< address of the node that will be created next */
-    std::deque<IPvXAddress> killList; //!< stores nodes scheduled to be killed
+    uint32_t nextFreeAddress; /**< address of the node that will be created next */
+    std::deque<L3Address> killList; //!< stores nodes scheduled to be killed
     std::set<int> scheduledID; //!< stores nodeIds to prevent migration of prekilled nodes
 
     uint32_t sendQueueLength; /**< send queue length of overlay terminals */

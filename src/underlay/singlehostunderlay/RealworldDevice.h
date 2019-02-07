@@ -26,7 +26,7 @@
 
 #include "RealworldConnector.h"
 
-#include "IInterfaceTable.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
 #include "InterfaceTableAccess.h"
 
 /**

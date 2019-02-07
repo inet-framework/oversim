@@ -27,10 +27,10 @@
 
 #include <vector>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <UDPAppBase.h>
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 
 #include <GlobalNodeList.h>
 #include <UnderlayConfigurator.h>

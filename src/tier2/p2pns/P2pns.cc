@@ -22,7 +22,7 @@
  */
 
 #include <XmlRpcInterface.h>
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <P2pnsMessage_m.h>
 
 #include "P2pns.h"

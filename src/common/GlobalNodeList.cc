@@ -23,9 +23,8 @@
 
 #include <iostream>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <NotificationBoard.h>
 #include <BinaryValue.h>
 #include <OverlayKey.h>
 #include <PeerInfo.h>
@@ -139,7 +138,7 @@ void GlobalNodeList::handleMessage(cMessage* msg)
                      "GlobalNodeList: Number of nodes", peerStorage.size()));
         scheduleAt(simTime() + 50, msg);
     } else {
-        opp_error("GlobalNodeList::handleMessage: Unknown message type!");
+        throw cRuntimeError("GlobalNodeList::handleMessage: Unknown message type!");
     }
 }
 
@@ -218,15 +217,15 @@ void GlobalNodeList::sendNotificationToAllPeers(int category)
 {
     PeerHashMap::iterator it;
     for (it = peerStorage.begin(); it != peerStorage.end(); it++) {
-        NotificationBoard* nb = check_and_cast<NotificationBoard*>(
-                simulation.getModule(it->second.info->getModuleID())
+        cModule* nb = check_and_cast<cModule*>(
+                (*getSimulation()).getModule(it->second.info->getModuleID())
                 ->getSubmodule("notificationBoard"));
 
         nb->fireChangeNotification(category);
     }
 }
 
-void GlobalNodeList::addPeer(const IPvXAddress& ip, PeerInfo* info)
+void GlobalNodeList::addPeer(const L3Address& ip, PeerInfo* info)
 {
     BootstrapEntry temp;
     temp.info = info;
@@ -283,7 +282,7 @@ void GlobalNodeList::removePeer(const TransportAddress& peer,
     }
 }
 
-void GlobalNodeList::killPeer(const IPvXAddress& ip)
+void GlobalNodeList::killPeer(const L3Address& ip)
 {
     PeerHashMap::iterator it = peerStorage.find(ip);
     if (it != peerStorage.end()) {
@@ -308,7 +307,7 @@ PeerInfo* GlobalNodeList::getPeerInfo(const TransportAddress& peer)
     return getPeerInfo(peer.getIp());
 }
 
-PeerInfo* GlobalNodeList::getPeerInfo(const IPvXAddress& ip)
+PeerInfo* GlobalNodeList::getPeerInfo(const L3Address& ip)
 {
     PeerHashMap::iterator it = peerStorage.find(ip);
 
@@ -414,7 +413,7 @@ void GlobalNodeList::setOverlayReadyIcon(const TransportAddress& address,
         PeerInfo* info = getPeerInfo(address);
 
         if (info != NULL) {
-            simulation.getModule(info->getModuleID())->
+            (*getSimulation()).getModule(info->getModuleID())->
                     getDisplayString().setTagArg("i2", 1, color);
         }
     }
@@ -464,7 +463,7 @@ void GlobalNodeList::mergeBootstrapNodes(int toPartition, int fromPartition,
                                          int numNodes)
 {
     BootstrapList* bootstrapList =
-        check_and_cast<BootstrapList*>(simulation.getModule(
+        check_and_cast<BootstrapList*>((*getSimulation()).getModule(
             getRandomPeerInfo(toPartition, false)->getModuleID())->
             getSubmodule("bootstrapList"));
 
@@ -514,9 +513,9 @@ const OverlayKey& GlobalNodeList::getRandomKeyListItem()
     return keyList[intuniform(0,keyList.size()-1)];
 }
 
-std::vector<IPvXAddress>* GlobalNodeList::getAllIps()
+std::vector<L3Address>* GlobalNodeList::getAllIps()
 {
-    std::vector<IPvXAddress>* ips = new std::vector<IPvXAddress>;
+    std::vector<L3Address>* ips = new std::vector<L3Address>;
 
     const PeerHashMap::iterator it = peerStorage.begin();
 
@@ -527,10 +526,10 @@ std::vector<IPvXAddress>* GlobalNodeList::getAllIps()
     return ips;
 }
 
-NodeHandle* GlobalNodeList::getNodeHandle(const IPvXAddress& address){
+NodeHandle* GlobalNodeList::getNodeHandle(const L3Address& address){
     PeerHashMap::iterator it = peerStorage.find(address);
     if (it == peerStorage.end()) {
-        throw cRuntimeError("GlobalNodeList::getNodeHandle(const IPvXAddress& address): "
+        throw cRuntimeError("GlobalNodeList::getNodeHandle(const L3Address& address): "
                             "Peer is not in peer set");
     }
 

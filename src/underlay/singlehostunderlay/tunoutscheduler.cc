@@ -67,7 +67,7 @@ int TunOutScheduler::initializeNetwork()
         // WARNING: Will only accept exactly ONE app connecting to the socket
         sock = socket( AF_INET, SOCK_STREAM, 0 );
         if (sock == INVALID_SOCKET) {
-            opp_error("Error creating socket");
+            throw cRuntimeError("Error creating socket");
             return -1;
         }
 
@@ -80,11 +80,11 @@ int TunOutScheduler::initializeNetwork()
         server.sin_port = htons( appPort );
 
         if (bind( sock, (struct sockaddr*)&server, sizeof( server)) < 0) {
-            opp_error("Error binding to app socket");
+            throw cRuntimeError("Error binding to app socket");
             return -1;
         }
         if (listen( sock, 5 ) == -1 ) {
-            opp_error("Error listening on app socket");
+            throw cRuntimeError("Error listening on app socket");
             return -1;
         }
         // Set additional_fd so we will be called if data
@@ -95,15 +95,15 @@ int TunOutScheduler::initializeNetwork()
     }
 
     if (netw_fd != INVALID_SOCKET) {
-        opp_error("Already bound to TUN device!");
+        throw cRuntimeError("Already bound to TUN device!");
         return -1;
     }
 
     if ((netw_fd = open("/dev/net/tun", O_RDWR)) < 0 ) {
-        opp_error("Error opening tun device");
+        throw cRuntimeError("Error opening tun device");
         return 0;
     } else {
-        ev << "[TunOutScheduler::initializeNetwork()]\n"
+        EV << "[TunOutScheduler::initializeNetwork()]\n"
         << "\t Successfully opened TUN device"
         << endl;
     }
@@ -120,12 +120,12 @@ int TunOutScheduler::initializeNetwork()
 
     if((err = ioctl(netw_fd, TUNSETIFF, (void *) &ifr)) < 0 ) {
         close(netw_fd);
-        opp_error("Error ioctl tun device");
+        throw cRuntimeError("Error ioctl tun device");
         return -1;
     }
 
     strncpy(dev, ifr.ifr_name, IFNAMSIZ);
-    ev << "[TunOutScheduler::initializeNetwork()]\n"
+    EV << "[TunOutScheduler::initializeNetwork()]\n"
        << "    Bound to device " << dev << "\n"
        << "    Remember to bring up TUN device with ifconfig before proceeding"
        << endl;
@@ -142,7 +142,7 @@ void TunOutScheduler::additionalFD() {
 
     SOCKET new_sock = accept( additional_fd, 0, 0 );
     if (new_sock == INVALID_SOCKET) {
-        opp_error("Error connecting to remote app");
+        throw cRuntimeError("Error connecting to remote app");
         return;
     }
     if (appConnectionLimit) {
@@ -156,7 +156,7 @@ void TunOutScheduler::additionalFD() {
             // We already have too many connections to external applications
             // "reject" connection
             close(new_sock);
-            ev << "[UdpOutScheduler::additionalFD()]\n"
+            EV << "[UdpOutScheduler::additionalFD()]\n"
                 << "    Rejecting new app connection (FD: " << new_sock << ")"
                 << endl;
             return;
@@ -171,7 +171,7 @@ void TunOutScheduler::additionalFD() {
                                          PacketBufferEntry::PACKET_FD_NEW, new_sock));
     sendNotificationMsg(appNotificationMsg, appModule);
 
-    ev << "[UdpOutScheduler::additionalFD()]\n"
+    EV << "[UdpOutScheduler::additionalFD()]\n"
         << "    Accepting new app connection (FD: " << new_sock << ")"
         << endl;
 

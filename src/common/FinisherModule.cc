@@ -21,7 +21,7 @@
  * @author Bernhard Heep
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <GlobalStatisticsAccess.h>
 

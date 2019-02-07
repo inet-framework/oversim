@@ -21,7 +21,7 @@
  * @author Felix Palmen
  */
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 #include "PastryStateObject.h"
 #include "PastryTypes.h"

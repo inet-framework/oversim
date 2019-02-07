@@ -27,7 +27,7 @@
 #include "I3Identifier.h"
 #include "I3IPAddress.h"
 #include "I3SubIdentifier.h"
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 
 /** Stack of I3SubIdentifier, implementing the "identifier stack" proposed in Internet Indirection Infrastructure */
 class I3IdentifierStack {
@@ -46,7 +46,7 @@ public:
      * @param add IP address to be pushed
      * @param port Address port to be pushed
      */
-    void push(const IPvXAddress &add, int port);
+    void push(const L3Address &add, int port);
 
     /** Appends an I3IdentifierStack at the end
      * @param stack Identifier stack to be appended

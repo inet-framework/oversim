@@ -28,7 +28,7 @@ I3IPAddress::I3IPAddress()
     port = 0;
 }
 
-I3IPAddress::I3IPAddress(IPvXAddress add, int p)
+I3IPAddress::I3IPAddress(L3Address add, int p)
 {
     ip = add;
     port = p;
@@ -51,7 +51,7 @@ bool I3IPAddress::operator>(const I3IPAddress &a) const
 
 int I3IPAddress::length() const {
     //return sizeof(address) + sizeof(port);
-    return (ip.isIPv6() ? 128 : 32) + 16; // 16 = port length
+    return (ip.getType() == L3Address::AddressType::IPv6 ? 128 : 32) + 16; // 16 = port length
 }
 
 std::ostream& operator<<(std::ostream& os, const I3IPAddress& ip) {

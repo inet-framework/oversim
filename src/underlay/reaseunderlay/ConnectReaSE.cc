@@ -25,12 +25,12 @@
 #include <vector>
 #include <iostream>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <IRoutingTable.h>
-#include <IInterfaceTable.h>
-#include <IPvXAddressResolver.h>
-#include <IPv4InterfaceData.h>
+#include <inet/networklayer/contract/IRoutingTable.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
 
 #include "ConnectReaSE.h"
 
@@ -96,7 +96,7 @@ void ConnectReaSE::initialize(int stage)
         if (tempTopology.getNumNodes() == 0)
 
             //no router topology
-            opp_error("ConnectReaSE: Neither an AS topology nor a router topology was detected.");
+            throw cRuntimeError("ConnectReaSE: Neither an AS topology nor a router topology was detected.");
 
         setUpAS(getParentModule());
     }
@@ -111,14 +111,14 @@ void ConnectReaSE::initialize(int stage)
             Modules.push_back(tempModule);
             index++;
         }
-        for (uint32 i=0; i< Modules.size(); i++) {
+        for (uint32_t i=0; i< Modules.size(); i++) {
             setUpAS(Modules[i]);
         }
     }
 
     // put all edge router in one data structure to get a equal probability of selection
-    for (uint32 i=0; i<AS_Pool.size(); i++) {
-        for (uint32 j=0; j< AS_Pool[i].edgeRouter.size(); j++) {
+    for (uint32_t i=0; i<AS_Pool.size(); i++) {
+        for (uint32_t j=0; j< AS_Pool[i].edgeRouter.size(); j++) {
             tempEdgePool.edge = &AS_Pool[i].edgeRouter[j];
             tempEdgePool.indexAS = i;
             globalEdgePool.push_back(tempEdgePool);
@@ -126,7 +126,7 @@ void ConnectReaSE::initialize(int stage)
     }
     //cout << "Number of Edges in Network: " << globalEdgePool.size() << endl;
 
-    for (uint32 i=0; i<globalEdgePool.size(); i++) {
+    for (uint32_t i=0; i<globalEdgePool.size(); i++) {
 
         //select channel
         globalEdgePool[i].edge->channelTypeTxStr = channelTypesTx[intuniform(0,channelTypesTx.size()-1)];
@@ -140,10 +140,10 @@ AccessInfo ConnectReaSE::getAccessNode()
 
     bool candidateOK = false;
     int numTries = 10;
-    uint32 test_IP = 0;
+    uint32_t test_IP = 0;
     AccessInfo node;
     edgeRoutes* connectionCandidate;
-    uint32 tempIndex, tempASindex;
+    uint32_t tempIndex, tempASindex;
 
     while ((numTries > 0)&&(!candidateOK)) {
         numTries--;
@@ -159,7 +159,7 @@ AccessInfo ConnectReaSE::getAccessNode()
 //        for (int i = 0; i < (1 << AS_Pool[tempASindex].edgeShift); i++ ) {
 //            test_IP += i;
 //            candidateOK = true;
-//            for (uint32 j = 0; j < connectionCandidate->IPAddresses.size(); j++) {
+//            for (uint32_t j = 0; j < connectionCandidate->IPAddresses.size(); j++) {
 //                if (connectionCandidate->IPAddresses[j] == test_IP) {
 //                    candidateOK =false;
 //                    break;
@@ -181,7 +181,7 @@ AccessInfo ConnectReaSE::getAccessNode()
 
     // no free IP address after 10 tries
     if (numTries == 0) {
-        opp_error("Error creating node: No available IP found after four tries!");
+        throw cRuntimeError("Error creating node: No available IP found after four tries!");
     }
     EV << "Found available IP: " << test_IP;
 
@@ -199,9 +199,9 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         terminalInfo terminal;
 
         terminal.module = node;
-        terminal.interfaceTable = IPvXAddressResolver().interfaceTableOf(node);
+        terminal.interfaceTable = L3AddressResolver().interfaceTableOf(node);
         terminal.remoteInterfaceTable = overlayNode->edge->interfaceTable;
-        terminal.routingTable = IPvXAddressResolver().routingTableOf(node);
+        terminal.routingTable = L3AddressResolver().routingTableOf(node);
         terminal.PPPInterface = node->getSubmodule("ppp", 0);
         terminal.createdAt = simTime();
         terminal.IPv4Address = overlayNode->IPv4Address;
@@ -237,7 +237,7 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         cChannelType* channelTypeRx = cChannelType::find( overlayNode->edge->channelTypeRxStr.c_str() );
         cChannelType* channelTypeTx = cChannelType::find( overlayNode->edge->channelTypeTxStr.c_str() );
         if (!channelTypeRx || !channelTypeTx)
-            opp_error("Could not find Channel or ChannelRx Type. Most likely "
+            throw cRuntimeError("Could not find Channel or ChannelRx Type. Most likely "
                 "parameter channelTypes does not match the channels defined "
                 "in channels.ned");
 
@@ -353,7 +353,7 @@ cModule* ConnectReaSE::removeOverlayNode(int ID)
     cModule* node = NULL;
     terminalInfo terminal;
     int index = 0;
-    uint32 releasedIP;
+    uint32_t releasedIP;
 
     // find module
     for (unsigned int i=0; i<overlayTerminal.size(); i++) {
@@ -368,7 +368,7 @@ cModule* ConnectReaSE::removeOverlayNode(int ID)
     if (node == NULL) return NULL;
 
 
-    releasedIP = IPvXAddressResolver().addressOf(terminal.module).get4().getInt();;
+    releasedIP = L3AddressResolver().addressOf(terminal.module).toIPv4().getInt();;
 
     // free IP address
     for (unsigned int i=0; i < terminal.edgeRouter->IPAddresses.size(); i++) {
@@ -427,7 +427,7 @@ cModule* ConnectReaSE::getOverlayNode(int ID)
             return node;
         }
     }
-    opp_error("Node was not found in global list of overlay terminals");
+    throw cRuntimeError("Node was not found in global list of overlay terminals");
     return node;
 }
 
@@ -446,7 +446,7 @@ AccessInfo ConnectReaSE::migrateNode(int ID)
         }
     }
 
-    if (terminal.module == NULL) opp_error("ConnectReaSE: Cannot find migrating node");
+    if (terminal.module == NULL) throw cRuntimeError("ConnectReaSE: Cannot find migrating node");
 
     do {
         newEdgeRouter = getAccessNode();
@@ -512,7 +512,7 @@ void ConnectReaSE::setUpAS(cModule* currAS)
     cTopology Topo("All nodes");
     topologyProperty* tempProp = new topologyProperty;
     cModule* tempNode;
-    uint32 tempIP;
+    uint32_t tempIP;
     edgeRoutes tempEdge;
     autoSystem tempAS;
     int k;
@@ -539,10 +539,10 @@ void ConnectReaSE::setUpAS(cModule* currAS)
     for (int i=0; i< edgeTopo.getNumNodes(); i++) {
 
         tempEdge.Router = edgeTopo.getNode(i)->getModule();
-        tempEdge.IPv4Address = IPvXAddressResolver().addressOf(tempEdge.Router).get4().getInt();
-        tempEdge.IPAddresses.push_back(IPvXAddressResolver().addressOf(tempEdge.Router).get4().getInt());
-        tempEdge.interfaceTable = IPvXAddressResolver().interfaceTableOf(tempEdge.Router);
-        tempEdge.routingTable = IPvXAddressResolver().routingTableOf(tempEdge.Router);
+        tempEdge.IPv4Address = L3AddressResolver().addressOf(tempEdge.Router).toIPv4().getInt();
+        tempEdge.IPAddresses.push_back(L3AddressResolver().addressOf(tempEdge.Router).toIPv4().getInt());
+        tempEdge.interfaceTable = L3AddressResolver().interfaceTableOf(tempEdge.Router);
+        tempEdge.routingTable = L3AddressResolver().routingTableOf(tempEdge.Router);
 
         k = 0;
         while ( tempEdge.Router->findSubmodule("ppp", k) != -1 )
@@ -568,7 +568,7 @@ void ConnectReaSE::setUpAS(cModule* currAS)
                 continue;
 
             //fill IP table
-            tempIP = IPvXAddressResolver().addressOf(Topo.getNode(j)->getModule()).get4().getInt();
+            tempIP = L3AddressResolver().addressOf(Topo.getNode(j)->getModule()).toIPv4().getInt();
             tempEdge.IPAddresses.push_back(tempIP);
         }
 

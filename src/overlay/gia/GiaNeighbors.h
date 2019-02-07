@@ -26,10 +26,10 @@
 
 #include <vector>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <OverlayKey.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 #include "GiaNode.h"
 #include "GiaKeyList.h"

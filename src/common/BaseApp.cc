@@ -21,10 +21,9 @@
  * @author Ingmar Baumgart, Bernhard Heep, Stephan Krause
  */
 
-#include <IPvXAddressResolver.h>
-#include <NotificationBoard.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <UDPAppBase.h>
-#include <UDPSocket.h>
+#include <inet/transportlayer/contract/udp/UDPSocket.h>
 #include <cassert>
 
 #include <CommonMessages_m.h>
@@ -75,19 +74,19 @@ void BaseApp::initialize(int stage)
         globalNodeList = GlobalNodeListAccess().get();
         underlayConfigurator = UnderlayConfiguratorAccess().get();
         globalStatistics = GlobalStatisticsAccess().get();
-        notificationBoard = NotificationBoardAccess().get();
+        notificationBoard = getContainingNode(this);
 
         // subscribe to the notification board
-        notificationBoard->subscribe(this, NF_OVERLAY_TRANSPORTADDRESS_CHANGED);
-        notificationBoard->subscribe(this, NF_OVERLAY_NODE_LEAVE);
-        notificationBoard->subscribe(this, NF_OVERLAY_NODE_GRACEFUL_LEAVE);
+        notificationBoard->subscribe(NF_OVERLAY_TRANSPORTADDRESS_CHANGED, this);
+        notificationBoard->subscribe(NF_OVERLAY_NODE_LEAVE, this);
+        notificationBoard->subscribe(NF_OVERLAY_NODE_GRACEFUL_LEAVE, this);
 
         // determine the terminal's transport address
         if (getParentModule()->getSubmodule("interfaceTable", 0) != NULL) {
-            thisNode.setIp(IPvXAddressResolver()
+            thisNode.setIp(L3AddressResolver()
                           .addressOf(getParentModule()));
         } else {
-            thisNode.setIp(IPvXAddressResolver()
+            thisNode.setIp(L3AddressResolver()
                           .addressOf(getParentModule()->getParentModule()));
         }
 
@@ -211,7 +210,7 @@ CompType BaseApp::getThisCompType()
     return INVALID_COMP;
 }
 
-void BaseApp::receiveChangeNotification(int category, const cObject * details)
+void BaseApp::receiveSignal(cComponent *source, simsignal_t category, const cObject * details)
 {
     Enter_Method_Silent();
     if (category == NF_OVERLAY_TRANSPORTADDRESS_CHANGED) {

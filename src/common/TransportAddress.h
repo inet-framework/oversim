@@ -29,8 +29,8 @@
 //#include <stdint.h>
 #include <oversim_mapset.h>
 
-#include "INETDefs.h"
-#include <IPvXAddress.h>
+#include "inet/common/INETDefs.h"
+#include <inet/networklayer/common/L3Address.h>
 
 class TransportAddress;
 typedef std::vector<TransportAddress> TransportAddressVector;
@@ -77,7 +77,7 @@ public://collection typedefs
 
 protected://fields
 
-    IPvXAddress ip; /**< the ip of this TransportAddress object */
+    L3Address ip; /**< the ip of this TransportAddress object */
     int port; /**< the port of this TransportAddress object */
 
 private:
@@ -107,11 +107,11 @@ public://construction
     /**
      * Complete constructor.
      *
-     * @param ip The IPvXAddress
+     * @param ip The L3Address
      * @param port The UDP-Port
      * @param natType the type of NAT this node is behind
      */
-    TransportAddress(const IPvXAddress& ip, int port = -1,
+    TransportAddress(const L3Address& ip, int port = -1,
                      NatType natType = UNKNOWN_NAT);
 
 public://static fields
@@ -119,13 +119,13 @@ public://static fields
     static const TransportAddress UNSPECIFIED_NODE; /**< TransportAddress without specified ip and port */
     static const TransportAddressVector UNSPECIFIED_NODES;
 
-public://methods: delegates to OverlayKey and IPvXAddress
+public://methods: delegates to OverlayKey and L3Address
 
     /**
      * compares this to a given TransportAddress
      *
      * @param rhs the TransportAddress this is compared to
-     * @return true if both IPvXAddress and port are equal, false otherwise
+     * @return true if both L3Address and port are equal, false otherwise
      */
     bool operator==(const TransportAddress& rhs) const;
 
@@ -133,7 +133,7 @@ public://methods: delegates to OverlayKey and IPvXAddress
      * compares this to a given TransportAddress
      *
      * @param rhs the TransportAddress this is compared to
-     * @return true if both IPvXAddress and port are not equal, false otherwise
+     * @return true if both L3Address and port are not equal, false otherwise
      */
     bool operator!=(const TransportAddress& rhs) const;
 
@@ -184,21 +184,21 @@ public://methods: setters and getters
     /**
      * Sets the ip address, port and NAT type
      *
-     * @param ip the new IPvXAddress
+     * @param ip the new L3Address
      * @param port the new port
      * @param natType the type of NAT this node is behind
      */
-    void setIp(const IPvXAddress& ip, int port = -1,
+    void setIp(const L3Address& ip, int port = -1,
                NatType natType = UNKNOWN_NAT);
 
     /**
      * Sets the ip address, port and NAT type. DEPRECATED: Use setIp() instead!
      *
-     * @param ip the new IPvXAddress
+     * @param ip the new L3Address
      * @param port the new port
      * @param natType the type of NAT this node is behind
      */
-    void setAddress(const IPvXAddress& ip, int port = -1,
+    void setAddress(const L3Address& ip, int port = -1,
                     NatType natType = UNKNOWN_NAT) __attribute ((deprecated))
                     { setIp(ip, port, natType); };
 
@@ -227,14 +227,14 @@ public://methods: setters and getters
      *
      * @return this->ip
      */
-    const IPvXAddress& getIp() const;
+    const L3Address& getIp() const;
 
     /**
      * returns ip address. DEPRECATED: Use getIp() instead!
      *
      * @return this->ip
      */
-    const IPvXAddress& getAddress() const __attribute ((deprecated))
+    const L3Address& getAddress() const __attribute ((deprecated))
             { return getIp(); };
 
     /**
@@ -296,7 +296,7 @@ public://methods: c++ streaming
 private://methods:
 
     /**
-     * throws an opp_error if this or handle is unspecified
+     * throws an throw cRuntimeError if this or handle is unspecified
      *
      * @param handle the TransportAddress to check
      */
@@ -337,7 +337,7 @@ inline void doParsimPacking(cCommBuffer *buf, const TransportAddress& addr)
  */
 inline void doParsimUnpacking(omnetpp::cCommBuffer *buf, TransportAddress& addr)
 {
-    IPvXAddress ip;
+    L3Address ip;
     int port;
     uint8_t natType = 0;
     doParsimUnpacking(buf, ip);

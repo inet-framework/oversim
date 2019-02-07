@@ -27,7 +27,7 @@
 
 #include <map>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <OverlayKey.h>
 

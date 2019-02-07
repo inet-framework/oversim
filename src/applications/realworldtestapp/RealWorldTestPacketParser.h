@@ -27,7 +27,7 @@
 
 #include <utility>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include "RealWorldTestMessage_m.h"
 
 #include <PacketParser.h>

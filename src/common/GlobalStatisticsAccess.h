@@ -24,7 +24,7 @@
 #ifndef __GLOBALSTATISTICS_ACCESS_H__
 #define __GLOBALSTATISTICS_ACCESS_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include "GlobalStatistics.h"
 
 /**
@@ -42,7 +42,7 @@ public:
     GlobalStatistics* get()
     {
         return check_and_cast<GlobalStatistics*>(
-                simulation.getModuleByPath("globalObserver.globalStatistics"));
+                (*getSimulation()).getModuleByPath("globalObserver.globalStatistics"));
     }
 };
 

@@ -1,6 +1,6 @@
 package oversim.underlay.reaseunderlay.topologies.topology_example;
 
-import inet.nodes.inet.Router;
+import inet.node.inet.Router;
 
 channel host2edge extends ned.DatarateChannel
 {

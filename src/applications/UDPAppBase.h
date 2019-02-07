@@ -19,9 +19,10 @@
 #ifndef __INET_UDPAPPBASE_H
 #define __INET_UDPAPPBASE_H
 
-#include <INETDefs.h>
-#include "IPvXAddress.h"
+#include <inet/common/INETDefs.h>
+#include "inet/networklayer/common/L3Address.h"
 
+using namespace inet;
 
 /**
  * Contains a few utility functions as protected methods, for sending
@@ -38,7 +39,7 @@ class INET_API UDPAppBase : public cSimpleModule
     /**
      * Sends a packet over UDP
      */
-    virtual void sendToUDP(cPacket *msg, int srcPort, const IPvXAddress& destAddr, int destPort);
+    virtual void sendToUDP(cPacket *msg, int srcPort, const L3Address& destAddr, int destPort);
 
     /**
      * Prints a brief about packets having an attached UDPControlInfo

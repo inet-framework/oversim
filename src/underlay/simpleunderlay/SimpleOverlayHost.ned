@@ -17,7 +17,6 @@
 
 package oversim.underlay.simpleunderlay;
 
-import inet.base.NotificationBoard;
 import inet.networklayer.common.InterfaceTable;
 import oversim.common.BootstrapList;
 import oversim.common.CryptoModule;
@@ -73,10 +72,6 @@ module SimpleOverlayHost
         cryptoModule: CryptoModule {
             parameters:
                 @display("p=64,154");
-        }
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=64,232");
         }
         interfaceTable: InterfaceTable {
             parameters:

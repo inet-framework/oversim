@@ -17,8 +17,8 @@
 
 
 #include "UDPAppBase.h"
-#include "UDPSocket.h"
-#include "UDPControlInfo_m.h"
+#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
 
 void UDPAppBase::bindToPort(int port)
 {
@@ -34,7 +34,7 @@ void UDPAppBase::bindToPort(int port)
     send(msg, "udpOut");
 }
 
-void UDPAppBase::sendToUDP(cPacket *msg, int srcPort, const IPvXAddress& destAddr, int destPort)
+void UDPAppBase::sendToUDP(cPacket *msg, int srcPort, const L3Address& destAddr, int destPort)
 {
     // send message to UDP, with the appropriate control info attached
     msg->setKind(UDP_C_DATA);
@@ -55,13 +55,13 @@ void UDPAppBase::printPacket(cPacket *msg)
 {
     UDPControlInfo *ctrl = check_and_cast<UDPControlInfo *>(msg->getControlInfo());
 
-//    IPvXAddress srcAddr = ctrl->getSrcAddr();
-//    IPvXAddress destAddr = ctrl->getDestAddr();
+//    L3Address srcAddr = ctrl->getSrcAddr();
+//    L3Address destAddr = ctrl->getDestAddr();
 //    int srcPort = ctrl->getSrcPort();
 //    int destPort = ctrl->getDestPort();
 
     EV << msg << "  (" << msg->getByteLength() << " bytes)" << endl;
-//    ev  << srcAddr << " :" << srcPort << " --> " << destAddr << ":" << destPort << endl;
+//    EV  << srcAddr << " :" << srcPort << " --> " << destAddr << ":" << destPort << endl;
 }
 
 

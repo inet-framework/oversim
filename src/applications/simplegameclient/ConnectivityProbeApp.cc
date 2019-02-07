@@ -109,8 +109,8 @@ void ConnectivityProbeApp::handleMessage(cMessage* msg)
 
 void ConnectivityProbeApp::extractTopology()
 {
-    for(int i=0; i<=simulation.getLastComponentId(); i++) {
-        cModule* module = simulation.getModule(i);
+    for(int i=0; i<=(*getSimulation()).getLastComponentId(); i++) {
+        cModule* module = (*getSimulation()).getModule(i);
         SimpleGameClient* client;
         if((client = dynamic_cast<SimpleGameClient*>(module))) {
 

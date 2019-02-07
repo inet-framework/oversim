@@ -251,7 +251,7 @@ void resolv_callback(
 
             if (zConfigurator) {
                 BootstrapNodeHandle *node = new BootstrapNodeHandle(OverlayKey(peerID, 16),
-                    IPvXAddress(a), (int)port,
+                    L3Address(a), (int)port,
                     !!(flags & AVAHI_LOOKUP_RESULT_WIDE_AREA) ? DNSSD : MDNS);
 
                 if (node) {

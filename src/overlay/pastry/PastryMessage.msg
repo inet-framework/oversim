@@ -21,7 +21,7 @@
 //
 
 cplusplus {{
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <NodeHandle.h>
 #include <OverlayKey.h>
 #include <CommonMessages_m.h>
@@ -61,7 +61,7 @@ static const int PASTRYFINDNODEEXTDATA_L = NODEHANDLE_L + HOPCOUNT_L;
 }}
 
 
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject TransportAddress;
 class noncobject NodeHandle;
 class noncobject OverlayKey;

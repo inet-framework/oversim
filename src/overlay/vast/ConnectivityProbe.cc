@@ -33,7 +33,7 @@ VTopologyNode::VTopologyNode(int moduleID)
 
 Vast* VTopologyNode::getModule() const
 {
-    return check_and_cast<Vast*>(simulation.getModule(moduleID));
+    return check_and_cast<Vast*>((*getSimulation()).getModule(moduleID));
 }
 
 void ConnectivityProbe::initialize()
@@ -256,8 +256,8 @@ void ConnectivityProbe::handleMessage(cMessage* msg)
 
 void ConnectivityProbe::extractTopology()
 {
-    for(int i=0; i<=simulation.getLastComponentId(); i++) {
-        cModule* module = simulation.getModule(i);
+    for(int i=0; i<=(*getSimulation()).getLastComponentId(); i++) {
+        cModule* module = (*getSimulation()).getModule(i);
         if(module && dynamic_cast<Vast*>(module)) {
             Vast* vast = check_and_cast<Vast*>(module);
             if(vast->getState() == BaseOverlay::READY) {

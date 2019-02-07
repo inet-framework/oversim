@@ -22,7 +22,7 @@
 
 cplusplus {{
 #include <OverlayKey.h>
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <BinaryValue.h>
 #include <NodeHandle.h>
 #include <CommonMessages_m.h>
@@ -47,7 +47,7 @@ class BaseResponseMessage;
 
 class noncobject DhtDumpEntry;
 class noncobject OverlayKey;
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject BinaryValue;
 class noncobject NodeHandle;
 

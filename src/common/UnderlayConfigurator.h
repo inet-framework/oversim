@@ -24,7 +24,7 @@
 #ifndef _UNDERLAYCONFIGURATOR_H_
 #define _UNDERLAYCONFIGURATOR_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 class PeerInfo;
 class ChurnGenerator;
@@ -63,7 +63,7 @@ public:
     bool isInInitPhase() { return init; };
 
     /**
-     * Is the simulation ending soon?
+     * Is the (*getSimulation()) ending soon?
      */
     bool isSimulationEndingSoon() { return simulationEndingSoon; };
 
@@ -142,7 +142,7 @@ protected:
     virtual void setDisplayString() = 0;
 
     /**
-     * Node mobility simulation
+     * Node mobility (*getSimulation())
      *
      * @param msg timer-message
      */
@@ -157,15 +157,15 @@ protected:
     GlobalStatistics* globalStatistics; //!< pointer to GlobalStatistics
     std::vector<ChurnGenerator*> churnGenerator; //!< pointer to the ChurnGenerators
 
-    cMessage* endSimulationTimer; //!< timer to signal end of simulation
-    cMessage* endSimulationNotificationTimer; //!< timer to notify nodes that simulation ends soon
+    cMessage* endSimulationTimer; //!< timer to signal end of (*getSimulation())
+    cMessage* endSimulationNotificationTimer; //!< timer to notify nodes that (*getSimulation()) ends soon
     cMessage* endTransitionTimer; //!< timer to signal end of transition time
 
     struct timeval initFinishedTime; //!< timestamp at end of init phase
     struct timeval initStartTime; //!< timestamp at begin of init phase
 
     simtime_t transitionTime; //!< time to wait before measuring after init phase is finished
-    simtime_t measurementTime; //!< duration of the simulation after init and transition phase
+    simtime_t measurementTime; //!< duration of the (*getSimulation()) after init and transition phase
 
     static const int NUM_COLORS;
     static const char* colorNames[];

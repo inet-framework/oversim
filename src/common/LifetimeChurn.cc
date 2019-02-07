@@ -159,7 +159,7 @@ double LifetimeChurn::distributionFunction()
         par = lifetimeMean;
         return truncnormal(par, par/3.0);
     } else {
-        opp_error("LifetimeChurn::distribution function: Invalid value "
+        throw cRuntimeError("LifetimeChurn::distribution function: Invalid value "
             "for parameter lifetimeDistName!");
     }
 

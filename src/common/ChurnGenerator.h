@@ -28,9 +28,9 @@
 
 #include <string>
 #include <vector>
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 class UnderlayConfigurator;
 

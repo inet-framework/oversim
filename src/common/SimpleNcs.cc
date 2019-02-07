@@ -37,7 +37,7 @@ void SimpleNcs::init(NeighborCache* neighborCache)
 {
     delayFaultTypeMap["live_all"] = delayFaultLiveAll;
     delayFaultTypeMap["live_planetlab"] = delayFaultLivePlanetlab;
-    delayFaultTypeMap["simulation"] = delayFaultSimulation;
+    delayFaultTypeMap["(*getSimulation())"] = delayFaultSimulation;
 
     this->neighborCache = neighborCache;
 

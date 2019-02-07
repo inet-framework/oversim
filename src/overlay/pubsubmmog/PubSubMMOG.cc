@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include <NotifierConsts.h>
+#include <inet/common/NotifierConsts.h>
 
 #include "PubSubMMOG.h"
 
@@ -35,7 +35,7 @@ using namespace std;
 
 void PubSubMMOG::initializeOverlay(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces are registered,
+    // because of L3AddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
     if(stage != MIN_STAGE_OVERLAY) return;
 
@@ -501,7 +501,7 @@ PubSubSubspaceResponsible& subspace = it->second;
 int iii = subspace.getTotalChildrenCount();
 subspace.fixTotalChildrenCount();
 if( iii != subspace.getTotalChildrenCount() ){
-    opp_error("Huh?");
+    throw cRuntimeError("Huh?");
 }
 
     if( !it->second.getBackupNode().isUnspecified() ){
@@ -532,7 +532,7 @@ void PubSubMMOG::handleTakeOver( PubSubTakeOverSubspaceCall* toCall )
     sendRpcResponse( toCall, toResp );
 }
 
-void PubSubMMOG::receiveChangeNotification(int category, const cObject *details)
+void PubSubMMOG::receiveSignal(cComponent *source, simsignal_t category, const cObject *details)
 {
     if(category == NF_OVERLAY_NODE_GRACEFUL_LEAVE && state == READY) {
     }
@@ -646,7 +646,7 @@ void PubSubMMOG::handleMoveMessage( PubSubMoveMessage* moveMsg )
 
     // If message arrived in the correct timeslot, store move message until deadline
     // Note: This assumes, we get no messages with future timestamps. At least in
-    // the simulation, this assumption will hold.
+    // the (*getSimulation()), this assumption will hold.
     // The allowOldMoveMessages parameter allows overriding the timeslot barriers and forward all
     // messages.
     if( allowOldMoveMessages || moveMsg->getTimestamp() >= eventDeliveryTimer->getArrivalTime() - 1.0/(2*movementRate) ){
@@ -746,7 +746,7 @@ void PubSubMMOG::handleHelpResponse( PubSubHelpResponse* helpResp )
 int iii = subspace.getTotalChildrenCount();
 subspace.fixTotalChildrenCount();
 if( iii != subspace.getTotalChildrenCount() ){
-    opp_error("Huh?");
+    throw cRuntimeError("Huh?");
 }
 
         // backup the load balancing tree
@@ -1065,7 +1065,7 @@ PubSubSubspaceResponsible& subspace = it->second;
 int iii = subspace.getTotalChildrenCount();
 subspace.fixTotalChildrenCount();
 if( iii != subspace.getTotalChildrenCount() ){
-    opp_error("Huh?");
+    throw cRuntimeError("Huh?");
 }
 
     // Find intermediate node in subspace
@@ -1111,7 +1111,7 @@ PubSubSubspaceResponsible& subspace = it->second;
 int iii = subspace.getTotalChildrenCount();
 subspace.fixTotalChildrenCount();
 if( iii != subspace.getTotalChildrenCount() ){
-    opp_error("Huh?");
+    throw cRuntimeError("Huh?");
 }
 
             // Inform Backup
@@ -1450,7 +1450,7 @@ void PubSubMMOG::handlePingCallTimeout( PubSubPingCall* pingCall, const Transpor
 int iii = subspace.getTotalChildrenCount();
 subspace.fixTotalChildrenCount();
 if( iii != subspace.getTotalChildrenCount() ){
-    opp_error("Huh?");
+    throw cRuntimeError("Huh?");
 }
 
 }
@@ -1731,7 +1731,7 @@ void PubSubMMOG::unsubscribeChild( const NodeHandle& node, PubSubSubspaceRespons
 int iii = subspace.getTotalChildrenCount();
 subspace.fixTotalChildrenCount();
 if( iii != subspace.getTotalChildrenCount() ){
-    opp_error("Huh?");
+    throw cRuntimeError("Huh?");
 }
 
     if( !subspace.getBackupNode().isUnspecified() ){

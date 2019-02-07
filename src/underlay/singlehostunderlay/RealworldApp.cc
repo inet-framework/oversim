@@ -42,7 +42,7 @@ char* RealworldApp::encapsulate(cPacket *msg,
         return NULL;
 
     if(payloadLen > 0xffff) {
-	opp_error("RealworldApp: Encapsulating packet failed: packet too long");
+	throw cRuntimeError("RealworldApp: Encapsulating packet failed: packet too long");
     }
     *length = payloadLen;
 

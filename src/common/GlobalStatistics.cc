@@ -21,7 +21,7 @@
  * @author IngmarBaumgart
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include "GlobalStatistics.h"
 

@@ -137,7 +137,7 @@ void I3HostMobility::handleTimerEvent(cMessage *msg) {
             // partners.size() != NUM_PARTNERS in the unlikely event
             // that not all id queries have returned
             //if (partners.size() == 0) {
-            //	opp_error("Wtf?!");
+            //	throw cRuntimeError("Wtf?!");
             //}
             for (unsigned int i = 0; i < partners.size(); i++) {
                 cPacket *cmsg = new cPacket();

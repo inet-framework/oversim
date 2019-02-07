@@ -24,7 +24,7 @@
 #define _SVIVALDI_
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <Vivaldi.h>
 

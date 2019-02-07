@@ -19,7 +19,7 @@
 cplusplus {{
 #include <OverlayKey.h>
 #include <NodeHandle.h>
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <TransportAddress.h>
 #include <BinaryValue.h>
 #include <Vector2D.h>
@@ -95,7 +95,7 @@ class BaseResponseMessage;
 class noncobject NodeHandle;
 class noncobject TransportAddress;
 class noncobject OverlayKey;
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject Vector2D;
 class noncobject BinaryValue;
 class noncobject CompType;

@@ -26,21 +26,21 @@
 #ifndef RUNetworkConfigurator_H_
 #define RUNetworkConfigurator_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <cctype>
 #include <vector>
 #include <map>
 //#include <ctopology.h>
 #include <string>
 #include <iostream>
-#include "INETDefs.h"
-#include "IPv4Address.h"
-#include "IRoutingTable.h"
-#include "IInterfaceTable.h"
-#include "IPvXAddressResolver.h"
-#include "IPv4NetworkConfigurator.h"
-#include "IPv4InterfaceData.h"
-#include "InterfaceEntry.h"
+#include "inet/common/INETDefs.h"
+#include "inet/networklayer/contract/ipv4/IPv4Address.h"
+#include "inet/networklayer/contract/IRoutingTable.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/configurator/ipv4/IPv4NetworkConfigurator.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "inet/networklayer/common/InterfaceEntry.h"
 
 using std::vector;
 using std::map;
@@ -87,8 +87,8 @@ struct nodeInfoRL
         this->node = node;
         module = node->getModule();
         moduleId = module->getId();
-        ift = IPvXAddressResolver().findInterfaceTableOf(module);
-        rt = IPvXAddressResolver().findRoutingTableOf(module);
+        ift = L3AddressResolver().findInterfaceTableOf(module);
+        rt = L3AddressResolver().findRoutingTableOf(module);
         isIPNode = (rt != NULL);
         int index = 0;
         string fullPath = module->getFullPath();
@@ -103,7 +103,7 @@ struct nodeInfoRL
             asType = UNSPECIFIED;
         else {
             cerr << "found module that doesn't belong to Transit AS (tas) or Stub AS (sas): "<< fullPath<<endl;
-            opp_error("found module that doesn't belong to Transit AS (tas) or Stub AS (sas)");
+            throw cRuntimeError("found module that doesn't belong to Transit AS (tas) or Stub AS (sas)");
         }
 
         // set index to char position after substring "sas/tas"
@@ -125,7 +125,7 @@ struct nodeInfoRL
             routerType = ENDSYS;
         else {
             cerr<<"found module without valid type: "<<fullPath<<endl;
-            opp_error("found module without valid type");
+            throw cRuntimeError("found module without valid type");
         }
         //
         // determine default interface
@@ -220,7 +220,7 @@ struct nodeInfoAS
         else
         {
             cerr << "found module that doesn't belong to TAS or SAS: "<< fullPath<<endl;
-            opp_error("found module that doesn't belong to TAS or SAS");
+            throw cRuntimeError("found module that doesn't belong to TAS or SAS");
         }
 
         // set index to char position after substring "sas/tas"
@@ -240,7 +240,7 @@ typedef std::vector<nodeInfoAS> NODE_INFO_AS_VEC;
 
 /**
  * @brief Configures the nodes belonging to the topology before starting
- * the actual simulation.
+ * the actual (*getSimulation()).
  *
  * This class is responsible for assignment of IP addresses to all nodes
  * of the topology. Furthermore, routing tables have to be filled and
@@ -275,7 +275,7 @@ protected:
      * and routing paths are established.
      */
     virtual void initialize(int stage);
-    virtual void handleMessage(cMessage *msg) {opp_error("message received");};
+    virtual void handleMessage(cMessage *msg) {throw cRuntimeError("message received");};
     /** @brief Add Inter-AS routing paths between core nodes
      *
      * Calculate all Inter-AS. This is achieved by calculating all shortest paths between

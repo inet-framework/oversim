@@ -24,9 +24,9 @@
 #ifndef CONNECTREASE_H_
 #define CONNECTREASE_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 
 class IInterfaceTable;
@@ -42,10 +42,10 @@ public:
         int countPPPInterfaces;
         IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
         IRoutingTable* routingTable; //!< pointer to routing table of this node
-        uint32 IPv4Address; //!< the IP Address
-        uint32 lastIP;  //!< last assigned IP address FIXME: check overlays for side effects of reused IP addresses
+        uint32_t IPv4Address; //!< the IP Address
+        uint32_t lastIP;  //!< last assigned IP address FIXME: check overlays for side effects of reused IP addresses
         cModule* Router;
-        std::vector<uint32> IPAddresses; //!< the IP Addresses in use of edge router
+        std::vector<uint32_t> IPAddresses; //!< the IP Addresses in use of edge router
         std::string channelTypeRxStr; //!< the current active channel type (rx)
         std::string channelTypeTxStr; //!< the current active channel type (tx)
 };
@@ -55,7 +55,7 @@ struct autoSystem
 public:
     //cModule* AS;
     std::vector<edgeRoutes> edgeRouter;
-    uint32 edgeShift;
+    uint32_t edgeShift;
 };
 
 struct topologyProperty
@@ -69,14 +69,14 @@ struct edgePool
 {
 public:
     edgeRoutes* edge;
-    uint32 indexAS;
+    uint32_t indexAS;
 };
 
 
 class terminalInfo
 {
 public:
-    uint32 IPv4Address; //!< the IP Address
+    uint32_t IPv4Address; //!< the IP Address
     cModule* module;
     IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
     IRoutingTable* routingTable; //!< pointer to routing table of this node
@@ -99,7 +99,7 @@ class AccessInfo
 public:
     edgeRoutes* edge;
     cModule* terminal;
-    uint32 IPv4Address;
+    uint32_t IPv4Address;
     int ASindex;
 };
 
@@ -175,7 +175,7 @@ protected:
 
         std::vector<autoSystem> AS_Pool; //<! list of autonomous systems of the topology
         std::vector<edgePool> globalEdgePool; //<!  dedicated list of all connectable routers
-        uint32 totalCountOfAS, nextPow, ASShift;
+        uint32_t totalCountOfAS, nextPow, ASShift;
         double channelDiversity; //<! percentage that a channel delay can differ
 
 private:

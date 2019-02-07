@@ -23,12 +23,12 @@
 
 #include <cassert>
 
-#include <IPvXAddressResolver.h>
-#include <IPvXAddress.h>
-#include <IInterfaceTable.h>
-#include <IPv4InterfaceData.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
+#include <inet/networklayer/common/L3Address.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
 #include <RpcMacros.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 #include <GlobalStatistics.h>
 
 #include "Pastry.h"
@@ -890,7 +890,7 @@ bool Pastry::handleFailedNode(const TransportAddress& failed)
     bool wasValid = leafSet->isValid();
 
     if (failed.isUnspecified())
-        opp_error("Pastry::handleFailedNode(): failed is unspecified!");
+        throw cRuntimeError("Pastry::handleFailedNode(): failed is unspecified!");
 
     const TransportAddress& lsAsk = leafSet->failedNode(failed);
     const TransportAddress& rtAsk = routingTable->failedNode(failed);

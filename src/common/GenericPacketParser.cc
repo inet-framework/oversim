@@ -20,7 +20,7 @@
  * @file GenericPacketParser.cc
  * @author Bernhard Heep
  */
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include "GenericPacketParser.h"
 
@@ -50,7 +50,7 @@ cPacket* GenericPacketParser::decapsulatePayload(char* buf, unsigned int length)
     try {
         msg = check_and_cast<cPacket*>(commBuffer.unpackObject());
         if (!commBuffer.isBufferEmpty()) {
-            ev << "[GenericPacketParser::decapsulatePayload()]\n"
+            EV << "[GenericPacketParser::decapsulatePayload()]\n"
                << "    Parsing of payload failed: buffer size mismatch"
                << endl;
             delete msg;
@@ -59,10 +59,10 @@ cPacket* GenericPacketParser::decapsulatePayload(char* buf, unsigned int length)
 //    } catch (cRuntimeError err) {
 //    FIXME:
 //    the above does, for some reason, not work. So we catch everything,
-//    which may prevent the simulation from terminating correctly while
+//    which may prevent the (*getSimulation()) from terminating correctly while
 //    parsing a message.
     } catch (...) {
-        ev << "[GenericPacketParser::decapsulatePayload()]\n"
+        EV << "[GenericPacketParser::decapsulatePayload()]\n"
            << "    Parsing of payload failed"
            << endl;
         delete msg;

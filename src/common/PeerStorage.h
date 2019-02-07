@@ -29,7 +29,7 @@
 #include <list>
 
 #include <oversim_mapset.h>
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <TransportAddress.h>
 #include <HashFunc.h>
 #include <PeerInfo.h>
@@ -96,7 +96,7 @@ public:
  * BootstrapEntry consists of
  * TransportAddress and PeerInfo
  * and is used (together with
- * IPvXAddress) as an entry in the peerSet
+ * L3Address) as an entry in the peerSet
  */
 struct BootstrapEntry
 {
@@ -106,7 +106,7 @@ struct BootstrapEntry
     friend std::ostream& operator<<(std::ostream& Stream, const BootstrapEntry& entry);
 };
 
-typedef UNORDERED_MAP<IPvXAddress, BootstrapEntry> PeerHashMap;
+typedef UNORDERED_MAP<L3Address, BootstrapEntry> PeerHashMap;
 
 
 /**
@@ -119,11 +119,11 @@ public:
     ~PeerStorage();
 
     size_t size();
-    const PeerHashMap::iterator find(const IPvXAddress& ip);
+    const PeerHashMap::iterator find(const L3Address& ip);
     const PeerHashMap::iterator begin();
     const PeerHashMap::iterator end();
 
-    std::pair<const PeerHashMap::iterator, bool> insert(const std::pair<IPvXAddress, BootstrapEntry>& element);
+    std::pair<const PeerHashMap::iterator, bool> insert(const std::pair<L3Address, BootstrapEntry>& element);
     void erase(const PeerHashMap::iterator it);
 
     void registerOverlay(const PeerHashMap::iterator it,

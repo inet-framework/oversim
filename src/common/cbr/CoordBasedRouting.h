@@ -25,11 +25,11 @@
 #ifndef __COORDBASEDROUTING_H_
 #define __COORDBASEDROUTING_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <OverlayKey.h>
 #include <TransportAddress.h>
-#include <CoordinateSystem.h>
+#include <inet/common/geometry/common/CoordinateSystem.h>
 
 class GlobalNodeList;
 

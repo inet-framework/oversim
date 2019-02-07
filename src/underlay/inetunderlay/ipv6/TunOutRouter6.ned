@@ -19,11 +19,10 @@
 
 package oversim.underlay.inetunderlay.ipv6;
 
-import inet.base.NotificationBoard;
 import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv6.RoutingTable6;
-import inet.nodes.ipv6.NetworkLayer6;
+import inet.networklayer.ipv6.IPv6RoutingTable;
+import inet.networklayer.ipv6.IPv6NetworkLayer;
 import oversim.common.IPacketParser;
 import oversim.underlay.singlehostunderlay.TunOutDevice;
 
@@ -34,21 +33,17 @@ import oversim.underlay.singlehostunderlay.TunOutDevice;
 module TunOutRouter6
 {
     parameters:
-        @node();
+        @networkNode;
         string parser; // name of the PacketParser to use
         @display("i=misc/globe");
     gates:
         inout pppg[]; // incoming gates to router
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=60,60");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=150,60");
         }
-        routingTable6: RoutingTable6 {
+        routingTable6: IPv6RoutingTable {
             parameters:
                 isRouter = true;
                 @display("p=240,60");
@@ -57,7 +52,7 @@ module TunOutRouter6
             parameters:
                 @display("p=59,126");
         }
-        networkLayer: NetworkLayer6 {
+        networkLayer: IPv6NetworkLayer {
             parameters:
                 @display("p=200,141;q=queue");
             gates:
@@ -76,11 +71,11 @@ module TunOutRouter6
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
-        tunDev.netwOut --> networkLayer.ifIn[sizeof(pppg)];
-        tunDev.netwIn <-- networkLayer.ifOut[sizeof(pppg)];
+        tunDev.upperLayerOut --> networkLayer.ifIn[sizeof(pppg)];
+        tunDev.upperLayerIn <-- networkLayer.ifOut[sizeof(pppg)];
 }
 

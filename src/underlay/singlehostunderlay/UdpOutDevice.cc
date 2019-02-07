@@ -24,9 +24,9 @@
 #define WANT_WINSOCK2
 #include <platdep/sockets.h>
 
-#include "IPv4Datagram.h"
-#include "UDPPacket.h"
-#include "IPvXAddressResolver.h"
+#include "inet/networklayer/ipv4/IPv4Datagram.h"
+#include "inet/transportlayer/udp/UDPPacket.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
 
 #include "UdpOutDevice.h"
 
@@ -112,12 +112,12 @@ cPacket* UdpOutDevice::decapsulate(char* buf,
                                     socklen_t addrlen)
 {
     if (!addr) {
-        opp_error("UdpOutDevice::decapsulate called without providing "
+        throw cRuntimeError("UdpOutDevice::decapsulate called without providing "
                   "sockaddr (addr = NULL)");
     }
 
     if (addrlen != sizeof(sockaddr_in) ) {
-        opp_error("UdpOutDevice::decapsulate called with wrong sockaddr length. "
+        throw cRuntimeError("UdpOutDevice::decapsulate called with wrong sockaddr length. "
                   "Only IPv4 is supported at the moment!");
     }
     sockaddr_in* addrbuf = (sockaddr_in*) addr;
@@ -138,7 +138,7 @@ cPacket* UdpOutDevice::decapsulate(char* buf,
 
     // Create IP + UDP header
     IP->setSrcAddress(IPv4Address(ntohl(addrbuf->sin_addr.s_addr)));
-    IP->setDestAddress(IPvXAddressResolver().addressOf(getParentModule()).get4());
+    IP->setDestAddress(L3AddressResolver().addressOf(getParentModule()).toIPv4());
     IP->setTransportProtocol(IPPROTO_UDP);
     IP->setTimeToLive(42); // Does not matter, packet ends here
     IP->setIdentification(42); // Faked: There is no way to get the real ID

@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include "RealWorldTestPacketParser.h"
 

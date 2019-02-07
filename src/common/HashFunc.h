@@ -27,7 +27,7 @@
 #include <oversim_mapset.h>
 #include <oversim_byteswap.h>
 
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <TransportAddress.h>
 
 #if defined(HAVE_GCC_TR1) || defined(HAVE_MSVC_TR1)
@@ -37,25 +37,25 @@ namespace __gnu_cxx {
 #endif
 
 /**
- * defines a hash function for IPvXAddress
+ * defines a hash function for L3Address
  */
-template<> struct hash<IPvXAddress> : std::unary_function<IPvXAddress, std::size_t>
+template<> struct hash<L3Address> : std::unary_function<L3Address, std::size_t>
 {
     /**
      * hash function for IPvXaddress
      *
-     * @param addr the IPvXAddress to hash
-     * @return the hashed IPvXAddress
+     * @param addr the L3Address to hash
+     * @return the hashed L3Address
      */
-    std::size_t operator()(const IPvXAddress& addr) const
+    std::size_t operator()(const L3Address& addr) const
     {
-        if (addr.isIPv6()) {
-            return ((bswap_32(addr.get6().words()[0])) ^
-                   (bswap_32(addr.get6().words()[1])) ^
-                   (bswap_32(addr.get6().words()[2])) ^
-                   (bswap_32(addr.get6().words()[3])));
+        if (addr.getType() == L3Address::AddressType::IPv6) {
+            return ((bswap_32(addr.toIPv6().words()[0])) ^
+                   (bswap_32(addr.toIPv6().words()[1])) ^
+                   (bswap_32(addr.toIPv6().words()[2])) ^
+                   (bswap_32(addr.toIPv6().words()[3])));
         } else {
-            return bswap_32(addr.get4().getInt());
+            return bswap_32(addr.toIPv4().getInt());
         }
     }
 };
@@ -74,14 +74,14 @@ template<> struct hash<TransportAddress> : std::unary_function<TransportAddress,
      */
     std::size_t operator()(const TransportAddress& addr) const
     {
-        if (addr.getIp().isIPv6()) {
-            return (((bswap_32(addr.getIp().get6().words()[0])) ^
-                     (bswap_32(addr.getIp().get6().words()[1])) ^
-                     (bswap_32(addr.getIp().get6().words()[2])) ^
-                     (bswap_32(addr.getIp().get6().words()[3]))) ^
+        if (addr.getIp().getType() == L3Address::AddressType::IPv6) {
+            return (((bswap_32(addr.getIp().toIPv6().words()[0])) ^
+                     (bswap_32(addr.getIp().toIPv6().words()[1])) ^
+                     (bswap_32(addr.getIp().toIPv6().words()[2])) ^
+                     (bswap_32(addr.getIp().toIPv6().words()[3]))) ^
                       addr.getPort());
         } else {
-            return ((bswap_32(addr.getIp().get4().getInt())) ^
+            return ((bswap_32(addr.getIp().toIPv4().getInt())) ^
                     addr.getPort());
         }
     }

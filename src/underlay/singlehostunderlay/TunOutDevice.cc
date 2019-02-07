@@ -22,8 +22,8 @@
  */
 
 #include "TunOutDevice.h"
-#include "IPv4Datagram.h"
-#include "UDPPacket.h"
+#include "inet/networklayer/ipv4/IPv4Datagram.h"
+#include "inet/transportlayer/udp/UDPPacket.h"
 
 Define_Module(TunOutDevice);
 

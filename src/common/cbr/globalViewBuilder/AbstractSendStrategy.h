@@ -25,7 +25,7 @@
 #define ABSTRACTSENDSTRATEGY_H_
 
 #include <vector>
-#include <CoordinateSystem.h>
+#include <inet/common/geometry/common/CoordinateSystem.h>
 #include <TreeManagementMessage_m.h>
 #include <TreeManagement.h>
 

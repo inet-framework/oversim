@@ -29,7 +29,7 @@
 
 #include <RpcListener.h>
 #include <Nps_m.h>
-#include <CoordinateSystem.h>
+#include <inet/common/geometry/common/CoordinateSystem.h>
 
 class CoordBasedRouting;
 
@@ -42,7 +42,7 @@ struct LandmarkDataEntry
     simtime_t rtt;
     int8_t layer;
     std::vector<double> coordinates;
-    const IPvXAddress* ip;
+    const L3Address* ip;
 };
 
 struct RttMeasurement

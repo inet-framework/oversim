@@ -19,13 +19,11 @@
 
 package oversim.underlay.inetunderlay.ipv6;
 
-import inet.base.NotificationBoard;
 import inet.linklayer.ethernet.EthernetInterface;
 import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv6.RoutingTable6;
-import inet.nodes.ipv6.NetworkLayer6;
-import inet.util.NAMTraceWriter;
+import inet.networklayer.ipv6.IPv6RoutingTable;
+import inet.networklayer.ipv6.IPv6NetworkLayer;
 
 
 //
@@ -34,31 +32,22 @@ import inet.util.NAMTraceWriter;
 module Router6
 {
     parameters:
-        @node();
+        @networkNode;
         @display("i=abstract/router");
     gates:
         inout pppg[];
         inout ethg[];
     submodules:
-        namTrace: NAMTraceWriter {
-            parameters:
-                namid = -1; // auto
-                @display("p=330,60");
-        }
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=60,60");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=150,60");
         }
-        routingTable6: RoutingTable6 {
+        routingTable6: IPv6RoutingTable {
             parameters:
                 isRouter = true;
                 @display("p=240,60");
         }
-        networkLayer: NetworkLayer6 {
+        networkLayer: IPv6NetworkLayer {
             parameters:
                 @display("p=200,141;q=queue");
             gates:
@@ -77,14 +66,14 @@ module Router6
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].netwOut --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].netwIn <-- networkLayer.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> networkLayer.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 }
 

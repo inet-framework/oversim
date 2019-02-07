@@ -26,10 +26,10 @@
 
 #include <vector>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <NeighborCache.h>
-#include <CoordinateSystem.h>
+#include <inet/common/geometry/common/CoordinateSystem.h>
 
 
 class SimpleNcs : public AbstractNcs

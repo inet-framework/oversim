@@ -22,7 +22,7 @@
  * @author Sebastian Mies
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include "TransportAddress.h"
 
@@ -69,7 +69,7 @@ TransportAddress::TransportAddress( const TransportAddress& handle )
 
 
 //complete constructor
-TransportAddress::TransportAddress( const IPvXAddress& ip, int port,
+TransportAddress::TransportAddress( const L3Address& ip, int port,
                                     NatType natType)
 {
     this->ip = ip;
@@ -147,7 +147,7 @@ bool TransportAddress::operator>=(const TransportAddress &rhs) const
 }
 
 //public
-void TransportAddress::setIp(const IPvXAddress& ip, int port,
+void TransportAddress::setIp(const L3Address& ip, int port,
                              NatType natType)
 {
     this->ip = ip;
@@ -164,7 +164,7 @@ void TransportAddress::setPort( int port )
 }
 
 //public
-const IPvXAddress& TransportAddress::getIp() const
+const L3Address& TransportAddress::getIp() const
 {
     return ip;
 }
@@ -213,11 +213,11 @@ void TransportAddress::appendSourceRoute(const TransportAddress& add)
 size_t TransportAddress::hash() const
 {
     size_t iphash;
-    if (ip.isIPv6()) {
-        uint32_t* addr = (uint32_t*) ip.get6().words();
+    if (ip.getType() == L3Address::AddressType::IPv6) {
+        uint32_t* addr = (uint32_t*) ip.toIPv6().words();
         iphash = (size_t)(addr[0]^addr[1]^addr[2]^addr[3]);
     } else {
-        iphash = (size_t)ip.get4().getInt();
+        iphash = (size_t)ip.toIPv4().getInt();
     }
 
     return (size_t)(iphash^port);
@@ -232,5 +232,5 @@ TransportAddress* TransportAddress::dup() const
 inline void TransportAddress::assertUnspecified( const TransportAddress& handle ) const
 {
     if ( this->isUnspecified() || handle.isUnspecified() )
-        opp_error("TransportAddress: Trying to compare unspecified TransportAddress!");
+        throw cRuntimeError("TransportAddress: Trying to compare unspecified TransportAddress!");
 }

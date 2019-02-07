@@ -152,7 +152,7 @@ void GlobalTraceManager::readNextBlock()
     if (time > 0) {
         scheduleAt(time, nextRead);
     } else {
-        // TODO: Schedule simulation end?
+        // TODO: Schedule (*getSimulation()) end?
     }
 #endif
 }

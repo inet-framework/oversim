@@ -26,11 +26,11 @@
 #include <deque>
 #include <set>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <UnderlayConfigurator.h>
 
-class IPvXAddress;
+class L3Address;
 
 /**
  * Configurator module for the InetUnderlay
@@ -93,7 +93,7 @@ protected:
     void handleTimerEvent(cMessage* msg);
 
     /**
-     * Saves statistics, prints simulation time
+     * Saves statistics, prints (*getSimulation()) time
      */
     void finishUnderlay();
 
@@ -102,7 +102,7 @@ protected:
      */
     void setDisplayString();
     std::vector<cModule*> accessNode; /**< stores accessRouter */
-    std::deque<IPvXAddress> killList; //!< stores nodes scheduled to be killed
+    std::deque<L3Address> killList; //!< stores nodes scheduled to be killed
     std::set<int> scheduledID; //!< stores nodeIds to prevent migration of prekilled nodes
 
     // statistics

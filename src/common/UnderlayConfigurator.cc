@@ -21,7 +21,7 @@
  * @author Stephan Krause, Bernhard Heep, Ingmar Baumgart
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <GlobalNodeListAccess.h>
 #include <ChurnGeneratorAccess.h>
 #include <GlobalStatisticsAccess.h>
@@ -98,7 +98,7 @@ void UnderlayConfigurator::initialize(int stage)
         if (terminalTypes.size() != 1
                 && churnGeneratorTypes.size() != terminalTypes.size())
         {
-            opp_error("UnderlayConfigurator.initialize(): "
+            throw cRuntimeError("UnderlayConfigurator.initialize(): "
                       "terminalTypes size does not match churnGenerator size");
         }
 

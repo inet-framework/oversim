@@ -27,13 +27,12 @@
 #include <StringConvert.h>
 
 #include <AccessNet.h>
-#include <IRoutingTable.h>
-#include <RoutingTable6.h>
-#include <IInterfaceTable.h>
-#include <IPvXAddressResolver.h>
-#include <IPv4InterfaceData.h>
-#include <IPv6InterfaceData.h>
-#include <NotificationBoard.h>
+#include <inet/networklayer/contract/IRoutingTable.h>
+#include <inet/networklayer/ipv6/IPv6RoutingTable.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
+#include <inet/networklayer/ipv6/IPv6InterfaceData.h>
 
 
 #include <InetInfo.h>
@@ -50,7 +49,7 @@ void InetUnderlayConfigurator::initializeUnderlay(int stage)
 
         if (par("useIPv6Addresses").boolValue()) {
             setUpIPv6(topo);
-            //opp_error("IPv6 is not supported in this release but is coming soon.");
+            //throw cRuntimeError("IPv6 is not supported in this release but is coming soon.");
         } else {
             setUpIPv4(topo);
         }
@@ -146,7 +145,7 @@ TransportAddress* InetUnderlayConfigurator::createNode(NodeType type, bool initi
     churnGenerator[type.typeID]->terminalCount++;
 
     TransportAddress *address = new TransportAddress(
-                                       IPvXAddressResolver().addressOf(node));
+                                       L3AddressResolver().addressOf(node));
 
     // update display
     setDisplayString();
@@ -181,7 +180,7 @@ void InetUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* addr
         accessNetModule = info->getAccessNetModule();
         nodeID = info->getNodeID();
     } else {
-        opp_error("IPv4UnderlayConfigurator: Trying to pre kill node "
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to pre kill node "
                   "with nonexistant TransportAddress!");
     }
 
@@ -192,10 +191,10 @@ void InetUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* addr
         return;
 
     cModule* node = accessNetModule->getOverlayNode(nodeID);
-    globalNodeList->removePeer(IPvXAddressResolver().addressOf(node));
+    globalNodeList->removePeer(L3AddressResolver().addressOf(node));
 
     //put node into the kill list and schedule a message for final removal of the node
-    killList.push_front(IPvXAddressResolver().addressOf(node));
+    killList.push_front(L3AddressResolver().addressOf(node));
     scheduledID.insert(nodeID);
 
     overlayTerminalCount--;
@@ -207,7 +206,7 @@ void InetUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* addr
     setDisplayString();
 
     // inform the notification board about the removal
-    NotificationBoard* nb = check_and_cast<NotificationBoard*>(
+    cModule* nb = check_and_cast<cModule*>(
             node->getSubmodule("notificationBoard"));
     nb->fireChangeNotification(NF_OVERLAY_NODE_LEAVE);
 
@@ -242,7 +241,7 @@ void InetUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* addr
         accessNetModule = info->getAccessNetModule();
         nodeID = info->getNodeID();
     } else {
-        opp_error("IPv4UnderlayConfigurator: Trying to pre kill node with nonexistant TransportAddress!");
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to pre kill node with nonexistant TransportAddress!");
     }
 
     // do not migrate node that is already scheduled
@@ -252,10 +251,10 @@ void InetUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* addr
     cModule* node = accessNetModule->removeOverlayNode(nodeID);//intuniform(0, accessNetModule->size() - 1));
 
     if(node == NULL)
-        opp_error("IPv4UnderlayConfigurator: Trying to remove node which is nonexistant in AccessNet!");
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to remove node which is nonexistant in AccessNet!");
 
     //remove node from bootstrap oracle
-    globalNodeList->killPeer(IPvXAddressResolver().addressOf(node));
+    globalNodeList->killPeer(L3AddressResolver().addressOf(node));
 
     node->bubble("I am migrating!");
 
@@ -276,7 +275,7 @@ void InetUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* addr
     globalNodeList->addPeer(newAccessNetModule->addOverlayNode(node, true), newinfo);
 
     // inform the notification board about the migration
-    NotificationBoard* nb = check_and_cast<NotificationBoard*>(node->getSubmodule("notificationBoard"));
+    cModule* nb = check_and_cast<cModule*>(node->getSubmodule("notificationBoard"));
     nb->fireChangeNotification(NF_OVERLAY_TRANSPORTADDRESS_CHANGED);
 }
 
@@ -285,7 +284,7 @@ void InetUnderlayConfigurator::handleTimerEvent(cMessage* msg)
     Enter_Method_Silent();
 
     // get next scheduled node from the kill list
-    IPvXAddress addr = killList.back();
+    L3Address addr = killList.back();
     killList.pop_back();
 
     AccessNet* accessNetModule = NULL;
@@ -296,7 +295,7 @@ void InetUnderlayConfigurator::handleTimerEvent(cMessage* msg)
         accessNetModule = info->getAccessNetModule();
         nodeID = info->getNodeID();
     } else {
-        opp_error("IPv4UnderlayConfigurator: Trying to kill node with nonexistant TransportAddress!");
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to kill node with nonexistant TransportAddress!");
     }
 
     scheduledID.erase(nodeID);
@@ -305,7 +304,7 @@ void InetUnderlayConfigurator::handleTimerEvent(cMessage* msg)
     cModule* node = accessNetModule->removeOverlayNode(nodeID);
 
     if(node == NULL)
-        opp_error("IPv4UnderlayConfigurator: Trying to remove node which is nonexistant in AccessNet!");
+        throw cRuntimeError("IPv4UnderlayConfigurator: Trying to remove node which is nonexistant in AccessNet!");
 
     node->callFinish();
     node->deleteModule();
@@ -338,21 +337,21 @@ void InetUnderlayConfigurator::finishUnderlay()
 void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
 {
     // Assign IP addresses to all router modules.
-    std::vector<uint32> nodeAddresses;
+    std::vector<uint32_t> nodeAddresses;
     nodeAddresses.resize(topo.getNumNodes());
 
     // IP addresses for backbone
     // Take start IP from config file
     // FIXME: Make Netmask for Routers configurable!
-    uint32 lowIPBoundary = IPv4Address(par("startIPv4").stringValue()).getInt();
+    uint32_t lowIPBoundary = IPv4Address(par("startIPv4").stringValue()).getInt();
 
-    // uint32 lowIPBoundary = uint32((1 << 24) + 1);
+    // uint32_t lowIPBoundary = uint32_t((1 << 24) + 1);
     int numIPNodes = 0;
 
     for (int i = 0; i < topo.getNumNodes(); i++) {
         ++numIPNodes;
 
-        uint32 addr = lowIPBoundary + uint32(numIPNodes << 16);
+        uint32_t addr = lowIPBoundary + uint32_t(numIPNodes << 16);
         nodeAddresses[i] = addr;
 
         // update ip display string
@@ -365,7 +364,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
         }
 
         // find interface table and assign address to all (non-loopback) interfaces
-        IInterfaceTable* ift = IPvXAddressResolver().interfaceTableOf(topo.getNode(i)->getModule());
+        IInterfaceTable* ift = L3AddressResolver().interfaceTableOf(topo.getNode(i)->getModule());
 
         for ( int k = 0; k < ift->getNumInterfaces(); k++ ) {
             InterfaceEntry* ie = ift->getInterface(k);
@@ -380,7 +379,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
     // Fill in routing tables.
     for (int i = 0; i < topo.getNumNodes(); i++) {
         cTopology::Node* destNode = topo.getNode(i);
-        uint32 destAddr = nodeAddresses[i];
+        uint32_t destAddr = nodeAddresses[i];
 
         // calculate shortest paths from everywhere towards destNode
         topo.calculateUnweightedSingleShortestPathsTo(destNode);
@@ -391,7 +390,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
                 (strcmp(destNode->getModule()->getName(), "overlayAccessRouter") == 0)) {
             //add node to bootstrap oracle
             PeerInfo* info = new PeerInfo(0, destNode->getModule()->getId(), NULL);
-            globalNodeList->addPeer(IPvXAddress(IPv4Address(nodeAddresses[i])), info);
+            globalNodeList->addPeer(L3Address(IPv4Address(nodeAddresses[i])), info);
         }
 
 
@@ -403,16 +402,16 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             defRoute->setDestination(IPv4Address::UNSPECIFIED_ADDRESS);
             defRoute->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
             defRoute->setGateway(IPv4Address(par("gatewayIP").stringValue()));
-            defRoute->setInterface(IPvXAddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
+            defRoute->setInterface(L3AddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
             defRoute->setSourceType(IPv4Route::MANUAL);
-            IPvXAddressResolver().routingTableOf(destNode->getModule())->addRoute(defRoute);
+            L3AddressResolver().routingTableOf(destNode->getModule())->addRoute(defRoute);
 
             IPv4Route* gwRoute = new IPv4Route();
             gwRoute->setDestination(IPv4Address(par("gatewayIP").stringValue()));
             gwRoute->setNetmask(IPv4Address(255, 255, 255, 255));
-            gwRoute->setInterface(IPvXAddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
+            gwRoute->setInterface(L3AddressResolver().interfaceTableOf(destNode->getModule())->getInterfaceByName("tunDev"));
             gwRoute->setSourceType(IPv4Route::MANUAL);
-            IPvXAddressResolver().routingTableOf(destNode->getModule())->addRoute(gwRoute);
+            L3AddressResolver().routingTableOf(destNode->getModule())->addRoute(gwRoute);
         }
 
         // add route (with host=destNode) to every routing table in the network
@@ -421,7 +420,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             if (i == j)
                 continue;
 
-            // cancel simulation if node is not connected with destination
+            // cancel (*getSimulation()) if node is not connected with destination
             cTopology::Node* atNode = topo.getNode(j);
 
             if (atNode->getNumPaths() == 0) {
@@ -435,8 +434,8 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             //
 
             // find atNode's interface and routing table
-            IInterfaceTable* ift = IPvXAddressResolver().interfaceTableOf(atNode->getModule());
-            IRoutingTable* rt = IPvXAddressResolver().routingTableOf(atNode->getModule());
+            IInterfaceTable* ift = L3AddressResolver().interfaceTableOf(atNode->getModule());
+            IRoutingTable* rt = L3AddressResolver().routingTableOf(atNode->getModule());
 
             // find atNode's interface entry for the next hop node
             int outputGateId = atNode->getPath(0)->getLocalGate()->getId();
@@ -444,7 +443,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
 
             // find the next hop node on the path towards destNode
             cModule* next_hop = atNode->getPath(0)->getRemoteNode()->getModule();
-            IPv4Address next_hop_ip = IPvXAddressResolver().addressOf(next_hop).get4();
+            IPv4Address next_hop_ip = L3AddressResolver().addressOf(next_hop).toIPv4();
 
 
             // Requirement 1: Each router has exactly one routing entry
@@ -499,7 +498,7 @@ void InetUnderlayConfigurator::setUpIPv6(cTopology &topo)
     // FIXME: Make Netmask for Routers configurable!
     IPv6Words lowIPBoundary(IPv6Address(par("startIPv6").stringValue()));
 
-    // uint32 lowIPBoundary = uint32((1 << 24) + 1);
+    // uint32_t lowIPBoundary = uint32_t((1 << 24) + 1);
     int numIPNodes = 0;
 
     for (int i = 0; i < topo.getNumNodes(); i++) {
@@ -519,7 +518,7 @@ void InetUnderlayConfigurator::setUpIPv6(cTopology &topo)
         }
 
         // find interface table and assign address to all (non-loopback) interfaces
-        IInterfaceTable* ift = IPvXAddressResolver().interfaceTableOf(topo.getNode(i)->getModule());
+        IInterfaceTable* ift = L3AddressResolver().interfaceTableOf(topo.getNode(i)->getModule());
 
         for ( int k = 0; k < ift->getNumInterfaces(); k++ ) {
             InterfaceEntry* ie = ift->getInterface(k);
@@ -559,7 +558,7 @@ void InetUnderlayConfigurator::setUpIPv6(cTopology &topo)
                 (strcmp(destNode->getModule()->getName(), "overlayAccessRouter") == 0)) {
             //add node to bootstrap oracle
             PeerInfo* info = new PeerInfo(0, destNode->getModule()->getId(), NULL);
-            globalNodeList->addPeer(IPvXAddress(IPv6Address(nodeAddresses[i].d0, nodeAddresses[i].d1, nodeAddresses[i].d2, nodeAddresses[i].d3)), info);
+            globalNodeList->addPeer(L3Address(IPv6Address(nodeAddresses[i].d0, nodeAddresses[i].d1, nodeAddresses[i].d2, nodeAddresses[i].d3)), info);
         }
 
         // add route (with host=destNode) to every routing table in the network
@@ -568,7 +567,7 @@ void InetUnderlayConfigurator::setUpIPv6(cTopology &topo)
             if (i == j)
                 continue;
 
-            // cancel simulation if node is not connected with destination
+            // cancel (*getSimulation()) if node is not connected with destination
             cTopology::Node* atNode = topo.getNode(j);
 
             if (atNode->getNumPaths() == 0) {
@@ -582,8 +581,8 @@ void InetUnderlayConfigurator::setUpIPv6(cTopology &topo)
             //
 
             // find atNode's interface and routing table
-            IInterfaceTable* ift = IPvXAddressResolver().interfaceTableOf(atNode->getModule());
-            RoutingTable6* rt = IPvXAddressResolver().routingTable6Of(atNode->getModule());
+            IInterfaceTable* ift = L3AddressResolver().interfaceTableOf(atNode->getModule());
+            IPv6RoutingTable* rt = L3AddressResolver().routingTable6Of(atNode->getModule());
 
             // find atNode's interface entry for the next hop node
             int outputGateId = atNode->getPath(0)->getLocalGate()->getId();
@@ -592,9 +591,9 @@ void InetUnderlayConfigurator::setUpIPv6(cTopology &topo)
             // find the next hop node on the path towards destNode
             cModule* next_hop = atNode->getPath(0)->getRemoteNode()->getModule();
             int destGateId = destNode->getLinkIn(0)->getLocalGateId();
-            IInterfaceTable* destIft = IPvXAddressResolver().interfaceTableOf(destNode->getModule());
+            IInterfaceTable* destIft = L3AddressResolver().interfaceTableOf(destNode->getModule());
             int remoteGateId = atNode->getPath(0)->getRemoteGateId();
-            IInterfaceTable* remoteIft = IPvXAddressResolver().interfaceTableOf(next_hop);
+            IInterfaceTable* remoteIft = L3AddressResolver().interfaceTableOf(next_hop);
             IPv6Address next_hop_ip = remoteIft->getInterfaceByNodeInputGateId(remoteGateId)->ipv6Data()->getLinkLocalAddress();
             IPv6InterfaceData::AdvPrefix destPrefix = destIft->getInterfaceByNodeInputGateId(destGateId)->ipv6Data()->getAdvPrefix(0);
 

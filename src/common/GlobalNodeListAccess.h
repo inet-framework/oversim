@@ -25,7 +25,7 @@
 #define __GLOBALNODELISTACCESS_H__
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include "GlobalNodeList.h"
 
 
@@ -39,7 +39,7 @@ public:
         ()
     {
         return (GlobalNodeList*)
-	    simulation.getModuleByPath("globalObserver.globalNodeList");
+	    (*getSimulation()).getModuleByPath("globalObserver.globalNodeList");
     }
 };
 

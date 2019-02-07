@@ -35,15 +35,15 @@
 #include <netinet/in.h>
 #endif
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include "IInterfaceTable.h"
-#include "InterfaceEntry.h"
-#include "IPv4InterfaceData.h"
-#include "IPvXAddressResolver.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/common/InterfaceEntry.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
 
 #include <PeerInfo.h>
-#include <IRoutingTable.h>
+#include <inet/networklayer/contract/IRoutingTable.h>
 #include <NodeHandle.h>
 #include <GlobalNodeListAccess.h>
 
@@ -53,7 +53,7 @@ Define_Module(SingleHostUnderlayConfigurator);
 
 void SingleHostUnderlayConfigurator::initializeUnderlay(int stage)
 {
-    IPvXAddress addr;
+    L3Address addr;
 
     if(stage != MAX_STAGE_UNDERLAY)
         return;
@@ -101,18 +101,18 @@ void SingleHostUnderlayConfigurator::initializeUnderlay(int stage)
         addr = IPv4Address(nodeIP.c_str());
     }
 
-    IPvXAddress gw = addr;
-    InterfaceEntry* ifEntry = IPvXAddressResolver().interfaceTableOf(node)->
+    L3Address gw = addr;
+    InterfaceEntry* ifEntry = L3AddressResolver().interfaceTableOf(node)->
 	    getInterfaceByName("outDev");
     IRoutingTable* rTable = check_and_cast<IRoutingTable*>(node->getSubmodule("routingTable", 0));
 
-    ifEntry->ipv4Data()->setIPAddress(addr.get4());
+    ifEntry->ipv4Data()->setIPAddress(addr.toIPv4());
     ifEntry->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
 
     IPv4Route* te = new IPv4Route();
     te->setDestination(IPv4Address::UNSPECIFIED_ADDRESS);
     te->setNetmask(IPv4Address::UNSPECIFIED_ADDRESS);
-    te->setGateway(gw.get4());
+    te->setGateway(gw.toIPv4());
     te->setInterface(ifEntry);
     te->setSourceType(IPv4Route::MANUAL);
     rTable->addRoute(te);

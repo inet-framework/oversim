@@ -54,7 +54,7 @@ void SimpleGameClient::initializeApp(int stage)
     WATCH(overlayReady);
 
     doRealworld = false;
-    coordinator = check_and_cast<GlobalCoordinator*>(simulation.getModuleByPath("globalObserver.globalFunctions[0].function.coordinator"));
+    coordinator = check_and_cast<GlobalCoordinator*>((*getSimulation()).getModuleByPath("globalObserver.globalFunctions[0].function.coordinator"));
     scheduler = NULL;
     packetNotification = NULL;
 
@@ -126,7 +126,7 @@ void SimpleGameClient::initializeApp(int stage)
         Generator = new realWorldRoaming(areaDimension, movementSpeed, &Neighbors, coordinator, listPtr);
         mtu = par("mtu");
         packetNotification = new cMessage("packetNotification");
-        scheduler = check_and_cast<RealtimeScheduler*>(simulation.getScheduler());
+        scheduler = check_and_cast<RealtimeScheduler*>((*getSimulation()).getScheduler());
         scheduler->setInterfaceModule(this, packetNotification, &packetBuffer, mtu, true);
         appFd = INVALID_SOCKET;
     }
@@ -219,7 +219,7 @@ void SimpleGameClient::handleTimerEvent(cMessage* msg)
             if(doRealworld) {
                 SCFrozenPacket scfreeze;
                 scfreeze.packetType = SC_EV_FROZEN;
-                scfreeze.ip = overlay->getThisNode().getIp().get4().getInt();
+                scfreeze.ip = overlay->getThisNode().getIp().toIPv4().getInt();
                 scfreeze.source = snowTimer->getIp();
                 scfreeze.time_sec = 5;
                 scfreeze.time_usec = 0;
@@ -296,7 +296,7 @@ void SimpleGameClient::handleLowerMessage(cMessage* msg)
                 int packetlen = sizeof(SCChatPacket) + strlen(msg) + 1;
                 SCChatPacket* pack = (SCChatPacket*)malloc(packetlen);
                 pack->packetType = SC_EV_CHAT;
-                pack->ip = chatMsg->getSrc().getIp().get4().getInt();
+                pack->ip = chatMsg->getSrc().getIp().toIPv4().getInt();
                 strcpy(pack->msg, msg);
                 scheduler->sendBytes((const char*)&packetlen, sizeof(int), 0, 0, true, appFd);
                 scheduler->sendBytes((const char*)pack, packetlen, 0, 0, true, appFd);
@@ -308,7 +308,7 @@ void SimpleGameClient::handleLowerMessage(cMessage* msg)
             if(doRealworld) {
                 SCSnowPacket packet;
                 packet.packetType = SC_EV_SNOWBALL;
-                packet.ip = snowMsg->getSrc().getIp().get4().getInt();
+                packet.ip = snowMsg->getSrc().getIp().toIPv4().getInt();
                 packet.startX = snowMsg->getStart().x;
                 packet.startY = snowMsg->getStart().y;
                 packet.endX = snowMsg->getEnd().x;
@@ -321,7 +321,7 @@ void SimpleGameClient::handleLowerMessage(cMessage* msg)
             }
             SCSnowTimer* snowTimer = new SCSnowTimer("Snowball landing");
             snowTimer->setPosition(snowMsg->getEnd());
-            snowTimer->setIp(snowMsg->getSrc().getIp().get4().getInt());
+            snowTimer->setIp(snowMsg->getSrc().getIp().toIPv4().getInt());
             timeval snowTime;
             snowTime.tv_sec = snowMsg->getTimeSec();
             snowTime.tv_usec = snowMsg->getTimeUsec();
@@ -333,7 +333,7 @@ void SimpleGameClient::handleLowerMessage(cMessage* msg)
                 GameAPIFrozenMessage* frozenMsg = check_and_cast<GameAPIFrozenMessage*>(gameAPIMsg);
                 SCFrozenPacket scfreeze;
                 scfreeze.packetType = SC_EV_FROZEN;
-                scfreeze.ip = frozenMsg->getSrc().getIp().get4().getInt();
+                scfreeze.ip = frozenMsg->getSrc().getIp().toIPv4().getInt();
 		scfreeze.source = frozenMsg->getThrower();
                 scfreeze.time_sec = frozenMsg->getTimeSec();
                 scfreeze.time_usec = frozenMsg->getTimeUsec();
@@ -375,7 +375,7 @@ void SimpleGameClient::handleRealworldPacket(char *buf, uint32_t len)
         packet.delay = SIMTIME_DBL(movementDelay);
         packet.startX = position.x;
         packet.startY = position.y;
-        packet.ip = thisNode.getIp().get4().getInt();
+        packet.ip = thisNode.getIp().toIPv4().getInt();
         packet.seed = coordinator->getSeed();
         int packetSize = sizeof(packet);
         scheduler->sendBytes((const char*)&packetSize, sizeof(int), 0, 0, true, appFd);
@@ -422,7 +422,7 @@ void SimpleGameClient::updateNeighbors(GameAPIListMessage* sgcMsg)
         packetSize = sizeof(removePacket);
 
         for(i=0; i<sgcMsg->getRemoveNeighborArraySize(); ++i) {
-            removePacket.ip = sgcMsg->getRemoveNeighbor(i).getIp().get4().getInt();
+            removePacket.ip = sgcMsg->getRemoveNeighbor(i).getIp().toIPv4().getInt();
             scheduler->sendBytes((const char*)&packetSize, sizeof(int), 0, 0, true, appFd);
             scheduler->sendBytes((const char*)&removePacket, packetSize, 0, 0, true, appFd);
         }
@@ -432,8 +432,8 @@ void SimpleGameClient::updateNeighbors(GameAPIListMessage* sgcMsg)
         packetSize = sizeof(addPacket);
 
         for(i=0; i<sgcMsg->getAddNeighborArraySize(); ++i) {
-            addPacket.ip = sgcMsg->getAddNeighbor(i).getIp().get4().getInt();
-            if( addPacket.ip == thisNode.getIp().get4().getInt() ) continue;
+            addPacket.ip = sgcMsg->getAddNeighbor(i).getIp().toIPv4().getInt();
+            if( addPacket.ip == thisNode.getIp().toIPv4().getInt() ) continue;
             addPacket.posX = sgcMsg->getNeighborPosition(i).x;
             addPacket.posY = sgcMsg->getNeighborPosition(i).y;
             scheduler->sendBytes((const char*)&packetSize, sizeof(int), 0, 0, true, appFd);

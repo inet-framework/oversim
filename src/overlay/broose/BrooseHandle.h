@@ -35,7 +35,7 @@ class BrooseHandle : public NodeHandle
 
  public://construction
     BrooseHandle();
-    BrooseHandle( OverlayKey initKey, IPvXAddress initIP, int initPort);
+    BrooseHandle( OverlayKey initKey, L3Address initIP, int initPort);
     BrooseHandle( const NodeHandle& node );
     BrooseHandle( const TransportAddress& node, const OverlayKey& destKey );
 

@@ -52,7 +52,7 @@ void RandomChurn::initializeChurn()
 
     globalStatistics = GlobalStatisticsAccess().get();
 
-    // initialize simulation
+    // initialize (*getSimulation())
     mobilityTimer = NULL;
     mobilityTimer = new cMessage("mobilityTimer");
     scheduleAt(simTime(), mobilityTimer);

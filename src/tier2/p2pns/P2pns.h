@@ -24,7 +24,7 @@
 #ifndef __P2PNS_H_
 #define __P2PNS_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <OverlayKey.h>
 #include <SHA1.h>

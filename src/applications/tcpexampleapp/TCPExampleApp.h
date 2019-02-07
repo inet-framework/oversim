@@ -25,7 +25,7 @@
 #ifndef TCPEXAMPLEAPP_H
 #define TCPEXAMPLEAPP_H
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <BaseApp.h>
 
 #include "TCPExampleMessage_m.h"

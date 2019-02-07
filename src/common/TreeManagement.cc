@@ -22,7 +22,7 @@
  */
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <GlobalNodeListAccess.h>
 #include <NeighborCache.h>

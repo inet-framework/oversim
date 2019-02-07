@@ -24,7 +24,7 @@
 #ifndef __MOVEMENTGENERATOR_H_
 #define __MOVEMENTGENERATOR_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <Vector2D.h>
 #include <BoundingBox2D.h>
 #include <TransportAddress.h>

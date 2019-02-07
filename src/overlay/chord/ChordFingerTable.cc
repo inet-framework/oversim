@@ -37,7 +37,7 @@ Define_Module(ChordFingerTable);
 
 void ChordFingerTable::initialize(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces
+    // because of L3AddressResolver, we need to wait until interfaces
     // are registered, address auto-assignment takes place etc.
     if(stage != MIN_STAGE_OVERLAY)
         return;

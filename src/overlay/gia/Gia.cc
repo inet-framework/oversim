@@ -23,12 +23,12 @@
 
 #include <assert.h>
 
-#include <UDPControlInfo_m.h>
-#include <IPvXAddressResolver.h>
+#include <inet/transportlayer/contract/udp/UDPControlInfo_m.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <GlobalStatistics.h>
 #include <CommonMessages_m.h>
 #include <ExtAPIMessages_m.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 #include <BootstrapList.h>
 
 #include "Gia.h"
@@ -38,7 +38,7 @@ Define_Module(Gia);
 
 void Gia::initializeOverlay(int stage)
 {
-    // wait until IPvXAddressResolver initialized all interfaces and assigns addresses
+    // wait until L3AddressResolver initialized all interfaces and assigns addresses
     if(stage != MIN_STAGE_OVERLAY)
         return;
 

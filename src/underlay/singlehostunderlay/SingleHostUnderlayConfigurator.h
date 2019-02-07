@@ -26,11 +26,11 @@
 #define __SINGLEHOSTUNDERLAYCONFIGURATOR_H__
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <BasicModule.h>
 
 #include <UnderlayConfigurator.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 
 class SingleHostUnderlayConfigurator : public UnderlayConfigurator

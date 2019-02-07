@@ -20,10 +20,10 @@
  * @file Koorde.cc
  * @author Jochen Schenk, Ingmar Baumgart
  */
-#include <IPvXAddressResolver.h>
-#include <IPvXAddress.h>
-#include <IInterfaceTable.h>
-#include <IPv4InterfaceData.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
+#include <inet/networklayer/common/L3Address.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
 #include <GlobalStatistics.h>
 
 #include "Koorde.h"
@@ -36,7 +36,7 @@ Define_Module(Koorde);
 
 void Koorde::initializeOverlay(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces
+    // because of L3AddressResolver, we need to wait until interfaces
     // are registered, address auto-assignment takes place etc.
     if (stage != MIN_STAGE_OVERLAY)
         return;

@@ -26,7 +26,7 @@
 
 #include <vector>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <NodeHandle.h>
 

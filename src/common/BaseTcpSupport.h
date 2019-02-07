@@ -24,10 +24,10 @@
 #ifndef BASETCPSUPPORT_H_
 #define BASETCPSUPPORT_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <map>
 #include <TransportAddress.h>
-#include <TCPSocket.h>
+#include <inet/transportlayer/contract/tcp/TCPSocket.h>
 #include <ExtTCPSocketMap.h>
 
 class BaseTcpSupport : public TCPSocket::CallbackInterface

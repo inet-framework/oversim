@@ -28,13 +28,13 @@
 //#include <stdint.h>
 //#include <oversim_mapset.h>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <OverlayKey.h>
 #include <TransportAddress.h>
 
 //class hashFcn;
-class IPvXAddress;
+class L3Address;
 
 /**
  * This class implements a node handle.<br>
@@ -78,11 +78,11 @@ public://construction
      * Complete constructor.
      *
      * @param key The OverlayKey
-     * @param ip The IPvXAddress
+     * @param ip The L3Address
      * @param port The UDP-Port
      */
     NodeHandle( const OverlayKey& key,
-                const IPvXAddress& ip,
+                const L3Address& ip,
                 int port);
 
     /**
@@ -106,13 +106,13 @@ public://static fields
 
     static const NodeHandle UNSPECIFIED_NODE; /**< the unspecified NodeHandle */
 
-public://methods: delegates to OverlayKey and IPvXAddress
+public://methods: delegates to OverlayKey and L3Address
 
     /**
      * compares this NodeHandle to another given NodeHandle
      *
      * @param rhs the NodeHandle this is compared to
-     * @return true if OverlayKey, IPvXAddress and port is equal, false otherwise
+     * @return true if OverlayKey, L3Address and port is equal, false otherwise
      */
     bool operator==(const NodeHandle& rhs) const;
 
@@ -120,7 +120,7 @@ public://methods: delegates to OverlayKey and IPvXAddress
      * compares this NodeHandle to another given NodeHandle
      *
      * @param rhs the NodeHandle this is compared to
-     * @return true if OverlayKey, IPvXAddress and port is not equal, false otherwise
+     * @return true if OverlayKey, L3Address and port is not equal, false otherwise
      */
     bool operator!=(const NodeHandle& rhs) const;
 
@@ -204,7 +204,7 @@ public://methods: c++ streaming
 private://methods:
 
     /**
-     * throws an opp_error if this or handle is unspecified
+     * throws an throw cRuntimeError if this or handle is unspecified
      *
      * @param handle the NodeHandle to check
      */

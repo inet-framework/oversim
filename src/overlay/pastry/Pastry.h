@@ -29,8 +29,8 @@
 #include <queue>
 #include <algorithm>
 
-#include "INETDefs.h"
-#include <IPvXAddress.h>
+#include "inet/common/INETDefs.h"
+#include <inet/networklayer/common/L3Address.h>
 
 #include <OverlayKey.h>
 #include <NodeHandle.h>

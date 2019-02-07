@@ -21,14 +21,13 @@ import oversim.common.ITier;
 import oversim.common.IOverlay;
 import oversim.common.CryptoModule;
 import oversim.common.BootstrapList;
-import inet.transport.udp.UDP;
-import inet.transport.tcp.TCP;
-import inet.nodes.inet.NetworkLayer;
-import inet.networklayer.ipv4.RoutingTable;
+import inet.transportlayer.udp.UDP;
+import inet.transportlayer.tcp.TCP;
+import inet.networklayer.ipv4.IPv4NetworkLayer;
+import inet.networklayer.ipv4.IPv4RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.linklayer.ppp.PPPInterface;
 import inet.linklayer.ethernet.EthernetInterface;
-import inet.base.NotificationBoard;
 
 
 //
@@ -39,7 +38,7 @@ import inet.base.NotificationBoard;
 module OverlayAccessRouter
 {
     parameters:
-        @node();
+        @networkNode;
         string routingFile = default("");
         string overlayType; // overlay protocol compound module to use
         string tier1Type; // tier 1 application to use
@@ -55,17 +54,13 @@ module OverlayAccessRouter
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=76,192;i=block/control");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=76,262;i=block/table");
         }
-        routingTable: RoutingTable {
+        routingTable: IPv4RoutingTable {
             parameters:
-                IPForward = true;
+                forwarding = true;
                 routerId = "auto";
                 routingFile = routingFile;
                 @display("p=76,340;i=block/table");
@@ -98,7 +93,7 @@ module OverlayAccessRouter
             parameters:
                 @display("p=230,262");
         }
-        networkLayer: NetworkLayer {
+        networkLayer: IPv4NetworkLayer {
             parameters:
                 proxyARP = false;
                 @display("p=290,340;i=block/fork;q=queue");
@@ -157,23 +152,23 @@ module OverlayAccessRouter
         bootstrapList.udpOut --> udp.appIn++;
         bootstrapList.udpIn <-- udp.appOut++;
 
-        udp.ipOut --> networkLayer.udpIn;
-        udp.ipIn <-- networkLayer.udpOut;
+        udp.ipOut --> networkLayer.transportIn++;
+        udp.ipIn <-- networkLayer.transportOut++;
 
-        tcp.ipOut --> networkLayer.tcpIn;
-        tcp.ipIn <-- networkLayer.tcpOut;
+        tcp.ipOut --> networkLayer.transportIn++;
+        tcp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].netwOut --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].netwIn <-- networkLayer.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> networkLayer.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 }
 

@@ -24,17 +24,17 @@
 #ifndef __I3IPADDRESS_H__
 #define __I3IPADDRESS_H__
 
-#include "INETDefs.h"
-#include <IPvXAddressResolver.h>
+#include "inet/common/INETDefs.h"
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <TransportAddress.h>
 
-/** A simple wrapper around an IPvXAddress and a port. */
+/** A simple wrapper around an L3Address and a port. */
 struct I3IPAddress : public TransportAddress {
     /** Constructor */
     I3IPAddress();
 
     /** Constructor */
-    I3IPAddress(IPvXAddress add, int port);
+    I3IPAddress(L3Address add, int port);
 
     /** "Less than" operator
     * @param a Address to be compared

@@ -20,13 +20,12 @@
  * @author Antonio Zea
  */
 
-#include "INETDefs.h"
-#include <IPvXAddressResolver.h>
+#include "inet/common/INETDefs.h"
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <GlobalNodeListAccess.h>
-#include <InitStages.h>
-#include <NotificationBoard.h>
+#include <inet/common/InitStages.h>
 #include <UnderlayConfigurator.h>
-#include <UDPControlInfo_m.h>
+#include <inet/transportlayer/contract/udp/UDPControlInfo_m.h>
 #include <NodeHandle.h>
 #include <BootstrapList.h>
 
@@ -72,17 +71,17 @@ void I3BaseApp::initialize(int stage)
 {
     if (stage != MIN_STAGE_APP) return;
 
-    nodeIPAddress = IPvXAddressResolver().addressOf(getParentModule());
+    nodeIPAddress = L3AddressResolver().addressOf(getParentModule());
 
     bindToPort(par("clientPort"));
-    /*    NotificationBoardAccess().get()->subscribe(this, NF_HOSTPOSITION_BEFOREUPDATE);
-        NotificationBoardAccess().get()->subscribe(this, NF_HOSTPOSITION_UPDATED);*/
+    /*    getContainingNode(this)->subscribe(NF_HOSTPOSITION_BEFOREUPDATE, this));
+        getContainingNode(this)->subscribe(NF_HOSTPOSITION_UPDATED, this));*/
 
     getDisplayString().setTagArg("i", 0, "i3c");
     getParentModule()->getDisplayString().removeTag("i2");
 
     if (double(par("bootstrapTime")) >= double(par("initTime"))) {
-        opp_error("Parameter bootstrapTime must be smaller than initTime");
+        throw cRuntimeError("Parameter bootstrapTime must be smaller than initTime");
     }
 
     bootstrapTimer = new cMessage();
@@ -491,7 +490,7 @@ void I3BaseApp::receiveChangeNotification (int category, const cObject *details)
 //         }
 //         /* do part 1! */
 //         cMessage *msg = check_and_cast<cMessage*>(details);
-//         IPvXAddress *ipAddr = (IPvXAddress*)msg->getContextPointer();
+//         L3Address *ipAddr = (L3Address*)msg->getContextPointer();
 //
 //         ostringstream os;
 //         os << "Mobility first stage - actual IP is " << nodeIPAddress << ", future IP is " << *ipAddr << endl;
@@ -514,7 +513,7 @@ void I3BaseApp::receiveChangeNotification (int category, const cObject *details)
 //     }
 //     if (category == NF_HOSTPOSITION_UPDATED) { /* part 2: both for 1-stage and stage 2 of 2-stage mobility */
 //         I3IPAddress oldAddress(nodeIPAddress, par("clientPort"));
-//         nodeIPAddress = IPvXAddressResolver().addressOf(getParentModule()).get4();
+//         nodeIPAddress = L3AddressResolver().addressOf(getParentModule()).toIPv4();
 //         I3IPAddress newAddress(nodeIPAddress, par("clientPort"));
 //
 //         cout << "After from " << oldAddress << " to " << newAddress << endl;

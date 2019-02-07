@@ -26,7 +26,7 @@
 
 #include <deque>
 #include <algorithm>
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <NodeHandle.h>
 #include <BaseOverlay.h>
 

@@ -24,7 +24,7 @@
 #ifndef __CONNECTIVITYPROBE_H__
 #define __CONNECTIVITYPROBE_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <NodeHandle.h>
 #include <VastDefs.h>
 //#include <NeighborsList.h>

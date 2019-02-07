@@ -103,7 +103,7 @@ void BootstrapList::initializeApp(int stage)
 
             while (nodeListFile >> address >> port >> key) {
                 node = new BootstrapNodeHandle(OverlayKey(key, 16),
-                                               IPvXAddress(address), port,
+                                               L3Address(address), port,
                                                CACHE);
                 if (node)
                     insertBootstrapCandidate(*node);

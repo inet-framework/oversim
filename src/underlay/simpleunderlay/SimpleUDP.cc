@@ -28,25 +28,25 @@
 // Modifications: Stephan Krause
 //
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <CommonMessages_m.h>
 #include <GlobalNodeListAccess.h>
 #include <GlobalStatisticsAccess.h>
 
 #include <SimpleInfo.h>
-#include "UDPPacket.h"
+#include "inet/transportlayer/udp/UDPPacket.h"
 #include "SimpleUDP.h"
-#include "IPv4ControlInfo.h"
-#include "IPv6ControlInfo.h"
+#include "inet/networklayer/contract/ipv4/IPv4ControlInfo.h"
+#include "inet/networklayer/contract/ipv6/IPv6ControlInfo.h"
 
-#include "IPvXAddressResolver.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
 
-#include "IPv4Datagram.h"
-#include "IPv6Datagram_m.h"
+#include "inet/networklayer/ipv4/IPv4Datagram.h"
+#include "inet/networklayer/ipv6/IPv6Datagram_m.h"
 
-#include "ICMPMessage_m.h"
-#include "ICMPv6Message_m.h"
+#include "inet/networklayer/ipv4/ICMPMessage_m.h"
+#include "inet/networklayer/icmpv6/ICMPv6Message_m.h"
 
 
 #define EPHEMERAL_PORTRANGE_START 1024
@@ -133,7 +133,7 @@ void SimpleUDP::initialize(int stage)
         delayFaultTypeString = par("delayFaultType").stdstringValue();
         delayFaultTypeMap["live_all"] = delayFaultLiveAll;
         delayFaultTypeMap["live_planetlab"] = delayFaultLivePlanetlab;
-        delayFaultTypeMap["simulation"] = delayFaultSimulation;
+        delayFaultTypeMap["(*getSimulation())"] = delayFaultSimulation;
 
         switch (delayFaultTypeMap[delayFaultTypeString]) {
         case SimpleUDP::delayFaultLiveAll:
@@ -207,7 +207,7 @@ void SimpleUDP::processUndeliverablePacket(cPacket *udpPacket, cObject *ctrl)
 void SimpleUDP::processUDPPacket(cPacket *udpPacket)
 {
     int srcPort, destPort;
-    IPvXAddress srcAddr, destAddr;
+    L3Address srcAddr, destAddr;
 
     UDPControlInfo *ctrl = check_and_cast<UDPControlInfo *>(udpPacket->removeControlInfo());
 
@@ -241,7 +241,7 @@ void SimpleUDP::processUDPPacket(cPacket *udpPacket)
 
     // deliver a copy of the packet to each matching socket
 
-    if (destAddr.isIPv6())
+    if (destAddr.getType() == L3Address::AddressType::IPv6)
     {
         // packet size is increased in processMsgFromApp
     	udpPacket->setByteLength(udpPacket->getByteLength() - UDP_HEADER_BYTES - IPv6_HEADER_BYTES);
@@ -258,7 +258,7 @@ void SimpleUDP::processUDPPacket(cPacket *udpPacket)
 			if (matches == 0) {
 				sendUp(udpPacket, ctrl, sd);
 			} else {
-				opp_error("Edit SimpleUDP.cc to support multibinding.");
+				throw cRuntimeError("Edit SimpleUDP.cc to support multibinding.");
 			}
 			matches++;
 		}
@@ -277,7 +277,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 {
     cModule *node = getParentModule();
 
-    IPvXAddress srcAddr, destAddr;
+    L3Address srcAddr, destAddr;
 
     UDPControlInfo *udpCtrl = check_and_cast<UDPControlInfo *>(appData->getControlInfo());
 
@@ -285,7 +285,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
     destAddr = udpCtrl->getDestAddr();
 
     // add header byte length for the skipped IP and UDP headers (decreased in processUDPPacket)
-    if (destAddr.isIPv6()) {
+    if (destAddr.getType() == L3Address::AddressType::IPv6) {
         appData->setByteLength(appData->getByteLength() + UDP_HEADER_BYTES + IPv6_HEADER_BYTES);
     } else {
         appData->setByteLength(appData->getByteLength() + UDP_HEADER_BYTES + IP_HEADER_BYTES);
@@ -297,7 +297,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
     numSent++;
 
     if (info == NULL) {
-        EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
+        EV << "[SimpleUDP::processMsgFromApp() @ " << L3AddressResolver().addressOf(node) << "]\n"
            << "    No route to host " << destAddr
            << endl;
 
@@ -323,7 +323,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
         if (useCoordinateBasedDelay == false) {
             totalDelay = constantDelay;
         } else if (temp.second == false) {
-            EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
+            EV << "[SimpleUDP::processMsgFromApp() @ " << L3AddressResolver().addressOf(node) << "]\n"
                << "    Send queue full: packet " << appData << " dropped"
                << endl;
 
@@ -338,7 +338,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
     SimpleInfo* thisInfo = dynamic_cast<SimpleInfo*>(globalNodeList->getPeerInfo(srcAddr));
 
     if (!globalNodeList->areNodeTypesConnected(thisInfo->getTypeID(), info->getTypeID())) {
-        EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
+        EV << "[SimpleUDP::processMsgFromApp() @ " << L3AddressResolver().addressOf(node) << "]\n"
                    << "    Partition " << thisInfo->getTypeID() << "->" << info->getTypeID()
                    << " is not connected"
                    << endl;
@@ -384,7 +384,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
         }
     }
 
-    EV << "[SimpleUDP::processMsgFromApp() @ " << IPvXAddressResolver().addressOf(node) << "]\n"
+    EV << "[SimpleUDP::processMsgFromApp() @ " << L3AddressResolver().addressOf(node) << "]\n"
        << "    Packet " << appData << " sent with delay = " << SIMTIME_DBL(totalDelay)
        << endl;
 
@@ -392,7 +392,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 
     /* main modifications for SimpleUDP end here */
 
-    if (!destAddr.isIPv6()) {
+    if (!destAddr.getType() == L3Address::AddressType::IPv6) {
         // send directly to IPv4 gate of the destination node
         sendDirect(appData, totalDelay, 0, destEntry->getUdpIPv4Gate());
 

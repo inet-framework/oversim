@@ -22,11 +22,10 @@
 
 package oversim.underlay.singlehostunderlay;
 
-import inet.base.NotificationBoard;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.nodes.inet.NetworkLayer;
-import inet.transport.udp.UDP;
+import inet.networklayer.ipv4.IPv4RoutingTable;
+import inet.networklayer.ipv4.IPv4NetworkLayer;
+import inet.transportlayer.udp.UDP;
 import oversim.common.BootstrapList;
 import oversim.common.CryptoModule;
 import oversim.common.IOverlay;
@@ -50,7 +49,7 @@ module SingleHost
         string parser; // name of the PacketParser to use
         string appParser; // name of the PacketParser to use
         string routingFile = default("");
-        bool IPForward = default(false);
+        bool forwarding = default(false);
         @display("bgb=330,461;i=device/wifilaptop_l;i2=block/circle_s");
 
     gates:
@@ -58,17 +57,13 @@ module SingleHost
         output overlayNeighborArrowOut[]; // outgoing gate for direct connections to overlay neighbors
 
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=64,415");
-        }
-        interfaceTable: InterfaceTable {
+                interfaceTable: InterfaceTable {
             parameters:
                 @display("p=64,202");
         }
-        routingTable: RoutingTable {
+        routingTable: IPv4RoutingTable {
             parameters:
-                IPForward = IPForward; // true if ip packets should be forwarded
+                forwarding = forwarding; // true if ip packets should be forwarded
                 routerId = ""; // id of the router
                 routingFile = routingFile; // use predefined routing file if given
                 @display("p=64,271");
@@ -101,7 +96,7 @@ module SingleHost
             parameters:
                 @display("p=287,264");
         }
-        networkLayer: NetworkLayer {
+        networkLayer: IPv4NetworkLayer {
             parameters:
                 proxyARP = false; // sets proxy \ARP mode (replying to \ARP requests for the addresses for which a routing table entry exists)
                 @display("p=287,342;i=block/fork;q=queue");
@@ -147,12 +142,12 @@ module SingleHost
         bootstrapList.udpOut --> udp.appIn++;
         bootstrapList.udpIn <-- udp.appOut++;
 
-        udp.ipOut --> networkLayer.udpIn;
-        udp.ipIn <-- networkLayer.udpOut;
+        udp.ipOut --> networkLayer.transportIn++;
+        udp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
-        outDev.netwOut --> networkLayer.ifIn[0];
-        outDev.netwIn <-- networkLayer.ifOut[0];
+        outDev.upperLayerOut --> networkLayer.ifIn[0];
+        outDev.upperLayerIn <-- networkLayer.ifOut[0];
 
 }
 

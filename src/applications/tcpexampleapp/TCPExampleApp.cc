@@ -27,7 +27,7 @@
 #include "UnderlayConfigurator.h"
 #include "GlobalStatistics.h"
 #include "GlobalNodeList.h"
-#include "IPvXAddressResolver.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
 #include "BootstrapList.h"
 
 using namespace std;

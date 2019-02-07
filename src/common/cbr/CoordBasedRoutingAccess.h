@@ -24,7 +24,7 @@
 #ifndef __COORDBASEDROUTING_ACCESS_H__
 #define __COORDBASEDROUTING_ACCESS_H__
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include "CoordBasedRouting.h"
 
 
@@ -37,10 +37,10 @@ public:
     CoordBasedRouting* get()
     {
         CoordBasedRouting* temp =
-            (CoordBasedRouting*)simulation.getModuleByPath("globalObserver."
+            (CoordBasedRouting*)(*getSimulation()).getModuleByPath("globalObserver."
                 "globalFunctions[0].function.coordBasedRouting");
         if (temp) return temp;
-        return (CoordBasedRouting*)simulation.getModuleByPath("globalObserver."
+        return (CoordBasedRouting*)(*getSimulation()).getModuleByPath("globalObserver."
                 "globalFunctions[1].function.coordBasedRouting"); //TODO
     }
 };

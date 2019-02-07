@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 #include <GlobalNodeListAccess.h>
 #include <GlobalStatisticsAccess.h>
 #include <UnderlayConfiguratorAccess.h>
@@ -73,7 +73,7 @@ void DHTTestApp::initializeApp(int stage)
     underlayConfigurator = UnderlayConfiguratorAccess().get();
     globalStatistics = GlobalStatisticsAccess().get();
 
-    globalDhtTestMap = dynamic_cast<GlobalDhtTestMap*>(simulation.getModuleByPath(
+    globalDhtTestMap = dynamic_cast<GlobalDhtTestMap*>((*getSimulation()).getModuleByPath(
             "globalObserver.globalFunctions[0].function"));
 
     if (globalDhtTestMap == NULL) {

@@ -26,23 +26,22 @@
 
 #include <oversim_mapset.h>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <NodeVector.h>
 #include <TopologyVis.h>
-#include <INotifiable.h>
 #include <BaseRpc.h>
 #include <BaseTcpSupport.h>
 #include <IterativeLookupConfiguration.h>
 #include <RecursiveLookup.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 class GlobalNodeList;
 class UnderlayConfigurator;
 class BaseApp;
 class NodeHandle;
 class OverlayKey;
-class NotificationBoard;
+class cModule;
 class AbstractLookup;
 class BootstrapList;
 
@@ -59,7 +58,7 @@ class BootstrapList;
  * @author Stephan Krause
  * @author Sebastian Mies
  */
-class BaseOverlay : public INotifiable,
+class BaseOverlay : public cListener,
                     public BaseRpc,
                     public BaseTcpSupport,
                     public TopologyVis
@@ -181,7 +180,7 @@ protected://fields: overlay attributes
 
     // references to global modules
     GlobalNodeList* globalNodeList;           /**< pointer to GlobalNodeList in this node  */
-    NotificationBoard* notificationBoard;       /**< pointer to NotificationBoard in this node */
+    cModule* notificationBoard;       /**< pointer to cModule in this node */
     UnderlayConfigurator* underlayConfigurator; /**< pointer to UnderlayConfigurator in this node */
     BootstrapList* bootstrapList; /**< pointer to the BootstrapList module */
     GlobalParameters* globalParameters; /**< pointer to the GlobalParameters module */
@@ -486,12 +485,12 @@ protected://methods: message handling
     virtual void handleAppMessage(cMessage* msg);
 
     /**
-     * callback-method for events at the NotificationBoard
+     * callback-method for events at the cModule
      *
      * @param category ... TODO ...
      * @param details ... TODO ...
      */
-    virtual void receiveChangeNotification(int category,
+    virtual void receiveSignal(cComponent *source, simsignal_t category,
                                            const cObject* details);
 
     /**

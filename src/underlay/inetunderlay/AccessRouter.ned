@@ -16,12 +16,11 @@
 
 package oversim.underlay.inetunderlay;
 
-import inet.base.NotificationBoard;
 import inet.linklayer.ethernet.EthernetInterface;
 import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.nodes.inet.NetworkLayer;
+import inet.networklayer.ipv4.IPv4RoutingTable;
+import inet.networklayer.ipv4.IPv4NetworkLayer;
 
 
 //
@@ -30,23 +29,19 @@ import inet.nodes.inet.NetworkLayer;
 module AccessRouter
 {
     parameters:
-        @node();
+        @networkNode;
         string routingFile = default("");
     gates:
         inout pppg[];    // gates from overlay
         inout ethg[];    // unused here
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=60,60;i=block/control");
-        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=150,60;i=block/table");
         }
-        routingTable: RoutingTable {
+        routingTable: IPv4RoutingTable {
             parameters:
-                IPForward = true;
+                forwarding = true;
                 routerId = "auto";
                 routingFile = routingFile;
                 @display("p=240,60;i=block/table");
@@ -55,7 +50,7 @@ module AccessRouter
             parameters:
                 @display("p=330,60");
         }
-        networkLayer: NetworkLayer {
+        networkLayer: IPv4NetworkLayer {
             parameters:
                 @display("p=199,141;i=block/fork;q=queue");
             gates:
@@ -74,14 +69,14 @@ module AccessRouter
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].netwOut --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].netwIn <-- networkLayer.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> networkLayer.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 }
 

@@ -58,7 +58,7 @@ void RealtimeScheduler::startRun()
     appConnectionLimit = getEnvir()->getConfig()->getAsInt(CFGID_EXTERNALAPP_CONNECTION_LIMIT, 0);
 
     if (initializeNetwork()) {
-        opp_error("realtimeScheduler error: initializeNetwork failed\n");
+        throw cRuntimeError("realtimeScheduler error: initializeNetwork failed\n");
     }
 }
 
@@ -157,20 +157,20 @@ bool RealtimeScheduler::receiveWithTimeout(long usec)
                     }
 
                     if (nBytes < 0) {
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Error reading from network: " << strerror(sock_errno())
                             << endl;
                         delete[] buf;
                         buf = NULL;
-                        opp_error("Read from network device returned an error");
+                        throw cRuntimeError("Read from network device returned an error");
                     } else if (nBytes == 0) {
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                            << "    Received 0 byte long UDP packet!" << endl;
                         delete[] buf;
                         buf = NULL;
                     } else {
                         // write data to buffer
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Received " << nBytes << " bytes"
                             << endl;
                         packetBuffer->push_back(PacketBufferEntry(buf, nBytes, from, addrlen));
@@ -185,22 +185,22 @@ bool RealtimeScheduler::receiveWithTimeout(long usec)
                     int nBytes = read(fd, buf, appBuffersize);
 
                     if (nBytes < 0) {
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Error reading from application TUN socket: "
                             << strerror(sock_errno())
                             << endl;
                         delete[] buf;
                         buf = NULL;
-                        opp_error("Read from application TUN socket returned "
+                        throw cRuntimeError("Read from application TUN socket returned "
                                   "an error");
                     } else if (nBytes == 0) {
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                            << "    Received 0 byte long UDP packet!" << endl;
                         delete[] buf;
                         buf = NULL;
                     } else {
                         // write data to buffer
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Received " << nBytes << " bytes"
                             << endl;
 
@@ -231,13 +231,13 @@ bool RealtimeScheduler::receiveWithTimeout(long usec)
                     if (nBytes < 0) {
                         delete[] buf;
                         buf = NULL;
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Read error from socket in socketContextMap: "
                             << strerror(sock_errno()) << endl;
-                        // opp_error("Read from network device returned an error (App)");
+                        // throw cRuntimeError("Read from network device returned an error (App)");
                         } else if (nBytes == 0) {
                         // Application closed Socket
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Application closed socket"
                             << endl;
                         delete[] buf;
@@ -247,7 +247,7 @@ bool RealtimeScheduler::receiveWithTimeout(long usec)
                     } else {
 #endif
                         // write data to buffer
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Received " << nBytes << " bytes"
                             << endl;
 
@@ -267,13 +267,13 @@ bool RealtimeScheduler::receiveWithTimeout(long usec)
                     if (nBytes < 0) {
                         delete[] buf;
                         buf = NULL;
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Read error from application socket: "
                             << strerror(sock_errno()) << endl;
-                        // opp_error("Read from network device returned an error (App)");
+                        // throw cRuntimeError("Read from network device returned an error (App)");
                     } else if (nBytes == 0) {
                         // Application closed Socket
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Application closed socket"
                             << endl;
                         delete[] buf;
@@ -282,7 +282,7 @@ bool RealtimeScheduler::receiveWithTimeout(long usec)
                         newEvent = true;
                     } else {
                         // write data to buffer
-                        ev << "[RealtimeScheduler::receiveWithTimeout()]\n"
+                        EV << "[RealtimeScheduler::receiveWithTimeout()]\n"
                             << "    Received " << nBytes << " bytes"
                             << endl;
                         appPacketBuffer->push_back(PacketBufferEntry(buf, nBytes, PacketBufferEntry::PACKET_DATA, fd));
@@ -430,21 +430,21 @@ ssize_t RealtimeScheduler::sendBytes(const char *buf,
                                      SOCKET fd)
 {
     if (!buf) {
-        ev << "[RealtimeScheduler::sendBytes()]\n"
+        EV << "[RealtimeScheduler::sendBytes()]\n"
         << "    Error sending packet: buf = NULL"
         << endl;
         return -1;
     }
     if (!isApp) {
         if( numBytes > buffersize ) {
-            ev << "[RealtimeScheduler::sendBytes()]\n"
+            EV << "[RealtimeScheduler::sendBytes()]\n"
             << "    Trying to send oversized packet: size " << numBytes << " mtu " << buffersize
             << endl;
-            opp_error("Can't send packet: too large"); //FIXME: Throw exception instead
+            throw cRuntimeError("Can't send packet: too large"); //FIXME: Throw exception instead
         }
 
         if ( netw_fd == INVALID_SOCKET ) {
-            ev << "[RealtimeScheduler::sendBytes()]\n"
+            EV << "[RealtimeScheduler::sendBytes()]\n"
             << "    Can't send packet to network: no tun/udp socket"
             << endl;
             return 0;
@@ -457,7 +457,7 @@ ssize_t RealtimeScheduler::sendBytes(const char *buf,
             nBytes =  write(netw_fd, buf, numBytes);
         }
         if (nBytes < 0) {
-            ev << "[RealtimeScheduler::sendBytes()]\n"
+            EV << "[RealtimeScheduler::sendBytes()]\n"
             << "    Error sending data to network: " << strerror(sock_errno()) << "\n"
             << "    FD = " << netw_fd << ", numBytes = " << numBytes <<  ", addrlen = " << addrlen
             << endl;
@@ -468,20 +468,20 @@ ssize_t RealtimeScheduler::sendBytes(const char *buf,
         // Data on socket in socketContextMap
         SocketContext& fdContext = socketContextMap.at(fd);
         if (numBytes > fdContext.mtu) {
-            ev << "[RealtimeScheduler::sendBytes()]\n"
+            EV << "[RealtimeScheduler::sendBytes()]\n"
                << "    Trying to send oversized packet: size " << numBytes << "\n"
                << "    mtu " << fdContext.mtu
                << endl;
-               opp_error("Can't send packet: too large"); //FIXME: Throw exception instead
+               throw cRuntimeError("Can't send packet: too large"); //FIXME: Throw exception instead
         }
         return send(fd, buf, numBytes, 0 /*MSG_NOSIGNAL*/);
     } else {
         if (numBytes > appBuffersize) {
-            ev << "[RealtimeScheduler::sendBytes()]\n"
+            EV << "[RealtimeScheduler::sendBytes()]\n"
             << "    Trying to send oversized packet: size " << numBytes << "\n"
             << "    mtu " << appBuffersize
             << endl;
-            opp_error("Can't send packet: too large"); //FIXME: Throw exception instead
+            throw cRuntimeError("Can't send packet: too large"); //FIXME: Throw exception instead
         }
         // If no fd is given, select a "random" one
         if (fd == INVALID_SOCKET) {

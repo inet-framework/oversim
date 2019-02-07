@@ -21,9 +21,9 @@
  * @author Jochen Schenk
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <IPv4Address.h>
+#include <inet/networklayer/contract/ipv4/IPv4Address.h>
 
 #include "BrooseHandle.h"
 
@@ -51,7 +51,7 @@ BrooseHandle::BrooseHandle()
     lastSeen = -1;
 }
 
-BrooseHandle::BrooseHandle(OverlayKey initKey, IPvXAddress initIP, int initPort)
+BrooseHandle::BrooseHandle(OverlayKey initKey, L3Address initIP, int initPort)
 {
     //
     // Constructor. Initializes the node handle with the passed arguments.
@@ -105,7 +105,7 @@ BrooseHandle& BrooseHandle::operator=(const BrooseHandle& rhs)
 bool BrooseHandle::operator==(const BrooseHandle& rhs) const
 {
     if (this->isUnspecified() || rhs.isUnspecified())
-        opp_error("BrooseHandle: Trying to compare unspecified nodeHandle!");
+        throw cRuntimeError("BrooseHandle: Trying to compare unspecified nodeHandle!");
 
     if (this->key != rhs.getKey() )
         return false;
@@ -119,7 +119,7 @@ bool BrooseHandle::operator==(const BrooseHandle& rhs) const
 bool BrooseHandle::operator!=(const BrooseHandle& rhs) const
 {
     if (this->isUnspecified() || rhs.isUnspecified())
-        opp_error("BrooseHandle: Trying to compare unspecified nodeHandle!");
+        throw cRuntimeError("BrooseHandle: Trying to compare unspecified nodeHandle!");
 
     if (this->key == rhs.getKey() &&
             this->ip == rhs.getIp() && this->port == rhs.getPort())

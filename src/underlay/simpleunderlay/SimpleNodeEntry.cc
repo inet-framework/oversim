@@ -30,7 +30,7 @@
 #include "SHA1.h"
 #include "OverlayKey.h"
 #include "BinaryValue.h"
-#include "IPvXAddressResolver.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
 
 
 uint8_t NodeRecord::dim;

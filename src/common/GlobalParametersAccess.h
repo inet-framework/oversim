@@ -25,7 +25,7 @@
 #define __GLOBALPARAMETERS_ACCESS_H__
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include "GlobalParameters.h"
 
 
@@ -45,7 +45,7 @@ public:
         ()
     {
         return (GlobalParameters*)
-	    simulation.getModuleByPath("globalObserver.globalParameters");
+	    (*getSimulation()).getModuleByPath("globalObserver.globalParameters");
     }
 };
 

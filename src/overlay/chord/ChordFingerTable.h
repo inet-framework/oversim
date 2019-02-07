@@ -27,10 +27,10 @@
 #include <deque>
 #include <map>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <NodeVector.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 class BaseOverlay;
 

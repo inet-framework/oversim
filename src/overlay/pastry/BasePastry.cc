@@ -25,12 +25,12 @@
 #include <stdint.h>
 #include <assert.h>
 
-#include <IPvXAddressResolver.h>
-#include <IPvXAddress.h>
-#include <IInterfaceTable.h>
-#include <IPv4InterfaceData.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
+#include <inet/networklayer/common/L3Address.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
 #include <RpcMacros.h>
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 #include <NeighborCache.h>
 #include <GlobalStatistics.h>
 #include <BootstrapList.h>
@@ -911,7 +911,7 @@ NodeVector* BasePastry::findNode(const OverlayKey& key,
     if ((numRedundantNodes > getMaxNumRedundantNodes()) ||
         (numSiblings > getMaxNumSiblings())) {
 
-        opp_error("(Pastry::findNode()) numRedundantNodes or numSiblings "
+        throw cRuntimeError("(Pastry::findNode()) numRedundantNodes or numSiblings "
                   "too big!");
     }
     RECORD_STATS(totalLookups++);

@@ -26,10 +26,10 @@
 #include <assert.h>
 #include <algorithm>
 
-#include <IPvXAddressResolver.h>
-#include <IPvXAddress.h>
-#include <IInterfaceTable.h>
-#include <IPv4InterfaceData.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
+#include <inet/networklayer/common/L3Address.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
 #include "TopologyVis.h"
 #include <AbstractLookup.h>
 #include <LookupListener.h>
@@ -769,7 +769,7 @@ bool Kademlia::isSiblingFor(const NodeHandle& node, const OverlayKey& key,
     }
 
     if (numSiblings > getMaxNumSiblings()) {
-        opp_error("Kademlia::isSiblingFor(): numSiblings too big!");
+        throw cRuntimeError("Kademlia::isSiblingFor(): numSiblings too big!");
     }
 
     // set default number of siblings to consider
@@ -970,7 +970,7 @@ NodeVector* Kademlia::findNode(const OverlayKey& key, int numRedundantNodes,
                                int numSiblings, BaseOverlayMessage* msg)
 {
     if (numSiblings > getMaxNumSiblings()) {
-        opp_error("(Kademlia::findNode()) numRedundantNodes or numSiblings "
+        throw cRuntimeError("(Kademlia::findNode()) numRedundantNodes or numSiblings "
                   "too big!");
     }
 

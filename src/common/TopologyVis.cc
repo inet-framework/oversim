@@ -20,7 +20,7 @@
  * @author Bernhard Heep
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <NodeHandle.h>
 #include <GlobalNodeList.h>
@@ -78,7 +78,7 @@ void TopologyVis::showOverlayNeighborArrow(const NodeHandle& neighbor,
     if (globalNodeList->getPeerInfo(neighbor) == NULL)
         return;
 
-    neighborTerminal = simulation.getModule(globalNodeList->
+    neighborTerminal = (*getSimulation()).getModule(globalNodeList->
             getPeerInfo(neighbor)->getModuleID());
 
     if (neighborTerminal == NULL)
@@ -145,7 +145,7 @@ void TopologyVis::deleteOverlayNeighborArrow(const NodeHandle& neighbor)
         return;
     }
 
-    cModule* neighborTerminal = simulation.getModule(peerInfo->getModuleID());
+    cModule* neighborTerminal = (*getSimulation()).getModule(peerInfo->getModuleID());
     if (neighborTerminal == NULL) {
         return;
     }

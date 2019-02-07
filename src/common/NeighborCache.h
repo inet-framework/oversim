@@ -26,7 +26,7 @@
 #ifndef __NEIGHBORCACHE_H_
 #define __NEIGHBORCACHE_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <map>
 #include <cfloat>
@@ -34,7 +34,7 @@
 
 #include <BaseApp.h>
 #include <NodeHandle.h>
-#include <CoordinateSystem.h>
+#include <inet/common/geometry/common/CoordinateSystem.h>
 
 #include <Nps.h>
 

@@ -28,7 +28,7 @@
 #include <cassert>
 #include <algorithm>
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #include <GlobalNodeListAccess.h>
 #include <PeerInfo.h>

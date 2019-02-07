@@ -24,7 +24,7 @@
 #ifndef __BROOSE_H_
 #define __BROOSE_H_
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <BaseOverlay.h>
 #include <RpcListener.h>
 #include <OverlayKey.h>

@@ -24,7 +24,7 @@
 #include "RealworldConnector.h"
 
 #include <string.h>
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 
 RealworldConnector::RealworldConnector()
@@ -52,7 +52,7 @@ void RealworldConnector::initialize(int stage)
     packetNotification = new cMessage("packetNotification");
     mtu = par("mtu");
 
-    scheduler = check_and_cast<RealtimeScheduler *>(simulation.getScheduler());
+    scheduler = check_and_cast<RealtimeScheduler *>((*getSimulation()).getScheduler());
     scheduler->setInterfaceModule(this, packetNotification, &packetBuffer,
                                   mtu, isApp());
 

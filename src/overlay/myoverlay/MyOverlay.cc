@@ -44,7 +44,7 @@ void MyOverlay::initializeOverlay(int stage)
     if (stage != MIN_STAGE_OVERLAY) return;
 
     // get our key from our IP address
-    myKey = thisNode.getIp().get4().getInt() & ~BIGBIT;
+    myKey = thisNode.getIp().toIPv4().getInt() & ~BIGBIT;
 
     // initialize the rest of variables
     numDropped = 0;

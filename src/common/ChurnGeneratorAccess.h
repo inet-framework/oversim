@@ -25,9 +25,9 @@
 #define __CHURNGENERATOR_ACCESS_H__
 
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
-#include <ModuleAccess.h>
+#include <inet/common/ModuleAccess.h>
 
 #include "ChurnGenerator.h"
 
@@ -40,7 +40,7 @@ public:
     ChurnGenerator* get()
     {
         return check_and_cast<ChurnGenerator*>(
-			simulation.getModuleByPath("churnGenerator"));
+			(*getSimulation()).getModuleByPath("churnGenerator"));
     }
 };
 

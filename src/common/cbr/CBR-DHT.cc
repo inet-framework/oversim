@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include <IPvXAddressResolver.h>
+#include <inet/networklayer/common/L3AddressResolver.h>
 
 #include "CBR-DHT.h"
 
@@ -722,7 +722,7 @@ void CBRDHT::update(const NodeHandle& node, bool joined)
             dhtMsg->setKey(key);
             dhtMsg->setValue(entry.value);
             dhtMsg->setTtl((int)(entry.ttlMessage->arrivalTime()
-                    - simulation.simTime()));
+                    - (*getSimulation()).simTime()));
             dhtMsg->setIsModifiable(entry.is_modifiable);
             dhtMsg->setMaintenance(true);
             dhtMsg->setLength(PUTCALL_L(dhtMsg));

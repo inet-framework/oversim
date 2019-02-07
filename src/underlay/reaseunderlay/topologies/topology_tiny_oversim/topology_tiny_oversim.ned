@@ -1,7 +1,7 @@
 package oversim.underlay.reaseunderlay.topologies.topology_tiny_oversim;
 
-import inet.nodes.inet.Router;
-import inet.nodes.inet.StandardHost;
+import inet.node.inet.Router;
+import inet.node.inet.StandardHost;
 
 channel host2edge extends ned.DatarateChannel
 {

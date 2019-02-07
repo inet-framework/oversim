@@ -17,7 +17,6 @@
 
 package oversim.underlay.simpleunderlay;
 
-import inet.base.NotificationBoard;
 import inet.networklayer.common.InterfaceTable;
 import oversim.common.BootstrapList;
 import oversim.common.CryptoModule;
@@ -41,7 +40,7 @@ module SimpleMultiOverlayHost
         int numTiers; // number of tiers
         int numOverlayModulesPerNode; // number of parallel overlays
         string routingFile = default("");
-        bool IPForward = default(false);
+        bool forwarding = default(false);
 
         @display("bgb=433,386");
     gates:
@@ -51,10 +50,6 @@ module SimpleMultiOverlayHost
         input in; // Dummy gate for connecting out
 
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=64,239");
-        }
         tier3[numOverlayModulesPerNode]: <tier3Type> like ITier {
             parameters:
                 @display("p=64,64;i=block/segm");

@@ -26,7 +26,7 @@ Define_Module(GiaKeyListModule);
 
 void GiaKeyListModule::initialize(int stage)
 {
-    // wait until IPvXAddressResolver finished his initialization
+    // wait until L3AddressResolver finished his initialization
     if(stage != MIN_STAGE_OVERLAY)
         return;
 

@@ -2,7 +2,7 @@
 #ifndef LOGINCACHE_H
 #define LOGINCACHE_H
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 #include <NodeHandle.h>
 #include <Vector2D.h>
 #include <GlobalStatisticsAccess.h>

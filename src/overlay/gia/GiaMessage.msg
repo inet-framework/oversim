@@ -18,7 +18,7 @@
 // @author Robert Palmer, Bernhard Heep
 //
 cplusplus {{
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <OverlayKey.h>
 #include <GiaNode.h>
 #include <NodeHandle.h>
@@ -47,7 +47,7 @@ static const int MAXRESPONSES_L = 16;
 }};
 
 
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject OverlayKey;
 class noncobject GiaNode;
 class noncobject NodeHandle;
@@ -118,7 +118,7 @@ message GiaIDMessage extends GiaMessage
 message GiaRouteMessage extends GiaIDMessage
 {
         OverlayKey originatorKey;    // unique key (id) of the originator of this route message
-        IPvXAddress originatorIP;    // IP of the originator of this route message
+        L3Address originatorIP;    // IP of the originator of this route message
         int originatorPort;    // UDP-Port of the originator of this route message
 };
 

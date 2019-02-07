@@ -21,7 +21,7 @@
 //
 
 cplusplus {{
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <NodeHandle.h>
 #include <TransportAddress.h>
 #include <CommonMessages_m.h>
@@ -31,7 +31,7 @@ cplusplus {{
                                    msg->getPayload().size() * sizeof(char))
 }}
 
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject NodeHandle;
 class noncobject OverlayKey;
 class noncobject TransportAddress;

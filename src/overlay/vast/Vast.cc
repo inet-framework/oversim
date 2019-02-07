@@ -25,7 +25,7 @@
 
 Define_Module(Vast);
 
-#include <NotifierConsts.h>
+#include <inet/common/NotifierConsts.h>
 
 #include <GlobalNodeList.h>
 #include <GlobalStatistics.h>
@@ -33,7 +33,7 @@ Define_Module(Vast);
 
 void Vast::initializeOverlay(int stage)
 {
-    // because of IPvXAddressResolver, we need to wait until interfaces are registered,
+    // because of L3AddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
     if(stage != MIN_STAGE_OVERLAY) return;
 
@@ -147,11 +147,11 @@ void Vast::changeState(int state)
            << " (" << thisSite.addr.getKey().toString(16) << ")]\n"
            << "VAST: Node " << thisSite.addr.getIp() << " entered ";
         switch(state) {
-            case INIT: ev << "INIT"; break;
-            case JOIN: ev << "JOIN"; break;
-            case READY: ev << "READY"; break;
+            case INIT: EV << "INIT"; break;
+            case JOIN: EV << "JOIN"; break;
+            case READY: EV << "READY"; break;
         }
-        ev << " state." << endl;
+        EV << " state." << endl;
     }
 }
 

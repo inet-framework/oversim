@@ -23,7 +23,7 @@
 
 #include <assert.h>
 
-#include <InitStages.h>
+#include <inet/common/InitStages.h>
 
 #include "GiaNeighbors.h"
 
@@ -32,7 +32,7 @@ Define_Module(GiaNeighbors);
 
 void GiaNeighbors::initialize(int stage)
 {
-    // wait until IPvXAddressResolver finished his initialization
+    // wait until L3AddressResolver finished his initialization
     if(stage != MIN_STAGE_OVERLAY)
         return;
 

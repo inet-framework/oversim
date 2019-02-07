@@ -56,7 +56,7 @@ InterfaceEntry *RealworldDevice::registerInterface()
     e->setNodeOutputGateId(outputPort);
 
     // generate a link-layer address to be used as interface token for IPv6
-    InterfaceToken token(0, simulation.getUniqueNumber(), 64);
+    InterfaceToken token(0, (*getSimulation()).getUniqueNumber(), 64);
     e->setInterfaceToken(token);
 
     // MTU: typical values are 576 (Internet de facto), 1500 (Ethernet-friendly),
@@ -68,7 +68,7 @@ InterfaceEntry *RealworldDevice::registerInterface()
     e->setPointToPoint(true);
 
     // add
-    IInterfaceTable *ift = InterfaceTableAccess().get();
+    IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
     ift->addInterface(e);
 
     return e;

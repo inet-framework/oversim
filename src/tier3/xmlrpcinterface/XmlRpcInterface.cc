@@ -444,7 +444,7 @@ void XmlRpcInterface::initializeApp(int stage)
     mtu = par("mtu");
     limitAccess = par("limitAccess");
 
-    scheduler = check_and_cast<RealtimeScheduler *>(simulation.getScheduler());
+    scheduler = check_and_cast<RealtimeScheduler *>((*getSimulation()).getScheduler());
     scheduler->setInterfaceModule(this, packetNotification, &packetBuffer, mtu,
                                   true);
 

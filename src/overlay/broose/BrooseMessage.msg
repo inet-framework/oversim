@@ -21,7 +21,7 @@
 //
 
 cplusplus {{
-#include <IPvXAddress.h>
+#include <inet/networklayer/common/L3Address.h>
 #include <NodeHandle.h>
 #include <CommonMessages_m.h>
 #include <OverlayKey.h>
@@ -41,7 +41,7 @@ static const int NODENUM_L = 8;
 
 }}
 
-class noncobject IPvXAddress;
+class noncobject L3Address;
 class noncobject NodeHandle;
 class noncobject OverlayKey;
 class BaseCallMessage;

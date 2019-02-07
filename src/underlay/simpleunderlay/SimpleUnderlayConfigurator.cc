@@ -20,7 +20,7 @@
  * @author Bernhard Heep (migrateRandomNode)
  */
 
-#include "INETDefs.h"
+#include "inet/common/INETDefs.h"
 
 #if !defined(__APPLE__) &&  !defined(_WIN32) && !defined(__ANDROID__)
 #include <malloc.h>
@@ -32,12 +32,12 @@
 #include <fstream>
 
 #include <NodeHandle.h>
-#include "IInterfaceTable.h"
-#include "InterfaceEntry.h"
-#include "IPv4InterfaceData.h"
-#include "IPv6InterfaceData.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/common/InterfaceEntry.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "inet/networklayer/ipv6/IPv6InterfaceData.h"
 #include "TransportAddress.h"
-#include "IPvXAddressResolver.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
 //#include <cenvir.h>
 //#include <cxmlelement.h>
 #include "ChurnGenerator.h"
@@ -144,7 +144,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
         node->callInitialize(i);
     }
 
-    IPvXAddress addr;
+    L3Address addr;
     if (useIPv6) {
         addr = IPv6Address(0, nextFreeAddress++, 0, 0);
     } else {
@@ -156,7 +156,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
     cChannelType* txChan = cChannelType::find(type.channelTypesTx[chanIndex].c_str());
 
     if (!txChan || !rxChan)
-         opp_error("Could not find Channel Type. Most likely parameter "
+         throw cRuntimeError("Could not find Channel Type. Most likely parameter "
             "channelTypesRx or channelTypes does not match the channels defined in "
              "channels.ned");
 
@@ -199,23 +199,23 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
     // Add pseudo-Interface to node's interfaceTable
     if (useIPv6) {
         IPv6InterfaceData* ifdata = new IPv6InterfaceData;
-        ifdata->assignAddress(addr.get6(),false, 0, 0);
-        IPv6InterfaceData::AdvPrefix prefix = IPv6InterfaceData::AdvPrefix(addr.get6(), 64);
+        ifdata->assignAddress(addr.toIPv6(),false, 0, 0);
+        IPv6InterfaceData::AdvPrefix prefix = IPv6InterfaceData::AdvPrefix(addr.toIPv6(), 64);
         ifdata->addAdvPrefix(prefix);
         InterfaceEntry* e = new InterfaceEntry(NULL);
         e->setName("dummy interface");
         e->setIPv6Data(ifdata);
-        IPvXAddressResolver().interfaceTableOf(node)->addInterface(e);
+        L3AddressResolver().interfaceTableOf(node)->addInterface(e);
     }
     else {
         IPv4InterfaceData* ifdata = new IPv4InterfaceData;
-        ifdata->setIPAddress(addr.get4());
+        ifdata->setIPAddress(addr.toIPv4());
         ifdata->setNetmask(IPv4Address("255.255.255.255"));
         InterfaceEntry* e = new InterfaceEntry(NULL);
         e->setName("dummy interface");
         e->setIPv4Data(ifdata);
 
-        IPvXAddressResolver().interfaceTableOf(node)->addInterface(e);
+        L3AddressResolver().interfaceTableOf(node)->addInterface(e);
     }
 
     // create meta information
@@ -340,7 +340,7 @@ void SimpleUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* ad
         entry = info->getEntry();
         globalNodeList->setPreKilled(*addr);
     } else {
-        opp_error("SimpleNetConfigurator: Trying to pre kill node "
+        throw cRuntimeError("SimpleNetConfigurator: Trying to pre kill node "
                   "with nonexistant TransportAddress!");
     }
 
@@ -355,11 +355,11 @@ void SimpleUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* ad
     }
 
     // remove node from bootstrap oracle
-    globalNodeList->removePeer(IPvXAddressResolver().addressOf(node));
+    globalNodeList->removePeer(L3AddressResolver().addressOf(node));
 
     // put node into the kill list and schedule a message for final removal
     // of the node
-    killList.push_front(IPvXAddressResolver().addressOf(node));
+    killList.push_front(L3AddressResolver().addressOf(node));
     scheduledID.insert(node->getId());
 
     overlayTerminalCount--;
@@ -371,7 +371,7 @@ void SimpleUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* ad
     setDisplayString();
 
     // inform the notification board about the removal
-    NotificationBoard* nb = check_and_cast<NotificationBoard*> (
+    cModule* nb = check_and_cast<cModule*> (
                              node-> getSubmodule("notificationBoard"));
     nb->fireChangeNotification(NF_OVERLAY_NODE_LEAVE);
 
@@ -396,7 +396,7 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
         if (info != NULL) {
             entry = info->getEntry();
         } else {
-            opp_error("SimpleNetConfigurator: Trying to migrate node with "
+            throw cRuntimeError("SimpleNetConfigurator: Trying to migrate node with "
                       "nonexistant TransportAddress!");
         }
     } else {
@@ -415,9 +415,9 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
     //std::cout << "migration @ " << tmp_ip << " --> " << address << std::endl;
 
     // FIXME use only IPv4?
-    IPvXAddress address = IPv4Address(nextFreeAddress++);
+    L3Address address = IPv4Address(nextFreeAddress++);
 
-    IPvXAddress tmp_ip = IPvXAddressResolver().addressOf(node);
+    L3Address tmp_ip = L3AddressResolver().addressOf(node);
     SimpleNodeEntry* newentry;
 
     int chanIndex = intuniform(0, type.channelTypesRx.size() - 1);
@@ -425,7 +425,7 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
     cChannelType* txChan = cChannelType::find(type.channelTypesTx[chanIndex].c_str());
 
     if (!txChan || !rxChan)
-         opp_error("Could not find Channel Type. Most likely parameter "
+         throw cRuntimeError("Could not find Channel Type. Most likely parameter "
             "channelTypesRx or channelTypes does not match the channels defined in "
              "channels.ned");
 
@@ -448,13 +448,13 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
     SimpleUDP* simple = check_and_cast<SimpleUDP*> (gate->getOwnerModule());
     simple->setNodeEntry(newentry);
 
-    InterfaceEntry* ie = IPvXAddressResolver().interfaceTableOf(node)->
+    InterfaceEntry* ie = L3AddressResolver().interfaceTableOf(node)->
                                       getInterfaceByName("dummy interface");
     delete ie->ipv4Data();
 
     // Add pseudo-Interface to node's interfaceTable
     IPv4InterfaceData* ifdata = new IPv4InterfaceData;
-    ifdata->setIPAddress(address.get4());
+    ifdata->setIPAddress(address.toIPv4());
     ifdata->setNetmask(IPv4Address("255.255.255.255"));
     ie->setIPv4Data(ifdata);
 
@@ -467,7 +467,7 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
     globalNodeList->addPeer(address, newinfo);
 
     // inform the notification board about the migration
-    NotificationBoard* nb = check_and_cast<NotificationBoard*> (
+    cModule* nb = check_and_cast<cModule*> (
                                       node->getSubmodule("notificationBoard"));
     nb->fireChangeNotification(NF_OVERLAY_TRANSPORTADDRESS_CHANGED);
 }
@@ -477,7 +477,7 @@ void SimpleUnderlayConfigurator::handleTimerEvent(cMessage* msg)
     Enter_Method_Silent();
 
     // get next scheduled node and remove it from the kill list
-    IPvXAddress addr = killList.back();
+    L3Address addr = killList.back();
     killList.pop_back();
 
     SimpleNodeEntry* entry = NULL;
@@ -502,7 +502,7 @@ void SimpleUnderlayConfigurator::handleTimerEvent(cMessage* msg)
     scheduledID.erase(node->getId());
     globalNodeList->killPeer(addr);
 
-    InterfaceEntry* ie = IPvXAddressResolver().interfaceTableOf(node)->
+    InterfaceEntry* ie = L3AddressResolver().interfaceTableOf(node)->
                                          getInterfaceByName("dummy interface");
     delete ie->ipv4Data();
 
@@ -536,7 +536,7 @@ void SimpleUnderlayConfigurator::finishUnderlay()
 
 // new functions for behaviour generator:
 
-IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress addr,
+L3Address SimpleUnderlayConfigurator::migrateNode(NodeType type, L3Address addr,
                                                     const BaseLocation& locID)
 {
     Enter_Method_Silent();
@@ -548,7 +548,7 @@ IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress a
         if (info != NULL) {
             entry = info->getEntry();
         } else {
-            opp_error("SimpleNetConfigurator: Trying to migrate node with "
+            throw cRuntimeError("SimpleNetConfigurator: Trying to migrate node with "
                       "nonexistent TransportAddress!");
         }
 
@@ -564,7 +564,7 @@ IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress a
         return addr;
 
     // FIXME use only IPv4?
-    IPvXAddress address = IPv4Address(nextFreeAddress++);
+    L3Address address = IPv4Address(nextFreeAddress++);
     EV << addr << " migrates to ";
     EV << address << "!" << endl;
 
@@ -575,7 +575,7 @@ IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress a
     cChannelType* txChan = cChannelType::find(type.channelTypesTx[chanIndex].c_str());
 
     if (!txChan || !rxChan)
-         opp_error("Could not find Channel Type. Most likely parameter "
+         throw cRuntimeError("Could not find Channel Type. Most likely parameter "
             "channelTypesRx or channelTypes does not match the channels defined in "
              "channels.ned");
 
@@ -604,13 +604,13 @@ IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress a
     SimpleUDP* simple = check_and_cast<SimpleUDP*> (gate->getOwnerModule());
     simple->setNodeEntry(newentry);
 
-    InterfaceEntry* ie = IPvXAddressResolver().interfaceTableOf(node)->
+    InterfaceEntry* ie = L3AddressResolver().interfaceTableOf(node)->
                                       getInterfaceByName("dummy interface");
     delete ie->ipv4Data();
 
     // Add pseudo-Interface to node's interfaceTable
     IPv4InterfaceData* ifdata = new IPv4InterfaceData;
-    ifdata->setIPAddress(address.get4());
+    ifdata->setIPAddress(address.toIPv4());
     ifdata->setNetmask(IPv4Address("255.255.255.255"));
     ie->setIPv4Data(ifdata);
 
@@ -627,9 +627,9 @@ IPvXAddress SimpleUnderlayConfigurator::migrateNode(NodeType type, IPvXAddress a
         globalNodeList->registerPeer(registrationPeer);
     }
 
-//    check_and_cast<>BaseRpc>(simulation.getModule(newinfo->getModuleID())->getSubmodule("tier1"));
+//    check_and_cast<>BaseRpc>((*getSimulation()).getModule(newinfo->getModuleID())->getSubmodule("tier1"));
     // inform the notification board about the migration
-    NotificationBoard* nb = check_and_cast<NotificationBoard*> (
+    cModule* nb = check_and_cast<cModule*> (
                                       node->getSubmodule("notificationBoard"));
     nb->fireChangeNotification(NF_OVERLAY_TRANSPORTADDRESS_CHANGED);
 
@@ -655,7 +655,7 @@ BaseLocation* SimpleUnderlayConfigurator::getNearLocation(const BaseLocation& ID
     return ret;
 }
 
-BaseLocation* SimpleUnderlayConfigurator::getLocation(IPvXAddress addr){
+BaseLocation* SimpleUnderlayConfigurator::getLocation(L3Address addr){
     SimpleInfo* info = dynamic_cast<SimpleInfo*> (globalNodeList->getPeerInfo(addr));
     BaseLocation* ret = info->getEntry()->getNodeRecord();
     return ret;

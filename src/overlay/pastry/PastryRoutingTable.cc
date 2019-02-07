@@ -72,7 +72,7 @@ const PastryExtendedNode& PastryRoutingTable::nodeAt(uint32_t row,
 
 const NodeHandle& PastryRoutingTable::lookupNextHop(const OverlayKey& destination)
 {
-    if (destination == owner.getKey()) opp_error("trying to lookup own key!");
+    if (destination == owner.getKey()) throw cRuntimeError("trying to lookup own key!");
 
     uint32_t shl = owner.getKey().sharedPrefixLength(destination) / bitsPerDigit;
     uint32_t digit = digitAt(shl, destination);
@@ -97,7 +97,7 @@ const NodeHandle& PastryRoutingTable::findCloserNode(const OverlayKey& destinati
                                                      bool optimize)
 {
     if (destination == owner.getKey())
-        opp_error("trying to find closer node to own key!");
+        throw cRuntimeError("trying to find closer node to own key!");
 
     const PastryExtendedNode* entry;
 
@@ -297,7 +297,7 @@ const TransportAddress& PastryRoutingTable::getRandomNode(int row)
 bool PastryRoutingTable::mergeNode(const NodeHandle& node, simtime_t prox)
 {
     if (node.getKey() == owner.getKey())
-        opp_error("trying to merge node with same key!");
+        throw cRuntimeError("trying to merge node with same key!");
 
     uint32_t shl;
     uint32_t digit;
