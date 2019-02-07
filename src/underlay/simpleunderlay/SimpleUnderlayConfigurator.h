@@ -34,6 +34,8 @@
 #include <SimpleInfo.h>
 #include <BaseLocation.h>
 
+using namespace inet;
+
 /**
  * Sets up a SimpleNetwork.
  * Adds overlay nodes to the network in init phase

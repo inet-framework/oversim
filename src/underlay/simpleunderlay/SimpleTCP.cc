@@ -56,7 +56,11 @@
 
 Define_Module( SimpleTCP );
 
+using namespace inet;
+using namespace inet::tcp;
 
+namespace inet {
+namespace tcp {
 
 static std::ostream& operator<<(std::ostream& os, const TCP::SockPair& sp)
 {
@@ -76,6 +80,9 @@ static std::ostream& operator<<(std::ostream& os, const TCPConnection& conn)
     os << "connId=" << conn.connId << " " << TCPConnection::stateName(conn.getFsmState())
        << " state={" << const_cast<TCPConnection&>(conn).getState()->info() << "}";
     return os;
+}
+
+}
 }
 
 void SimpleTCP::initialize(int stage)

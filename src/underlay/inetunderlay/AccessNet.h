@@ -29,12 +29,16 @@
 #include <common/InitStages.h>
 #include <inet/networklayer/common/L3Address.h>
 
+using namespace inet;
+
+namespace inet {
 class IInterfaceTable;
 class InterfaceEntry;
 class IRoutingTable;
 class IPv6RoutingTable;
 class IPv4Route;
 class IPv6Route;
+}
 
 /**
  * Structure to manipulate IPv6 addresses easily

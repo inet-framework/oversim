@@ -32,6 +32,8 @@
 #include "inet/common/INETDefs.h"
 #include <inet/networklayer/common/L3Address.h>
 
+using namespace inet;
+
 class TransportAddress;
 typedef std::vector<TransportAddress> TransportAddressVector;
 

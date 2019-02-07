@@ -29,6 +29,8 @@
 #include "inet/networklayer/contract/IInterfaceTable.h"
 #include "InterfaceTableAccess.h"
 
+using namespace inet;
+
 /**
  * RealworldDevice is a pseudo interface that allows communcation with the real world
  * through the TunOutScheduler

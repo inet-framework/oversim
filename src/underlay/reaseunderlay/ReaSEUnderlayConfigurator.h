@@ -35,8 +35,12 @@
 #include <UnderlayConfigurator.h>
 #include <ConnectReaSE.h>
 
+using namespace inet;
+
+namespace inet {
 class AccessInfo;
 class L3Address;
+}
 
 /**
  * Configurator module for the ReaSEUnderlay

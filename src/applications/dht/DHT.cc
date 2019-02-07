@@ -31,6 +31,8 @@
 
 Define_Module(DHT);
 
+using namespace inet;
+
 using namespace std;
 
 DHT::DHT()

@@ -42,6 +42,8 @@
 #include "inet/networklayer/ipv4/IPv4InterfaceData.h"
 #include "inet/networklayer/common/InterfaceEntry.h"
 
+using namespace inet;
+
 using std::vector;
 using std::map;
 using std::string;

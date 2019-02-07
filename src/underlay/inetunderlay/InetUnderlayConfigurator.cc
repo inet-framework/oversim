@@ -37,6 +37,8 @@
 
 #include <InetInfo.h>
 
+using namespace inet;
+
 Define_Module(InetUnderlayConfigurator);
 
 void InetUnderlayConfigurator::initializeUnderlay(int stage)

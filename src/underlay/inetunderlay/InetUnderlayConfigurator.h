@@ -31,6 +31,7 @@
 #include <UnderlayConfigurator.h>
 
 class L3Address;
+using namespace inet;
 
 /**
  * Configurator module for the InetUnderlay

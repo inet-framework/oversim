@@ -52,12 +52,14 @@
 #define EPHEMERAL_PORTRANGE_START 1024
 #define EPHEMERAL_PORTRANGE_END   5000
 
+using namespace inet;
 
 Define_Module( SimpleUDP );
 
 std::string SimpleUDP::delayFaultTypeString;
 std::map<std::string, SimpleUDP::delayFaultTypeNum> SimpleUDP::delayFaultTypeMap;
 
+namespace inet {
 
 static std::ostream & operator<<(std::ostream & os,
                                  const SimpleUDP::SockDesc& sd)
@@ -87,6 +89,7 @@ static std::ostream & operator<<(std::ostream & os,
     return os;
 }
 
+}
 
 //--------
 

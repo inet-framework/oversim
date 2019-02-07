@@ -25,6 +25,9 @@
 #include "inet/networklayer/common/L3Address.h"
 //#include <regmacros.h>
 
+using namespace inet;
+
+
 Register_Class(AppTunOutScheduler);
 
 // Note: this is defined in tunoutscheduler.cc

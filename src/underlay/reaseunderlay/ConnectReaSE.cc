@@ -34,6 +34,7 @@
 
 #include "ConnectReaSE.h"
 
+using namespace inet;
 using namespace ::std;
 
 Define_Module(ConnectReaSE);

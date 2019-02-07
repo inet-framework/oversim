@@ -27,6 +27,8 @@
 
 #include "BrooseHandle.h"
 
+using namespace inet;
+
 std::ostream& operator<<(std::ostream& os, const BrooseHandle& n)
 {
     if (n.isUnspecified()) {

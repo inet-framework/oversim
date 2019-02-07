@@ -49,6 +49,8 @@
 
 #include "SingleHostUnderlayConfigurator.h"
 
+using namespace inet;
+
 Define_Module(SingleHostUnderlayConfigurator);
 
 void SingleHostUnderlayConfigurator::initializeUnderlay(int stage)

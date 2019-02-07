@@ -25,6 +25,8 @@
 #include "inet/networklayer/ipv4/IPv4Datagram.h"
 #include "inet/transportlayer/udp/UDPPacket.h"
 
+using namespace inet;
+
 Define_Module(TunOutDevice);
 
 #if not defined _WIN32 && not defined __APPLE__

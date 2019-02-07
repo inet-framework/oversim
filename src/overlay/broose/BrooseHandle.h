@@ -26,6 +26,8 @@
 
 #include <NodeHandle.h>
 
+using namespace inet;
+
 class BrooseHandle : public NodeHandle
 {
  public: //fields

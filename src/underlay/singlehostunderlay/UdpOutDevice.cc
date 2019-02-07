@@ -30,6 +30,7 @@
 
 #include "UdpOutDevice.h"
 
+using namespace inet;
 
 Define_Module(UdpOutDevice);
 

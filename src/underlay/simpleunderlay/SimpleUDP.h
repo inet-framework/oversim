@@ -39,6 +39,8 @@
 
 #include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
 
+using namespace inet;
+
 class GlobalNodeList;
 class SimpleNodeEntry;
 class GlobalStatistics;
