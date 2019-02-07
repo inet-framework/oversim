@@ -29,7 +29,7 @@
 
 #include <OverlayKey.h>
 #include <TransportAddress.h>
-#include <inet/common/geometry/common/CoordinateSystem.h>
+#include "common/CoordinateSystem.h"
 
 class GlobalNodeList;
 

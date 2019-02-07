@@ -29,7 +29,7 @@
 
 #include <RpcListener.h>
 #include <Nps_m.h>
-#include <inet/common/geometry/common/CoordinateSystem.h>
+#include <common/CoordinateSystem.h>
 
 class CoordBasedRouting;
 

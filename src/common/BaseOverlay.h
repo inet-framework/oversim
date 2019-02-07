@@ -34,7 +34,7 @@
 #include <BaseTcpSupport.h>
 #include <IterativeLookupConfiguration.h>
 #include <RecursiveLookup.h>
-#include <inet/common/InitStages.h>
+#include <common/InitStages.h>
 
 class GlobalNodeList;
 class UnderlayConfigurator;

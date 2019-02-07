@@ -29,7 +29,7 @@
 #include "inet/common/INETDefs.h"
 
 #include <OverlayKey.h>
-#include <inet/common/InitStages.h>
+#include <common/InitStages.h>
 
 #include "GiaNode.h"
 #include "GiaKeyList.h"

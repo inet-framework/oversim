@@ -26,7 +26,7 @@
 
 #include "inet/common/INETDefs.h"
 
-#include <inet/common/InitStages.h>
+#include <common/InitStages.h>
 #include <inet/networklayer/common/L3Address.h>
 
 class IInterfaceTable;

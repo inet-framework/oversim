@@ -24,7 +24,7 @@
 #ifndef SIMPLEUNDERLAYNCS_H_
 #define SIMPLEUNDERLAYNCS_H_
 
-#include "inet/common/geometry/common/CoordinateSystem.h"
+#include "common/CoordinateSystem.h"
 #include <NeighborCache.h>
 
 class SimpleUnderlayNCS: public AbstractNcs

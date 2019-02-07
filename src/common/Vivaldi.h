@@ -31,7 +31,7 @@
 
 #include <GlobalStatisticsAccess.h>
 #include <NeighborCache.h>
-#include <inet/common/geometry/common/CoordinateSystem.h>
+#include <common/CoordinateSystem.h>
 
 class TransportAddress;
 

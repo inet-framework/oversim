@@ -105,7 +105,7 @@ void TCPExampleApp::handleTimerEvent(cMessage* msg)
 
         // get the address of one of the other nodes
         TransportAddress* addr = globalNodeList->getRandomAliveNode();
-        while ((addr != NULL) && (thisNode.getIp().equals(addr->getIp()))) {
+        while ((addr != NULL) && (thisNode.getIp() == addr->getIp())) {
             addr = globalNodeList->getRandomAliveNode();
         }
 

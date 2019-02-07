@@ -34,7 +34,6 @@
 #include <TransportAddress.h>
 
 //class hashFcn;
-class L3Address;
 
 /**
  * This class implements a node handle.<br>

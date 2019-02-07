@@ -32,7 +32,7 @@
 #include "inet/common/INETDefs.h"
 
 #include <NodeHandle.h>
-#include "inet/common/InitStages.h"
+#include "common/InitStages.h"
 #include <BinaryValue.h>
 
 struct P2pnsCacheEntry

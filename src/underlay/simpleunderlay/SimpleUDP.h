@@ -34,7 +34,7 @@
 #include <map>
 #include <list>
 
-#include <inet/common/InitStages.h>
+#include <common/InitStages.h>
 #include <inet/transportlayer/udp/UDP.h>
 
 #include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
