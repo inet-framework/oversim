@@ -22,6 +22,8 @@
 * @author Stephan Krause
 */
 
+#include "common/InitStages.h"
+
 #include "SimpleGameClient.h"
 
 Define_Module(SimpleGameClient);

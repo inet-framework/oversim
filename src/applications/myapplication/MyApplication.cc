@@ -29,6 +29,8 @@
 
 #include "MyApplication.h"
 
+#include "common/InitStages.h"
+
 Define_Module(MyApplication);
 
 // initializeApp() is called when the module is being created.

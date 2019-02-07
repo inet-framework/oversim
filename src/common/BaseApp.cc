@@ -21,6 +21,7 @@
  * @author Ingmar Baumgart, Bernhard Heep, Stephan Krause
  */
 
+#include <inet/common/ModuleAccess.h>
 #include <inet/networklayer/common/L3AddressResolver.h>
 #include <UDPAppBase.h>
 #include <inet/transportlayer/contract/udp/UDPSocket.h>

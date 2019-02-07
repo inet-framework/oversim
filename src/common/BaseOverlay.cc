@@ -30,6 +30,7 @@
 #include <RpcMacros.h>
 
 #include <UDPAppBase.h>
+#include <inet/common/ModuleAccess.h>
 #include <inet/transportlayer/contract/udp/UDPSocket.h>
 #include <inet/networklayer/common/L3AddressResolver.h>
 

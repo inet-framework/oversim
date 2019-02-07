@@ -24,6 +24,8 @@
 #include <inet/networklayer/common/L3AddressResolver.h>
 #include <CommonMessages_m.h>
 
+#include "common/InitStages.h"
+
 
 #include "RealWorldTestApp.h"
 #include "RealWorldTestMessage_m.h"
