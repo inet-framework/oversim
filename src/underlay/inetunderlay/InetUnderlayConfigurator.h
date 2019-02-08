@@ -27,10 +27,10 @@
 #include <set>
 
 #include "inet/common/INETDefs.h"
+#include "inet/networklayer/common/L3Address.h"
 
 #include <UnderlayConfigurator.h>
 
-class L3Address;
 using namespace inet;
 
 /**

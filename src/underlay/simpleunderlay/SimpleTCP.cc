@@ -224,7 +224,7 @@ void SimpleTCP::handleMessage(cMessage *msg)
             key.connId = connId;
             tcpAppConnMap[key] = conn;
 
-            tcpEV << "TCP connection created for " << msg << "\n";
+            EV << "TCP connection created for " << msg << "\n";
         }
         bool ret = conn->processAppCommand(msg);
         if (!ret)
@@ -344,7 +344,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
     tcpseg->setByteLength(tcpseg->getHeaderLength() +
                           tcpseg->getPayloadLength() + ipHeaderBytes);
 
-    tcpEV << "Sending: ";
+    EV << "Sending: ";
     printSegmentBrief(tcpseg);
 
     // TBD reuse next function for sending
@@ -435,7 +435,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
 
     /* main modifications for SimpleTCP end here */
 
-    if (!remoteAddr.getType() == L3Address::AddressType::IPv6)
+    if (!remoteAddr.getType() == L3Address::AddressType::IPv4)
     {
         // send over IPv4
         IPv4ControlInfo *controlInfo = new IPv4ControlInfo();

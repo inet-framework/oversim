@@ -27,6 +27,7 @@
 #include <inet/networklayer/common/L3AddressResolver.h>
 #include <BootstrapList.h>
 #include <LookupListener.h>
+#include "common/InitStages.h"
 
 using namespace std;
 

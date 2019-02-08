@@ -28,6 +28,7 @@
 
 #include <common/InitStages.h>
 #include <inet/networklayer/common/L3Address.h>
+#include <inet/networklayer/ipv4/IPv4Route.h>
 
 using namespace inet;
 
@@ -36,7 +37,6 @@ class IInterfaceTable;
 class InterfaceEntry;
 class IRoutingTable;
 class IPv6RoutingTable;
-class IPv4Route;
 class IPv6Route;
 }
 
@@ -49,7 +49,8 @@ public:
     uint32_t d0, d1, d2, d3;
 
     IPv6Words(L3Address addr) {
-        const uint32_t* words = addr.words();
+        IPv6Address ip6 = addr.toIPv6();
+        const uint32_t* words = ip6.words();
         d0 = words[0];
         d1 = words[1];
         d2 = words[2];
@@ -73,7 +74,7 @@ public:
     L3Address ipvxAddress; //!< the IP Address
     cModule* module; //!< pointer to node getModule(not this module)
     IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
-    IRoutingTable* routingTable; //!< pointer to routing table of this node
+    IIPv4RoutingTable* routingTable; //!< pointer to routing table of this node
     IPv6RoutingTable* routingTable6;
     simtime_t createdAt; //!< creation timestamp
 

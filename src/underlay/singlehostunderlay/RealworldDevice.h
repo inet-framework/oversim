@@ -27,7 +27,7 @@
 #include "RealworldConnector.h"
 
 #include "inet/networklayer/contract/IInterfaceTable.h"
-#include "InterfaceTableAccess.h"
+#include "inet/common/ModuleAccess.h"
 
 using namespace inet;
 

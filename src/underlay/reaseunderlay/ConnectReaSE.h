@@ -25,15 +25,17 @@
 #define CONNECTREASE_H_
 
 #include "inet/common/INETDefs.h"
+#include <inet/networklayer/common/InterfaceEntry.h>
+#include <inet/networklayer/contract/IInterfaceTable.h>
+#include <inet/networklayer/ipv4/IIPv4RoutingTable.h>
+#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
+#include <inet/networklayer/ipv4/IPv4Route.h>
 
 #include <common/InitStages.h>
 
+using namespace inet;
 
-class IInterfaceTable;
-class InterfaceEntry;
 class IRoutingTable;
-class IPv4Route;
-
 
 
 struct edgeRoutes
@@ -41,7 +43,7 @@ struct edgeRoutes
 public:
         int countPPPInterfaces;
         IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
-        IRoutingTable* routingTable; //!< pointer to routing table of this node
+        IIPv4RoutingTable* routingTable; //!< pointer to routing table of this node
         uint32_t IPv4Address; //!< the IP Address
         uint32_t lastIP;  //!< last assigned IP address FIXME: check overlays for side effects of reused IP addresses
         cModule* Router;
@@ -79,7 +81,7 @@ public:
     uint32_t IPv4Address; //!< the IP Address
     cModule* module;
     IInterfaceTable* interfaceTable; //!< pointer to interface table of this node
-    IRoutingTable* routingTable; //!< pointer to routing table of this node
+    IIPv4RoutingTable* routingTable; //!< pointer to routing table of this node
     cModule* PPPInterface; //!< pointer to PPP module
     cModule* remotePPPInterface; //!< pointer to remote PPP module
     InterfaceEntry* interfaceEntry; //!< pointer to interface entry

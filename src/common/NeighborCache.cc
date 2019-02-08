@@ -752,7 +752,7 @@ void NeighborCache::prepareOverlay()
 
 void NeighborCache::setCbrNodeId()
 {
-    const std::vector<double>& coords = ncs->getOwnNcsInfo().getCoords();
+    const Coords& coords = ncs->getOwnNcsInfo().getCoords();
     const AP* cap = (globalViewBuilder ? globalViewBuilder->getCAP() : NULL);
     thisNode.setKey(coordBasedRouting->getNodeId(coords,
                                                  overlay->getBitsPerDigit(),

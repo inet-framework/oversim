@@ -26,7 +26,7 @@
 
 #include "inet/common/INETDefs.h"
 
-#include <inet/networklayer/contract/IRoutingTable.h>
+#include <inet/networklayer/ipv4/IIPv4RoutingTable.h>
 #include <inet/networklayer/contract/IInterfaceTable.h>
 #include <inet/networklayer/ipv6/IPv6RoutingTable.h>
 #include <inet/networklayer/common/L3AddressResolver.h>
@@ -394,7 +394,7 @@ cModule* AccessNet::removeOverlayNode(int ID)
             IPv6Route* route = terminal.routingTable6->getRoute(i);
             if (route->getDestPrefix() == terminal.remoteInterfaceEntry->
                     ipv6Data()->getLinkLocalAddress()) {
-                terminal.routingTable6->purgeDestCacheEntriesToNeighbour(terminal.remoteInterfaceEntry->ipv6Data()->getLinkLocalAddress(), route->getInterfaceId());
+                terminal.routingTable6->purgeDestCacheEntriesToNeighbour(terminal.remoteInterfaceEntry->ipv6Data()->getLinkLocalAddress(), route->getInterface()->getInterfaceId());
                 terminal.routingTable6->removeRoute(route);
             }
         }
@@ -403,7 +403,7 @@ cModule* AccessNet::removeOverlayNode(int ID)
         for (int i = 0; i < router.routingTable6->getNumRoutes(); i++) {
             IPv6Route* route = router.routingTable6->getRoute(i);
             if (route->getDestPrefix() == terminal.ipvxAddress.toIPv6()) {
-                router.routingTable6->purgeDestCacheEntriesToNeighbour(terminal.interfaceEntry->ipv6Data()->getLinkLocalAddress(), route->getInterfaceId());
+                router.routingTable6->purgeDestCacheEntriesToNeighbour(terminal.interfaceEntry->ipv6Data()->getLinkLocalAddress(), route->getInterface()->getInterfaceId());
                 router.routingTable6->removeRoute(route);
                 break;
             }

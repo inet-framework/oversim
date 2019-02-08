@@ -77,7 +77,7 @@ struct nodeInfoRL
     IInterfaceTable *ift;
     InterfaceEntry *defaultRouteIE;
     int asId, asType, routerType, moduleId;
-    IRoutingTable *rt;
+    IIPv4RoutingTable *rt;
     IPv4Address addr;
     bool usesDefaultRoute;
     cModule *module;
@@ -90,7 +90,7 @@ struct nodeInfoRL
         module = node->getModule();
         moduleId = module->getId();
         ift = L3AddressResolver().findInterfaceTableOf(module);
-        rt = L3AddressResolver().findRoutingTableOf(module);
+        rt = L3AddressResolver().findIPv4RoutingTableOf(module);
         isIPNode = (rt != NULL);
         int index = 0;
         string fullPath = module->getFullPath();

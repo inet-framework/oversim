@@ -107,7 +107,7 @@ void SimpleUDP::initialize(int stage)
 {
     if(stage == MIN_STAGE_UNDERLAY) {
         WATCH_PTRMAP(socketsByIdMap);
-        WATCH_MAP(socketsByPortMap);
+        // WATCH_MAP(socketsByPortMap); //TODO KLUDGE
 
         lastEphemeralPort = EPHEMERAL_PORTRANGE_START;
         icmp = NULL;
@@ -395,7 +395,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 
     /* main modifications for SimpleUDP end here */
 
-    if (!destAddr.getType() == L3Address::AddressType::IPv6) {
+    if (!(destAddr.getType() == L3Address::AddressType::IPv6)) {
         // send directly to IPv4 gate of the destination node
         sendDirect(appData, totalDelay, 0, destEntry->getUdpIPv4Gate());
 

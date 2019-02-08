@@ -29,6 +29,7 @@
 #include "Broose.h"
 #include <map>
 #include <OverlayKey.h>
+#include "common/InitStages.h"
 
 class Broose;
 

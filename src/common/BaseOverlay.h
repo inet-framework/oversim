@@ -41,7 +41,6 @@ class UnderlayConfigurator;
 class BaseApp;
 class NodeHandle;
 class OverlayKey;
-class cModule;
 class AbstractLookup;
 class BootstrapList;
 

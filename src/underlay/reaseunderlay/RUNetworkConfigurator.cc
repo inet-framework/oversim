@@ -293,7 +293,7 @@ void RUNetworkConfigurator::assignAddressAndSetDefaultRoutes(nodeInfoAS &asInfo)
                 ie->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);
             }
         }
-        if (mapIt->second.rt->getRouterId().isUnspecified())
+        if (mapIt->second.rt->getRouterIdAsGeneric().isUnspecified())
             mapIt->second.rt->setRouterId(IPv4Address(currentIP));
         mapIt->second.addr.set(currentIP);
 

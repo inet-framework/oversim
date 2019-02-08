@@ -31,16 +31,14 @@
 #include <set>
 
 #include "inet/common/INETDefs.h"
+#include "inet/networklayer/common/L3Address.h"
 
 #include <UnderlayConfigurator.h>
 #include <ConnectReaSE.h>
 
 using namespace inet;
 
-namespace inet {
 class AccessInfo;
-class L3Address;
-}
 
 /**
  * Configurator module for the ReaSEUnderlay
