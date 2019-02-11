@@ -218,10 +218,9 @@ void GlobalNodeList::sendNotificationToAllPeers(int category)
     PeerHashMap::iterator it;
     for (it = peerStorage.begin(); it != peerStorage.end(); it++) {
         cModule* nb = check_and_cast<cModule*>(
-                (*getSimulation()).getModule(it->second.info->getModuleID())
-                ->getSubmodule("notificationBoard"));
+                (*getSimulation()).getModule(it->second.info->getModuleID()));
 
-        nb->fireChangeNotification(category);
+        nb->emit(category, (cObject*)nullptr);
     }
 }
 

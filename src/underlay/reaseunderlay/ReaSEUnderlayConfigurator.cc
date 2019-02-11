@@ -184,14 +184,12 @@ void ReaSEUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* add
     setDisplayString();
 
     // inform the notification board about the removal
-    cModule* nb = check_and_cast<cModule*>(
-            node->getSubmodule("notificationBoard"));
-    nb->fireChangeNotification(NF_OVERLAY_NODE_LEAVE);
+    node->emit(NF_OVERLAY_NODE_LEAVE, (cObject*)nullptr);
 
     double random = uniform(0, 1);
 
     if (random < gracefulLeaveProbability) {
-        nb->fireChangeNotification(NF_OVERLAY_NODE_GRACEFUL_LEAVE);
+        node->emit(NF_OVERLAY_NODE_GRACEFUL_LEAVE, (cObject*)nullptr);
     }
 
     cMessage* msg = new cMessage();
@@ -249,8 +247,7 @@ void ReaSEUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* add
     globalNodeList->addPeer(L3AddressResolver().addressOf(node), newinfo);
 
     // inform the notification board about the migration
-    cModule* nb = check_and_cast<cModule*>(node->getSubmodule("notificationBoard"));
-    nb->fireChangeNotification(NF_OVERLAY_TRANSPORTADDRESS_CHANGED);
+    node->emit(NF_OVERLAY_TRANSPORTADDRESS_CHANGED, (cObject*)nullptr);
 }
 
 void ReaSEUnderlayConfigurator::handleTimerEvent(cMessage* msg)
