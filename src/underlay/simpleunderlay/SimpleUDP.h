@@ -45,11 +45,13 @@ class GlobalNodeList;
 class SimpleNodeEntry;
 class GlobalStatistics;
 
+namespace inet {
 class IPv4ControlInfo;
 class IPv6ControlInfo;
 class ICMP;
 class ICMPv6;
 class UDPPacket;
+}
 
 /**
  * Implements the UDP protocol: encapsulates/decapsulates user data into/from UDP.

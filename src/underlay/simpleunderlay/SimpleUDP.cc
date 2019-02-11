@@ -66,7 +66,7 @@ static std::ostream & operator<<(std::ostream & os,
 {
     os << "sockId=" << sd.sockId;
     os << " appGateIndex=" << sd.appGateIndex;
-    os << " userId=" << sd.userId;
+//    os << " userId=" << sd.userId;    //TODO KLUDGE
     os << " localPort=" << sd.localPort;
     if (sd.remotePort!=0)
         os << " remotePort=" << sd.remotePort;
@@ -74,8 +74,8 @@ static std::ostream & operator<<(std::ostream & os,
         os << " localAddr=" << sd.localAddr;
     if (!sd.remoteAddr.isUnspecified())
         os << " remoteAddr=" << sd.remoteAddr;
-    if (sd.interfaceId!=-1)
-        os << " interfaceId=" << sd.interfaceId;
+//    if (sd.interfaceId!=-1)
+//        os << " interfaceId=" << sd.interfaceId;      //TODO KLUDGE
 
     return os;
 }
@@ -189,7 +189,7 @@ void SimpleUDP::sendUp(cPacket *payload, UDPControlInfo *udpCtrl, SockDesc *sd)
 {
     // send payload with UDPControlInfo up to the application
     udpCtrl->setSockId(sd->sockId);
-    udpCtrl->setUserId(sd->userId);
+//    udpCtrl->setUserId(sd->userId);   //TODO KLUDGE
     payload->setControlInfo(udpCtrl);
 
     send(payload, "appOut", sd->appGateIndex);
@@ -212,7 +212,7 @@ void SimpleUDP::processUDPPacket(cPacket *udpPacket)
     int srcPort, destPort;
     L3Address srcAddr, destAddr;
 
-    UDPControlInfo *ctrl = check_and_cast<UDPControlInfo *>(udpPacket->removeControlInfo());
+    UDPDataIndication *ctrl = check_and_cast<UDPDataIndication *>(udpPacket->removeControlInfo());
 
     srcPort = ctrl->getSrcPort();
     destPort = ctrl->getDestPort();
@@ -282,7 +282,7 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 
     L3Address srcAddr, destAddr;
 
-    UDPControlInfo *udpCtrl = check_and_cast<UDPControlInfo *>(appData->getControlInfo());
+    UDPSendCommand *udpCtrl = check_and_cast<UDPSendCommand *>(appData->getControlInfo());
 
     srcAddr = udpCtrl->getSrcAddr();
     destAddr = udpCtrl->getDestAddr();
