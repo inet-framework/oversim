@@ -161,7 +161,7 @@ void SimpleTCP::handleMessage(cMessage *msg)
     {
         if (dynamic_cast<ICMPMessage *>(msg) || dynamic_cast<ICMPv6Message *>(msg))
         {
-            tcpEV << "ICMP error received -- discarding\n"; // FIXME can ICMP packets really make it up to TCP???
+            EV << "ICMP error received -- discarding\n"; // FIXME can ICMP packets really make it up to TCP???
             delete msg;
         }
         else
@@ -544,7 +544,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address 
 
     /* main modifications for SimpleTCP end here */
 
-    tcpEV << "Sending: ";
+    EV << "Sending: ";
     printSegmentBrief(tcpseg);
 
     if (!dest.getType() == L3Address::AddressType::IPv6)
