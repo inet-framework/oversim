@@ -27,6 +27,7 @@
 #include <oversim_mapset.h>
 
 #include "inet/common/INETDefs.h"
+#include "inet/transportlayer/contract/udp/UDPSocket.h"
 
 #include <NodeVector.h>
 #include <TopologyVis.h>
@@ -836,7 +837,7 @@ private:
     CompModuleList compModuleList;
     bool internalReadyState; /**< internal overlay state used for setOverlayReady() */
 
-    int socketId;
+    UDPSocket *udpSocket = nullptr;
 };
 
 #endif

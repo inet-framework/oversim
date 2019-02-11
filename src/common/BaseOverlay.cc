@@ -474,13 +474,10 @@ void BaseOverlay::bindToPort(int port)
 
     // TODO UDPAppBase should be ported to use UDPSocket sometime, but for now
     // we just manage the UDP socket by hand...
-    cMessage *msg = new cMessage("UDP_C_BIND", UDP_C_BIND);
-    socketId = UDPSocket::generateSocketId();
-    UDPControlInfo *ctrl = new UDPControlInfo();
-    ctrl->setSrcPort(port);
-    ctrl->setSockId(socketId);
-    msg->setControlInfo(ctrl);
-    send(msg, "udpOut");
+    delete udpSocket;
+    udpSocket = new UDPSocket();
+    udpSocket->setOutputGate(gate("udpOut"));
+    udpSocket->bind(port);
 }
 
 
@@ -628,12 +625,8 @@ void BaseOverlay::join(const OverlayKey& nodeID)
             }
         }
     } else if (state == READY && !nodeID.isUnspecified()) { // TODO dCBR
-        cMessage *msg = new cMessage("UDP_C_UNBIND", UDP_C_UNBIND);
-        UDPControlInfo *ctrl = new UDPControlInfo();
-        ctrl->setSrcPort(thisNode.getPort());
-        ctrl->setSockId(socketId);
-        msg->setControlInfo(ctrl);
-        send(msg, "udpOut");
+        ASSERT(udpSocket != nullptr);
+        udpSocket->close();
         bindToPort((thisNode.getPort() + 10) % 0xFFFF); // test
         thisNode.setKey(nodeID);
     }
@@ -729,8 +722,8 @@ int BaseOverlay::getMaxNumRedundantNodes()
 void BaseOverlay::handleMessage(cMessage* msg)
 {
     if (msg->getArrivalGate() == udpGate) {
-        UDPControlInfo* udpControlInfo =
-            check_and_cast<UDPControlInfo*>(msg->removeControlInfo());
+        UDPDataIndication* udpControlInfo =
+            check_and_cast<UDPDataIndication*>(msg->removeControlInfo());
         OverlayCtrlInfo* overlayCtrlInfo = new OverlayCtrlInfo;
         overlayCtrlInfo->setLastHop(TransportAddress(
                                         udpControlInfo->getSrcAddr(),
@@ -1199,13 +1192,11 @@ void BaseOverlay::sendMessageToUDP(const TransportAddress& dest,
         << endl;
     }
 
-    msg->setKind(UDP_C_DATA);
-    UDPControlInfo* udpControlInfo = new UDPControlInfo();
-    udpControlInfo->setSrcAddr(thisNode.getIp());
-    udpControlInfo->setSrcPort(thisNode.getPort());
-    udpControlInfo->setDestAddr(dest.getIp());
-    udpControlInfo->setDestPort(dest.getPort());
-    msg->setControlInfo(udpControlInfo);
+    ASSERT(udpSocket != nullptr);
+    UDPSocket::SendOptions options;
+    options.srcAddr = thisNode.getIp();
+    udpSocket->sendTo(msg, dest.getIp(), dest.getPort(), &options);
+    //udpControlInfo->setSrcPort(thisNode.getPort());
 
     if (dest != thisNode) {
         BaseOverlayMessage* baseOverlayMsg
