@@ -61,8 +61,8 @@ std::map<std::string, SimpleUDP::delayFaultTypeNum> SimpleUDP::delayFaultTypeMap
 
 namespace inet {
 
-static std::ostream & operator<<(std::ostream & os,
-                                 const SimpleUDP::SockDesc& sd)
+inline std::ostream & operator<<(std::ostream & os,
+                                 const inet::UDP::SockDesc& sd)
 {
     os << "sockId=" << sd.sockId;
     os << " appGateIndex=" << sd.appGateIndex;
@@ -80,8 +80,7 @@ static std::ostream & operator<<(std::ostream & os,
     return os;
 }
 
-static std::ostream & operator<<(std::ostream & os,
-                                 const SimpleUDP::SockDescList& list)
+static std::ostream & operator<<(std::ostream & os, const UDP::SockDescList& list)
 {
     for (SimpleUDP::SockDescList::const_iterator i=list.begin();
      i!=list.end(); ++i)
@@ -107,7 +106,7 @@ void SimpleUDP::initialize(int stage)
 {
     if(stage == MIN_STAGE_UNDERLAY) {
         WATCH_PTRMAP(socketsByIdMap);
-        // WATCH_MAP(socketsByPortMap); //TODO KLUDGE
+        WATCH_MAP(socketsByPortMap);
 
         lastEphemeralPort = EPHEMERAL_PORTRANGE_START;
         icmp = NULL;
@@ -239,9 +238,6 @@ void SimpleUDP::processUDPPacket(cPacket *udpPacket)
         return;
     }
 
-    SockDescList& list = it->second;
-    int matches = 0;
-
     // deliver a copy of the packet to each matching socket
 
     if (destAddr.getType() == L3Address::AddressType::IPv6)
@@ -253,26 +249,15 @@ void SimpleUDP::processUDPPacket(cPacket *udpPacket)
     {
     	udpPacket->setByteLength(udpPacket->getByteLength() - UDP_HEADER_BYTES - IP_HEADER_BYTES);
     }
-    for (SockDescList::iterator it=list.begin(); it!=list.end(); ++it)
-	{
-		SockDesc *sd = *it;
-		if (sd->onlyLocalPortIsSet || matchesSocket(sd, destAddr, srcAddr, srcPort))
-		{
-			if (matches == 0) {
-				sendUp(udpPacket, ctrl, sd);
-			} else {
-				throw cRuntimeError("Edit SimpleUDP.cc to support multibinding.");
-			}
-			matches++;
-		}
-	}
 
-    // send back ICMP error if there is no matching socket
-    if (matches==0)
-    {
-        EV << "None of the sockets on port " << destPort << " matches the packet\n";
+    SockDesc *sd = findSocketForUnicastPacket(destAddr, destPort, srcAddr, srcPort);
+    if (!sd) {
+        EV_WARN << "No socket registered on port " << destPort << "\n";
         processUndeliverablePacket(udpPacket, ctrl);
         return;
+    }
+    else {
+        sendUp(udpPacket, ctrl, sd);
     }
 }
 

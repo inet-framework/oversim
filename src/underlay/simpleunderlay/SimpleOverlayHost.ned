@@ -38,6 +38,7 @@ module SimpleOverlayHost
         string tier2Type; // tier 2 module to use
         string tier3Type; // tier 3 module to use
         int numTiers; // number of tiers
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
 
         @display("bgb=433,386;i=device/wifilaptop_l;i2=block/circle_s");
     gates:

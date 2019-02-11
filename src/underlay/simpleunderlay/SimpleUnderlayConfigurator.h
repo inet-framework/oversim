@@ -25,7 +25,8 @@
 #define __SIMPLEUNDERLAYCONFIGURATOR_H__
 
 #include "inet/common/INETDefs.h"
-#include <BasicModule.h>
+#include <inet/networklayer/common/L3Address.h>
+
 #include <deque>
 #include <set>
 

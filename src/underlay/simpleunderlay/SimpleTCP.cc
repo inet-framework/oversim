@@ -62,20 +62,20 @@ using namespace inet::tcp;
 namespace inet {
 namespace tcp {
 
-static std::ostream& operator<<(std::ostream& os, const TCP::SockPair& sp)
+std::ostream& operator<<(std::ostream& os, const TCP::SockPair& sp)
 {
-    os << "loc=" << L3Address(sp.localAddr) << ":" << sp.localPort << " "
-       << "rem=" << L3Address(sp.remoteAddr) << ":" << sp.remotePort;
+    os << "loc=" << sp.localAddr << ":" << sp.localPort << " "
+       << "rem=" << sp.remoteAddr << ":" << sp.remotePort;
     return os;
 }
 
-static std::ostream& operator<<(std::ostream& os, const TCP::AppConnKey& app)
+std::ostream& operator<<(std::ostream& os, const TCP::AppConnKey& app)
 {
     os << "connId=" << app.connId << " appGateIndex=" << app.appGateIndex;
     return os;
 }
 
-static std::ostream& operator<<(std::ostream& os, const TCPConnection& conn)
+std::ostream& operator<<(std::ostream& os, const TCPConnection& conn)
 {
     os << "connId=" << conn.connId << " " << TCPConnection::stateName(conn.getFsmState())
        << " state={" << const_cast<TCPConnection&>(conn).getState()->info() << "}";
@@ -97,8 +97,6 @@ void SimpleTCP::initialize(int stage)
         recordStatistics = par("recordStats");
 
         cModule *netw = (*getSimulation()).getSystemModule();
-        testing = netw->hasPar("testing") && netw->par("testing").boolValue();
-        logverbose = !testing && netw->hasPar("logverbose") && netw->par("logverbose").boolValue();
 
         // start of modifications
 
@@ -230,9 +228,6 @@ void SimpleTCP::handleMessage(cMessage *msg)
         if (!ret)
             removeConnection(conn);
     }
-
-    if (hasGUI())
-        updateDisplayString();
 }
 
 void SimpleTCP::setNodeEntry(SimpleNodeEntry* entry)
@@ -435,7 +430,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
 
     /* main modifications for SimpleTCP end here */
 
-    if (!remoteAddr.getType() == L3Address::AddressType::IPv4)
+    if (remoteAddr.getType() == L3Address::AddressType::IPv4)
     {
         // send over IPv4
         IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
@@ -547,7 +542,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address 
     EV << "Sending: ";
     printSegmentBrief(tcpseg);
 
-    if (!dest.getType() == L3Address::AddressType::IPv6)
+    if (dest.getType() == L3Address::AddressType::IPv6)
     {
         // send over IPv4
         IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
@@ -558,7 +553,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address 
 
         check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv4Gate());
     }
-    else
+    else if (dest.getType() == L3Address::AddressType::IPv6)
     {
         // send over IPv6
         IPv6ControlInfo *controlInfo = new IPv6ControlInfo();
@@ -569,4 +564,6 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address 
 
         check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv6Gate());
     }
+    else
+        throw cRuntimeError("unknown AddressType");
 }

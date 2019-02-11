@@ -27,10 +27,8 @@
 
 
 #include "inet/common/INETDefs.h"
-#include <BasicModule.h>
 
 #include <UnderlayConfigurator.h>
-#include <inet/common/InitStages.h>
 
 
 class SingleHostUnderlayConfigurator : public UnderlayConfigurator
