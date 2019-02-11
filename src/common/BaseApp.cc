@@ -166,8 +166,8 @@ void BaseApp::handleMessage(cMessage* msg)
         RECORD_STATS(numUdpReceived++; bytesUdpReceived += packet->getByteLength());
         // debug message
         if (debugOutput && !getEnvir()->isExpressMode()) {
-            UDPControlInfo* udpControlInfo =
-                check_and_cast<UDPControlInfo*>(msg->getControlInfo());
+            UDPDataIndication* udpControlInfo =
+                check_and_cast<UDPDataIndication*>(msg->getControlInfo());
             EV << "[BaseApp:handleMessage() @ " << thisNode.getIp()
             << " (" << overlay->getThisNode().getKey().toString(16) << ")]\n"
             << "    Received " << *msg << " from "
