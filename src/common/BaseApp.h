@@ -32,6 +32,7 @@ class OverlayKey;
 class CommonAPIMessage;
 
 #include "inet/common/INETDefs.h"
+#include <inet/transportlayer/contract/udp/UDPSocket.h>
 
 #include "NodeVector.h"
 #include <BaseRpc.h>
@@ -344,6 +345,7 @@ protected:
 
     cModule* notificationBoard; /**< pointer to
                                                cModule in this node */
+    UDPSocket *udpSocket = nullptr;
 
     // parameters
     bool debugOutput; /**< debug output yes/no?*/

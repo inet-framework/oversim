@@ -1193,10 +1193,14 @@ void BaseOverlay::sendMessageToUDP(const TransportAddress& dest,
     }
 
     ASSERT(udpSocket != nullptr);
-    UDPSocket::SendOptions options;
-    options.srcAddr = thisNode.getIp();
-    udpSocket->sendTo(msg, dest.getIp(), dest.getPort(), &options);
-    //udpControlInfo->setSrcPort(thisNode.getPort());
+    msg->setKind(UDP_C_DATA);
+    UDPSendCommand* udpControlInfo = new UDPSendCommand();
+    udpControlInfo->setSockId(udpSocket->getSocketId());
+    udpControlInfo->setSrcAddr(thisNode.getIp());
+    // udpControlInfo->setSrcPort(thisNode.getPort());
+    udpControlInfo->setDestAddr(dest.getIp());
+    udpControlInfo->setDestPort(dest.getPort());
+    msg->setControlInfo(udpControlInfo);
 
     if (dest != thisNode) {
         BaseOverlayMessage* baseOverlayMsg

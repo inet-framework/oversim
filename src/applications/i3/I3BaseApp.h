@@ -27,6 +27,7 @@
 
 
 #include "inet/common/INETDefs.h"
+#include <inet/transportlayer/contract/udp/UDPSocket.h>
 #include <UDPAppBase.h>
 
 
@@ -146,10 +147,10 @@ protected:
     void sendToI3(I3Message *msg);
 
     /** Sends a message through UDP
-      * @param msg Message to be sent
+      * @param msg cPacket to be sent
       * @param ip IP of destination
       */
-    void sendThroughUDP(cMessage *msg, const I3IPAddress &ip);
+    void sendThroughUDP(cPacket *msg, const I3IPAddress &ip);
 
     /** Refreshes (reinserts) stored triggers */
     void refreshTriggers();
@@ -213,8 +214,7 @@ protected:
 
 private:
     bool mobilityInStages;
-
-
+    UDPSocket udpSocket;
 };
 
 #endif

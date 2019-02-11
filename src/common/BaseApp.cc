@@ -515,12 +515,11 @@ void BaseApp::bindToPort(int port)
 
     thisNode.setPort(port);
 
-    cMessage *msg = new cMessage("UDP_C_BIND", UDP_C_BIND);
-    UDPControlInfo *ctrl = new UDPControlInfo();
-    ctrl->setSrcPort(port);
-    ctrl->setSockId(UDPSocket::generateSocketId());
-    msg->setControlInfo(ctrl);
-    send(msg, "udpOut");
+    delete udpSocket;
+
+    udpSocket = new UDPSocket();
+    udpSocket->setOutputGate(gate("udpOut"));
+    udpSocket->bind(port);
 }
 
 void BaseApp::sendMessageToUDP(const TransportAddress& destAddr, cPacket *msg,
@@ -528,13 +527,15 @@ void BaseApp::sendMessageToUDP(const TransportAddress& destAddr, cPacket *msg,
 {
     // send message to UDP, with the appropriate control info attached
     msg->removeControlInfo();
-    msg->setKind(UDP_C_DATA);
 
-    UDPControlInfo *ctrl = new UDPControlInfo();
-    ctrl->setSrcPort(thisNode.getPort());
-    ctrl->setSrcAddr(thisNode.getIp());
+    ASSERT(udpSocket != nullptr);
+
+    msg->setKind(UDP_C_DATA);
+    UDPSendCommand *ctrl = new UDPSendCommand();
+    ctrl->setSockId(udpSocket->getSocketId());
     ctrl->setDestAddr(destAddr.getIp());
     ctrl->setDestPort(destAddr.getPort());
+    ctrl->setSrcAddr(thisNode.getIp());
     msg->setControlInfo(ctrl);
 
     if (hasGUI()) {
@@ -607,8 +608,8 @@ void BaseApp::internalSendRpcResponse(BaseCallMessage* call,
             destNode = &NodeHandle::UNSPECIFIED_NODE;
         }
     } else {
-        UDPControlInfo* udpCtrlInfo =
-            check_and_cast<UDPControlInfo*>(call->getControlInfo());
+        UDPDataIndication* udpCtrlInfo =
+            check_and_cast<UDPDataIndication*>(call->getControlInfo());
 
         tempNode = TransportAddress(udpCtrlInfo->getSrcAddr(), udpCtrlInfo->getSrcPort());
         destNode = &tempNode;

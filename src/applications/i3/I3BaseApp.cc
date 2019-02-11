@@ -73,7 +73,8 @@ void I3BaseApp::initialize(int stage)
 
     nodeIPAddress = L3AddressResolver().addressOf(getParentModule());
 
-    bindToPort(par("clientPort"));
+    udpSocket.setOutputGate(gate("udpOut"));
+    udpSocket.bind(par("clientPort"));
     /*    getContainingNode(this)->subscribe(NF_HOSTPOSITION_BEFOREUPDATE, this));
         getContainingNode(this)->subscribe(NF_HOSTPOSITION_UPDATED, this));*/
 
@@ -244,20 +245,14 @@ void I3BaseApp::sendToI3(I3Message *msg)
     sendThroughUDP(msg, gateway.address);
 }
 
-void I3BaseApp::sendThroughUDP(cMessage *msg, const I3IPAddress &add)
+void I3BaseApp::sendThroughUDP(cPacket *msg, const I3IPAddress &add)
 {
     msg->removeControlInfo();
     msg->setKind(UDP_C_DATA);
 
-    UDPControlInfo* udpControlInfo = new UDPControlInfo();
-    udpControlInfo->setSrcAddr(nodeIPAddress);
-    udpControlInfo->setSrcPort(par("clientPort"));
-
-    udpControlInfo->setDestAddr(add.getIp());
-    udpControlInfo->setDestPort(add.getPort());
-
-    msg->setControlInfo(udpControlInfo);
-    send(msg, "udpOut");
+    UDPSocket::SendOptions options;
+    options.srcAddr = nodeIPAddress;
+    udpSocket.sendTo(msg, add.getIp(), add.getPort(), &options);
 }
 
 void I3BaseApp::refreshTriggers()
