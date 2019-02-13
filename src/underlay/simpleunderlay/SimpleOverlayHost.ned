@@ -41,10 +41,17 @@ module SimpleOverlayHost
         int numTiers; // number of tiers
         *.interfaceTableModule = default(absPath(".interfaceTable"));
 
-        @display("bgb=433,386;i=device/wifilaptop_l;i2=block/circle_s");
+        @display("bgb=433,400;i=device/wifilaptop_l;i2=block/circle_s");
     gates:
         input overlayNeighborArrowIn[]; // incoming gate for visualizing overlay neighborship with connection arrows
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
+
+    types:
+        module DummyNic
+        {
+            @nic;
+            @display("bgb=63,45");
+        }
 
     submodules:
         tier3: <tier3Type> like ITier {
@@ -86,6 +93,10 @@ module SimpleOverlayHost
         bootstrapList: BootstrapList {
             parameters:
                 @display("p=179,232");
+        }
+        dummyNic: DummyNic {
+            parameters:
+                @display("p=333,363");
         }
     connections allowunconnected:
         tier1.to_lowerTier --> overlay.appIn if numTiers > 0;

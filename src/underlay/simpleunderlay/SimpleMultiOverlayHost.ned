@@ -25,6 +25,7 @@ import oversim.common.ITier;
 import oversim.common.NeighborCache;
 
 
+
 //
 // Host in the simple network that participates in the overlay
 //
@@ -43,13 +44,20 @@ module SimpleMultiOverlayHost
         string routingFile = default("");
         bool forwarding = default(false);
 
-        @display("bgb=433,386");
+        @display("bgb=433,440");
         *.interfaceTableModule = default(absPath(".interfaceTable"));
     gates:
         input overlayNeighborArrowIn[]; // incoming gate for visualizing overlay neighborship with connection arrows
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
         output out; // Dummy gate for storing channel informations
         input in; // Dummy gate for connecting out
+
+    types:
+        module DummyNic
+        {
+            @nic;
+            @display("bgb=63,60");
+        }
 
     submodules:
         tier3[numOverlayModulesPerNode]: <tier3Type> like ITier {
@@ -91,8 +99,12 @@ module SimpleMultiOverlayHost
         bootstrapList: BootstrapList {
             parameters:
                 @display("p=168,239");
-
         }
+        dummyNic: DummyNic {
+            parameters:
+                @display("p=331,385");
+        }
+
     connections allowunconnected:
         bootstrapList.udpOut --> udp.appIn++;
         bootstrapList.udpIn <-- udp.appOut++;

@@ -189,6 +189,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
         nodeRecordPool[volunteer].second = false;
     }
 
+    cModule *dummyNic = check_and_cast<cModule*> (node->getSubmodule("dummyNic"));  //FIXME KLUDGE should be exist a NIC module for InterfaceEntry
     SimpleUDP* simpleUdp = check_and_cast<SimpleUDP*> (node->getSubmodule("udp"));
     simpleUdp->setNodeEntry(entry);
     SimpleTCP* simpleTcp = dynamic_cast<SimpleTCP*> (node->getSubmodule("tcp", 0));
@@ -202,7 +203,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
         ifdata->assignAddress(addr.toIPv6(),false, 0, 0);
         IPv6InterfaceData::AdvPrefix prefix = IPv6InterfaceData::AdvPrefix(addr.toIPv6(), 64);
         ifdata->addAdvPrefix(prefix);
-        InterfaceEntry* e = new InterfaceEntry(NULL);
+        InterfaceEntry* e = new InterfaceEntry(dummyNic);
         e->setName("dummy interface");
         e->setIPv6Data(ifdata);
         L3AddressResolver().interfaceTableOf(node)->addInterface(e);
@@ -211,7 +212,7 @@ TransportAddress* SimpleUnderlayConfigurator::createNode(NodeType type,
         IPv4InterfaceData* ifdata = new IPv4InterfaceData;
         ifdata->setIPAddress(addr.toIPv4());
         ifdata->setNetmask(IPv4Address("255.255.255.255"));
-        InterfaceEntry* e = new InterfaceEntry(NULL);
+        InterfaceEntry* e = new InterfaceEntry(dummyNic);
         e->setName("dummy interface");
         e->setIPv4Data(ifdata);
 
