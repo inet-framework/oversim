@@ -33,8 +33,8 @@ simple UdpOutDevice like RealworldDevice
         int mtu; // maximum transmission unit of the underlaying network
 
     gates:
-        input netwIn;    // incoming gate from network
-        output netwOut;    // outgoing gate to network
+        input upperLayerIn;    // incoming gate from network
+        output upperLayerOut;    // outgoing gate to network
 }
 
 
