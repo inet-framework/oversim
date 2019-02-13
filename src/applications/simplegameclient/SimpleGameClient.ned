@@ -37,7 +37,7 @@ simple SimpleGameClient extends BaseApp
         string movementGenerator;  // responsible for different movement models
                                    // (randomRoaming, groupRoaming, greatGathering, realWorldRoaming)
         int groupSize;         // clients per group
-        int mtu;               // maximum transmission unit
+        int mtu @unit(B);          // maximum transmission unit
 }
 
 module SimpleGameClientModules like ITier
