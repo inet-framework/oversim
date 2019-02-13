@@ -37,6 +37,7 @@ import oversim.common.NeighborCache;
 module InetOverlayHost
 {
     parameters:
+        @networkNode;
         string overlayType; // overlay protocol compound module to use
         string tier1Type; // tier 1 application to use
         string tier2Type; // tier 2 module to use
