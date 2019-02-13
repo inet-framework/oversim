@@ -26,6 +26,7 @@
 
 
 #include "inet/common/INETDefs.h"
+#include <inet/common/ModuleAccess.h>
 
 #include <BaseOverlay.h>
 
@@ -48,12 +49,12 @@ public:
         // this will fail if the overlay is not in a container module!
         while (true) {
             tmpParent = tmpMod->getParentModule(); // get parent
-            // search for a "notificationBoard" module
-            cModule *notBoard = tmpParent->getSubmodule("notificationBoard"); 
-            // is this a real cModule? then we're at root
-            if (dynamic_cast<cModule*>(notBoard) != NULL) break; 
+            // is this a networkNode? then we're at root
+            if (isNetworkNode(tmpParent))
+                break;
             tmpMod = tmpParent; // else keep going up
-            if (!tmpParent) throw cRuntimeError("OverlayAccess::get(): Overlay module not found!");
+            if (!tmpParent)
+                throw cRuntimeError("OverlayAccess::get(): Overlay module not found!");
         }
         // get the overlay container, with the proper index
         cModule *overlayContainer = tmpParent->getSubmodule("overlay", tmpMod->getIndex()); 
