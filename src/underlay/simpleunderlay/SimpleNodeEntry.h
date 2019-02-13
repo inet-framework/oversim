@@ -99,19 +99,9 @@ public:
      *
      * @return the ingate
      */
-    inline cGate* getUdpIPv4Gate() const
+    inline cGate* getUdpIpGate() const
     {
-        return UdpIPv4ingate;
-    };
-
-    /**
-     * Getter for SimpleUDP IPv6 ingate
-     *
-     * @return the ingate
-     */
-    inline cGate* getUdpIPv6Gate() const
-    {
-        return UdpIPv6ingate;
+        return udpIpIngate;
     };
 
     /**
@@ -119,19 +109,9 @@ public:
      *
      * @return the ingate
      */
-    inline cGate* getTcpIPv4Gate() const
+    inline cGate* getTcpIpGate() const
     {
-        return TcpIPv4ingate;
-    };
-
-    /**
-     * Getter for SimpleUDP IPv6 ingate
-     *
-     * @return the ingate
-     */
-    inline cGate* getTcpIPv6Gate() const
-    {
-        return TcpIPv6ingate;
+        return tcpIpIngate;
     };
 
     typedef std::pair<simtime_t, bool> SimpleDelay; //!< type for return value of calcDelay()
@@ -213,10 +193,8 @@ protected:
      */
     float operator-(const SimpleNodeEntry& entry) const;
 
-    cGate* UdpIPv4ingate; //!< IPv4 ingate of the SimpleUDP module of this terminal
-    cGate* UdpIPv6ingate; //!< IPv6 ingate of the SimpleUDP module of this terminal
-    cGate* TcpIPv4ingate; //!< IPv4 ingate of the SimpleTCP module of this terminal
-    cGate* TcpIPv6ingate; //!< IPv6 ingate of the SimpleTCP module of this terminal
+    cGate* udpIpIngate; //!< IPv4/IPv6 ingate of the SimpleUDP module of this terminal
+    cGate* tcpIpIngate; //!< IPv4 ingate of the SimpleTCP module of this terminal
 
     struct Channel {
         simtime_t finished; //!< node send queue nodeTxfinished

@@ -345,7 +345,7 @@ void SimpleUnderlayConfigurator::preKillNode(NodeType type, TransportAddress* ad
     }
 
     uint32_t effectiveType = info->getTypeID();
-    cGate* gate = entry->getUdpIPv4Gate();
+    cGate* gate = entry->getUdpIpGate();
 
     cModule* node = gate->getOwnerModule()->getParentModule();
 
@@ -403,7 +403,7 @@ void SimpleUnderlayConfigurator::migrateNode(NodeType type, TransportAddress* ad
         entry = info->getEntry();
     }
 
-    cGate* gate = entry->getUdpIPv4Gate();
+    cGate* gate = entry->getUdpIpGate();
     cModule* node = gate->getOwnerModule()->getParentModule();
 
     // do not migrate node that is already scheduled
@@ -488,7 +488,7 @@ void SimpleUnderlayConfigurator::handleTimerEvent(cMessage* msg)
                             "node with unknown TransportAddress!");
     }
 
-    cGate* gate = entry->getUdpIPv4Gate();
+    cGate* gate = entry->getUdpIpGate();
     cModule* node = gate->getOwnerModule()->getParentModule();
 
     if (useXmlCoords) {
@@ -552,7 +552,7 @@ L3Address SimpleUnderlayConfigurator::migrateNode(NodeType type, L3Address addr,
     entry->setX(location->coords[0]);
     entry->setY(location->coords[1]);
 
-    cGate* gate = entry->getUdpIPv4Gate();
+    cGate* gate = entry->getUdpIpGate();
     cModule* node = gate->getOwnerModule()->getParentModule();
 
     // do not migrate node that is already scheduled

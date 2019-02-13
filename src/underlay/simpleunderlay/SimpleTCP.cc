@@ -439,7 +439,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
         controlInfo->setDestAddr(dest.toIPv4());
         tcpseg->setControlInfo(controlInfo);
 
-        tcpMain->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv4Gate());
+        tcpMain->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIpGate());
     }
     else
     {
@@ -450,7 +450,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg)
         controlInfo->setDestAddr(dest.toIPv6());
         tcpseg->setControlInfo(controlInfo);
 
-        tcpMain->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv6Gate());
+        tcpMain->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIpGate());
     }
 }
 
@@ -551,7 +551,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address 
         controlInfo->setDestAddr(dest.toIPv4());
         tcpseg->setControlInfo(controlInfo);
 
-        check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv4Gate());
+        check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIpGate());
     }
     else if (dest.getType() == L3Address::AddressType::IPv6)
     {
@@ -562,7 +562,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address 
         controlInfo->setDestAddr(dest.toIPv6());
         tcpseg->setControlInfo(controlInfo);
 
-        check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIPv6Gate());
+        check_and_cast<TCP *>((*getSimulation()).getContextModule())->sendDirect(tcpseg, totalDelay, 0, destEntry->getTcpIpGate());
     }
     else
         throw cRuntimeError("unknown AddressType");

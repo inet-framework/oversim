@@ -380,13 +380,8 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 
     /* main modifications for SimpleUDP end here */
 
-    if (!(destAddr.getType() == L3Address::AddressType::IPv6)) {
-        // send directly to IPv4 gate of the destination node
-        sendDirect(appData, totalDelay, 0, destEntry->getUdpIPv4Gate());
-
-    } else {
-        sendDirect(appData, totalDelay, 0, destEntry->getUdpIPv6Gate());
-    }
+    // send directly to IPv4/IPv6 gate of the destination node
+    sendDirect(appData, totalDelay, 0, destEntry->getUdpIpGate());
 }
 
 

@@ -109,12 +109,10 @@ SimpleNodeEntry::SimpleNodeEntry(cModule* node,
                                  NodeRecord* nodeRecord, int index)
 {
     cModule* udpModule = node->getSubmodule("udp");
-    UdpIPv4ingate = udpModule->gate("ipIn");
-    UdpIPv6ingate = udpModule->gate("ipv6In");
+    udpIpIngate = udpModule->gate("ipIn");
     cModule* tcpModule = node->getSubmodule("tcp", 0);
     if (tcpModule) {
-        TcpIPv4ingate = tcpModule->gate("ipIn");
-        TcpIPv6ingate = tcpModule->gate("ipv6In");
+        tcpIpIngate = tcpModule->gate("ipIn");
     }
 
     this->nodeRecord = nodeRecord;
