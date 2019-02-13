@@ -35,6 +35,8 @@ module Router
         @networkNode;
         string routingFile = default("");
         @display("i=abstract/router");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable"));
     gates:
         inout pppg[];
         inout ethg[];

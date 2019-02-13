@@ -47,6 +47,8 @@ module OverlayAccessRouter6
         int numTiers; // number of tiers
 
         @display("bgb=361,464");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable6"));
     gates:
         inout pppg[]; // gates from overlay
         inout ethg[]; // placeholder for zero-size vector

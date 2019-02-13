@@ -44,6 +44,7 @@ module SimpleMultiOverlayHost
         bool forwarding = default(false);
 
         @display("bgb=433,386");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
     gates:
         input overlayNeighborArrowIn[]; // incoming gate for visualizing overlay neighborship with connection arrows
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
@@ -123,8 +124,6 @@ module SimpleMultiOverlayHost
 
             overlay[i].tcpOut --> tcp.appIn++;
             overlay[i].tcpIn <-- tcp.appOut++;
-
         }
-
 }
 

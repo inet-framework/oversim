@@ -32,6 +32,8 @@ module AccessRouter6
 {
     parameters:
         @networkNode;
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable6"));
     gates:
         inout pppg[];    // gates from overlay
         inout ethg[];    // unused here

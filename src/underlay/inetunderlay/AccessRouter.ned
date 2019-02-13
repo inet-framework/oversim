@@ -31,6 +31,8 @@ module AccessRouter
     parameters:
         @networkNode;
         string routingFile = default("");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable"));
     gates:
         inout pppg[];    // gates from overlay
         inout ethg[];    // unused here
