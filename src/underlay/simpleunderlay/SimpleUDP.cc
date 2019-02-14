@@ -267,10 +267,27 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 
     L3Address srcAddr, destAddr;
 
-    UDPSendCommand *udpCtrl = check_and_cast<UDPSendCommand *>(appData->getControlInfo());
+    UDPSendCommand *udpCtrl = check_and_cast<UDPSendCommand *>(appData->removeControlInfo());
+
+    int sockId = udpCtrl->getSockId();
+    auto it = socketsByIdMap.find(sockId);
+    if (it == socketsByIdMap.end())
+            throw cRuntimeError("socket not found (sockId=%d)", sockId);
+    SockDesc *sd = it->second;
+    if (!sd->isBound)
+        throw cRuntimeError("socket not bound (sockId=%d)", sockId);
 
     srcAddr = udpCtrl->getSrcAddr();
+    if (srcAddr.isUnspecified())
+        srcAddr = sd->localAddr;
+    int srcPort = sd->localPort;
     destAddr = udpCtrl->getDestAddr();
+    if (destAddr.isUnspecified())
+        destAddr = sd->remoteAddr;
+    int destPort = udpCtrl->getDestPort();
+    if (destPort == -1)
+        destPort = sd->remotePort;
+    delete udpCtrl;
 
     // add header byte length for the skipped IP and UDP headers (decreased in processUDPPacket)
     if (destAddr.getType() == L3Address::AddressType::IPv6) {
@@ -380,6 +397,13 @@ void SimpleUDP::processMsgFromApp(cPacket *appData)
 
     /* main modifications for SimpleUDP end here */
 
+    UDPDataIndication *udpDataIndication = new UDPDataIndication();
+    udpDataIndication->setDestAddr(destAddr);
+    udpDataIndication->setDestPort(destPort);
+    udpDataIndication->setSrcAddr(srcAddr);
+    udpDataIndication->setSrcPort(srcPort);
+    appData->setKind(UDP_I_DATA);
+    appData->setControlInfo(udpDataIndication);
     // send directly to IPv4/IPv6 gate of the destination node
     sendDirect(appData, totalDelay, 0, destEntry->getUdpIpGate());
 }
