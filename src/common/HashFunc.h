@@ -42,24 +42,41 @@ namespace __gnu_cxx {
 template<> struct hash<L3Address> : std::unary_function<L3Address, std::size_t>
 {
     /**
-     * hash function for IPvXaddress
+     * hash function for L3Address
      *
      * @param addr the L3Address to hash
      * @return the hashed L3Address
      */
     std::size_t operator()(const L3Address& addr) const
     {
-        if (addr.getType() == L3Address::AddressType::IPv6) {
-            return ((bswap_32(addr.toIPv6().words()[0])) ^
-                   (bswap_32(addr.toIPv6().words()[1])) ^
-                   (bswap_32(addr.toIPv6().words()[2])) ^
-                   (bswap_32(addr.toIPv6().words()[3])));
-        } else {
-            return bswap_32(addr.toIPv4().getInt());
+        L3Address::AddressType addrType = addr.getType();
+        switch (addrType) {
+            case L3Address::AddressType::NONE:
+                return 0;
+            case L3Address::AddressType::IPv4:
+                return bswap_32(addr.toIPv4().getInt());
+            case L3Address::AddressType::IPv6: {
+                IPv6Address ipv6Addr = addr.toIPv6();
+                return ((bswap_32(ipv6Addr.words()[0])) ^
+                       (bswap_32(ipv6Addr.words()[1])) ^
+                       (bswap_32(ipv6Addr.words()[2])) ^
+                       (bswap_32(ipv6Addr.words()[3])));
+            }
+            case L3Address::AddressType::MAC: {
+                 uint64 macaddr = addr.toMAC().getInt();
+                 return ((bswap_32((uint32_t)(macaddr >> 32))) ^
+                         (bswap_32((uint32_t)(macaddr))));
+            }
+            case L3Address::AddressType::MODULEPATH:
+                return bswap_32(addr.toModulePath().getId());
+            case L3Address::AddressType::MODULEID:
+                return bswap_32(addr.toModuleId().getId());
+            default:
+                throw cRuntimeError("unaccepted address type");
+                break;
         }
     }
 };
-
 
 /**
  * defines a hash function for TransportAddress
@@ -74,16 +91,8 @@ template<> struct hash<TransportAddress> : std::unary_function<TransportAddress,
      */
     std::size_t operator()(const TransportAddress& addr) const
     {
-        if (addr.getIp().getType() == L3Address::AddressType::IPv6) {
-            return (((bswap_32(addr.getIp().toIPv6().words()[0])) ^
-                     (bswap_32(addr.getIp().toIPv6().words()[1])) ^
-                     (bswap_32(addr.getIp().toIPv6().words()[2])) ^
-                     (bswap_32(addr.getIp().toIPv6().words()[3]))) ^
-                      addr.getPort());
-        } else {
-            return ((bswap_32(addr.getIp().toIPv4().getInt())) ^
-                    addr.getPort());
-        }
+        hash<L3Address> l3hash;
+        return l3hash(addr.getIp());
     }
 };
 
