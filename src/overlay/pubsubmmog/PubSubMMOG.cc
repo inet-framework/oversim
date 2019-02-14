@@ -532,7 +532,7 @@ void PubSubMMOG::handleTakeOver( PubSubTakeOverSubspaceCall* toCall )
     sendRpcResponse( toCall, toResp );
 }
 
-void PubSubMMOG::receiveSignal(cComponent *source, simsignal_t category, const cObject *details)
+void PubSubMMOG::receiveSignal(cComponent *source, simsignal_t category, cObject *obj, cObject *details)
 {
     if(category == NF_OVERLAY_NODE_GRACEFUL_LEAVE && state == READY) {
     }

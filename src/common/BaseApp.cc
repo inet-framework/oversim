@@ -211,7 +211,7 @@ CompType BaseApp::getThisCompType()
     return INVALID_COMP;
 }
 
-void BaseApp::receiveSignal(cComponent *source, simsignal_t category, const cObject * details)
+void BaseApp::receiveSignal(cComponent *source, simsignal_t category, cObject *obj, cObject *details)
 {
     Enter_Method_Silent();
     if (category == NF_OVERLAY_TRANSPORTADDRESS_CHANGED) {

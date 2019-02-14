@@ -40,7 +40,7 @@ class PubSubMMOG : public BaseOverlay
         virtual void handleUDPMessage(BaseOverlayMessage* msg);
         virtual void handleTimerEvent(cMessage* msg);
         virtual void handleAppMessage(cMessage* msg);
-        virtual void receiveSignal(cComponent *source, simsignal_t category, const cObject *details);
+        virtual void receiveSignal(cComponent *source, simsignal_t category, cObject *obj, cObject *details) override;
         virtual bool handleRpcCall(BaseCallMessage* msg);
         virtual void handleRpcResponse(BaseResponseMessage *msg,
                                        cObject* context,

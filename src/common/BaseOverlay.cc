@@ -1045,7 +1045,7 @@ void BaseOverlay::handleBaseOverlayMessage(BaseOverlayMessage* msg,
     }
 }
 
-void BaseOverlay::receiveSignal(cComponent *source, simsignal_t category, const cObject * details)
+void BaseOverlay::receiveSignal(cComponent *source, simsignal_t category, cObject* obj, cObject * details)
 {
     Enter_Method_Silent();
     if (category == NF_OVERLAY_TRANSPORTADDRESS_CHANGED) {

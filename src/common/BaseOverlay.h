@@ -491,7 +491,7 @@ protected://methods: message handling
      * @param details ... TODO ...
      */
     virtual void receiveSignal(cComponent *source, simsignal_t category,
-                                           const cObject* details);
+                                           cObject* obj, cObject* details) override;
 
     /**
      * This method gets call if the node has a new TransportAddress (IP address)

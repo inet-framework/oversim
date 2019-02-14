@@ -137,7 +137,7 @@ protected:
      * @param category ...
      * @param details ...
      */
-    virtual void receiveSignal(cComponent *source, simsignal_t category, const cObject * details);
+    virtual void receiveSignal(cComponent *source, simsignal_t category, cObject * obj, cObject * details) override;
 
     /**
      * This method gets call if the node has a new TransportAddress (IP address)
