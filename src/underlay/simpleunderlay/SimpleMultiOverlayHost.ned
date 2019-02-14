@@ -45,7 +45,10 @@ module SimpleMultiOverlayHost
         bool forwarding = default(false);
 
         @display("bgb=433,440");
+        @signal[NF_OVERLAY_NODE_LEAVE](type=cMessage?);    //FIXME KLUDGE, cObject? not accepted here
+        @signal[NF_OVERLAY_NODE_GRACEFUL_LEAVE](type=cMessage?);    //FIXME KLUDGE, cObject? not accepted here
         *.interfaceTableModule = default(absPath(".interfaceTable"));
+
     gates:
         input overlayNeighborArrowIn[]; // incoming gate for visualizing overlay neighborship with connection arrows
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows

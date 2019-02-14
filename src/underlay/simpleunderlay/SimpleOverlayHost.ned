@@ -42,6 +42,9 @@ module SimpleOverlayHost
         *.interfaceTableModule = default(absPath(".interfaceTable"));
 
         @display("bgb=433,400;i=device/wifilaptop_l;i2=block/circle_s");
+        @signal[NF_OVERLAY_NODE_LEAVE](type=cMessage?);    //FIXME KLUDGE, cObject? not accepted here
+        @signal[NF_OVERLAY_NODE_GRACEFUL_LEAVE](type=cMessage?);    //FIXME KLUDGE, cObject? not accepted here
+
     gates:
         input overlayNeighborArrowIn[]; // incoming gate for visualizing overlay neighborship with connection arrows
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
