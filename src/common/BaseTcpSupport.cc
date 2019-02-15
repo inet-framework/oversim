@@ -35,6 +35,7 @@ void BaseTcpSupport::handleTCPMessage(cMessage* msg)
         socket = new TCPSocket(msg);
         socket->setCallbackObject(this);
         socket->setOutputGate(getTcpOut());
+        socket->readDataTransferModePar(*getTcpOut()->getOwnerModule());
         sockets.addSocket(socket);
         TransportAddress newAddress =
                 TransportAddress(socket->getRemoteAddress(),
@@ -57,6 +58,7 @@ void BaseTcpSupport::bindAndListenTcp(int port)
     newSocket->bind(port);
     newSocket->setOutputGate(getTcpOut());
     newSocket->setCallbackObject(this);
+    newSocket->readDataTransferModePar(*getTcpOut()->getOwnerModule());
     newSocket->listen();
     sockets.addSocket(newSocket);
 }
@@ -81,6 +83,7 @@ void BaseTcpSupport::establishTcpConnection(TransportAddress address)
     TCPSocket* newSocket = new TCPSocket();
     newSocket->setOutputGate(getTcpOut());
     newSocket->setCallbackObject(this);
+    newSocket->readDataTransferModePar(*getTcpOut()->getOwnerModule());
     newSocket->connect(address.getIp(), address.getPort());
 
     sockets.addSocket(newSocket);

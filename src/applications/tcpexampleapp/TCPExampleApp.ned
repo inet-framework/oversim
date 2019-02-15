@@ -33,6 +33,7 @@ simple TCPExampleApp extends BaseApp
         int sendPeriod @unit(s) = default(30s);   // how much time to wait between sending packets
         int numToSend = default(0);             // how many packets will we send at the same time?
         int largestKey = default(10);            // largest key we can pick
+        string dataTransferMode @enum("bytecount","object","bytestream") = default("object");    // tcp dataTransferMode
 }
 
 module TCPExampleAppModules like ITier
