@@ -542,7 +542,7 @@ void SimpleTCPConnection::sendToIP(TCPSegment *tcpseg, L3Address src, L3Address 
     EV << "Sending: ";
     printSegmentBrief(tcpseg);
 
-    if (dest.getType() == L3Address::AddressType::IPv6)
+    if (dest.getType() == L3Address::AddressType::IPv4)
     {
         // send over IPv4
         IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
