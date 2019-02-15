@@ -61,6 +61,7 @@ simple SimpleTCP extends TCP
                                         // according to "Network Coordinates in the Wild", Figure 7
                                         // possible values: empty, "live_all", "live_planetlab", "simulation"
         double jitter;                  // average amount of jitter in %
+        tcpAlgorithmClass = default("inet::tcp::TCPReno"); // TCPReno/TCPTahoe/TCPNewReno/TCPNoCongestionControl/DumbTCP
         @display("i=block/wheelbarrow");
     gates:
 }
