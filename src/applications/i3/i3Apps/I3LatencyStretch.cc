@@ -88,7 +88,7 @@ Define_Module(I3LatencyStretch);
 
 void I3LatencyStretch::initializeApp(int stage) {
     statsDumped = false;
-    if (stats = nullptr)
+    if (stats == nullptr)
         stats = new cStdDev[NUM_STATS];
     I3BaseApp::initializeApp(stage);
 }
