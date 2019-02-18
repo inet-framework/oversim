@@ -58,12 +58,12 @@ std::ostream& operator<<(std::ostream& os, const SuccessorListEntry& e);
 class ChordSuccessorList : public cSimpleModule
 {
   public:
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return MAX_STAGE_OVERLAY + 1;
     }
-    virtual void initialize(int stage);
-    virtual void handleMessage(cMessage* msg);
+    virtual void initialize(int stage) override;
+    virtual void handleMessage(cMessage* msg) override;
 
     /**
      * Initializes the successor list. This should be called on startup

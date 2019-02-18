@@ -63,7 +63,7 @@ class GiaNeighbors : public cSimpleModule
     /**
      * Sets init stage
      */
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return MAX_STAGE_OVERLAY + 1;
     }

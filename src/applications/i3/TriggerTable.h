@@ -34,8 +34,8 @@
 struct TriggerTable : public cSimpleModule {
     I3TriggerTable *triggerTable;
 
-    int numInitStages() const;
-    void initialize(int stage);
+    int numInitStages() const override;
+    void initialize(int stage) override;
     void updateDisplayString();
 };
 

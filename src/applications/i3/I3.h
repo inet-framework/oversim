@@ -63,7 +63,7 @@ protected:
     cMessage *expirationTimer;
 
     /** Returns number of required init stages */
-    int numInitStages() const;
+    int numInitStages() const override;
 
     /** Actual initialization function
          * @param stage Actual stage
@@ -97,7 +97,7 @@ protected:
     /** Updates TriggerTable's module display string */
     void updateTriggerTableString();
 
-    virtual void finish();
+    virtual void finish() override;
 
 public:
     /** Returns the table of inserted triggers */

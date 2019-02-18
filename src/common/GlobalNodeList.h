@@ -255,14 +255,14 @@ protected:
     /**
      * Init member function of module
      */
-    virtual void initialize();
+    virtual void initialize() override;
 
     /**
      * HandleMessage member function of module
      *
      * @param msg messag to handle
      */
-    virtual void handleMessage(cMessage* msg);
+    virtual void handleMessage(cMessage* msg) override;
 
     /**
      * Member function to create keylist

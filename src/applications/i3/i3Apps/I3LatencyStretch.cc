@@ -80,7 +80,7 @@ class I3LatencyStretch : public I3BaseApp {
     void handleTimerEvent(cMessage *msg);
     void handleUDPMessage(cMessage* msg);
     void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
-    void finish();
+    void finish() override;
 };
 
 Define_Module(I3LatencyStretch);
@@ -119,19 +119,19 @@ void I3LatencyStretch::finish() {
         recordScalar("General IP Max  ", stats[STAT_IP].getMax());
         recordScalar("General IP Mean ", stats[STAT_IP].getMean());
         recordScalar("General IP Stdev", stats[STAT_IP].getStddev());
-        stats[STAT_IP].clearResult();
+        stats[STAT_IP].clear();
 
         recordScalar("General I3 Min  ", stats[STAT_I3].getMin());
         recordScalar("General I3 Max  ", stats[STAT_I3].getMax());
         recordScalar("General I3 Mean ", stats[STAT_I3].getMean());
         recordScalar("General I3 Stdev", stats[STAT_I3].getStddev());
-        stats[STAT_I3].clearResult();
+        stats[STAT_I3].clear();
 
         recordScalar("General Ratio Min  ", stats[STAT_RATIO].getMin());
         recordScalar("General Ratio Max  ", stats[STAT_RATIO].getMax());
         recordScalar("General Ratio Mean ", stats[STAT_RATIO].getMean());
         recordScalar("General Ratio Stdev", stats[STAT_RATIO].getStddev());
-        stats[STAT_RATIO].clearResult();
+        stats[STAT_RATIO].clear();
     }
 }
 

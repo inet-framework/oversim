@@ -18,8 +18,8 @@ class lcEntry {
 class LoginCache : public cSimpleModule
 {
     public:
-        void initialize();
-        void finish();
+        void initialize() override;
+        void finish() override;
         NodeHandle getLoginNode( Vector2D pos );
         void registerPos( NodeHandle node, Vector2D pos );
 

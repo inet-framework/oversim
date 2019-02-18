@@ -32,11 +32,11 @@ public:
     MessageObserver();
     ~MessageObserver();
 
-    void initialize();
+    void initialize() override;
 
-    void finish();
+    void finish() override;
 
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
 
     /**
      * Adds one to node count for group.

@@ -36,7 +36,7 @@ class TransportAddress;
 class LifetimeChurn: public ChurnGenerator
 {
 public:
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
     void initializeChurn();
     LifetimeChurn() { initFinishedTimer = NULL; };
     ~LifetimeChurn();

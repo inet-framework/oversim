@@ -39,8 +39,8 @@ class GlobalTraceManager : public cSimpleModule
   public:
     GlobalTraceManager();
     ~GlobalTraceManager();
-    void handleMessage(cMessage* msg);
-    void initialize(int stage);
+    void handleMessage(cMessage* msg) override;
+    void initialize(int stage) override;
 
   protected:
     void readNextBlock();

@@ -127,7 +127,7 @@ public:
     RealworldConnector();
     virtual ~RealworldConnector();
 
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return 4;
     }
@@ -136,12 +136,12 @@ public:
      * Registers the device at the scheduler and searches for the appropriate payload-parser
      * Will be called automatically at startup
      */
-    virtual void initialize(int stage);
+    virtual void initialize(int stage) override;
 
     /**
      * The "main loop". Every message that is received or send is handled by this method
      */
-    virtual void handleMessage(cMessage *msg);
+    virtual void handleMessage(cMessage *msg) override;
 };
 
 #endif

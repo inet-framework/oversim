@@ -225,12 +225,12 @@ private://methods: cSimpleModule initialization
      *
      * @param stage the init stage
      */
-    void initialize(int stage);
+    void initialize(int stage) override;
 
     /**
      * collects statistical data
      */
-    void finish();
+    void finish() override;
 
 protected://methods: overlay initialization
 
@@ -239,7 +239,7 @@ protected://methods: overlay initialization
      *
      * @see InitStages.h for more information about the used stage numbers
      */
-    int numInitStages() const;
+    int numInitStages() const override;
 
     /**
      * Initializes derived-class-attributes.<br>
@@ -445,7 +445,7 @@ protected://methods: message handling
      *
      * @param msg The message to be handled
      */
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
 
 
     /**

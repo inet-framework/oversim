@@ -63,7 +63,7 @@ template<> struct hash<L3Address> : std::unary_function<L3Address, std::size_t>
                        (bswap_32(ipv6Addr.words()[3])));
             }
             case L3Address::AddressType::MAC: {
-                 uint64 macaddr = addr.toMAC().getInt();
+                 uint64_t macaddr = addr.toMAC().getInt();
                  return ((bswap_32((uint32_t)(macaddr >> 32))) ^
                          (bswap_32((uint32_t)(macaddr))));
             }

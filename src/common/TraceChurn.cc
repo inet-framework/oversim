@@ -38,7 +38,7 @@ void TraceChurn::initializeChurn()
     // Quick hack. Works fine unless numTiers is > 9 (which should never happen)
     maxTier = new char[6];
     strcpy(maxTier, "tier0");
-    maxTier[4] += par("numTiers").longValue();
+    maxTier[4] += par("numTiers").intValue();
 
     // FIXME: There should be a tracefile command to decide when init phase has finished
     underlayConfigurator->initFinished();

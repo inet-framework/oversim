@@ -112,15 +112,15 @@ protected:
   // utility methods
   void segmentArrivalWhileClosed(TCPSegment *tcpseg, L3Address srcAddr, L3Address destAddr);
   SimpleTCPConnection *createConnection(int appGateIndex, int connId);
-  virtual void initialize(int stage);
-  virtual void handleMessage(cMessage *msg);
+  virtual void initialize(int stage) override;
+  virtual void handleMessage(cMessage *msg) override;
 
-  virtual int numInitStages() const
+  virtual int numInitStages() const override
   {
       return MAX_STAGE_UNDERLAY + 1;
   }
 
-  void finish();
+  void finish() override;
 };
 
 #endif

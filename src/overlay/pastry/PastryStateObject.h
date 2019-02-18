@@ -49,11 +49,11 @@ class PastryStateObject : public cSimpleModule
 {
   public:
 
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
 
     int numInitStages(void) const;
 
-    void initialize(int stage);
+    void initialize(int stage) override;
 
     /**
      * gets the final node according to the Pastry routing scheme.

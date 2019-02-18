@@ -35,7 +35,7 @@
 class FinisherModule : public cSimpleModule
 {
   protected:
-    void finish();
+    void finish() override;
 };
 
 #endif /* __FINISHERMODULE_H__ */

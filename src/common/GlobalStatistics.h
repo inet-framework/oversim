@@ -118,17 +118,17 @@ protected:
     /**
      * Init member function of module
      */
-    virtual void initialize();
+    virtual void initialize() override;
 
     /**
      * HandleMessage member function of module
      */
-    virtual void handleMessage(cMessage* msg);
+    virtual void handleMessage(cMessage* msg) override;
 
     /**
      * Finish member function of module
      */
-    virtual void finish();
+    virtual void finish() override;
 
     bool measuring;
     bool measureNetwInitPhase;

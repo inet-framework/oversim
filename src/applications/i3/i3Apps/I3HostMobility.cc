@@ -58,7 +58,7 @@ class I3HostMobility : public I3BaseApp {
     void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
     void doMobilityEvent(I3MobilityStage stage);
     void discoverPartners();
-    void finish();
+    void finish() override;
 };
 
 Define_Module(I3HostMobility);

@@ -118,7 +118,7 @@ int AppTunOutScheduler::initializeNetwork()
     }
 
     addr.sin_port = htons(overlay->gate("appIn")->getNextGate()->
-                          getOwnerModule()->par("localPort").longValue());
+                          getOwnerModule()->par("localPort").intValue());
 
     cModule* underlayConfigurator =
         (*getSimulation()).getModuleByPath("SingleHostUnderlayNetwork.underlayConfigurator");

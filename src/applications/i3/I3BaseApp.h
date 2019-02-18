@@ -102,10 +102,10 @@ protected:
     cMessage *bootstrapTimer;
 
     /** Returns number of init stages required */
-    int numInitStages() const;
+    int numInitStages() const override;
 
     /** Basic initialization */
-    void initialize(int stage);
+    void initialize(int stage) override;
 
     /** App initialization - should be overwritten by application. I3 related commands should go in initializeI3.
          * @param stage Initialization stage passed from initialize()
@@ -132,7 +132,7 @@ protected:
     /** Handles incoming messages
       * @param msg Incoming message
       */
-    void handleMessage(cMessage *msg);
+    void handleMessage(cMessage *msg) override;
 
     /** Delivers packets coming from I3 - should be overwritten by application
       * @param trigger Application trigger to which the packet was sent

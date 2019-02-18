@@ -46,7 +46,7 @@ class GlobalStatistics;
 class ParetoChurn : public ChurnGenerator
 {
 public:
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
     void initializeChurn();
     ParetoChurn() { initFinishedTimer = NULL; };
     ~ParetoChurn();

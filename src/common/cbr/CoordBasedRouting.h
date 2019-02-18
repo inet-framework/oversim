@@ -117,8 +117,8 @@ class CoordBasedRouting : public cSimpleModule
      * CBR is a global module, stuff in initialize() is run once
      * Parsing the area source XML is done here
      */
-    virtual void initialize();
-    void finish();
+    virtual void initialize() override;
+    void finish() override;
 
   public:
     CoordBasedRouting() { gap = NULL; };

@@ -105,14 +105,14 @@ protected:
     /**
      * method to set InitStage
      */
-    int numInitStages() const;
+    int numInitStages() const override;
 
     /**
      * initializes base class-attributes
      *
      * @param stage the init stage
      */
-    void initialize(int stage);
+    void initialize(int stage) override;
 
     /**
      * initializes derived class-attributes
@@ -129,7 +129,7 @@ protected:
      * like deliver(), forward(), and timer()
      * @param msg the handled message
      */
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
 
     /**
      * callback-method for events at the cModule
@@ -159,7 +159,7 @@ protected:
     /**
      * collects statistical data
      */
-    void finish();
+    void finish() override;
 
     /**
      * collects statistical data of derived app

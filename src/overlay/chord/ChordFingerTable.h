@@ -53,13 +53,13 @@ class ChordFingerTable : public cSimpleModule
 {
   public:
 
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return MAX_STAGE_OVERLAY + 1;
     }
 
-    virtual void initialize(int stage);
-    virtual void handleMessage(cMessage* msg);
+    virtual void initialize(int stage) override;
+    virtual void handleMessage(cMessage* msg) override;
 
     /**
      * Sets up the finger table

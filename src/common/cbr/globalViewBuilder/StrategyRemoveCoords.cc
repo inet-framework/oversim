@@ -89,13 +89,13 @@ std::string StrategyRemoveCoords::getStrategyCombinedParams() {
 	tempStr << "/";
 
 	if(strategyMode == "limitCoords") {
-		tempStr << globalViewBuilder->parProxy("gvbStrategyRemoveCoordsCoordsLimit").longValue();
+		tempStr << globalViewBuilder->parProxy("gvbStrategyRemoveCoordsCoordsLimit").intValue();
 
 	} else if (strategyMode == "limitTraffic") {
-		tempStr << globalViewBuilder->parProxy("gvbStrategyRemoveCoordsTrafficLimit").longValue();
+		tempStr << globalViewBuilder->parProxy("gvbStrategyRemoveCoordsTrafficLimit").intValue();
 
 	} else if (strategyMode == "percentage") {
-		tempStr << globalViewBuilder->parProxy("gvbStrategyRemoveCoordsPercentage").longValue();
+		tempStr << globalViewBuilder->parProxy("gvbStrategyRemoveCoordsPercentage").intValue();
 	}
 
 	return tempStr.str();

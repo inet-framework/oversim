@@ -112,12 +112,12 @@ protected:
     /**
      * OMNeT number of init stages
      */
-    int numInitStages() const;
+    int numInitStages() const override;
 
     /**
      * OMNeT init methods
      */
-    virtual void initialize(int stage);
+    virtual void initialize(int stage) override;
 
     /**
      * Init method for derived underlay configurators
@@ -129,7 +129,7 @@ protected:
     /**
      * Cleans up configurator
      */
-    void finish();
+    void finish() override;
 
     /**
      * Cleans up concrete underlay configurator
@@ -146,7 +146,7 @@ protected:
      *
      * @param msg timer-message
      */
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
 
     int overlayTerminalCount; //!< current number of overlay terminals
     int firstNodeId; //!< the Id of the overlayTerminal created first in the overlay

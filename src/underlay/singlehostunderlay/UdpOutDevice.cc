@@ -152,7 +152,7 @@ cPacket* UdpOutDevice::decapsulate(char* buf,
     UDP->setSourcePort(ntohs(addrbuf->sin_port));
     UDP->setDestinationPort(getParentModule()->getSubmodule("overlay", 0)->
                             gate("appIn")->getNextGate()->getOwnerModule()->
-                            par("localPort").longValue());
+                            par("localPort").intValue());
 
     UDP->setByteLength(8);
 

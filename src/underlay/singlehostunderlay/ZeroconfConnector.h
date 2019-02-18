@@ -146,8 +146,8 @@ public:
     bool isEnabled() { return enabled; };
 
 protected:
-    virtual void initialize();
-    virtual void handleMessage(cMessage *msg);
+    virtual void initialize() override;
+    virtual void handleMessage(cMessage *msg) override;
 
 private:
     int initResult;    //result of initialization

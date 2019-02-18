@@ -48,8 +48,8 @@ typedef std::map<OverlayKey, QuonTopologyNode> QuonTopology;
 class ConnectivityProbeQuon : public cSimpleModule
 {
     public:
-        void initialize();
-        void handleMessage(cMessage* msg);
+        void initialize() override;
+        void handleMessage(cMessage* msg) override;
         ~ConnectivityProbeQuon();
 
     private:

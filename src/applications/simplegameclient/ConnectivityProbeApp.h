@@ -35,8 +35,8 @@
 class ConnectivityProbeApp : public cSimpleModule
 {
     public:
-        void initialize();
-        void handleMessage(cMessage* msg);
+        void initialize() override;
+        void handleMessage(cMessage* msg) override;
         ~ConnectivityProbeApp();
 
     private:

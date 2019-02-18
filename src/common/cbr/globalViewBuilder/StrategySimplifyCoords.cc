@@ -133,7 +133,7 @@ std::string StrategySimplifyCoords::getStrategyCombinedParams() {
 	std::stringstream tempStr;
 	tempStr << globalViewBuilder->parProxy("gvbSendStrategy").stdstringValue();
 	tempStr << "/";
-	tempStr << globalViewBuilder->parProxy("gvbStrategySimplifyCoordsFactor").longValue();
+	tempStr << globalViewBuilder->parProxy("gvbStrategySimplifyCoordsFactor").intValue();
 
 	return tempStr.str();
 }

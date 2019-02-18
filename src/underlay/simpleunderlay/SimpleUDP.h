@@ -128,21 +128,21 @@ protected:
      *
      * @param stage stage of initialisation phase
      */
-    virtual void initialize(int stage);
+    virtual void initialize(int stage) override;
 
-    virtual void handleMessage(cMessage *msg);
+    virtual void handleMessage(cMessage *msg) override;
 
     /**
      * returns the number of init stages
      *
      * @return the number of init stages
      */
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return MAX_STAGE_UNDERLAY + 1;
     }
 
-    void finish();
+    void finish() override;
 };
 
 #endif

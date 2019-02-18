@@ -143,7 +143,7 @@ protected:
          *
          * @return needed number of init stages
          */
-        virtual int numInitStages() const
+        virtual int numInitStages() const override
         {
             return MAX_STAGE_UNDERLAY + 1;
         }
@@ -151,14 +151,14 @@ protected:
         /**
          * Gather some information about the router node.
          */
-        virtual void initialize(int stage);
+        virtual void initialize(int stage) override;
 
         /**
          * OMNeT handleMessage method
          *
          * @param msg the message to handle
          */
-        virtual void handleMessage(cMessage* msg);
+        virtual void handleMessage(cMessage* msg) override;
 
         /**
          * Displays the current number of terminals connected to the network

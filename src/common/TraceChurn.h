@@ -36,7 +36,7 @@
 class TraceChurn : public ChurnGenerator
 {
   public:
-    void handleMessage(cMessage* msg);
+    void handleMessage(cMessage* msg) override;
     void initializeChurn();
     void createNode(int nodeId);
     void deleteNode(int nodeId);

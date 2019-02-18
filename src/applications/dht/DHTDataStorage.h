@@ -69,12 +69,12 @@ class DHTDataStorage : public cSimpleModule
 {
   public:
 
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return MAX_STAGE_APP + 1;
     }
-    virtual void initialize(int stage);
-    virtual void handleMessage(cMessage* msg);
+    virtual void initialize(int stage) override;
+    virtual void handleMessage(cMessage* msg) override;
 
     /**
      * Returns number of stored data items in the map

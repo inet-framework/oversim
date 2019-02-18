@@ -92,9 +92,9 @@ public:
     uint32_t p2pnsNameCount;
 
 private:
-    void initialize();
-    void handleMessage(cMessage* msg);
-    void finish();
+    void initialize() override;
+    void handleMessage(cMessage* msg) override;
+    void finish() override;
 
     static const int TEST_MAP_INTERVAL = 10; /**< interval in seconds for writing periodic statistical information */
 

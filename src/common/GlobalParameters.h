@@ -45,7 +45,7 @@ public:
     }
 
 protected:
-    virtual void initialize();
+    virtual void initialize() override;
 
 private:
     bool printStateToStdOut;

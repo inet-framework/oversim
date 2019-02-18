@@ -269,14 +269,14 @@ protected:
     //
     // stage = 0 --> register interfaces
     //
-    virtual int numInitStages() const {return 3;}
+    virtual int numInitStages() const  override {return 3;}
     /**
      * Main method of the network configurator.
      *
      * Topology is extracted from NED file, IP addresses are assigned,
      * and routing paths are established.
      */
-    virtual void initialize(int stage);
+    virtual void initialize(int stage) override;
     virtual void handleMessage(cMessage *msg) {throw cRuntimeError("message received");};
     /** @brief Add Inter-AS routing paths between core nodes
      *

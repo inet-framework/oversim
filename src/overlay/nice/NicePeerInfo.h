@@ -84,7 +84,7 @@ public:
 
 protected:
 
-    //virtual void handleMessage(cMessage* msg);
+    //virtual void handleMessage(cMessage* msg) override;
 
 private:
 

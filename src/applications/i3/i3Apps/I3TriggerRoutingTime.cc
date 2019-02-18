@@ -32,7 +32,7 @@ class I3TRTServer : public I3 {
 
     void initializeApp(int stage);
     void deliver(OverlayKey &key, cMessage *msg);
-    void finish();
+    void finish() override;
 };
 
 Define_Module(I3TRTServer);
@@ -76,7 +76,7 @@ void I3TRTServer::finish() {
         recordScalar("I3Sim Max time", stats->getMax());
         recordScalar("I3Sim Mean time", stats->getMean());
         recordScalar("I3Sim Stardard dev", stats->getStddev());
-        stats->clearResult();
+        stats->clear();
     }
 }
 

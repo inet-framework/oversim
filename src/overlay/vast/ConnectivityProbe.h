@@ -50,8 +50,8 @@ typedef std::map<OverlayKey, VTopologyNode> VTopology;
 class ConnectivityProbe : public cSimpleModule
 {
     public:
-        void initialize();
-        void handleMessage(cMessage* msg);
+        void initialize() override;
+        void handleMessage(cMessage* msg) override;
         ~ConnectivityProbe();
 
     private:

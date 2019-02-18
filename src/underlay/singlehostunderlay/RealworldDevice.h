@@ -50,7 +50,7 @@ protected:
     InterfaceEntry *registerInterface();
 
 public:
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return 4;
     }
@@ -59,7 +59,7 @@ public:
      * Registers the device at the scheduler and searches for the appropriate payload-parser
      * Will be called automatically at startup
      */
-    virtual void initialize(int stage);
+    virtual void initialize(int stage) override;
 
 };
 

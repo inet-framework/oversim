@@ -51,7 +51,7 @@ public:
 
     void initializeI3();
     void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
-    void finish();
+    void finish() override;
 };
 
 Define_Module(I3SessionServer);
@@ -99,7 +99,7 @@ public:
     virtual void initializeI3();
     void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
     void handleTimerEvent(cMessage *msg);
-    void finish();
+    void finish() override;
 };
 
 Define_Module(I3SessionClient);

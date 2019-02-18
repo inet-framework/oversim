@@ -68,13 +68,13 @@ public:
 
 protected:
     // see omnetpp.h
-    virtual void initialize();
+    virtual void initialize() override;
 
     // see omnetpp.h
-    virtual void handleMessage(cMessage *msg);
+    virtual void handleMessage(cMessage *msg) override;
 
     // see omnetpp.h
-    virtual void finish();
+    virtual void finish() override;
 
 private:
     // references to global modules

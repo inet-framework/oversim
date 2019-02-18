@@ -42,7 +42,7 @@ class GiaKeyListModule : public cSimpleModule
     /**
      * Sets init stage 
      */
-    virtual int numInitStages() const
+    virtual int numInitStages() const override
     {
         return MAX_STAGE_OVERLAY + 1;
     }
@@ -51,7 +51,7 @@ class GiaKeyListModule : public cSimpleModule
      * Initializes this class and set some WATCH(variable) for OMNeT++
      * @param stage Level of initialization (OMNeT++)
      */
-    virtual void initialize(int stage);
+    virtual void initialize(int stage) override;
 
     /**
      * This module doesn't handle OMNeT++ messages

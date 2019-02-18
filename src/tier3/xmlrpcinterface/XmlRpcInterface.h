@@ -157,7 +157,7 @@ public:
      * The "main loop". Every message that is received or send is handled
      * by this method
      */
-    virtual void handleMessage(cMessage *msg);
+    virtual void handleMessage(cMessage *msg) override;
 
     // see BaseRpc.cc
     void handleRpcTimeout(BaseCallMessage* msg,

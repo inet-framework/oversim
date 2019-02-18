@@ -32,8 +32,8 @@
 class GlobalCoordinator : public cSimpleModule
 {
     public:
-        virtual void initialize();
-        virtual void handleMessage(cMessage* msg);
+        virtual void initialize() override;
+        virtual void handleMessage(cMessage* msg) override;
         virtual ~GlobalCoordinator();
 
         void increasePositionSize();
