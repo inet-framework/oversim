@@ -501,8 +501,6 @@ void SimpleUnderlayConfigurator::handleTimerEvent(cMessage* msg)
 
     InterfaceEntry* ie = L3AddressResolver().interfaceTableOf(node)->
                                          getInterfaceByName("dummy interface");
-    delete ie->ipv4Data();
-
     node->callFinish();
     node->deleteModule();
 
