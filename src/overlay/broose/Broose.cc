@@ -177,7 +177,14 @@ void Broose::changeState(int toState)
     case RSET: {
         state = RSET;
 
-        BrooseBucket* tmpBucket = new BrooseBucket();
+//        BrooseBucket* tmpBucket = new BrooseBucket();
+        cModuleType *moduleType = cModuleType::get("oversim.overlay.broose.BrooseBucket");
+        cModule *parentModule = this;
+        BrooseBucket *tmpBucket = check_and_cast<BrooseBucket*>(moduleType->create("tmp", parentModule));
+        tmpBucket->finalizeParameters();
+        tmpBucket->buildInside();
+        tmpBucket->callInitialize();
+
         tmpBucket->initializeBucket(0, 0, powShiftingBits*rBucketSize, this);
 
         for (int i = 0; i < powShiftingBits; i++) {
@@ -202,7 +209,9 @@ void Broose::changeState(int toState)
         // half of the calls must return for a state change
         numberBBucketLookup = ceil((double)tmpBucket->getSize() / 2);
 
-        delete tmpBucket;
+        //delete tmpBucket;
+        tmpBucket->callFinish();
+        tmpBucket->deleteModule();
 
         getParentModule()->getParentModule()->bubble("Enter RSET state.");
         break;
@@ -318,7 +327,14 @@ void Broose::handleJoinTimerExpired(cMessage* msg)
 
 void Broose::handleBucketTimerExpired(cMessage* msg)
 {
-    BrooseBucket* tmpBucket = new BrooseBucket();
+    //BrooseBucket* tmpBucket = new BrooseBucket();
+    cModuleType *moduleType = cModuleType::get("oversim.overlay.broose.BrooseBucket");
+    cModule *parentModule = this;
+    BrooseBucket *tmpBucket = check_and_cast<BrooseBucket*>(moduleType->create("tmp", parentModule));
+    tmpBucket->finalizeParameters();
+    tmpBucket->buildInside();
+    tmpBucket->callInitialize();
+
     tmpBucket->initializeBucket(0, 0,
                                 (2*powShiftingBits*rBucketSize + 7*bucketSize),
                                 this);
@@ -338,7 +354,9 @@ void Broose::handleBucketTimerExpired(cMessage* msg)
         pingNode(tmpBucket->get(i));
     }
 
-    delete tmpBucket;
+    //delete tmpBucket;
+    tmpBucket->callFinish();
+    tmpBucket->deleteModule();
 
     scheduleAt(simTime() + (refreshTime / 2.0), bucket_timer);
 }
