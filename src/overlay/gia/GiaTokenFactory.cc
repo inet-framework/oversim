@@ -44,7 +44,7 @@ void GiaTokenFactory::initialize( int stage )
     WATCH_VECTOR(tokenQueueVector);
 }
 
-void GiaTokenFactory::handleMessages( cMessage* msg )
+void GiaTokenFactory::handleMessage(cMessage* msg)
 {
     error("this module doesn't handle messages, it runs only in initialize()");
 }

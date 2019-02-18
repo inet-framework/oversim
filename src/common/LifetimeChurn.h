@@ -37,7 +37,7 @@ class LifetimeChurn: public ChurnGenerator
 {
 public:
     void handleMessage(cMessage* msg) override;
-    void initializeChurn();
+    void initializeChurn() override;
     LifetimeChurn() { initFinishedTimer = NULL; };
     ~LifetimeChurn();
 

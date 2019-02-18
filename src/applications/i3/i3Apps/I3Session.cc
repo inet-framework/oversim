@@ -49,8 +49,8 @@ public:
     I3Identifier myIdentifier;
     I3Identifier clientIdentifier;
 
-    void initializeI3();
-    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
+    void initializeI3() override;
+    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg) override;
     void finish() override;
 };
 
@@ -95,10 +95,10 @@ public:
     I3Identifier serverIdentifier;
     I3Identifier poolIdentifier;
 
-    void initializeApp(int stage);
-    virtual void initializeI3();
-    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
-    void handleTimerEvent(cMessage *msg);
+    void initializeApp(int stage) override;
+    virtual void initializeI3() override;
+    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg) override;
+    void handleTimerEvent(cMessage *msg) override;
     void finish() override;
 };
 

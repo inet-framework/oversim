@@ -133,7 +133,7 @@ protected:
     void handleRpcResponse(BaseResponseMessage* msg,
                            cObject* context,
                            int rpcId,
-                           simtime_t rtt);
+                           simtime_t rtt) override;
     /**
      * Reset the internal connection state. This is called after a RPC
      * has finished and the socket was closed.
@@ -142,7 +142,7 @@ protected:
 
     void closeConnection();
     void sendInternalRpcWithTimeout(CompType destComp, BaseCallMessage *call);
-    virtual void handleReadyMessage(CompReadyMessage* msg);
+    virtual void handleReadyMessage(CompReadyMessage* msg) override;
 
     SOCKET appTunFd; /**< FD of the application TUN socket used for tunneling */
     P2pns* p2pns; /**< Pointer to the P2PNS module */

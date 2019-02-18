@@ -72,13 +72,13 @@ class GiaNeighbors : public cSimpleModule
      * Initializes this class and set some WATCH(variable) for OMNeT++
      * @param stage Level of initialization (OMNeT++)
      */
-    virtual void initialize( int stage );
+    virtual void initialize(int stage) override;
 
     /**
      * This module doesn't handle OMNeT++ messages
      * @param msg OMNeT++ message
      */
-    virtual void handleMessages( cMessage* msg );
+    virtual void handleMessage(cMessage* msg) override;
 
     // class methodes
     /**

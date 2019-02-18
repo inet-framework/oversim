@@ -30,16 +30,16 @@ static bool statsDumped = false;
 
 class I3TRTServer : public I3 {
 
-    void initializeApp(int stage);
-    void deliver(OverlayKey &key, cMessage *msg);
+    void initializeApp(int stage) override;
+    void deliver(OverlayKey &key, cMessage *msg) override;
     void finish() override;
 };
 
 Define_Module(I3TRTServer);
 
 class I3TRTClient : public I3BaseApp {
-    void initializeI3();
-    void handleTimerEvent(cMessage *msg);
+    void initializeI3() override;
+    void handleTimerEvent(cMessage *msg) override;
 };
 
 Define_Module(I3TRTClient);

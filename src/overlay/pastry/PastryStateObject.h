@@ -51,7 +51,7 @@ class PastryStateObject : public cSimpleModule
 
     void handleMessage(cMessage* msg) override;
 
-    int numInitStages(void) const;
+    int numInitStages() const override;
 
     void initialize(int stage) override;
 

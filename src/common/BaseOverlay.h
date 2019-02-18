@@ -552,7 +552,7 @@ public:
      * @param msg message to send
      */
     void sendMessageToUDP(const TransportAddress& dest, cPacket* msg,
-                          simtime_t delay = SIMTIME_ZERO);
+                          simtime_t delay = SIMTIME_ZERO) override;
 
     //------------------------------------------------------------------------
     //--- Basic Routing ------------------------------------------------------
@@ -736,34 +736,34 @@ protected://methods: statistic helpers for IterativeLookup
     void countFailedNodeCall(const FailedNodeCall* call);
 
 
-    bool internalHandleRpcCall( BaseCallMessage* msg );
+    bool internalHandleRpcCall( BaseCallMessage* msg) override;
     void internalHandleRpcResponse(BaseResponseMessage* msg,
                                    cObject* context, int rpcId,
-                                   simtime_t rtt);
+                                   simtime_t rtt) override;
     void internalHandleRpcTimeout(BaseCallMessage* msg,
                                   const TransportAddress& dest,
                                   cObject* context,
-                                  int rpcId, const OverlayKey& destKey);
+                                  int rpcId, const OverlayKey& destKey) override;
 
     // TODO rename to internalSendRouteRpcMessage()
     void internalSendRouteRpc(BaseRpcMessage* message,
                               const OverlayKey& destKey,
                               const std::vector<TransportAddress>&
                               sourceRoute,
-                              RoutingType routingType);
+                              RoutingType routingType) override;
 
     /*
      * Returns the component type of this module
      *
      * @return the component type
      */
-    CompType getThisCompType();
+    CompType getThisCompType() override;
 
     bool kbr; /**< set this to true, if the overlay provides KBR services */
 
 private:
     void internalSendRpcResponse(BaseCallMessage* call,
-                                 BaseResponseMessage* response);
+                                 BaseResponseMessage* response) override;
 
     const cGate* udpGate;
     const cGate* appGate;

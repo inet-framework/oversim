@@ -316,7 +316,7 @@ protected:
      */
     virtual void sendMessageToUDP(const TransportAddress& destAddr,
                                   cPacket *msg,
-                                  simtime_t delay = SIMTIME_ZERO);
+                                  simtime_t delay = SIMTIME_ZERO) override;
 
     /**
      * handleTraceMessage gets called of handleMessage(cMessage* msg)
@@ -374,25 +374,25 @@ public:
 
 
 protected://methods: rpc handling
-    bool internalHandleRpcCall(BaseCallMessage* msg);
+    bool internalHandleRpcCall(BaseCallMessage* msg) override;
     void internalHandleRpcResponse(BaseResponseMessage* msg,
                                    cObject* context, int rpcId,
-                                   simtime_t rtt);
+                                   simtime_t rtt) override;
 
     void internalSendRouteRpc(BaseRpcMessage* message,
                               const OverlayKey& destKey,
                               const std::vector<TransportAddress>&
                                   sourceRoute,
-                              RoutingType routingType);
+                              RoutingType routingType) override;
 
-    virtual CompType getThisCompType();
+    virtual CompType getThisCompType() override;
     void sendReadyMessage(bool ready = true,
                           const OverlayKey& nodeId =
                               OverlayKey::UNSPECIFIED_KEY);
 
 private:
     void internalSendRpcResponse(BaseCallMessage* call,
-                                 BaseResponseMessage* response);
+                                 BaseResponseMessage* response) override;
 };
 
 #endif

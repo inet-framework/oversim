@@ -68,23 +68,23 @@ protected:
     /** Actual initialization function
          * @param stage Actual stage
          */
-    virtual void initializeApp(int stage);
+    virtual void initializeApp(int stage) override;
 
     /** Delivers a packet from the overlay
       * @param key Key from the overlay
       * @param msg Message to deliver
       */
-    virtual void deliver(OverlayKey &key, cMessage *msg);
+    virtual void deliver(OverlayKey &key, cMessage *msg) override;
 
     /** Handles a message from UDP
          * @param msg Incoming message
          */
-    virtual void handleUDPMessage(cMessage *msg);
+    virtual void handleUDPMessage(cMessage *msg) override;
 
     /** Handles timers
      * @param msg Timer
      */
-    virtual void handleTimerEvent(cMessage* msg);
+    virtual void handleTimerEvent(cMessage* msg) override;
 
     /** Replies to a query of which server is responsible for the given identifier (this server)
          * @param id I3 identifier of the query
@@ -92,7 +92,7 @@ protected:
          */
     void sendQueryReply(const I3Identifier &id, const I3IPAddress &add);
 
-    virtual void forward(OverlayKey *key, cPacket **msg, NodeHandle* nextHopNode);
+    virtual void forward(OverlayKey *key, cPacket **msg, NodeHandle* nextHopNode) override;
 
     /** Updates TriggerTable's module display string */
     void updateTriggerTableString();

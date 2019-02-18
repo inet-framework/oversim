@@ -42,7 +42,7 @@ void GiaNeighbors::initialize(int stage)
 }
 
 
-void GiaNeighbors::handleMessages( cMessage* msg )
+void GiaNeighbors::handleMessage(cMessage* msg)
 {
     error("this module doesn't handle messages, it runs only in initialize()");
 }

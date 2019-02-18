@@ -34,7 +34,7 @@ class RandomChurn : public ChurnGenerator
 {
     public:
         void handleMessage(cMessage* msg) override;
-        void initializeChurn();
+        void initializeChurn() override;
         ~RandomChurn();
 
     protected:

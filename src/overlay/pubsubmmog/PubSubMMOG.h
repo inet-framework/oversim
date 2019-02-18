@@ -35,20 +35,20 @@ class PubSubMMOG : public BaseOverlay
     public:
         // OMNeT++
         virtual ~PubSubMMOG();
-        virtual void initializeOverlay(int stage);
-        virtual void finishOverlay();
-        virtual void handleUDPMessage(BaseOverlayMessage* msg);
-        virtual void handleTimerEvent(cMessage* msg);
-        virtual void handleAppMessage(cMessage* msg);
+        virtual void initializeOverlay(int stage) override;
+        virtual void finishOverlay() override;
+        virtual void handleUDPMessage(BaseOverlayMessage* msg) override;
+        virtual void handleTimerEvent(cMessage* msg) override;
+        virtual void handleAppMessage(cMessage* msg) override;
         virtual void receiveSignal(cComponent *source, simsignal_t category, cObject *obj, cObject *details) override;
-        virtual bool handleRpcCall(BaseCallMessage* msg);
+        virtual bool handleRpcCall(BaseCallMessage* msg) override;
         virtual void handleRpcResponse(BaseResponseMessage *msg,
                                        cObject* context,
-                                       int rpcId, simtime_t rtt);
+                                       int rpcId, simtime_t rtt) override;
         virtual void handleRpcTimeout(BaseCallMessage *msg,
                                       const TransportAddress & dest,
                                       cObject* context,
-                                      int rpcId, const OverlayKey &destKey);
+                                      int rpcId, const OverlayKey &destKey) override;
 
     protected:
 

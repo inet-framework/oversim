@@ -51,12 +51,12 @@ class I3HostMobility : public I3BaseApp {
     I3Identifier poolId;
     I3Identifier closestId;
 
-    void initializeApp(int stage);
-    void initializeI3();
-    void handleTimerEvent(cMessage *msg);
-    void handleUDPMessage(cMessage* msg);
-    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
-    void doMobilityEvent(I3MobilityStage stage);
+    void initializeApp(int stage) override;
+    void initializeI3() override;
+    void handleTimerEvent(cMessage *msg) override;
+    void handleUDPMessage(cMessage* msg) override;
+    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg) override;
+    void doMobilityEvent(I3MobilityStage stage) override;
     void discoverPartners();
     void finish() override;
 };

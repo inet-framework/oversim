@@ -47,7 +47,7 @@ class ParetoChurn : public ChurnGenerator
 {
 public:
     void handleMessage(cMessage* msg) override;
-    void initializeChurn();
+    void initializeChurn() override;
     ParetoChurn() { initFinishedTimer = NULL; };
     ~ParetoChurn();
 

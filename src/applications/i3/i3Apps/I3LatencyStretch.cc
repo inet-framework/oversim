@@ -75,11 +75,11 @@ class I3LatencyStretch : public I3BaseApp {
 
     std::map<I3IPAddress, LatencyInfo> latencies;
 
-    void initializeApp(int stage);
-    void initializeI3();
-    void handleTimerEvent(cMessage *msg);
-    void handleUDPMessage(cMessage* msg);
-    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg);
+    void initializeApp(int stage) override;
+    void initializeI3() override;
+    void handleTimerEvent(cMessage *msg) override;
+    void handleUDPMessage(cMessage* msg) override;
+    void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg) override;
     void finish() override;
 };
 
