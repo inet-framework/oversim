@@ -51,7 +51,7 @@ bool Prox::operator!=(Prox p) const { return !(*this == p); }
 const ProxNodeHandle ProxNodeHandle::UNSPECIFIED_NODE;
 
 ProxNodeHandle::ProxNodeHandle(const NodeHandle& nodeHandle)
-: NodeHandle(nodeHandle), prox(prox)
+: NodeHandle(nodeHandle)
 {
     //...
 }
@@ -67,7 +67,7 @@ ProxNodeHandle::ProxNodeHandle(const NodeHandle& nodeHandle, const Prox& prox)
 const ProxTransportAddress ProxTransportAddress::UNSPECIFIED_ADDRESS;
 
 ProxTransportAddress::ProxTransportAddress(const TransportAddress& transportAddress)
-: TransportAddress(transportAddress), prox(prox)
+: TransportAddress(transportAddress)
 {
     //...
 }
