@@ -626,8 +626,6 @@ L3Address SimpleUnderlayConfigurator::migrateNode(NodeType type, L3Address addr,
 
 //    check_and_cast<>BaseRpc>((*getSimulation()).getModule(newinfo->getModuleID())->getSubmodule("tier1"));
     // inform the notification board about the migration
-    cModule* nb = check_and_cast<cModule*> (
-                                      node->getSubmodule("notificationBoard"));
     node->emit(NF_OVERLAY_TRANSPORTADDRESS_CHANGED, (cObject*)nullptr);
 
     return address;
