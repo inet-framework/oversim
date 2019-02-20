@@ -228,18 +228,9 @@ L3Address AccessNet::addOverlayNode(cModule* node, bool migrate)
     }
 
     cGate* ipIn = firstUnusedGate(ipModule, "queueIn");
+    cGate* ipOut = firstUnusedGate(ipModule, "queueOut");
     netwInGate->connectTo(ipIn);
-
-    cModule* arpModule = NULL;
-
-    if(useIPv6) {
-        arpModule = router.module->getSubmodule("networkLayer")->getSubmodule("neighbourDiscovery"); //comment out for speed-hack
-    } else {
-        arpModule = router.module->getSubmodule("networkLayer")->getSubmodule("arp"); //comment out for speed-hack
-        cGate* arpOut = firstUnusedGate(arpModule, "nicOut"); //comment out for speed-hack
-        arpOut->connectTo(netwOutGate);    //comment out for speed-hack
-
-    }
+    ipOut->connectTo(netwOutGate);    //comment out for speed-hack
 
     //
     // Start ppp interface modules
