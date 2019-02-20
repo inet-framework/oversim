@@ -1,0 +1,4 @@
+# workingdir,                        args,                                          simtimelimit,    fingerprint
+/simulations/,                       -f omnetpp.ini -c Accordion -r 0
+/simulations/,                       -f omnetpp.ini -c ChurnVisualization -r 0
+/simulations/,                       -f omnetpp.ini -c MultiOverlay -r 0

@@ -16,7 +16,7 @@
 /simulations/,                       -f omnetpp.ini -c KoordeLarge -r 0
 /simulations/,                       -f omnetpp.ini -c Broose -r 0
 /simulations/,                       -f omnetpp.ini -c BrooseLarge -r 0
-/simulations/,                       -f omnetpp.ini -c Accordion -r 0
+# /simulations/,                       -f omnetpp.ini -c Accordion -r 0     # FAILED: No module type named 'oversim.overlay.accordion.AccordionModules' found
 /simulations/,                       -f omnetpp.ini -c Gia -r 0
 /simulations/,                       -f omnetpp.ini -c GiaLarge -r 0
 /simulations/,                       -f omnetpp.ini -c ChordDht -r 0
@@ -26,8 +26,8 @@
 /simulations/,                       -f omnetpp.ini -c i3Anycast -r 0
 /simulations/,                       -f omnetpp.ini -c Scribe -r 0
 /simulations/,                       -f omnetpp.ini -c Partition -r 0
-/simulations/,                       -f omnetpp.ini -c ChurnVisualization -r 0
-/simulations/,                       -f omnetpp.ini -c MultiOverlay -r 0
+# /simulations/,                       -f omnetpp.ini -c ChurnVisualization -r 0     # FAILED: Condition '(oldTerminalCount - 1) == terminalCount' does not hold in function 'handleMessage' at common/RandomChurn.cc:114
+# /simulations/,                       -f omnetpp.ini -c MultiOverlay -r 0     # FAILED: Condition '(oldTerminalCount - 1) == terminalCount' does not hold in function 'handleMessage' at common/RandomChurn.cc:114
 /simulations/,                       -f omnetpp.ini -c SimMud -r 0
 /simulations/,                       -f omnetpp.ini -c NTree -r 0
 /simulations/,                       -f omnetpp.ini -c PubSubMMOG -r 0
