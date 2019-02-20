@@ -37,9 +37,12 @@ module AccessRouter
         inout pppg[];    // gates from overlay
         inout ethg[];    // unused here
     submodules:
-        interfaceTable: InterfaceTable {
+        networkLayer: IPv4NetworkLayer {
             parameters:
-                @display("p=150,60;i=block/table");
+                @display("p=199,141;i=block/fork;q=queue");
+            gates:
+                ifIn[sizeof(pppg)+sizeof(ethg)];
+                ifOut[sizeof(pppg)+sizeof(ethg)];
         }
         routingTable: IPv4RoutingTable {
             parameters:
@@ -48,16 +51,13 @@ module AccessRouter
                 routingFile = routingFile;
                 @display("p=240,60;i=block/table");
         }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=150,60;i=block/table");
+        }
         accessNet: AccessNet {
             parameters:
                 @display("p=330,60");
-        }
-        networkLayer: IPv4NetworkLayer {
-            parameters:
-                @display("p=199,141;i=block/fork;q=queue");
-            gates:
-                ifIn[sizeof(pppg)+sizeof(ethg)];
-                ifOut[sizeof(pppg)+sizeof(ethg)];
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:

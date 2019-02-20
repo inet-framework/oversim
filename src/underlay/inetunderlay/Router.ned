@@ -41,9 +41,12 @@ module Router
         inout pppg[];
         inout ethg[];
     submodules:
-        interfaceTable: InterfaceTable {
+        networkLayer: IPv4NetworkLayer {
             parameters:
-                @display("p=150,60");
+                @display("p=200,141;q=queue");
+            gates:
+                ifIn[sizeof(pppg)+sizeof(ethg)];
+                ifOut[sizeof(pppg)+sizeof(ethg)];
         }
         routingTable: IPv4RoutingTable {
             parameters:
@@ -52,12 +55,9 @@ module Router
                 routingFile = routingFile;
                 @display("p=240,60");
         }
-        networkLayer: IPv4NetworkLayer {
+        interfaceTable: InterfaceTable {
             parameters:
-                @display("p=200,141;q=queue");
-            gates:
-                ifIn[sizeof(pppg)+sizeof(ethg)];
-                ifOut[sizeof(pppg)+sizeof(ethg)];
+                @display("p=150,60");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
