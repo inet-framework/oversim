@@ -260,8 +260,8 @@ int ConnectReaSE::addOverlayNode(AccessInfo* overlayNode, bool migrate)
         cGate* netwInGate = firstUnusedGate(netwModule, "ifIn");
         cGate* netwOutGate = firstUnusedGate(netwModule, "ifOut");
 
-        netwOutGate->connectTo(terminal.remotePPPInterface->gate("netwIn"));
-        terminal.remotePPPInterface->gate("netwOut")->connectTo(netwInGate);
+        netwOutGate->connectTo(terminal.remotePPPInterface->gate("upperLayerIn"));
+        terminal.remotePPPInterface->gate("upperLayerOut")->connectTo(netwInGate);
 
         // connect network layer module to ip and arp modules
         cModule* ipModule = overlayNode->edge->Router->getSubmodule("networkLayer")->getSubmodule("ip");
@@ -388,8 +388,8 @@ cModule* ConnectReaSE::removeOverlayNode(int ID)
     node->gate("pppg$i", 0)->getPreviousGate()->disconnect();
 
     // disconnect ip and arp modules
-    ppp->gate("netwIn")->getPathStartGate()->disconnect();
-    ppp->gate("netwOut")->getNextGate()->disconnect();
+    ppp->gate("upperLayerIn")->getPathStartGate()->disconnect();
+    ppp->gate("upperLayerOut")->getNextGate()->disconnect();
 
     // remove associated ppp interface module
     ppp->callFinish();

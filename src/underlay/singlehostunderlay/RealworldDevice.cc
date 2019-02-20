@@ -51,8 +51,8 @@ InterfaceEntry *RealworldDevice::registerInterface()
     e->setName(interfaceName);
     delete [] interfaceName;
 
-    // port: index of gate where our "netwIn" is connected (in IP)
-    int outputPort = /*getParentModule()->*/gate("netwIn")->getPreviousGate()->getIndex();
+    // port: index of gate where our "upperLayerIn" is connected (in IP)
+    int outputPort = /*getParentModule()->*/gate("upperLayerIn")->getPreviousGate()->getIndex();
     e->setNodeOutputGateId(outputPort);
 
     // generate a link-layer address to be used as interface token for IPv6

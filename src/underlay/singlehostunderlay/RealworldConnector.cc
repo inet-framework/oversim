@@ -71,7 +71,7 @@ void RealworldConnector::initialize(int stage)
     WATCH(numSendError);
 
     if (!isApp()) {
-        gateIndexNetwOut = gate("netwOut")->getId();
+        gateIndexNetwOut = gate("upperLayerOut")->getId();
     } else {
         gateIndexNetwOut = gate("to_lowerTier")->getId();
     }
@@ -105,7 +105,7 @@ void RealworldConnector::handleMessage(cMessage *msg)
             }
 
         }
-    } else // arrived on gate "netwIn"
+    } else // arrived on gate "upperLayerIn"
     {
         // Packet from inside, send to real word
         EV << "[RealworldConnector::handleMessage()]\n"
