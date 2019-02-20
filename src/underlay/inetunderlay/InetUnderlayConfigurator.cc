@@ -454,7 +454,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
             // (netmask 255.255.0.0) to each other router
             IPv4Route* re = new IPv4Route();
 
-            re->setDestination(IPv4Address(destAddr));
+            re->setDestination(IPv4Address(destAddr & 0xffff0000));
             re->setInterface(ie);
             re->setSourceType(IPv4Route::MANUAL);
             re->setNetmask(IPv4Address(255, 255, 0, 0));
