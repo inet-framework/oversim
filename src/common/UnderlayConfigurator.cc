@@ -56,7 +56,7 @@ int UnderlayConfigurator::numInitStages() const
 
 void UnderlayConfigurator::initialize(int stage)
 {
-    if (stage == MIN_STAGE_UNDERLAY) {
+    if (stage == INITSTAGE_NETWORK_LAYER) {
         gracefulLeaveDelay = par("gracefulLeaveDelay");
         gracefulLeaveProbability = par("gracefulLeaveProbability");
 

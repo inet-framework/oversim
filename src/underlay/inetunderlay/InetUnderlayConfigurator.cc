@@ -46,7 +46,9 @@ Define_Module(InetUnderlayConfigurator);
 void InetUnderlayConfigurator::initializeUnderlay(int stage)
 {
     //backbone configuration
-    if (stage == MIN_STAGE_UNDERLAY) {
+    if (stage == INITSTAGE_NETWORK_LAYER) {
+    }
+    else if(stage == INITSTAGE_NETWORK_LAYER_2) {
         // Find all router modules.
         cTopology topo("topo");
         topo.extractByProperty("networkNode");
@@ -59,7 +61,7 @@ void InetUnderlayConfigurator::initializeUnderlay(int stage)
         }
     }
     //access net configuration
-    else if(stage == MAX_STAGE_UNDERLAY) {
+    else if(stage == INITSTAGE_NETWORK_LAYER_3) {
         // fetch some parameters
         accessRouterNum = getParentModule()->par("accessRouterNum");
         overlayAccessRouterNum = getParentModule()->par("overlayAccessRouterNum");
@@ -370,6 +372,7 @@ void InetUnderlayConfigurator::setUpIPv4(cTopology &topo)
         for ( int k = 0; k < ift->getNumInterfaces(); k++ ) {
             InterfaceEntry* ie = ift->getInterface(k);
             if (!ie->isLoopback()) {
+                ASSERT(ie->ipv4Data());
                 ie->ipv4Data()->setIPAddress(IPv4Address(addr));
                 // full address must match for local delivery
                 ie->ipv4Data()->setNetmask(IPv4Address::ALLONES_ADDRESS);

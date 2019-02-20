@@ -45,39 +45,42 @@ std::ostream& operator<<(std::ostream& os, NodeInfo& n)
 
 void AccessNet::initialize(int stage)
 {
-    if(stage != MIN_STAGE_UNDERLAY + 1)
-        return;
-
-    router.module = getParentModule();
-    router.interfaceTable = L3AddressResolver().interfaceTableOf(getParentModule());
-    useIPv6 = par("useIPv6Addresses").boolValue();
-    if (useIPv6){
-        router.routingTable6 = L3AddressResolver().routingTable6Of(getParentModule());
-        router.ipvxAddress = getAssignedPrefix(router.interfaceTable);
-    } else {
-        router.routingTable = L3AddressResolver().routingTableOf(getParentModule());
-        router.ipvxAddress = L3AddressResolver().addressOf(getParentModule());
+    if (stage == INITSTAGE_LOCAL) {
+        useIPv6 = par("useIPv6Addresses").boolValue();
     }
-
-    channelTypesTx = cStringTokenizer(par("channelTypes"), " ").asVector();
-    channelTypesRx = cStringTokenizer(par("channelTypesRx"), " ").asVector();
-    
-    if (channelTypesRx.size() != channelTypesTx.size()) {
-        channelTypesRx = channelTypesTx;
+    else if (stage == INITSTAGE_NETWORK_LAYER) {
+        router.module = getParentModule();
+        router.interfaceTable = L3AddressResolver().interfaceTableOf(getParentModule());
     }
-    
-    int chanIndex = intuniform(0, channelTypesTx.size()-1);
+    else if (stage == INITSTAGE_NETWORK_LAYER_3) {
+        if (useIPv6){
+            router.routingTable6 = L3AddressResolver().routingTable6Of(getParentModule());
+            router.ipvxAddress = getAssignedPrefix(router.interfaceTable);
+        } else {
+            router.routingTable = L3AddressResolver().routingTableOf(getParentModule());
+            router.ipvxAddress = L3AddressResolver().addressOf(getParentModule());
+            router.ipvxAddress = L3AddressResolver().addressOf(getParentModule(), L3AddressResolver::ADDR_IPv4);
+        }
+        channelTypesTx = cStringTokenizer(par("channelTypes"), " ").asVector();
+        channelTypesRx = cStringTokenizer(par("channelTypesRx"), " ").asVector();
 
-    selectChannel(channelTypesRx[chanIndex], channelTypesTx[chanIndex]);
+        if (channelTypesRx.size() != channelTypesTx.size()) {
+            channelTypesRx = channelTypesTx;
+        }
 
-    // statistics
-    lifetimeVector.setName("Terminal Lifetime");
+        int chanIndex = intuniform(0, channelTypesTx.size()-1);
 
-    WATCH_VECTOR(overlayTerminal);
+        selectChannel(channelTypesRx[chanIndex], channelTypesTx[chanIndex]);
 
-    lastIP = 0;
+        // statistics
+        lifetimeVector.setName("Terminal Lifetime");
 
-    updateDisplayString();
+        WATCH_VECTOR(overlayTerminal);
+
+        lastIP = 0;
+
+        updateDisplayString();
+    }
 }
 
 void AccessNet::handleMessage(cMessage* msg)
