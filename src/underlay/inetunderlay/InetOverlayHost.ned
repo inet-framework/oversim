@@ -46,6 +46,8 @@ module InetOverlayHost
         string routingFile = default("");
         bool forwarding = default(false);
         @display("bgb=537,472;i=device/wifilaptop_l;i2=block/circle_s");
+        @signal[NF_OVERLAY_NODE_LEAVE](type=cMessage?);    //FIXME KLUDGEs, *UnderlayConfigurator emits this signal on behalf of this module; cObject? not accepted here
+        @signal[NF_OVERLAY_NODE_GRACEFUL_LEAVE](type=cMessage?);    //FIXME KLUDGEs, *UnderlayConfigurator emits this signal on behalf of this module; cObject? not accepted here
         *.interfaceTableModule = default(absPath(".interfaceTable"));
         *.routingTableModule = default(absPath(".routingTable"));
     gates:

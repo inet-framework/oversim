@@ -45,8 +45,8 @@ module SimpleMultiOverlayHost
         bool forwarding = default(false);
 
         @display("bgb=433,440");
-        @signal[NF_OVERLAY_NODE_LEAVE](type=cMessage?);    //FIXME KLUDGE, cObject? not accepted here
-        @signal[NF_OVERLAY_NODE_GRACEFUL_LEAVE](type=cMessage?);    //FIXME KLUDGE, cObject? not accepted here
+        @signal[NF_OVERLAY_NODE_LEAVE](type=cMessage?);    //FIXME KLUDGEs, *UnderlayConfigurator emits this signal on behalf of this module; cObject? not accepted here
+        @signal[NF_OVERLAY_NODE_GRACEFUL_LEAVE](type=cMessage?);    //FIXME KLUDGEs, *UnderlayConfigurator emits this signal on behalf of this module; cObject? not accepted here
         *.interfaceTableModule = default(absPath(".interfaceTable"));
 
     gates:
