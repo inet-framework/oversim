@@ -49,7 +49,7 @@ void InetUnderlayConfigurator::initializeUnderlay(int stage)
     if (stage == MIN_STAGE_UNDERLAY) {
         // Find all router modules.
         cTopology topo("topo");
-        topo.extractByProperty("node");
+        topo.extractByProperty("networkNode");
 
         if (par("useIPv6Addresses").boolValue()) {
             setUpIPv6(topo);
