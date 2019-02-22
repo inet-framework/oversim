@@ -51,6 +51,8 @@ module ReaSEOverlayHost
         string routingFile = default("");
         bool forwarding = default(false);
         @display("bgb=537,472;i=device/wifilaptop_l;i2=block/circle_s");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable"));
     gates:
         inout pppg[]; // gates from router
         inout ethg[]; // placeholder for zero-size vector

@@ -36,6 +36,8 @@ module TunOutRouter6
         @networkNode;
         string parser; // name of the PacketParser to use
         @display("i=misc/globe");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable"));
     gates:
         inout pppg[]; // incoming gates to router
     submodules:

@@ -34,6 +34,8 @@ module Router6
     parameters:
         @networkNode;
         @display("i=abstract/router");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable"));
     gates:
         inout pppg[];
         inout ethg[];

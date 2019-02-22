@@ -37,6 +37,8 @@ module TunOutRouter
         string parser; // name of the PacketParser to use
         string routingFile = default("");
         @display("i=misc/globe");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable"));
     gates:
         inout pppg[]; // incoming gates to router
     submodules:
