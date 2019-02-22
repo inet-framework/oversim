@@ -110,8 +110,8 @@ public:
 
 protected:
   // utility methods
-  void segmentArrivalWhileClosed(TCPSegment *tcpseg, L3Address srcAddr, L3Address destAddr);
-  SimpleTCPConnection *createConnection(int appGateIndex, int connId);
+  void segmentArrivalWhileClosed(TCPSegment *tcpseg, L3Address srcAddr, L3Address destAddr) override;
+  SimpleTCPConnection *createConnection(int appGateIndex, int connId) override;
   virtual void initialize(int stage) override;
   virtual void handleMessage(cMessage *msg) override;
 

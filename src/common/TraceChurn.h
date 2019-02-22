@@ -44,7 +44,7 @@ class TraceChurn : public ChurnGenerator
     TransportAddress* getTransportAddressById(int nodeId);
 
   protected:
-    void updateDisplayString();
+    void updateDisplayString() override;
 
   private:
     char *maxTier;

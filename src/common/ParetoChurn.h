@@ -57,7 +57,7 @@ protected:
         double d;
         bool alive;
     };
-    void updateDisplayString();
+    void updateDisplayString() override;
     void createNode(double lifetime, double meanLifetime, double meanDeadtime, bool initialize);
     void deleteNode(TransportAddress& addr, double meanLifetime, double meanDeadtime);
 

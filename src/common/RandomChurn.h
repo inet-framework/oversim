@@ -38,7 +38,7 @@ class RandomChurn : public ChurnGenerator
         ~RandomChurn();
 
     protected:
-        void updateDisplayString();
+        void updateDisplayString() override;
 
     private:
         double creationProbability; //!< probability of creating a new overlay terminal

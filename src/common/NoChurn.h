@@ -37,11 +37,11 @@ class NoChurn: public ChurnGenerator
 {
 public:
     void handleMessage(cMessage* msg) override;
-    void initializeChurn();
+    void initializeChurn() override;
     ~NoChurn();
 
 protected:
-    void updateDisplayString();
+    void updateDisplayString() override;
 
 private:
     double initialMean; //!< mean of update interval during initalization phase

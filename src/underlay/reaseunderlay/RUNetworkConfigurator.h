@@ -277,7 +277,7 @@ protected:
      * and routing paths are established.
      */
     virtual void initialize(int stage) override;
-    virtual void handleMessage(cMessage *msg) {throw cRuntimeError("message received");};
+    virtual void handleMessage(cMessage *msg) override {throw cRuntimeError("message received");};
     /** @brief Add Inter-AS routing paths between core nodes
      *
      * Calculate all Inter-AS. This is achieved by calculating all shortest paths between

@@ -42,7 +42,7 @@ public:
     ~LifetimeChurn();
 
 protected:
-    void updateDisplayString();
+    void updateDisplayString() override;
     void createNode(simtime_t lifetime, bool initialize, int contextPos);
     void deleteNode(TransportAddress& addr, int contextPos);
     double distributionFunction();

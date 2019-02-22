@@ -151,7 +151,7 @@ public:
     XmlRpcInterface();
     ~XmlRpcInterface();
 
-    virtual void initializeApp(int stage);
+    virtual void initializeApp(int stage) override;
 
     /**
      * The "main loop". Every message that is received or send is handled
@@ -163,7 +163,7 @@ public:
     void handleRpcTimeout(BaseCallMessage* msg,
                           const TransportAddress& dest,
                           cObject* context, int rpcId,
-                          const OverlayKey&);
+                          const OverlayKey&) override;
 
     void deliverTunneledMessage(const BinaryValue& payload);
 
