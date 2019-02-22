@@ -23,12 +23,13 @@
 
 package oversim.underlay.reaseunderlay;
 
+import inet.linklayer.loopback.LoopbackInterface;
 import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.IPv4RoutingTable;
 import inet.networklayer.ipv4.IPv4NetworkLayer;
-import inet.transportlayer.udp.UDP;
+import inet.networklayer.ipv4.IPv4RoutingTable;
 import inet.transportlayer.tcp.TCP;
+import inet.transportlayer.udp.UDP;
 import oversim.common.BootstrapList;
 import oversim.common.CryptoModule;
 import oversim.common.IOverlay;
@@ -103,6 +104,9 @@ module ReaSEOverlayHost
                 routingFile = routingFile; // use predefined routing file if given
                 @display("p=68,371");
         }
+        lo0: LoopbackInterface {
+            @display("p=269,414");
+        }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
                 @display("p=374,414,row,90;q=txQueue");
@@ -157,11 +161,13 @@ module ReaSEOverlayHost
         tcp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
-        for i=0..sizeof(pppg)-1 {
-            pppg[i] <--> ppp[i].phys;
-            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
-            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
-        }
+        networkLayer.ifOut++ --> lo0.upperLayerIn;
+        lo0.upperLayerOut --> networkLayer.ifIn++;
 
+        for i=0..sizeof(pppg)-1 {
+            pppg[i] <--> { @display("m=s"); } <--> ppp[i].phys;
+            ppp[i].upperLayerOut --> networkLayer.ifIn++;
+            ppp[i].upperLayerIn <-- networkLayer.ifOut++;
+        }
 }
 
