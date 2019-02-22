@@ -501,7 +501,7 @@ void Vast::buildVoronoi(Vector2D old_pos, Vector2D new_pos, NodeHandle enclosing
             }
         }
         // Treat enclosing neighbors whose voronoi region is outside our AOI as boundary neighbors
-        if((!itTemp->second->type & NEIGHBOR) && (itTemp->second->type & ENCLOSING)) {
+        if(!(itTemp->second->type & NEIGHBOR) && (itTemp->second->type & ENCLOSING)) {
             itTemp->second->type |= BOUNDARY;
             // Debug output
             if(debugOutput)
