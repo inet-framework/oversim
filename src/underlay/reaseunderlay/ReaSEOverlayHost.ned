@@ -58,17 +58,6 @@ module ReaSEOverlayHost
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=68,293");
-        }
-        routingTable: IPv4RoutingTable {
-            parameters:
-                forwarding = forwarding; // true if ip packets should be forwarded
-                routerId = ""; // id of the router
-                routingFile = routingFile; // use predefined routing file if given
-                @display("p=68,371");
-        }
         tier3: <tier3Type> like ITier {
             parameters:
                 @display("p=107,48");
@@ -100,6 +89,17 @@ module ReaSEOverlayHost
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)];
                 ifOut[sizeof(pppg)+sizeof(ethg)];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=68,293");
+        }
+        routingTable: IPv4RoutingTable {
+            parameters:
+                forwarding = forwarding; // true if ip packets should be forwarded
+                routerId = ""; // id of the router
+                routingFile = routingFile; // use predefined routing file if given
+                @display("p=68,371");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:

@@ -57,15 +57,6 @@ module OverlayAccessRouter6
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=76,262;i=block/table");
-        }
-        routingTable6: IPv6RoutingTable {
-            parameters:
-                isRouter = true;
-                @display("p=76,340;i=block/table");
-        }
         accessNet: AccessNet {
             parameters:
                 useIPv6Addresses = true;
@@ -101,6 +92,15 @@ module OverlayAccessRouter6
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)];
                 ifOut[sizeof(pppg)+sizeof(ethg)];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=76,262;i=block/table");
+        }
+        routingTable6: IPv6RoutingTable {
+            parameters:
+                isRouter = true;
+                @display("p=76,340;i=block/table");
         }
         lo0: LoopbackInterface {
             @display("p=269,414");

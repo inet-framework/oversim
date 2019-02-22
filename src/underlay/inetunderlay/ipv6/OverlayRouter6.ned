@@ -50,15 +50,6 @@ module OverlayRouter6
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=84,278");
-        }
-        routingTable6: IPv6RoutingTable {
-            parameters:
-                isRouter = true;
-                @display("p=84,348");
-        }
         tier3: <tier3Type> like ITier {
             parameters:
                 @display("p=48,64");
@@ -89,6 +80,15 @@ module OverlayRouter6
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)];
                 ifOut[sizeof(pppg)+sizeof(ethg)];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=84,278");
+        }
+        routingTable6: IPv6RoutingTable {
+            parameters:
+                isRouter = true;
+                @display("p=84,348");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:

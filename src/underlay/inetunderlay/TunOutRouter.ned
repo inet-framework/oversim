@@ -40,17 +40,6 @@ module TunOutRouter
     gates:
         inout pppg[]; // incoming gates to router
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=150,60");
-        }
-        routingTable: IPv4RoutingTable {
-            parameters:
-                forwarding = true; // true if ip packets should be forwarded
-                routerId = "auto"; // id of the router
-                routingFile = routingFile; // use predefined routing file if given
-                @display("p=240,60");
-        }
         packetParser: <parser> like IPacketParser {
             parameters:
                 @display("p=59,126");
@@ -61,6 +50,17 @@ module TunOutRouter
             gates:
                 ifIn[sizeof(pppg)+1];
                 ifOut[sizeof(pppg)+1];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=150,60");
+        }
+        routingTable: IPv4RoutingTable {
+            parameters:
+                forwarding = true; // true if ip packets should be forwarded
+                routerId = "auto"; // id of the router
+                routingFile = routingFile; // use predefined routing file if given
+                @display("p=240,60");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:

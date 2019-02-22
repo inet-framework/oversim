@@ -39,15 +39,6 @@ module TunOutRouter6
     gates:
         inout pppg[]; // incoming gates to router
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=150,60");
-        }
-        routingTable6: IPv6RoutingTable {
-            parameters:
-                isRouter = true;
-                @display("p=240,60");
-        }
         packetParser: <parser> like IPacketParser {
             parameters:
                 @display("p=59,126");
@@ -58,6 +49,15 @@ module TunOutRouter6
             gates:
                 ifIn[sizeof(pppg)+1];
                 ifOut[sizeof(pppg)+1];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=150,60");
+        }
+        routingTable6: IPv6RoutingTable {
+            parameters:
+                isRouter = true;
+                @display("p=240,60");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:

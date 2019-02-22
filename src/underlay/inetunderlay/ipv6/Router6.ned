@@ -38,6 +38,13 @@ module Router6
         inout pppg[];
         inout ethg[];
     submodules:
+        networkLayer: IPv6NetworkLayer {
+            parameters:
+                @display("p=200,141;q=queue");
+            gates:
+                ifIn[sizeof(pppg)+sizeof(ethg)];
+                ifOut[sizeof(pppg)+sizeof(ethg)];
+        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=150,60");
@@ -46,13 +53,6 @@ module Router6
             parameters:
                 isRouter = true;
                 @display("p=240,60");
-        }
-        networkLayer: IPv6NetworkLayer {
-            parameters:
-                @display("p=200,141;q=queue");
-            gates:
-                ifIn[sizeof(pppg)+sizeof(ethg)];
-                ifOut[sizeof(pppg)+sizeof(ethg)];
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:

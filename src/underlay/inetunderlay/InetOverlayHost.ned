@@ -58,17 +58,6 @@ module InetOverlayHost
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=68,311");
-        }
-        routingTable: IPv4RoutingTable {
-            parameters:
-                forwarding = forwarding; // true if ip packets should be forwarded
-                routerId = ""; // id of the router
-                routingFile = routingFile; // use predefined routing file if given
-                @display("p=68,397");
-        }
         tier3: <tier3Type> like ITier {
             parameters:
                 @display("p=96,44");
@@ -100,6 +89,17 @@ module InetOverlayHost
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)];
                 ifOut[sizeof(pppg)+sizeof(ethg)];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=68,311");
+        }
+        routingTable: IPv4RoutingTable {
+            parameters:
+                forwarding = forwarding; // true if ip packets should be forwarded
+                routerId = ""; // id of the router
+                routingFile = routingFile; // use predefined routing file if given
+                @display("p=68,397");
         }
         lo0: LoopbackInterface {
             @display("p=269,414");
@@ -166,6 +166,5 @@ module InetOverlayHost
             ppp[i].upperLayerOut --> networkLayer.ifIn++;
             ppp[i].upperLayerIn <-- networkLayer.ifOut++;
         }
-
 }
 

@@ -44,6 +44,8 @@ module OverlayRouter
 
         string routingFile = default("");
         @display("bgb=360,476;i=abstract/router");
+        *.interfaceTableModule = default(absPath(".interfaceTable"));
+        *.routingTableModule = default(absPath(".routingTable"));
     gates:
         inout pppg[];    // gates from overlay
         inout ethg[];    // placeholder for zero-size vector
@@ -51,17 +53,6 @@ module OverlayRouter
         output overlayNeighborArrowOut[]; // incoming gate for visualizing overlay neighborship with connection arrows
 
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=84,278");
-        }
-        routingTable: IPv4RoutingTable {
-            parameters:
-                forwarding = true;
-                routerId = "auto";
-                routingFile = routingFile;    // use predefined routing file if given
-                @display("p=84,348");
-        }
         tier3: <tier3Type> like ITier {
             parameters:
                 @display("p=48,64");
@@ -93,6 +84,17 @@ module OverlayRouter
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)];
                 ifOut[sizeof(pppg)+sizeof(ethg)];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=84,278");
+        }
+        routingTable: IPv4RoutingTable {
+            parameters:
+                forwarding = true;
+                routerId = "auto";
+                routingFile = routingFile;    // use predefined routing file if given
+                @display("p=84,348");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:

@@ -38,15 +38,6 @@ module AccessRouter6
         inout pppg[];    // gates from overlay
         inout ethg[];    // unused here
     submodules:
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=150,60;i=block/table");
-        }
-        routingTable6: IPv6RoutingTable {
-            parameters:
-                isRouter = true;
-                @display("p=240,60;i=block/table");
-        }
         accessNet: AccessNet {
             parameters:
                 useIPv6Addresses = true;
@@ -58,6 +49,15 @@ module AccessRouter6
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)];
                 ifOut[sizeof(pppg)+sizeof(ethg)];
+        }
+        interfaceTable: InterfaceTable {
+            parameters:
+                @display("p=150,60;i=block/table");
+        }
+        routingTable6: IPv6RoutingTable {
+            parameters:
+                isRouter = true;
+                @display("p=240,60;i=block/table");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
