@@ -269,7 +269,7 @@ protected:
     //
     // stage = 0 --> register interfaces
     //
-    virtual int numInitStages() const  override {return 3;}
+    virtual int numInitStages() const  override {return NUM_INIT_STAGES;}
     /**
      * Main method of the network configurator.
      *

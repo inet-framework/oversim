@@ -41,9 +41,8 @@ RUNetworkConfigurator::~RUNetworkConfigurator()
 
 void RUNetworkConfigurator::initialize(int stage)
 {
-    if (stage != 2)
+    if (stage != INITSTAGE_NETWORK_LAYER_2)
         return;
-
 
     //TODO: read number of AS
     cTopology tempTopology("tempTopo");
