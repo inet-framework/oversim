@@ -390,11 +390,11 @@ void RUNetworkConfigurator::setIntraASRoutes(cTopology &topology, nodeInfoAS &as
                 else {
                     // add specific routing entry into routing table
                     IPv4Route *e = new IPv4Route();
-                    e->setDestination(destNode.addr);
                     if (destNode.routerType == EDGE)
                         e->setNetmask(asInfo.subnetmask);
                     else
                         e->setNetmask(IPv4Address(255, 255, 255, 255));
+                    e->setDestination(destNode.addr.doAnd(e->getNetmask()));
                     e->setInterface(ie);
                     e->setSourceType(IPv4Route::MANUAL);
                     srcNode.rt->addRoute(e);
