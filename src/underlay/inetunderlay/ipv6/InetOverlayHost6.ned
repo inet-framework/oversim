@@ -16,12 +16,13 @@
 
 package oversim.underlay.inetunderlay.ipv6;
 
+import inet.linklayer.loopback.LoopbackInterface;
 import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv6.IPv6RoutingTable;
 import inet.networklayer.ipv6.IPv6NetworkLayer;
-import inet.transportlayer.udp.UDP;
+import inet.networklayer.ipv6.IPv6RoutingTable;
 import inet.transportlayer.tcp.TCP;
+import inet.transportlayer.udp.UDP;
 import oversim.common.BootstrapList;
 import oversim.common.CryptoModule;
 import oversim.common.IOverlay;
@@ -96,6 +97,9 @@ module InetOverlayHost6
                 ifIn[sizeof(pppg)+sizeof(ethg)];
                 ifOut[sizeof(pppg)+sizeof(ethg)];
         }
+        lo0: LoopbackInterface {
+            @display("p=271,414");
+        }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
                 @display("p=374,414,row,90;q=txQueue");
@@ -150,10 +154,13 @@ module InetOverlayHost6
         tcp.ipIn <-- networkLayer.transportOut++;
 
         // connections to network outside
+        networkLayer.ifOut++ --> lo0.upperLayerIn;
+        lo0.upperLayerOut --> networkLayer.ifIn++;
+
         for i=0..sizeof(pppg)-1 {
-            pppg[i] <--> ppp[i].phys;
-            ppp[i].upperLayerOut --> networkLayer.ifIn[i];
-            ppp[i].upperLayerIn <-- networkLayer.ifOut[i];
+            pppg[i] <--> { @display("m=s"); } <--> ppp[i].phys;
+            ppp[i].upperLayerOut --> networkLayer.ifIn++;
+            ppp[i].upperLayerIn <-- networkLayer.ifOut++;
         }
 
 }
