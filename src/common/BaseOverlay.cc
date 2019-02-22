@@ -722,6 +722,11 @@ int BaseOverlay::getMaxNumRedundantNodes()
 void BaseOverlay::handleMessage(cMessage* msg)
 {
     if (msg->getArrivalGate() == udpGate) {
+        if (dynamic_cast<UDPErrorIndication*>(msg->getControlInfo())) {
+            EV_WARN << "UDP error indication arrived\n";
+            delete msg;
+            return;
+        }
         UDPDataIndication* udpControlInfo =
             check_and_cast<UDPDataIndication*>(msg->removeControlInfo());
         OverlayCtrlInfo* overlayCtrlInfo = new OverlayCtrlInfo;
