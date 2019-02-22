@@ -75,7 +75,7 @@ bool NodeRecord::operator==(const BaseLocation& rhs)
     bool ret = true;
 
     for (int i = 0; i < this->getDim(); i++) {
-        if (abs(this->coords[i] - temp->coords[i]) > 0.00000001){
+        if (std::abs(this->coords[i] - temp->coords[i]) > 0.00000001){
             ret = false;
         }
     }
