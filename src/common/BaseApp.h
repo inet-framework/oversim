@@ -160,6 +160,7 @@ protected:
      * collects statistical data
      */
     void finish() override;
+    using omnetpp::cIListener::finish;    // eliminate compiler warning: 'finish' hides overloaded virtual function [-Woverloaded-virtual]
 
     /**
      * collects statistical data of derived app

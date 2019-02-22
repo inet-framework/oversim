@@ -140,6 +140,7 @@ protected:
      * Sets display string
      */
     virtual void setDisplayString() = 0;
+    using omnetpp::cComponent::setDisplayString;    // eliminate compiler warning: 'setDisplayString' hides overloaded virtual function [-Woverloaded-virtual]
 
     /**
      * Node mobility (*getSimulation())

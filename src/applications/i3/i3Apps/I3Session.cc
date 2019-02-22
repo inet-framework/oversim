@@ -52,6 +52,7 @@ public:
     void initializeI3() override;
     void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg) override;
     void finish() override;
+    using omnetpp::cIListener::finish;    // eliminate compiler warning: 'finish' hides overloaded virtual function [-Woverloaded-virtual]
 };
 
 Define_Module(I3SessionServer);
@@ -100,6 +101,7 @@ public:
     void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg) override;
     void handleTimerEvent(cMessage *msg) override;
     void finish() override;
+    using omnetpp::cIListener::finish;    // eliminate compiler warning: 'finish' hides overloaded virtual function [-Woverloaded-virtual]
 };
 
 Define_Module(I3SessionClient);

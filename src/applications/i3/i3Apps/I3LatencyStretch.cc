@@ -81,6 +81,7 @@ class I3LatencyStretch : public I3BaseApp {
     void handleUDPMessage(cMessage* msg) override;
     void deliver(I3Trigger &trigger, I3IdentifierStack &stack, cPacket *msg) override;
     void finish() override;
+    using omnetpp::cIListener::finish;    // eliminate compiler warning: 'finish' hides overloaded virtual function [-Woverloaded-virtual]
 };
 
 Define_Module(I3LatencyStretch);

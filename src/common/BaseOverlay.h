@@ -231,6 +231,7 @@ private://methods: cSimpleModule initialization
      * collects statistical data
      */
     void finish() override;
+    using omnetpp::cIListener::finish;    // eliminate compiler warning: 'finish' hides overloaded virtual function [-Woverloaded-virtual]
 
 protected://methods: overlay initialization
 

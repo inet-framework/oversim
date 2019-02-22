@@ -59,6 +59,7 @@ class I3HostMobility : public I3BaseApp {
     void doMobilityEvent(I3MobilityStage stage) override;
     void discoverPartners();
     void finish() override;
+    using omnetpp::cIListener::finish;    // eliminate compiler warning: 'finish' hides overloaded virtual function [-Woverloaded-virtual]
 };
 
 Define_Module(I3HostMobility);
