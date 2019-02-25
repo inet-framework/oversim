@@ -27,13 +27,13 @@
 #define RUNetworkConfigurator_H_
 
 #include "inet/common/INETDefs.h"
+#include "common/InitStages.h"
 #include <cctype>
 #include <vector>
 #include <map>
 //#include <ctopology.h>
 #include <string>
 #include <iostream>
-#include "inet/common/INETDefs.h"
 #include "inet/networklayer/contract/ipv4/IPv4Address.h"
 #include "inet/networklayer/contract/IRoutingTable.h"
 #include "inet/networklayer/contract/IInterfaceTable.h"
@@ -269,7 +269,7 @@ protected:
     //
     // stage = 0 --> register interfaces
     //
-    virtual int numInitStages() const  override {return NUM_INIT_STAGES;}
+    virtual int numInitStages() const  override {return NUM_STAGES_ALL;}
     /**
      * Main method of the network configurator.
      *

@@ -357,7 +357,7 @@ void I3::deliver(OverlayKey& key, cMessage* msg)
 
 int I3::numInitStages() const
 {
-    return MIN_STAGE_APP + 1;
+    return NUM_STAGES_ALL;
 }
 
 void I3::initializeApp(int stage)

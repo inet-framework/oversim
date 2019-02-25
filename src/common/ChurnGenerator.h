@@ -57,7 +57,7 @@ class NodeType
 class ChurnGenerator : public cSimpleModule
 {
   public:
-    virtual int numInitStages() const  override { return MAX_STAGE_UNDERLAY + 1; }
+    virtual int numInitStages() const  override { return NUM_STAGES_ALL; }
     virtual void initialize(int stage) override;
     virtual void initializeChurn() = 0;
     virtual void handleMessage(cMessage* msg) override = 0;

@@ -32,7 +32,7 @@ const PastryExtendedNode* PastryStateObject::_unspecNode = NULL;
 
 int PastryStateObject::numInitStages() const
 {
-    return MAX_STAGE_OVERLAY;
+    return NUM_STAGES_ALL;
 }
 
 

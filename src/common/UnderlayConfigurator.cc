@@ -51,7 +51,7 @@ UnderlayConfigurator::~UnderlayConfigurator()
 
 int UnderlayConfigurator::numInitStages() const
 {
-    return MAX_STAGE_UNDERLAY + 1;
+    return NUM_STAGES_ALL;
 }
 
 void UnderlayConfigurator::initialize(int stage)

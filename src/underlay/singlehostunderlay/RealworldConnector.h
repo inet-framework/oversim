@@ -26,7 +26,7 @@
 
 #include "realtimescheduler.h"
 #include "inet/common/INETDefs.h"
-#include "inet/common/INETDefs.h"
+#include "common/InitStages.h"
 #include "PacketParser.h"
 
 /**
@@ -129,7 +129,7 @@ public:
 
     virtual int numInitStages() const override
     {
-        return 4;
+        return NUM_STAGES_ALL;
     }
 
     /** Initialization of the module.

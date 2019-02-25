@@ -71,7 +71,7 @@ class DHTDataStorage : public cSimpleModule
 
     virtual int numInitStages() const override
     {
-        return MAX_STAGE_APP + 1;
+        return NUM_STAGES_ALL;
     }
     virtual void initialize(int stage) override;
     virtual void handleMessage(cMessage* msg) override;

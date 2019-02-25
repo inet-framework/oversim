@@ -52,7 +52,7 @@ BaseApp::~BaseApp()
 
 int BaseApp::numInitStages() const
 {
-    return MAX_STAGE_APP + 1;
+    return NUM_STAGES_ALL;
 }
 
 void BaseApp::initialize(int stage)

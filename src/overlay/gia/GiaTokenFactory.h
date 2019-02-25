@@ -51,7 +51,7 @@ class GiaTokenFactory : public cSimpleModule
      */
     virtual int numInitStages() const override
     {
-        return MAX_STAGE_OVERLAY + 1;
+        return NUM_STAGES_ALL;
     }
 
     /**

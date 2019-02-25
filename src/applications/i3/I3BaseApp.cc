@@ -64,7 +64,7 @@ I3BaseApp::~I3BaseApp()
 
 int I3BaseApp::numInitStages() const
 {
-    return MAX_STAGE_APP + 1;
+    return NUM_STAGES_ALL;
 }
 
 void I3BaseApp::initialize(int stage)

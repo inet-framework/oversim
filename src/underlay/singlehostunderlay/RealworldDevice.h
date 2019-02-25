@@ -52,7 +52,7 @@ protected:
 public:
     virtual int numInitStages() const override
     {
-        return 4;
+        return NUM_STAGES_ALL;
     }
 
     /** Initialization of the module.

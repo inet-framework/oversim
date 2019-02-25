@@ -30,7 +30,7 @@ Define_Module(TriggerTable);
 
 int TriggerTable::numInitStages() const
 {
-    return 6;
+    return NUM_STAGES_ALL;
 }
 
 void TriggerTable::initialize(int stage)

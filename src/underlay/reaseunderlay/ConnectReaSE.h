@@ -145,7 +145,7 @@ protected:
          */
         virtual int numInitStages() const override
         {
-            return MAX_STAGE_UNDERLAY + 1;
+            return NUM_STAGES_ALL;
         }
 
         /**
