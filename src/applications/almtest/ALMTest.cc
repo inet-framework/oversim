@@ -43,7 +43,7 @@ ALMTest::~ALMTest()
 
 void ALMTest::initializeApp(int stage)
 {
-    if( stage != (numInitStages()-1))
+    if( stage != MIN_STAGE_COMPONENTS)
     {
         return;
     }

@@ -55,7 +55,7 @@ void SimMud::finishApp()
 
 void SimMud::initializeApp(int stage)
 {
-    if( stage != (numInitStages()-1)) {
+    if( stage != MIN_STAGE_COMPONENTS) {
         return;
     }
 
