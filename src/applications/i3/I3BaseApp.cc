@@ -69,6 +69,8 @@ int I3BaseApp::numInitStages() const
 
 void I3BaseApp::initialize(int stage)
 {
+    UDPAppBase::initialize(stage);
+
     if (stage != MIN_STAGE_APP) return;
 
     nodeIPAddress = L3AddressResolver().addressOf(getParentModule());

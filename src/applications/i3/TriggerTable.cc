@@ -35,7 +35,7 @@ int TriggerTable::numInitStages() const
 
 void TriggerTable::initialize(int stage)
 {
-    if (stage != 5) return;
+    if (stage != REGISTER_STAGE) return;
 
     I3 *i3 = check_and_cast<I3*>(getParentModule()->getSubmodule("i3"));
     triggerTable = &i3->getTriggerTable();

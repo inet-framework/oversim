@@ -25,6 +25,7 @@
 
 #include <string.h>
 #include "inet/common/INETDefs.h"
+#include <inet/common/InitStages.h>
 
 
 RealworldConnector::RealworldConnector()
@@ -39,14 +40,14 @@ RealworldConnector::~RealworldConnector()
 
 void RealworldConnector::initialize(int stage)
 {
-    if (stage==3) {
+    if (stage == inet::INITSTAGE_NETWORK_LAYER_3) {
         // update display string when addresses have been autoconfigured etc.
         updateDisplayString();
         return;
     }
 
     // all initialization is done in the first stage
-    if (stage!=0)
+    if (stage != inet::INITSTAGE_LOCAL)
         return;
 
     packetNotification = new cMessage("packetNotification");
