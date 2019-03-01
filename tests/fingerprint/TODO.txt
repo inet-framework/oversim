@@ -1,0 +1,65 @@
+Report from compare of simulations on v1.x vs v3.x
+
+statistic data not enough for checking (existing scalars are same, but the count of scalars in v1.x is too few):
+    simulations -f omnetpp_ini -c Bamboo -r 0
+    simulations -f omnetpp_ini -c ChordLarge -r 0
+    simulations -f omnetpp_ini -c GiaLarge -r 0
+    simulations -f omnetpp_ini -c KoordeLarge -r 0
+    simulations -f omnetpp_ini -c Nice -r 0
+    simulations -f omnetpp_ini -c PastryLarge -r 0
+    simulations -f omnetpp_ini -c QuonDynAoi -r 0
+    simulations -f omnetpp_ini -c QuonGroup -r 0
+    simulations -f omnetpp_ini -c QuonLoginCache -r 0
+    simulations -f omnetpp_ini -c Quon -r 0
+
+statistic data differs:
+    simulations -f omnetpp_ini -c ChordInet -r 0
+        InetUnderlayNetwork.globalObserver.globalStatistics "BaseOverlay: Dropped Messages/s.mean" 0.0037617554858934 vs 0.0015673981191223
+        all others are same
+
+    simulations -f omnetpp_ini -c TCPExampleApp -r 0
+        scalar SimpleUnderlayNetwork.globalObserver.globalStatistics "SimpleTCP: Packets sent.mean" 72.5 vs 18
+        scalar SimpleUnderlayNetwork.globalObserver.globalStatistics "TCPExampleApp: Received packets.mean" 10 vs 2
+        scalar SimpleUnderlayNetwork.globalObserver.globalStatistics "TCPExampleApp: Sent packets.mean" 10 vs 2.5
+
+    simulations -f omnetpp_ini -c Vast -r 0
+        many scalars differ at scalar SimpleUnderlayNetwork.globalObserver.globalStatistics:
+            BaseOverlay, ConnectivityProbe, SimpleUDP, Vast
+
+    simulations -f verify_ini -c KademliaInet -r 0
+        scalar InetUnderlayNetwork.globalObserver.globalStatistics "BaseOverlay: Dropped Messages/s.mean" 0.54823391653035 vs 0
+        all others are same
+
+scalars are same:
+    simulations -f defaultini -c General -r 0
+    simulations -f omnetppini -c BambooLarge -r 0
+    simulations -f omnetppini -c BrooseLarge -r 0
+    simulations -f omnetppini -c Broose -r 0
+    simulations -f omnetppini -c ChordDht -r 0
+    simulations -f omnetppini -c ChordDhtTrace -r 0
+    simulations -f omnetppini -c ChordFastStab -r 0
+    simulations -f omnetppini -c Chord -r 0
+    simulations -f omnetppini -c ChordReaSE -r 0
+    simulations -f omnetppini -c ChordSimpleSemi -r 0
+    simulations -f omnetppini -c Gia -r 0
+    simulations -f omnetppini -c i3Anycast -r 0
+    simulations -f omnetppini -c i3Chord -r 0
+    simulations -f omnetppini -c i3Pastry -r 0
+    simulations -f omnetppini -c KademliaLarge -r 0
+    simulations -f omnetppini -c Kademlia -r 0
+    simulations -f omnetppini -c Koorde -r 0
+    simulations -f omnetppini -c MyConfig -r 0
+    simulations -f omnetppini -c NTree -r 0
+    simulations -f omnetppini -c Partition -r 0
+    simulations -f omnetppini -c Pastry -r 0
+    simulations -f omnetppini -c PubSubMMOG -r 0
+    simulations -f omnetppini -c Scribe -r 0
+    simulations -f omnetppini -c SimMud -r 0
+    simulations -f verifyini -c Bamboo -r 0
+    simulations -f verifyini -c Broose -r 0
+    simulations -f verifyini -c Chord -r 0
+    simulations -f verifyini -c ChordSource -r 0
+    simulations -f verifyini -c Kademlia -r 0
+    simulations -f verifyini -c Koorde -r 0
+    simulations -f verifyini -c Pastry -r 0
+
