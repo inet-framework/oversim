@@ -40,17 +40,6 @@ InterfaceEntry *RealworldDevice::registerInterface()
 {
     InterfaceEntry *e = new InterfaceEntry(this);
 
-    // interface name: our module name without special characters ([])
-    char *interfaceName = new char[strlen(getFullName())+1];
-    char *d=interfaceName;
-    for (const char *s=getFullName(); *s; s++)
-        if (isalnum(*s))
-            *d++ = *s;
-    *d = '\0';
-
-    e->setName(interfaceName);
-    delete [] interfaceName;
-
     // port: index of gate where our "upperLayerIn" is connected (in IP)
     int outputPort = /*getParentModule()->*/gate("upperLayerIn")->getPreviousGate()->getIndex();
     e->setNodeOutputGateId(outputPort);
