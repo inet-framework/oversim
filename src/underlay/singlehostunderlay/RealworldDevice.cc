@@ -30,7 +30,7 @@ void RealworldDevice::initialize(int stage)
     RealworldConnector::initialize(stage);
 
     // register our interface entry in IRoutingTable
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == INITSTAGE_LINK_LAYER) {
         interfaceEntry = registerInterface();
     }
 

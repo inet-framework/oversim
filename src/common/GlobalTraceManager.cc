@@ -40,6 +40,9 @@ Define_Module(GlobalTraceManager);
 
 void GlobalTraceManager::initialize(int stage)
 {
+    if (stage != 0)
+        return;
+
     Enter_Method_Silent();
 
     // Nothing to do for us if there is no traceFile

@@ -33,7 +33,7 @@ Define_Module(GiaTokenFactory);
 void GiaTokenFactory::initialize( int stage )
 {
     // wait until L3AddressResolver finished his initialization
-    if(stage != MIN_STAGE_OVERLAY)
+    if(stage != INITSTAGE_LOCAL)
         return;
 
     gia = check_and_cast<Gia*>(getParentModule()->getSubmodule("gia"));

@@ -27,7 +27,7 @@ Define_Module(GiaKeyListModule);
 void GiaKeyListModule::initialize(int stage)
 {
     // wait until L3AddressResolver finished his initialization
-    if(stage != MIN_STAGE_OVERLAY)
+    if(stage != inet::INITSTAGE_LOCAL)
         return;
 
     WATCH_VECTOR(keyListVector);

@@ -52,7 +52,7 @@ std::ostream& operator<<(std::ostream& Stream, const P2pnsCacheEntry entry)
 
 void P2pnsCache::initialize(int stage)
 {
-    if (stage != MIN_STAGE_APP)
+    if (stage != INITSTAGE_LOCAL)
         return;
 
     WATCH_MAP(cache);

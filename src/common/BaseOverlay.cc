@@ -76,7 +76,7 @@ int BaseOverlay::numInitStages() const
 
 void BaseOverlay::initialize(int stage)
 {
-    if (stage == 0) {
+    if (stage == INITSTAGE_LOCAL) {
         OverlayKey::setKeyLength(par("keyLength"));
     }
 

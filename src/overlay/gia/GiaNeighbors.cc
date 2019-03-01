@@ -33,7 +33,7 @@ Define_Module(GiaNeighbors);
 void GiaNeighbors::initialize(int stage)
 {
     // wait until L3AddressResolver finished his initialization
-    if(stage != MIN_STAGE_OVERLAY)
+    if(stage != INITSTAGE_LOCAL)
         return;
 
     WATCH_MAP(neighbors);

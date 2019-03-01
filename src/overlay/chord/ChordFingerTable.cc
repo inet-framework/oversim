@@ -39,7 +39,7 @@ void ChordFingerTable::initialize(int stage)
 {
     // because of L3AddressResolver, we need to wait until interfaces
     // are registered, address auto-assignment takes place etc.
-    if(stage != MIN_STAGE_OVERLAY)
+    if(stage != INITSTAGE_LOCAL)
         return;
 
     maxSize = 0;
