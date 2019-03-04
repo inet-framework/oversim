@@ -87,19 +87,9 @@ std::ostream& operator<<(std::ostream& os, const TCPConnection& conn)
 
 void SimpleTCP::initialize(int stage)
 {
+    TCP::initialize(stage);
     if (stage == MIN_STAGE_UNDERLAY) {
-        lastEphemeralPort = EPHEMERAL_PORTRANGE_START;
-        WATCH(lastEphemeralPort);
-
-        WATCH_PTRMAP(tcpConnMap);
-        WATCH_PTRMAP(tcpAppConnMap);
-
-        recordStatistics = par("recordStats");
-
-        cModule *netw = (*getSimulation()).getSystemModule();
-
         // start of modifications
-
         sad.numSent = 0;
         sad.numQueueLost = 0;
         sad.numPartitionLost = 0;
