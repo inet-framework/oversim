@@ -104,25 +104,12 @@ SimpleUDP::~SimpleUDP()
 
 void SimpleUDP::initialize(int stage)
 {
+    UDP::initialize(stage);
+
     if(stage == MIN_STAGE_UNDERLAY) {
-        WATCH_PTRMAP(socketsByIdMap);
-        WATCH_MAP(socketsByPortMap);
-
-        lastEphemeralPort = EPHEMERAL_PORTRANGE_START;
-        icmp = NULL;
-        icmpv6 = NULL;
-
-        numSent = 0;
-        numPassedUp = 0;
-        numDroppedWrongPort = 0;
-        numDroppedBadChecksum = 0;
         numQueueLost = 0;
         numPartitionLost = 0;
         numDestUnavailableLost = 0;
-        WATCH(numSent);
-        WATCH(numPassedUp);
-        WATCH(numDroppedWrongPort);
-        WATCH(numDroppedBadChecksum);
         WATCH(numQueueLost);
         WATCH(numPartitionLost);
         WATCH(numDestUnavailableLost);
