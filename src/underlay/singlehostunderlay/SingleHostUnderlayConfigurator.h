@@ -26,7 +26,7 @@
 #define __SINGLEHOSTUNDERLAYCONFIGURATOR_H__
 
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <UnderlayConfigurator.h>
 

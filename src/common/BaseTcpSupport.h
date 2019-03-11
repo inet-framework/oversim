@@ -24,7 +24,8 @@
 #ifndef BASETCPSUPPORT_H_
 #define BASETCPSUPPORT_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
+
 #include <map>
 #include <TransportAddress.h>
 #include <inet/transportlayer/contract/tcp/TCPSocket.h>

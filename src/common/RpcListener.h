@@ -30,7 +30,7 @@ class BaseResponseMessage;
 class TransportAddress;
 class OverlayKey;
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 /**
  * A Remote-Procedure-Call listener class

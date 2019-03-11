@@ -29,6 +29,8 @@
 #include <sys/mman.h>
 #endif
 
+#include "common/OverSimDefs.h"
+
 #include <UnderlayConfiguratorAccess.h>
 #include <GlobalNodeListAccess.h>
 #include <GlobalTraceManager_m.h>

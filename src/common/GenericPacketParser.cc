@@ -20,7 +20,7 @@
  * @file GenericPacketParser.cc
  * @author Bernhard Heep
  */
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include "GenericPacketParser.h"
 

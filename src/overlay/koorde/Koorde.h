@@ -24,7 +24,7 @@
 #ifndef __KOORDE_H_
 #define __KOORDE_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <inet/networklayer/common/L3Address.h>
 

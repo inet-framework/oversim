@@ -24,7 +24,7 @@
 #ifndef __GLOBALSTATISTICS_ACCESS_H__
 #define __GLOBALSTATISTICS_ACCESS_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include "GlobalStatistics.h"
 
 /**

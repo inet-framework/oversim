@@ -24,7 +24,7 @@
 #ifndef __IPV4INFO_H__
 #define __IPV4INFO_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <PeerInfo.h>
 
 

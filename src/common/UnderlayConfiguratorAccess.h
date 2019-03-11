@@ -24,7 +24,7 @@
 #ifndef __UNDERLAYCONFIGURATOR_ACCESS_H__
 #define __UNDERLAYCONFIGURATOR_ACCESS_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include "UnderlayConfigurator.h"
 

@@ -28,8 +28,8 @@
 
 #include <string>
 #include <vector>
-#include "inet/common/INETDefs.h"
 
+#include "common/OverSimDefs.h"
 #include "common/InitStages.h"
 
 class UnderlayConfigurator;

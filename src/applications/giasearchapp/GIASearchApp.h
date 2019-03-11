@@ -26,7 +26,7 @@
 
 #include <set>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <BaseApp.h>
 #include <GlobalNodeList.h>

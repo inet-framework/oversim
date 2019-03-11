@@ -26,7 +26,7 @@
 
 #include "I3Trigger.h"
 #include "I3Identifier.h"
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <OverlayKey.h>
 #include "I3Message.h"
 #include <BaseApp.h>

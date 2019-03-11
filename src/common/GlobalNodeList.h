@@ -28,10 +28,8 @@
 #include <vector>
 #include <oversim_mapset.h>
 
-#include "inet/common/INETDefs.h"
-
+#include "common/OverSimDefs.h"
 #include <ChurnGenerator.h>
-
 #include <BinaryValue.h>
 #include <NodeHandle.h>
 #include <PeerStorage.h>

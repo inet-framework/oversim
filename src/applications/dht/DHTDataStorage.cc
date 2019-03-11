@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <hashWatch.h>
 
 #include "DHTDataStorage.h"

@@ -24,7 +24,7 @@
 #ifndef __NTREE_H_
 #define __NTREE_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <NodeHandle.h>
 #include <BaseOverlay.h>
 #include "NTreeHelper.h"

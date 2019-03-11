@@ -24,7 +24,7 @@
 #ifndef __BINARYVALUE_H_
 #define __BINARYVALUE_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 class BinaryValue : public std::vector<char>, public cObject {
   public:

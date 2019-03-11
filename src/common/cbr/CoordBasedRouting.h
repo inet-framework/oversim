@@ -25,7 +25,7 @@
 #ifndef __COORDBASEDROUTING_H_
 #define __COORDBASEDROUTING_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <OverlayKey.h>
 #include <TransportAddress.h>

@@ -25,7 +25,7 @@
 #define _REALWORLDCONNECTOR_H_
 
 #include "realtimescheduler.h"
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include "common/InitStages.h"
 #include "PacketParser.h"
 

@@ -24,6 +24,8 @@
 #ifndef __BOOTSTRAP_NODE_HANDLE_H
 #define __BOOTSTRAP_NODE_HANDLE_H
 
+#include "common/OverSimDefs.h"
+
 enum  BootstrapNodePrioType{
     DNSSD = 0,
     MDNS = 1,

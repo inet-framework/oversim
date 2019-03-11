@@ -27,7 +27,7 @@
 
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <NodeHandle.h>
 

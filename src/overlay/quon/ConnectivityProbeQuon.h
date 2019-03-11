@@ -25,7 +25,7 @@
 #ifndef __CONNECTIVITYPROBEQUON_H__
 #define __CONNECTIVITYPROBEQUON_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <NodeHandle.h>
 #include <QuonHelper.h>
 #include <Quon.h>

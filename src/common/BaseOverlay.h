@@ -24,9 +24,10 @@
 #ifndef __BASEOVERLAY_H_
 #define __BASEOVERLAY_H_
 
+#include "common/OverSimDefs.h"
+
 #include <oversim_mapset.h>
 
-#include "inet/common/INETDefs.h"
 #include "inet/transportlayer/contract/udp/UDPSocket.h"
 
 #include <NodeVector.h>

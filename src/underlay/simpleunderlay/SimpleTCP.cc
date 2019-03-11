@@ -28,7 +28,7 @@
  * made to let the SimpleTCP module create SimpleTCPConnection.
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <CommonMessages_m.h>
 #include <GlobalNodeListAccess.h>

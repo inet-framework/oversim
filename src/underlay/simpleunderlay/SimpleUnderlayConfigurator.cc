@@ -20,7 +20,7 @@
  * @author Bernhard Heep (migrateRandomNode)
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #if !defined(__APPLE__) &&  !defined(_WIN32) && !defined(__ANDROID__)
 #include <malloc.h>

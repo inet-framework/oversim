@@ -24,7 +24,7 @@
 #ifndef __FINISHERMODULE_H__
 #define __FINISHERMODULE_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 /**
  * Dummy module which is created and destroyed at last to call

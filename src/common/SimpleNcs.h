@@ -26,7 +26,7 @@
 
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <NeighborCache.h>
 #include <common/CoordinateSystem.h>

@@ -28,7 +28,7 @@
 #include <cassert>
 #include <algorithm>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <GlobalNodeListAccess.h>
 #include <PeerInfo.h>

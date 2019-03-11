@@ -24,7 +24,7 @@
 #include <vector>
 #include <iostream>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <inet/networklayer/ipv4/IIPv4RoutingTable.h>
 #include <inet/networklayer/contract/IInterfaceTable.h>

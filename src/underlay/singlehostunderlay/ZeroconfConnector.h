@@ -31,7 +31,7 @@
 class BootstrapNodeHandle;
 class NodeHandle;
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <oversim_mapset.h>
 #include <semaphore.h>
 

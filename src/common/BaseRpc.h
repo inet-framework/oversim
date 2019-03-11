@@ -26,9 +26,9 @@
 #ifndef __BASERPC_H_
 #define __BASERPC_H_
 
-#include <oversim_mapset.h>
+#include "common/OverSimDefs.h"
 
-#include "inet/common/INETDefs.h"
+#include <oversim_mapset.h>
 
 #include <RpcState.h>
 #include <RpcListener.h>

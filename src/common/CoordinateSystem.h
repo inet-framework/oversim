@@ -26,12 +26,11 @@
 #include <stdint.h>
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 struct Prox;
 class NeighborCache;
 class BaseCallMessage;
-
 
 
 typedef std::vector<double> Coords;

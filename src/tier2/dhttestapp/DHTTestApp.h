@@ -24,7 +24,7 @@
 #ifndef __DHTTESTAPP_H_
 #define __DHTTESTAPP_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <GlobalNodeList.h>
 #include <GlobalStatistics.h>

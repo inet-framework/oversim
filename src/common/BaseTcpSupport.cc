@@ -25,7 +25,7 @@
 #include <GlobalStatisticsAccess.h>
 #include <inet/transportlayer/contract/udp/UDPSocket.h>
 #include <inet/transportlayer/contract/tcp/TCPCommand_m.h>
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 void BaseTcpSupport::handleTCPMessage(cMessage* msg)
 {

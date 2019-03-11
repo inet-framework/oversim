@@ -21,7 +21,7 @@
  * @author Sebastian Mies, Ingmar Baumgart
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include "OverlayKey.h"
 #include "Comparator.h"

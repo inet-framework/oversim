@@ -24,7 +24,7 @@
 #include <iterator>
 #include <assert.h>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include "GiaNeighborCandidateList.h"
 

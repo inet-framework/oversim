@@ -25,7 +25,7 @@
 #define __NICECLUSTER_H_
 
 #include <BaseOverlay.h>
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 class NiceCluster
 {

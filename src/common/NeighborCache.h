@@ -26,7 +26,7 @@
 #ifndef __NEIGHBORCACHE_H_
 #define __NEIGHBORCACHE_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <map>
 #include <cfloat>

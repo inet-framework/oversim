@@ -24,7 +24,7 @@
 #ifndef __GIAKEYLISTMODULE_H_
 #define __GIAKEYLISTMODULE_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <common/InitStages.h>
 

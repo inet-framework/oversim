@@ -26,7 +26,7 @@
 #ifndef RUNetworkConfigurator_H_
 #define RUNetworkConfigurator_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include "common/InitStages.h"
 #include <cctype>
 #include <vector>

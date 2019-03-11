@@ -26,7 +26,7 @@
 #define __I3BASEAPP_H__
 
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/transportlayer/contract/udp/UDPSocket.h>
 #include <UDPAppBase.h>
 

@@ -24,7 +24,7 @@
 #ifndef __GLOBALCOORDINATOR_H__
 #define __GLOBALCOORDINATOR_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <Vector2D.h>
 #include <NodeHandle.h>
 #include <time.h>

@@ -24,7 +24,7 @@
 #ifndef __I3IPADDRESS_H__
 #define __I3IPADDRESS_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/networklayer/common/L3AddressResolver.h>
 #include <TransportAddress.h>
 

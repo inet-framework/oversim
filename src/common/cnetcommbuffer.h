@@ -19,6 +19,8 @@
 #ifndef __CNETCOMMBUFFER_H__
 #define __CNETCOMMBUFFER_H__
 
+#include "common/OverSimDefs.h"
+
 #include <ccommbufferbase.h>
 
 

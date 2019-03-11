@@ -26,7 +26,7 @@
 
 #include "I3Identifier.h"
 #include "I3IdentifierStack.h"
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 /** Implementation of an Internet Indirection Infrastructure trigger.
 * An I3Trigger is composed of an I3Identifier and a I3IdentifierStack (a stack of I3SubIdentifier).

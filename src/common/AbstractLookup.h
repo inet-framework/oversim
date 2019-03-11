@@ -24,6 +24,8 @@
 #ifndef __ABSTRACT_LOOKUP_H
 #define __ABSTRACT_LOOKUP_H
 
+#include "common/OverSimDefs.h"
+
 #include <NodeVector.h>
 
 class OverlayKey;

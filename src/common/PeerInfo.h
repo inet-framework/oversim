@@ -27,7 +27,7 @@
 
 #include <sstream>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 class PeerInfo;
 class BaseOverlay;

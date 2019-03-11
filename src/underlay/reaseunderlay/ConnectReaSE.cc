@@ -25,7 +25,7 @@
 #include <vector>
 #include <iostream>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <inet/networklayer/contract/IRoutingTable.h>
 #include <inet/networklayer/contract/IInterfaceTable.h>

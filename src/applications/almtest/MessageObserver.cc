@@ -21,7 +21,7 @@
 
 #include <assert.h>
 #include <sstream>
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <GlobalStatisticsAccess.h>
 #include "MessageObserver.h"
 #include "ALMTestTracedMessage_m.h"

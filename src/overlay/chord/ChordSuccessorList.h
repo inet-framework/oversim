@@ -26,7 +26,7 @@
 
 #include <map>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <common/InitStages.h>
 #include <NodeHandle.h>

@@ -25,7 +25,7 @@
 #define __OVERLAY_ACCESS_H__
 
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/common/ModuleAccess.h>
 
 #include <BaseOverlay.h>

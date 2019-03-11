@@ -24,6 +24,8 @@
 #ifndef __INITSTAGES_H_
 #define __INITSTAGES_H_
 
+#include "common/OverSimDefs.h"
+
 #include <inet/common/InitStages.h>
 
 /**

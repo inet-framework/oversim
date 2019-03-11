@@ -19,7 +19,7 @@
 #include <string.h>
 #include <platdep/sockets.h>
 #include <stdexcept>
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include "cnetcommbuffer.h"
 
 /*

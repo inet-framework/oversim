@@ -27,7 +27,7 @@
 #include <deque>
 #include <map>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <NodeVector.h>
 #include <inet/common/InitStages.h>

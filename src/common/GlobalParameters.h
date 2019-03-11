@@ -24,7 +24,7 @@
 #ifndef __GLOBALPARAMETERS_H__
 #define __GLOBALPARAMETERS_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 /**
  * Modul for storing global (*getSimulation()) parameters

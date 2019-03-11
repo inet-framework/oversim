@@ -24,7 +24,7 @@
 #ifndef __BROOSEBUCKET_H_
 #define __BROOSEBUCKET_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include "BrooseHandle.h"
 #include "Broose.h"
 #include <map>

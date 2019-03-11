@@ -25,7 +25,7 @@
 #define __KADEMLIA_H_
 
 #include <deque>
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <CommonMessages_m.h>
 #include <BaseOverlay.h>

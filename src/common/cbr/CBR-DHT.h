@@ -24,7 +24,7 @@
 #ifndef __CBRDHT_H_
 #define __CBRDHT_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <OverlayKey.h>
 #include <SHA1.h>

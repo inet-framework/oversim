@@ -24,7 +24,7 @@
 #ifndef __PACKETPARSER_H__
 #define __PACKETPARSER_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 /**
  * Class that performes parsing of the payload of packets that are send to or received by the tun device

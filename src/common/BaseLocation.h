@@ -16,6 +16,8 @@
 #ifndef BASELOCATION_H_
 #define BASELOCATION_H_
 
+#include "common/OverSimDefs.h"
+
 class BaseLocation;
 
 class BaseLocation

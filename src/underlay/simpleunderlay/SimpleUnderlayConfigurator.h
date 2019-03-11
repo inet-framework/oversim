@@ -24,7 +24,7 @@
 #ifndef __SIMPLEUNDERLAYCONFIGURATOR_H__
 #define __SIMPLEUNDERLAYCONFIGURATOR_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/networklayer/common/L3Address.h>
 
 #include <deque>

@@ -24,7 +24,7 @@
 #ifndef CONNECTREASE_H_
 #define CONNECTREASE_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/networklayer/common/InterfaceEntry.h>
 #include <inet/networklayer/contract/IInterfaceTable.h>
 #include <inet/networklayer/ipv4/IIPv4RoutingTable.h>

@@ -8,6 +8,8 @@
 #ifndef DISCOVERYMODE_H_
 #define DISCOVERYMODE_H_
 
+#include "common/OverSimDefs.h"
+
 #include <RpcListener.h>
 #include <NeighborCache.h>
 #include <DiscoveryMode_m.h>

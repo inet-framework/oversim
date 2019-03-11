@@ -27,7 +27,7 @@
 #define __SIMPLENODEENTRY_H
 
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/networklayer/common/L3Address.h>
 
 #include "inet/transportlayer/udp/UDPPacket_m.h"

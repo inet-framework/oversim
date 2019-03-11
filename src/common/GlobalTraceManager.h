@@ -24,7 +24,7 @@
 #ifndef __GLOBALTRACEMANAGER_H_
 #define __GLOBALTRACEMANAGER_H_
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 class UnderlayConfigurator;
 class GlobalNodeList;

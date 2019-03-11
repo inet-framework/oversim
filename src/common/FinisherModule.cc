@@ -21,7 +21,7 @@
  * @author Bernhard Heep
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <GlobalStatisticsAccess.h>
 

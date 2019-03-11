@@ -22,7 +22,7 @@
  * @author Sebastian Mies
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include "TransportAddress.h"
 

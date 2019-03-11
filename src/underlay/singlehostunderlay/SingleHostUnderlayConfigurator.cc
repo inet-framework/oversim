@@ -35,7 +35,7 @@
 #include <netinet/in.h>
 #endif
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include "inet/networklayer/contract/IInterfaceTable.h"
 #include "inet/networklayer/common/InterfaceEntry.h"

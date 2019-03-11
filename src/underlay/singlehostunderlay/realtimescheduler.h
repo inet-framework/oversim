@@ -26,7 +26,7 @@
 
 #define WANT_WINSOCK2
 #include <platdep/sockets.h>
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <list>
 #include <climits>
 

@@ -24,7 +24,7 @@
 #ifndef __WATCHABLECONTAINERS_H__
 #define __WATCHABLECONTAINERS_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <map>
 #include <deque>

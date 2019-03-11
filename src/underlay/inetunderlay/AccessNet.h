@@ -24,7 +24,7 @@
 #ifndef __ACCESSNET_H__
 #define __ACCESSNET_H__
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <common/InitStages.h>
 #include <inet/networklayer/common/L3Address.h>

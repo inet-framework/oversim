@@ -24,6 +24,8 @@
 #ifndef __COMPARATOR_H
 #define __COMPARATOR_H
 
+#include "common/OverSimDefs.h"
+
 #include <OverlayKey.h>
 #include <ProxNodeHandle.h>
 

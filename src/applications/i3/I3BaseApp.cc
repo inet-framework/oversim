@@ -20,7 +20,7 @@
  * @author Antonio Zea
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/networklayer/common/L3AddressResolver.h>
 #include <GlobalNodeListAccess.h>
 #include <inet/common/InitStages.h>

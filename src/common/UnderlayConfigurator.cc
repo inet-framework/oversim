@@ -21,7 +21,7 @@
  * @author Stephan Krause, Bernhard Heep, Ingmar Baumgart
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <GlobalNodeListAccess.h>
 #include <ChurnGeneratorAccess.h>
 #include <GlobalStatisticsAccess.h>

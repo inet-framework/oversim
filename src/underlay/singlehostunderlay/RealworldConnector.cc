@@ -24,7 +24,7 @@
 #include "RealworldConnector.h"
 
 #include <string.h>
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/common/InitStages.h>
 
 

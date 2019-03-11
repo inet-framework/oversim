@@ -31,9 +31,8 @@ class NodeHandle;
 class OverlayKey;
 class CommonAPIMessage;
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/transportlayer/contract/udp/UDPSocket.h>
-
 #include "NodeVector.h"
 #include <BaseRpc.h>
 #include <BaseTcpSupport.h>

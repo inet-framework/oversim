@@ -20,7 +20,7 @@
  * @author Antonio Zea
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <TierDummy.h>
 
 Define_Module(TierDummy);

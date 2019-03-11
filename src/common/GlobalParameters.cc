@@ -21,7 +21,7 @@
  * @author IngmarBaumgart
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <OverlayKey.h>
 
 #include "GlobalParameters.h"

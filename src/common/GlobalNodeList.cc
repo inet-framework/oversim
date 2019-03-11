@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <BinaryValue.h>
 #include <OverlayKey.h>

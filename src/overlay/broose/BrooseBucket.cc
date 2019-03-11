@@ -21,7 +21,7 @@
  * @author Jochen Schenk
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include "BrooseBucket.h"
 #include "BrooseHandle.h"
 

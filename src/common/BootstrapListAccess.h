@@ -25,7 +25,7 @@
 #define __GLOBALNODELISTACCESS_H__
 
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include "GlobalNodeList.h"
 
 

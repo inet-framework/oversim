@@ -29,7 +29,7 @@
 //#include <stdint.h>
 #include <oversim_mapset.h>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 #include <inet/networklayer/common/L3Address.h>
 
 using namespace inet;

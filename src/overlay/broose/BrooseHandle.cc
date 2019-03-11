@@ -21,7 +21,7 @@
  * @author Jochen Schenk
  */
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
 
 #include <inet/networklayer/contract/ipv4/IPv4Address.h>
 

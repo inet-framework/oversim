@@ -26,7 +26,8 @@
 
 #include <map>
 
-#include "inet/common/INETDefs.h"
+#include "common/OverSimDefs.h"
+
 using namespace omnetpp;
 
 class OverlayKey;
