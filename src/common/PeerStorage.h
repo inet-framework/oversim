@@ -28,11 +28,11 @@
 #include <vector>
 #include <list>
 
-#include <oversim_mapset.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <TransportAddress.h>
-#include <HashFunc.h>
-#include <PeerInfo.h>
+#include "common/oversim_mapset.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "common/TransportAddress.h"
+#include "common/HashFunc.h"
+#include "common/PeerInfo.h"
 
 /**
  * AddrPerOverlay contains the

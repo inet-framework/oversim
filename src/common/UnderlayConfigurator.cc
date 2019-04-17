@@ -22,11 +22,11 @@
  */
 
 #include "common/OverSimDefs.h"
-#include <GlobalNodeListAccess.h>
-#include <ChurnGeneratorAccess.h>
-#include <GlobalStatisticsAccess.h>
+#include "common/GlobalNodeListAccess.h"
+#include "common/ChurnGeneratorAccess.h"
+#include "common/GlobalStatisticsAccess.h"
 
-#include "UnderlayConfigurator.h"
+#include "common/UnderlayConfigurator.h"
 
 const int32_t UnderlayConfigurator::NUM_COLORS=8;
 const char* UnderlayConfigurator::colorNames[] = {

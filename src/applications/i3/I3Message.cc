@@ -21,7 +21,7 @@
  */
 
 
-#include "I3Message.h"
+#include "applications/i3/I3Message.h"
 
 Register_Class(I3SendPacketMessage);
 Register_Class(I3RemoveTriggerMessage);

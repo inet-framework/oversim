@@ -31,9 +31,9 @@
 
 #include "common/OverSimDefs.h"
 
-#include <NodeHandle.h>
+#include "common/NodeHandle.h"
 #include "common/InitStages.h"
-#include <BinaryValue.h>
+#include "common/BinaryValue.h"
 
 struct P2pnsCacheEntry
 {

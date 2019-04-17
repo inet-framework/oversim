@@ -21,21 +21,21 @@
  * @author Markus Mauch, Stephan Krause, Bernhard Heep, Bernhard Mueller
  */
 
-#include "ReaSEUnderlayConfigurator.h"
+#include "underlay/reaseunderlay/ReaSEUnderlayConfigurator.h"
 
-#include <GlobalNodeList.h>
-#include <TransportAddress.h>
+#include "common/GlobalNodeList.h"
+#include "common/TransportAddress.h"
 
-#include <StringConvert.h>
+#include "common/StringConvert.h"
 
-#include <ConnectReaSE.h>
-#include <inet/networklayer/contract/IRoutingTable.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
+#include "underlay/reaseunderlay/ConnectReaSE.h"
+#include "inet/networklayer/contract/IRoutingTable.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
 
 
-#include <ReaSEInfo.h>
+#include "underlay/reaseunderlay/ReaSEInfo.h"
 
 Define_Module(ReaSEUnderlayConfigurator);
 

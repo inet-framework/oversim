@@ -21,18 +21,18 @@
  */
 
 #include "common/OverSimDefs.h"
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <GlobalNodeListAccess.h>
-#include <inet/common/InitStages.h>
-#include <UnderlayConfigurator.h>
-#include <inet/transportlayer/contract/udp/UDPControlInfo_m.h>
-#include <NodeHandle.h>
-#include <BootstrapList.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/GlobalNodeListAccess.h"
+#include "inet/common/InitStages.h"
+#include "common/UnderlayConfigurator.h"
+#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
+#include "common/NodeHandle.h"
+#include "common/BootstrapList.h"
 
-#include "I3Trigger.h"
-#include "I3IdentifierStack.h"
-#include "I3Message.h"
-#include "I3BaseApp.h"
+#include "applications/i3/I3Trigger.h"
+#include "applications/i3/I3IdentifierStack.h"
+#include "applications/i3/I3Message.h"
+#include "applications/i3/I3BaseApp.h"
 
 #include <iostream>
 #include <sstream>

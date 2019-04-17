@@ -4,8 +4,8 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcSocket.h"
-#include "XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSocket.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
 
 #ifndef MAKEDEPEND
 #ifdef _WIN32

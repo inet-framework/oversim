@@ -10,13 +10,13 @@
 
 #include <string>
 
-#include <AbstractSendStrategy.h>
-#include <StrategyTreeTest.h>
-#include <StrategySendAll.h>
-#include <StrategyRegions.h>
-#include <StrategyRemoveRandom.h>
-#include <StrategyRemoveInaccurate.h>
-#include <StrategySimplifyCoords.h>
+#include "common/cbr/globalViewBuilder/AbstractSendStrategy.h"
+#include "common/cbr/globalViewBuilder/StrategyTreeTest.h"
+#include "common/cbr/globalViewBuilder/StrategySendAll.h"
+#include "common/cbr/globalViewBuilder/StrategyRegions.h"
+#include "common/cbr/globalViewBuilder/StrategyRemoveRandom.h"
+#include "common/cbr/globalViewBuilder/StrategyRemoveInaccurate.h"
+#include "common/cbr/globalViewBuilder/StrategySimplifyCoords.h"
 
 
 class SendStrategyFactory {

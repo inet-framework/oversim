@@ -21,21 +21,21 @@
  * @author Felix Palmen, Gerhard Petruschat, Bernhard Heep
  */
 
-#include <sstream>
-#include <stdint.h>
-#include <assert.h>
+#include "sstream"
+#include "stdint.h"
+#include "assert.h"
 
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
-#include <RpcMacros.h>
-#include <inet/common/InitStages.h>
-#include <NeighborCache.h>
-#include <GlobalStatistics.h>
-#include <BootstrapList.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "common/RpcMacros.h"
+#include "inet/common/InitStages.h"
+#include "common/NeighborCache.h"
+#include "common/GlobalStatistics.h"
+#include "common/BootstrapList.h"
 
-#include "BasePastry.h"
+#include "overlay/pastry/BasePastry.h"
 
 
 void BasePastry::purgeVectors(void)

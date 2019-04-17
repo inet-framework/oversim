@@ -28,13 +28,13 @@
 #include <map>
 #include <string>
 
-#include "BaseApp.h"
-#include "CommonMessages_m.h"
-#include "GlobalNodeList.h"
-#include "NodeHandle.h"
+#include "common/BaseApp.h"
+#include "common/CommonMessages_m.h"
+#include "common/GlobalNodeList.h"
+#include "common/NodeHandle.h"
 
-#include "ScribeGroup.h"
-#include "ScribeMessage_m.h"
+#include "applications/scribe/ScribeGroup.h"
+#include "applications/scribe/ScribeMessage_m.h"
 
 // Output function for grouplist, needed for WATCH
 std::ostream& operator<< (std::ostream& o, std::map<OverlayKey, ScribeGroup> m )

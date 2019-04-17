@@ -26,11 +26,11 @@
 
 #include "common/OverSimDefs.h"
 
-#include <inet/networklayer/common/L3Address.h>
+#include "inet/networklayer/common/L3Address.h"
 
-#include <OverlayKey.h>
-#include <NodeHandle.h>
-#include <BaseOverlay.h>
+#include "common/OverlayKey.h"
+#include "common/NodeHandle.h"
+#include "common/BaseOverlay.h"
 
 #include "../chord/ChordSuccessorList.h"
 #include "../chord/Chord.h"

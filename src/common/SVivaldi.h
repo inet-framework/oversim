@@ -26,7 +26,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include <Vivaldi.h>
+#include "common/Vivaldi.h"
 
 class NeighborCache;
 

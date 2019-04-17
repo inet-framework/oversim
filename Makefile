@@ -1,9 +1,7 @@
 INETDIR = `pwd`/../../inet
 REASEDIR = `pwd`/../../ReaSE
 
-#BUILD_OPTIONS = -f --deep -linet -lgmp -o OverSim -I`pwd`/out/include -L`pwd`out/libs $(DEFS) -I$(INETDIR)/src/transport/tcp -I$(INETDIR)/src/applications/pingapp -I$(INETDIR)/src/networklayer/mpls -I$(INETDIR)/src/networklayer/ipv4 -I$(INETDIR)/src/linklayer/contract -I$(INETDIR)/src/linklayer/mfcore -I$(INETDIR)/src/networklayer/ldp -I$(INETDIR)/src/networklayer/ipv6 -I$(INETDIR)/src/networklayer/arp -I$(INETDIR)/src/networklayer/autorouting -I$(INETDIR)/src/applications/udpapp -I$(INETDIR)/src/networklayer/ted -I$(INETDIR)/src/networklayer/rsvp_te -I$(INETDIR)/src/util/headerserializers -I$(INETDIR)/src/networklayer/contract -I$(INETDIR)/src/transport/contract -I$(INETDIR)/src/networklayer/common -I$(INETDIR)/src/transport/sctp -I$(INETDIR)/src/transport/udp -I$(INETDIR)/src/base -I$(INETDIR)/src/networklayer/icmpv6 -I$(INETDIR)/src/world -I$(INETDIR)/src/util -L$(INETDIR)/src -L/usr/lib -I/usr/include/libxml2
-
-BUILD_OPTIONS = -f --deep -I$(INETDIR)/src/networklayer/common -I$(INETDIR)/src/networklayer/rsvp_te -I$(INETDIR)/src/networklayer/icmpv6 -I$(INETDIR)/src/transport/tcp -I$(INETDIR)/src/networklayer/mpls -I$(INETDIR)/src/networklayer/ted -I$(INETDIR)/src/networklayer/contract -I$(INETDIR)/src/util -I$(INETDIR)/src/transport/contract -I$(INETDIR)/src/linklayer/mfcore -I$(INETDIR)/src/networklayer/ldp -I$(INETDIR)/src/applications/udpapp -I$(INETDIR)/src/networklayer/ipv4 -I$(INETDIR)/src/base -I$(INETDIR)/src/util/headerserializers -I$(INETDIR)/src/networklayer/ipv6 -I$(INETDIR)/src/transport/sctp -I$(INETDIR)/src/world -I$(INETDIR)/src/applications/pingapp -I$(INETDIR)/src/linklayer/contract -I$(INETDIR)/src/networklayer/arp -I$(INETDIR)/src/transport/udp -I$(INETDIR)/src/networklayer/autorouting -L$(INETDIR)/out/$$\(CONFIGNAME\)/src -linet -KINET_PROJ=$(INETDIR)
+BUILD_OPTIONS = -f --deep -I. -I$(INETDIR)/src -L$(INETDIR)/src -l'INET$$D' -KINET_PROJ=$(INETDIR)
 
 ifeq "$(REASE)" "true"
 	BUILD_OPTIONS += -lrease -L$(REASEDIR)/src -KREASE_PROJ=$(REASEDIR)

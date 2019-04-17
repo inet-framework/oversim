@@ -21,7 +21,7 @@
 * @author Helge Backhaus
 */
 
-#include "groupRoaming.h"
+#include "applications/simplegameclient/groupRoaming.h"
 
 groupRoaming::groupRoaming(double areaDimension, double speed, NeighborMap *Neighbors, GlobalCoordinator* coordinator, CollisionList* CollisionRect, int groupSize)
              :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)

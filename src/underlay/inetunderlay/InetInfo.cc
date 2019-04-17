@@ -20,7 +20,7 @@
  * @author Helge Backhaus
  */
 
-#include "InetInfo.h"
+#include "underlay/inetunderlay/InetInfo.h"
 
 InetInfo::InetInfo(uint32_t type, int moduleId, cObject** context) : PeerInfo(type, moduleId, context)
 {

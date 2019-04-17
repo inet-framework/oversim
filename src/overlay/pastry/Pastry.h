@@ -30,18 +30,18 @@
 #include <algorithm>
 
 #include "common/OverSimDefs.h"
-#include <inet/networklayer/common/L3Address.h>
+#include "inet/networklayer/common/L3Address.h"
 
-#include <OverlayKey.h>
-#include <NodeHandle.h>
-#include <BaseOverlay.h>
-#include <BasePastry.h>
+#include "common/OverlayKey.h"
+#include "common/NodeHandle.h"
+#include "common/BaseOverlay.h"
+#include "overlay/pastry/BasePastry.h"
 
-#include "PastryTypes.h"
-#include "PastryMessage_m.h"
-#include "PastryRoutingTable.h"
-#include "PastryLeafSet.h"
-#include "PastryNeighborhoodSet.h"
+#include "overlay/pastry/PastryTypes.h"
+#include "overlay/pastry/PastryMessage_m.h"
+#include "overlay/pastry/PastryRoutingTable.h"
+#include "overlay/pastry/PastryLeafSet.h"
+#include "overlay/pastry/PastryNeighborhoodSet.h"
 
 
 /**

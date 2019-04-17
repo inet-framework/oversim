@@ -26,9 +26,9 @@
 
 
 #include "common/OverSimDefs.h"
-#include <inet/common/ModuleAccess.h>
+#include "inet/common/ModuleAccess.h"
 
-#include <BaseOverlay.h>
+#include "common/BaseOverlay.h"
 
 /**
  * Gives access to the overlay.
@@ -36,7 +36,7 @@
 class OverlayAccess
 {
 public:
-    
+
     BaseOverlay* get
         (cModule* refMod)
     {
@@ -57,12 +57,12 @@ public:
                 throw cRuntimeError("OverlayAccess::get(): Overlay module not found!");
         }
         // get the overlay container, with the proper index
-        cModule *overlayContainer = tmpParent->getSubmodule("overlay", tmpMod->getIndex()); 
+        cModule *overlayContainer = tmpParent->getSubmodule("overlay", tmpMod->getIndex());
         overlay = dynamic_cast<BaseOverlay*>
                 (overlayContainer->gate("appIn")->getNextGate()->getOwnerModule()); // get the contained overlay module
-        
+
         if (!overlay) throw cRuntimeError("OverlayAccess::get(): Overlay module not found!");
-        
+
         return overlay;
     }
 };

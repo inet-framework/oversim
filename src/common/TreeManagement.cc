@@ -24,15 +24,15 @@
 
 #include "common/OverSimDefs.h"
 
-#include <GlobalNodeListAccess.h>
-#include <NeighborCache.h>
-#include <OverlayAccess.h>
-#include <GlobalNodeList.h>
-#include <PeerInfo.h>
-#include <CommonMessages_m.h>
-#include <GlobalViewBuilder.h> //TODO own file for AbstractTreeMsgClient
+#include "common/GlobalNodeListAccess.h"
+#include "common/NeighborCache.h"
+#include "common/OverlayAccess.h"
+#include "common/GlobalNodeList.h"
+#include "common/PeerInfo.h"
+#include "common/CommonMessages_m.h"
+#include "common/cbr/GlobalViewBuilder.h" //TODO own file for AbstractTreeMsgClient
 
-#include "TreeManagement.h"
+#include "common/TreeManagement.h"
 
 
 TreeManagement::TreeManagement()

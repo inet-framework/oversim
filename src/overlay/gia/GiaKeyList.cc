@@ -23,7 +23,7 @@
 
 #include <vector>
 
-#include "GiaKeyList.h"
+#include "overlay/gia/GiaKeyList.h"
 
 
 void GiaKeyList::addKeyItem(const OverlayKey& item)

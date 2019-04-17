@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include <platdep/sockets.h>
+#include "platdep/sockets.h"
 #if not defined _WIN32
 #include <arpa/inet.h>
 #endif
@@ -32,10 +32,10 @@
 
 #include <sstream>
 
-#include <NodeVector.h>
-#include <P2pns.h>
+#include "common/NodeVector.h"
+#include "tier2/p2pns/P2pns.h"
 
-#include "XmlRpcInterface.h"
+#include "tier3/xmlrpcinterface/XmlRpcInterface.h"
 
 using namespace XmlRpc;
 

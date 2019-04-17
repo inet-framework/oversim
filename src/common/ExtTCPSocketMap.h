@@ -26,8 +26,8 @@
 
 #include "common/OverSimDefs.h"
 
-#include <inet/transportlayer/contract/tcp/TCPSocketMap.h>
-#include <inet/networklayer/common/L3Address.h>
+#include "inet/transportlayer/contract/tcp/TCPSocketMap.h"
+#include "inet/networklayer/common/L3Address.h"
 
 using namespace inet;
 

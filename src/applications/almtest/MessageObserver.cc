@@ -22,9 +22,9 @@
 #include <assert.h>
 #include <sstream>
 #include "common/OverSimDefs.h"
-#include <GlobalStatisticsAccess.h>
-#include "MessageObserver.h"
-#include "ALMTestTracedMessage_m.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "applications/almtest/MessageObserver.h"
+#include "applications/almtest/ALMTestTracedMessage_m.h"
 
 Define_Module(MessageObserver);
 
@@ -80,7 +80,7 @@ void MessageObserver::finish() {
     recordScalar("MessageObserver: Total Sent Messages", (double)totalSent);
     recordScalar("MessageObserver: Total Received Messages", (double)totalReceived);
     recordScalar("MessageObserver: Total Delivered Percentage", ((double)totalReceived * 100.0) / (double)totalSent);
-    
+
     simtime_t time = globalStatistics->calcMeasuredLifetime(creationTime);
     if ( time >= GlobalStatistics::MIN_MEASURED ) {
         globalStatistics->addStdDev("MessageObserver: Looped messages/s", (double)numLooped / time);
@@ -176,7 +176,7 @@ void MessageObserver::receivedMessage(ALMTestTracedMessage* msg) {
         iJoinInfo = joinedAt.find(NodeGroupPair(msg->getReceiverId(), msg->getGroupId()));
 
         if (iJoinInfo != joinedAt.end() && iJoinInfo->second < msg->getTimestamp()) {
-            
+
             // Check if this message has not already been received
             NodeMessagePair nmp = NodeMessagePair(msg->getReceiverId(), msg->getMcastId());
             if (receivedAt.find(nmp) == receivedAt.end()) {

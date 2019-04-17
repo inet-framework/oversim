@@ -21,13 +21,13 @@
  * @author Stephan Krause
  */
 
-#include <inet/common/NotifierConsts.h>
+#include "inet/common/NotifierConsts.h"
 
-#include "PubSubMMOG.h"
+#include "overlay/pubsubmmog/PubSubMMOG.h"
 
-#include "GlobalNodeListAccess.h"
-#include <GlobalStatistics.h>
-#include <BootstrapList.h>
+#include "common/GlobalNodeListAccess.h"
+#include "common/GlobalStatistics.h"
+#include "common/BootstrapList.h"
 
 Define_Module(PubSubMMOG);
 

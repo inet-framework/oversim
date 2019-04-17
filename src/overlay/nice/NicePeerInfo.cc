@@ -22,7 +22,7 @@
  */
 
 
-#include "NicePeerInfo.h"
+#include "overlay/nice/NicePeerInfo.h"
 
 namespace oversim
 {

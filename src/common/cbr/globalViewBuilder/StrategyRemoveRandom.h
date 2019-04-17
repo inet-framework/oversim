@@ -25,7 +25,7 @@
 #define STRATEGYREMOVERANDOM_H_
 
 #include <time.h>
-#include <StrategyRemoveCoords.h>
+#include "common/cbr/globalViewBuilder/StrategyRemoveCoords.h"
 
 class NeighborCache;
 

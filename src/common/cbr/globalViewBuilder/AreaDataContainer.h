@@ -9,7 +9,7 @@
 #define AREADATACONTAINER_H_
 
 
-#include <CoordBasedRouting.h>
+#include "common/cbr/CoordBasedRouting.h"
 
 class AreaDataContainer {
 

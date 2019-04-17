@@ -26,12 +26,12 @@
 
 // Note: this only works in linux...
 #if not defined _WIN32 && not defined __APPLE__
-#include <platdep/sockets.h>
+#include "platdep/sockets.h"
 #include <linux/if.h>
 #include <linux/if_tun.h>
 #include <sys/ioctl.h>
 #endif
-#include "realtimescheduler.h"
+#include "underlay/singlehostunderlay/realtimescheduler.h"
 
 
 class TunOutScheduler : public RealtimeScheduler

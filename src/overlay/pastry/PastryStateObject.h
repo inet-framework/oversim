@@ -30,11 +30,11 @@
 
 #include "common/OverSimDefs.h"
 
-#include <NodeHandle.h>
-#include <NodeVector.h>
+#include "common/NodeHandle.h"
+#include "common/NodeVector.h"
 
-#include "PastryTypes.h"
-#include "PastryMessage_m.h"
+#include "overlay/pastry/PastryTypes.h"
+#include "overlay/pastry/PastryMessage_m.h"
 
 /**
  * PastryStateObject Module

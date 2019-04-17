@@ -29,7 +29,7 @@
 #ifndef __BOUNDINGBOX2D_H_
 #define __BOUNDINGBOX2D_H_
 
-#include <Vector2D.h>
+#include "common/Vector2D.h"
 
 class BoundingBox2D
 {

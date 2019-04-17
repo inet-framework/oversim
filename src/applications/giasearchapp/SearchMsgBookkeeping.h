@@ -29,7 +29,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 
 /**
  * struct for average statistical values of search messages and responses

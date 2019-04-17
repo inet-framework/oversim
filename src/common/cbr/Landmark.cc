@@ -23,13 +23,13 @@
 
 #include <cassert>
 
-#include <SimpleUnderlayConfigurator.h>
-#include <BootstrapList.h>
-#include <NeighborCache.h>
-#include <GlobalNodeList.h>
-#include <GlobalStatistics.h>
+#include "underlay/simpleunderlay/SimpleUnderlayConfigurator.h"
+#include "common/BootstrapList.h"
+#include "common/NeighborCache.h"
+#include "common/GlobalNodeList.h"
+#include "common/GlobalStatistics.h"
 
-#include "Landmark.h"
+#include "common/cbr/Landmark.h"
 
 Define_Module(Landmark);
 

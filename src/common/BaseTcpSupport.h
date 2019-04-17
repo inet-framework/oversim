@@ -27,9 +27,9 @@
 #include "common/OverSimDefs.h"
 
 #include <map>
-#include <TransportAddress.h>
-#include <inet/transportlayer/contract/tcp/TCPSocket.h>
-#include <ExtTCPSocketMap.h>
+#include "common/TransportAddress.h"
+#include "inet/transportlayer/contract/tcp/TCPSocket.h"
+#include "common/ExtTCPSocketMap.h"
 
 class BaseTcpSupport : public TCPSocket::CallbackInterface
 {

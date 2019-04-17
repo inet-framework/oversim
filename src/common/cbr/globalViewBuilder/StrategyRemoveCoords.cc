@@ -5,8 +5,8 @@
  *      Author: user
  */
 
-#include "StrategyRemoveCoords.h"
-#include <GlobalViewBuilder.h>
+#include "common/cbr/globalViewBuilder/StrategyRemoveCoords.h"
+#include "common/cbr/GlobalViewBuilder.h"
 
 StrategyRemoveCoords::StrategyRemoveCoords() {
 	lastSendCount = 0;

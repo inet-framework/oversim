@@ -18,7 +18,7 @@
 
 /**
  * @file GiaNode.h
- * @author Robert Palmer 
+ * @author Robert Palmer
  */
 
 #ifndef __GIANODE_H_
@@ -27,13 +27,13 @@
 
 #include <string>
 
-#include <NodeHandle.h>
+#include "common/NodeHandle.h"
 
 
 /**
  *
  * This class represents a node in gia overlay network
- * 
+ *
  */
 class GiaNode : public NodeHandle
 {

@@ -24,14 +24,14 @@
 #ifndef _XMLRPCINTERFACE_H__
 #define _XMLRPCINTERFACE_H__
 
-#include <tunoutscheduler.h>
-#include <realtimescheduler.h>
+#include "underlay/singlehostunderlay/tunoutscheduler.h"
+#include "underlay/singlehostunderlay/realtimescheduler.h"
 #include "common/OverSimDefs.h"
-#include <CommonMessages_m.h>
-#include <DHTMessage_m.h>
-#include <BaseOverlay.h>
-#include <BaseApp.h>
-#include <XmlRpc.h>
+#include "common/CommonMessages_m.h"
+#include "applications/dht/DHTMessage_m.h"
+#include "common/BaseOverlay.h"
+#include "common/BaseApp.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpc.h"
 
 class P2pns;
 

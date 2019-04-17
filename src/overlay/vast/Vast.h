@@ -25,13 +25,13 @@
 #define __VAST_H_
 
 #include "common/OverSimDefs.h"
-#include <BaseOverlay.h>
+#include "common/BaseOverlay.h"
 #include <float.h>
-#include <VastDefs.h>
-#include <Vast_m.h>
-//#include <inet/networklayer/common/L3Address.h>
-//#include <NodeHandle.h>
-//#include <NeighborsList.h>
+#include "overlay/vast/VastDefs.h"
+#include "overlay/vast/Vast_m.h"
+//#include "inet/networklayer/common/L3Address.h"
+//#include "common/NodeHandle.h"
+//#include "NeighborsList.h"
 
 /// Voronoi class
 /**

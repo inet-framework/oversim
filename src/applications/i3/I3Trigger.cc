@@ -20,7 +20,7 @@
  * @author Antonio Zea
  */
 
-#include "I3Trigger.h"
+#include "applications/i3/I3Trigger.h"
 
 I3Trigger::I3Trigger() :
         insertionTime(0)

@@ -23,7 +23,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include "GlobalStatistics.h"
+#include "common/GlobalStatistics.h"
 
 Define_Module(GlobalStatistics);
 

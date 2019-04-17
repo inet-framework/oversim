@@ -18,11 +18,11 @@
 // @author Robert Palmer, Bernhard Heep
 //
 cplusplus {{
-#include <inet/networklayer/common/L3Address.h>
-#include <OverlayKey.h>
-#include <GiaNode.h>
-#include <NodeHandle.h>
-#include <CommonMessages_m.h>
+#include "inet/networklayer/common/L3Address.h"
+#include "common/OverlayKey.h"
+#include "overlay/gia/GiaNode.h"
+#include "common/NodeHandle.h"
+#include "common/CommonMessages_m.h"
 
 // constants for message length in bit
 static const int GIACOMMAND_L = 8;
@@ -90,7 +90,7 @@ message GiaNeighborMessage extends GiaMessage
 {
         GiaNode neighbors[];
 };
- 
+
 //
 // Used for sending a token to a destination node
 // @author Robert Palmer
@@ -132,7 +132,7 @@ message KeyListMessage extends GiaMessage
 };
 
 //
-// Search message 
+// Search message
 // @author Robert Palmer
 //
 message SearchMessage extends GiaIDMessage
@@ -144,7 +144,7 @@ message SearchMessage extends GiaIDMessage
 };
 
 //
-// Search response message 
+// Search response message
 // @author Robert Palmer
 //
 message SearchResponseMessage extends GiaIDMessage

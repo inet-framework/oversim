@@ -24,9 +24,9 @@
 
 #include <cfloat>
 
-#include <NeighborCache.h>
+#include "common/NeighborCache.h"
 
-#include "Vivaldi.h"
+#include "common/Vivaldi.h"
 
 
 void Vivaldi::init(NeighborCache* neighborCache)

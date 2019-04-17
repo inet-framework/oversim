@@ -27,12 +27,12 @@
 
 #include "common/OverSimDefs.h"
 
-#include <inet/networklayer/contract/IRoutingTable.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
+#include "inet/networklayer/contract/IRoutingTable.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
 
-#include "ConnectReaSE.h"
+#include "underlay/reaseunderlay/ConnectReaSE.h"
 
 using namespace inet;
 using namespace ::std;

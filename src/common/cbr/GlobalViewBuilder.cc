@@ -24,11 +24,11 @@
 #include <iostream>
 #include <fstream>
 
-#include <AbstractSendStrategy.h>
-#include <UnderlayConfiguratorAccess.h>
-#include <CoordBasedRoutingAccess.h>
+#include "common/cbr/globalViewBuilder/AbstractSendStrategy.h"
+#include "common/UnderlayConfiguratorAccess.h"
+#include "common/cbr/CoordBasedRoutingAccess.h"
 
-#include "GlobalViewBuilder.h"
+#include "common/cbr/GlobalViewBuilder.h"
 
 void GlobalViewBuilder::initializeViewBuilder(NeighborCache* neighborCache, BaseOverlay* overlay) {
 

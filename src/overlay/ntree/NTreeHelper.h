@@ -24,8 +24,8 @@
 #ifndef __NTREEHELPER_H_
 #define __NTREEHELPER_H_
 
-#include <NodeHandle.h>
-#include <Vector2D.h>
+#include "common/NodeHandle.h"
+#include "common/Vector2D.h"
 
 class NTreeScope
 {
@@ -39,7 +39,7 @@ class NTreeScope
         bool isValid() const { return size >= 0; }
         Vector2D origin;
         double size;
-        
+
         friend bool operator==(const NTreeScope& a, const NTreeScope& b);
         friend bool operator<(const NTreeScope& a, const NTreeScope& b);
         friend std::ostream& operator<<(std::ostream& Stream, const NTreeScope& scope);
@@ -57,7 +57,7 @@ class NTreeGroup
         bool isInScope(const Vector2D& p) const;
         NTreeGroup(const NTreeScope& _scope);
         NTreeGroup(const Vector2D& _origin, double _size);
-        
+
         friend bool operator==(const NTreeGroup& a, const NTreeGroup& b);
         friend bool operator<(const NTreeGroup& a, const NTreeGroup& b);
         friend std::ostream& operator<<(std::ostream& Stream, const NTreeGroup& group);
@@ -83,7 +83,7 @@ class NTreeNode
         const NodeHandle& getChildForPos( const Vector2D& pos ) const;
         NTreeNode(const NTreeScope& _scope);
         NTreeNode(const Vector2D& _origin, double _size);
-        
+
         friend bool operator==(const NTreeNode& a, const NTreeNode& b);
         friend bool operator<(const NTreeNode& a, const NTreeNode& b);
         friend std::ostream& operator<<(std::ostream& Stream, const NTreeNode& node);

@@ -27,8 +27,8 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
-#include <TransportAddress.h>
+#include "common/OverlayKey.h"
+#include "common/TransportAddress.h"
 #include "common/CoordinateSystem.h"
 
 class GlobalNodeList;

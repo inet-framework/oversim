@@ -21,8 +21,8 @@
  * @author Daniel Lienert
  */
 
-#include "StrategySimplifyCoords.h"
-#include <GlobalViewBuilder.h>
+#include "common/cbr/globalViewBuilder/StrategySimplifyCoords.h"
+#include "common/cbr/GlobalViewBuilder.h"
 
 StrategySimplifyCoords::StrategySimplifyCoords() {
 	// TODO Auto-generated constructor stub

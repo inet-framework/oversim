@@ -26,12 +26,12 @@
 #define __NODEHANDLE_H_
 
 //#include <stdint.h>
-//#include <oversim_mapset.h>
+//#include "common/oversim_mapset.h"
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
-#include <TransportAddress.h>
+#include "common/OverlayKey.h"
+#include "common/TransportAddress.h"
 
 //class hashFcn;
 

@@ -4,9 +4,9 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcDispatch.h"
-#include "XmlRpcSource.h"
-#include "XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcDispatch.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSource.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
 
 #include <errno.h>
 #include <math.h>

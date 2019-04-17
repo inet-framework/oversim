@@ -21,8 +21,8 @@
  */
 
 
-#include "I3BaseApp.h"
-#include "I3SessionMessage_m.h"
+#include "applications/i3/I3BaseApp.h"
+#include "applications/i3/i3Apps/I3SessionMessage_m.h"
 
 using namespace std;
 

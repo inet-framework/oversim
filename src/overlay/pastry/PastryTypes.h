@@ -29,10 +29,10 @@
 #include <map>
 #include <limits>
 
-#include <OverlayKey.h>
-#include <NodeHandle.h>
+#include "common/OverlayKey.h"
+#include "common/NodeHandle.h"
 
-#include "PastryMessage_m.h"
+#include "overlay/pastry/PastryMessage_m.h"
 
 /**
  * value for infinite proximity (ping timeout):

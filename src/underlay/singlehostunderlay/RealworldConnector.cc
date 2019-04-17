@@ -21,11 +21,11 @@
  * @author Stephan Krause
  */
 
-#include "RealworldConnector.h"
+#include "underlay/singlehostunderlay/RealworldConnector.h"
 
 #include <string.h>
 #include "common/OverSimDefs.h"
-#include <inet/common/InitStages.h>
+#include "inet/common/InitStages.h"
 
 
 RealworldConnector::RealworldConnector()

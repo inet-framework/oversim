@@ -17,9 +17,9 @@
 //
 
 #include "common/OverSimDefs.h"
-#include <cnetcommbuffer.h>
-#include "OverSimMessage_m.h"
-#include "OverSimMessage.h"
+#include "common/cnetcommbuffer.h"
+#include "common/OverSimMessage_m.h"
+#include "common/OverSimMessage.h"
 
 Register_Class(OverSimMessage);
 

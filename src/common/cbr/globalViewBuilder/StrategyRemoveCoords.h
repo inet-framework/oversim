@@ -8,7 +8,7 @@
 #ifndef STRATEGYREMOVECOORDS_H_
 #define STRATEGYREMOVECOORDS_H_
 
-#include <StrategySendAll.h>
+#include "common/cbr/globalViewBuilder/StrategySendAll.h"
 
 class NeighborCache;
 

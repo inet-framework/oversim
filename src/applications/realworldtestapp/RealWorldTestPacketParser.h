@@ -25,12 +25,12 @@
 #define __REALWORLDTESTPACKETPARSER_H_
 
 
-#include <utility>
+#include "utility"
 
 #include "common/OverSimDefs.h"
-#include "RealWorldTestMessage_m.h"
+#include "applications/realworldtestapp/RealWorldTestMessage_m.h"
 
-#include <PacketParser.h>
+#include "common/PacketParser.h"
 
 /**
  * A message parser for RealWorldTestMessages
@@ -41,9 +41,9 @@ class RealWorldTestPacketParser : public PacketParser
 {
 public:
     char* encapsulatePayload(cPacket *msg, unsigned int* length);
-  
+
     cPacket* decapsulatePayload(char* buf, unsigned int length);
-  
+
 };
 
 #endif

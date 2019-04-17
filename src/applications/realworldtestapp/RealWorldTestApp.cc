@@ -21,14 +21,14 @@
  * @author Bernhard Heep
  */
 
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <CommonMessages_m.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/CommonMessages_m.h"
 
 #include "common/InitStages.h"
 
 
-#include "RealWorldTestApp.h"
-#include "RealWorldTestMessage_m.h"
+#include "applications/realworldtestapp/RealWorldTestApp.h"
+#include "applications/realworldtestapp/RealWorldTestMessage_m.h"
 
 
 Define_Module(RealWorldTestApp);

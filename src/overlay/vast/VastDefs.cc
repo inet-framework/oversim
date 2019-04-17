@@ -21,7 +21,7 @@
  * @author Helge Backhaus
  */
 
-#include "VastDefs.h"
+#include "overlay/vast/VastDefs.h"
 
 Site::Site()
 {

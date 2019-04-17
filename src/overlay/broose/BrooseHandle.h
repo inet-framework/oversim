@@ -24,7 +24,7 @@
 #ifndef __BROOSEHANDLE_H_
 #define __BROOSEHANDLE_H_
 
-#include <NodeHandle.h>
+#include "common/NodeHandle.h"
 
 using namespace inet;
 

@@ -23,9 +23,9 @@
 
 #include "common/OverSimDefs.h"
 
-#include <GlobalStatisticsAccess.h>
+#include "common/GlobalStatisticsAccess.h"
 
-#include "FinisherModule.h"
+#include "common/FinisherModule.h"
 
 
 Define_Module(FinisherModule);

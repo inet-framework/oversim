@@ -27,7 +27,7 @@
 
 #include <cfloat>
 
-#include "NodeHandle.h"
+#include "common/NodeHandle.h"
 
 
 struct Prox

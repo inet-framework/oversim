@@ -21,10 +21,10 @@
 //
 
 cplusplus {{
-#include <inet/networklayer/common/L3Address.h>
-#include <NodeHandle.h>
-#include <OverlayKey.h>
-#include <CommonMessages_m.h>
+#include "inet/networklayer/common/L3Address.h"
+#include "common/NodeHandle.h"
+#include "common/OverlayKey.h"
+#include "common/CommonMessages_m.h"
 
 // constants for message length in bit
 static const int PASTRYTYPE_L = 8;
@@ -45,7 +45,7 @@ static const int PASTRYFINDNODEEXTDATA_L = NODEHANDLE_L + HOPCOUNT_L;
         ARRAYSIZE_L)
 
 #define PASTRYJOINCALL_L(msg) PASTRY_L(msg)
-#define PASTRYJOINRESPONSE_L(msg) PASTRY_L(msg) 
+#define PASTRYJOINRESPONSE_L(msg) PASTRY_L(msg)
 
 #define PASTRYREQUESTSTATECALL_L(msg) PASTRY_L(msg)
 #define PASTRYREQUESTSTATERESPONSE_L(msg) PASTRY_L(msg)

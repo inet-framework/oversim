@@ -20,7 +20,7 @@
  * @file GiaKeyListModule.cc
  * @author Robert Palmer
  */
-#include "GiaKeyListModule.h"
+#include "overlay/gia/GiaKeyListModule.h"
 
 Define_Module(GiaKeyListModule);
 

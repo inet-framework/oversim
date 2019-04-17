@@ -19,7 +19,7 @@
 #ifndef __INET_UDPAPPBASE_H
 #define __INET_UDPAPPBASE_H
 
-#include <inet/common/INETDefs.h>
+#include "inet/common/INETDefs.h"
 #include "inet/networklayer/common/L3Address.h"
 
 using namespace inet;

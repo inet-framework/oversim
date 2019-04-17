@@ -20,7 +20,7 @@
  * @author Bernhard Heep
  */
 
-#include <ProxNodeHandle.h>
+#include "common/ProxNodeHandle.h"
 
 #include "common/CoordinateSystem.h"
 

@@ -27,11 +27,11 @@
 #include <deque>
 #include <algorithm>
 #include "common/OverSimDefs.h"
-#include <NodeHandle.h>
-#include <BaseOverlay.h>
+#include "common/NodeHandle.h"
+#include "common/BaseOverlay.h"
 
-#include "PubSubMessage_m.h"
-#include "PubSubSubspace.h"
+#include "overlay/pubsubmmog/PubSubMessage_m.h"
+#include "overlay/pubsubmmog/PubSubSubspace.h"
 
 class PubSubLobby : public BaseOverlay
 {

@@ -24,7 +24,7 @@
 #ifndef __GREATGATHERING_H_
 #define __GREATGATHERING_H_
 
-#include "MovementGenerator.h"
+#include "applications/simplegameclient/MovementGenerator.h"
 
 /// greatGathering class
 /**

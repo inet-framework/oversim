@@ -1,8 +1,8 @@
 cplusplus {{
-#include "I3Trigger.h"
-#include "I3IdentifierStack.h"
-#include "I3Identifier.h"
-#include "I3IPAddress.h"
+#include "applications/i3/I3Trigger.h"
+#include "applications/i3/I3IdentifierStack.h"
+#include "applications/i3/I3Identifier.h"
+#include "applications/i3/I3IPAddress.h"
 
 #define I3TYPE_L    2
 #define I3BOOL_L    1

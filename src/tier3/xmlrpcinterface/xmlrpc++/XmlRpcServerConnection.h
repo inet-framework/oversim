@@ -17,8 +17,8 @@
 # include <string>
 #endif
 
-#include "XmlRpcValue.h"
-#include "XmlRpcSource.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcValue.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSource.h"
 
 namespace XmlRpc {
 

@@ -24,7 +24,7 @@
 #ifndef _REALWORLDDEVICE_H_
 #define _REALWORLDDEVICE_H_
 
-#include "RealworldConnector.h"
+#include "underlay/singlehostunderlay/RealworldConnector.h"
 
 #include "inet/networklayer/contract/IInterfaceTable.h"
 #include "inet/common/ModuleAccess.h"

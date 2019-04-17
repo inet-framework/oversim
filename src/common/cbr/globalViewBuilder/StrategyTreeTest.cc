@@ -22,7 +22,7 @@
  */
 
 
-#include "StrategyTreeTest.h"
+#include "common/cbr/globalViewBuilder/StrategyTreeTest.h"
 
 StrategyTreeTest::StrategyTreeTest() {
 	// TODO Auto-generated constructor stub

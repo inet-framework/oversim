@@ -25,9 +25,9 @@
 #define __CUDPOUTSCHEDULER_H__
 
 #define WANT_WINSOCK2
-#include <platdep/sockets.h>
+#include "platdep/sockets.h"
 
-#include "realtimescheduler.h"
+#include "underlay/singlehostunderlay/realtimescheduler.h"
 
 class UdpOutScheduler : public RealtimeScheduler
 {

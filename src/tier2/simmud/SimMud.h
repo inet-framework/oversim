@@ -25,10 +25,10 @@
 #ifndef __SIMMUD_H_
 #define __SIMMUD_H_
 
-#include "BaseApp.h"
-#include "SimMud_m.h"
+#include "common/BaseApp.h"
+#include "tier2/simmud/SimMud_m.h"
 
-#include "Vector2D.h"
+#include "common/Vector2D.h"
 
 class SimMud : public BaseApp
 {

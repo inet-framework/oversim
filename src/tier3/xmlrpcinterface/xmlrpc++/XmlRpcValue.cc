@@ -4,10 +4,10 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcValue.h"
-#include "XmlRpcException.h"
-#include "XmlRpcUtil.h"
-#include "base64.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcValue.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcException.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/base64.h"
 
 #ifndef MAKEDEPEND
 # include <iostream>

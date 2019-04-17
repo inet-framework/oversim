@@ -21,20 +21,20 @@
  * @author Ingmar Baumgart, Bernhard Heep, Stephan Krause
  */
 
-#include <inet/common/ModuleAccess.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <UDPAppBase.h>
-#include <inet/transportlayer/contract/udp/UDPSocket.h>
-#include <cassert>
+#include "inet/common/ModuleAccess.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "applications/UDPAppBase.h"
+#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "cassert"
 
-#include <CommonMessages_m.h>
-#include <BaseRpc.h>
-#include <OverlayAccess.h>
-#include <GlobalNodeListAccess.h>
-#include <GlobalStatisticsAccess.h>
-#include <UnderlayConfiguratorAccess.h>
+#include "common/CommonMessages_m.h"
+#include "common/BaseRpc.h"
+#include "common/OverlayAccess.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/UnderlayConfiguratorAccess.h"
 
-#include "BaseApp.h"
+#include "common/BaseApp.h"
 
 using namespace std;
 

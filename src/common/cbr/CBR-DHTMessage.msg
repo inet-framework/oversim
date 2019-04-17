@@ -21,8 +21,8 @@
 //
 
 cplusplus {{
-#include <OverlayKey.h>
-#include <DHTMessage_m.h>
+#include "common/OverlayKey.h"
+#include "applications/dht/DHTMessage_m.h"
 }}
 
 

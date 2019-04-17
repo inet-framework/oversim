@@ -24,7 +24,7 @@
 #ifndef __NICEPEERINFO_H_
 #define __NICEPEERINFO_H_
 
-#include <BaseOverlay.h>
+#include "common/BaseOverlay.h"
 #include "common/OverSimDefs.h"
 #include <iostream>
 

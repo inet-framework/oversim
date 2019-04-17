@@ -27,15 +27,15 @@
 #include <set>
 #include <vector>
 #include <map>
-#include <sstream>
+#include "sstream"
 
 #include "common/OverSimDefs.h"
 
-#include <NodeHandle.h>
-#include <common/InitStages.h>
-#include <BinaryValue.h>
-#include <NodeVector.h>
-#include <CommonMessages_m.h>
+#include "common/NodeHandle.h"
+#include "common/InitStages.h"
+#include "common/BinaryValue.h"
+#include "common/NodeVector.h"
+#include "common/CommonMessages_m.h"
 
 /**
  * DHT data storage module

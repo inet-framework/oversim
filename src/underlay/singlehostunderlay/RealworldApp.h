@@ -24,8 +24,8 @@
 #ifndef _REALWORLDAPP_H__
 #define _REALWORLDAPP_H__
 
-#include "tunoutscheduler.h"
-#include "RealworldConnector.h"
+#include "underlay/singlehostunderlay/tunoutscheduler.h"
+#include "underlay/singlehostunderlay/RealworldConnector.h"
 
 /**
  * Applicaton that communicates with a realword application via a socket

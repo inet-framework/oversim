@@ -24,9 +24,9 @@
 #ifndef __TRACECHURN_H_
 #define __TRACECHURN_H_
 
-#include <ChurnGenerator.h>
+#include "common/ChurnGenerator.h"
 
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
 /**
  * Parse a trace file and schedule node joins/leaves according to

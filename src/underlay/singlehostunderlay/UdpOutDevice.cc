@@ -22,13 +22,13 @@
  */
 
 #define WANT_WINSOCK2
-#include <platdep/sockets.h>
+#include "platdep/sockets.h"
 
 #include "inet/networklayer/ipv4/IPv4Datagram.h"
 #include "inet/transportlayer/udp/UDPPacket.h"
 #include "inet/networklayer/common/L3AddressResolver.h"
 
-#include "UdpOutDevice.h"
+#include "underlay/singlehostunderlay/UdpOutDevice.h"
 
 using namespace inet;
 

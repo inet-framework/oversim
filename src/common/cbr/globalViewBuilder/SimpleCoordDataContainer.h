@@ -24,7 +24,7 @@
 #ifndef SIMPLECOORDINATE_H_
 #define SIMPLECOORDINATE_H_
 
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 #include <math.h>
 #include <cstddef>
 #include <vector>

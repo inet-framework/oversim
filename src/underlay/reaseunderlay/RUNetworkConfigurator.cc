@@ -22,7 +22,7 @@
  *    Modification of TGMNetworkConfigurator.h provided by ReaSE.
  */
 
-#include "RUNetworkConfigurator.h"
+#include "underlay/reaseunderlay/RUNetworkConfigurator.h"
 #include <sstream>
 
 

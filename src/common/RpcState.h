@@ -27,7 +27,7 @@
 
 class RpcListener;
 
-#include "CommonMessages_m.h"
+#include "common/CommonMessages_m.h"
 
 class RpcState
 {

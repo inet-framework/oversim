@@ -23,9 +23,9 @@
 
 #include <cassert>
 
-#include "ChordSuccessorList.h"
+#include "overlay/chord/ChordSuccessorList.h"
 
-#include "Chord.h"
+#include "overlay/chord/Chord.h"
 
 namespace oversim {
 

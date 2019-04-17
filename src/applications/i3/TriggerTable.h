@@ -25,7 +25,7 @@
 #ifndef __TRIGGERTABLE_H__
 #define __TRIGGERTABLE_H__
 
-#include "I3.h"
+#include "applications/i3/I3.h"
 
 /** Omnetpp module to wrap around I3's I3TriggerTable.
 * Does little more than present the map's values.

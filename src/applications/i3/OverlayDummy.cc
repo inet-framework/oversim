@@ -21,8 +21,8 @@
 
 
 #include "common/OverSimDefs.h"
-#include <OverlayKey.h>
-#include <BaseOverlay.h>
+#include "common/OverlayKey.h"
+#include "common/BaseOverlay.h"
 
 class OverlayDummy : public BaseOverlay
 {

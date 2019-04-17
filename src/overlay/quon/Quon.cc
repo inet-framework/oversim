@@ -22,8 +22,8 @@
  * @author Stephan Krause
  */
 
-#include <Quon.h>
-#include <BootstrapList.h>
+#include "overlay/quon/Quon.h"
+#include "common/BootstrapList.h"
 #include <limits>
 
 Define_Module(Quon);
@@ -317,10 +317,10 @@ bool Quon::addSite(Vector2D p, NodeHandle node, double AOI, bool isSoft, QUpdate
     aloneInOverlay = false;
     QuonSiteMap::iterator itSites = Sites.find(node.getKey());
     QDeleteMap::iterator delIt = deletedSites.find(node.getKey());
-    // add node if he is not in the delete list OR has changed position since 
+    // add node if he is not in the delete list OR has changed position since
     // put in the delete list. don't add node if he has signled his leave himself
     // (i.e. his position in the delete list is 0,0)
-    if(node.getKey() != thisSite->address.getKey() && 
+    if(node.getKey() != thisSite->address.getKey() &&
             (delIt == deletedSites.end() || (delIt->second != Vector2D(0,0) && delIt->second != p) )){
         if(itSites == Sites.end()) {
             if(debugOutput) {
@@ -518,7 +518,7 @@ void Quon::adaptAoI()
     else if(AOIWidth < minAOI) {
         AOIWidth = minAOI;
     }
-    
+
     if( oldAOI != AOIWidth ){
         GameAPIResizeAOIMessage* gameMsg = new GameAPIResizeAOIMessage("RESIZE_AOI");
         gameMsg->setCommand(RESIZE_AOI);

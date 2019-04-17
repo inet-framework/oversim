@@ -28,13 +28,13 @@
 
 #include "common/OverSimDefs.h"
 
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
-#include <RpcState.h>
-#include <RpcListener.h>
-#include <RpcMacros.h>
+#include "common/RpcState.h"
+#include "common/RpcListener.h"
+#include "common/RpcMacros.h"
 
-#include <ProxNodeHandle.h>
+#include "common/ProxNodeHandle.h"
 
 class UnderlayConfigurator;
 class GlobalStatistics;

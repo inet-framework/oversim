@@ -24,7 +24,7 @@
 #ifndef __TIERDUMMY_H__
 #define __TIERDUMMY_H__
 
-#include <BaseApp.h>
+#include "common/BaseApp.h"
 
 /* The TierDummy class is an empty placeholder module. */
 class TierDummy : public BaseApp

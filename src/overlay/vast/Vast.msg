@@ -21,10 +21,10 @@
 //
 
 cplusplus {{
-#include <NodeHandle.h>
-#include <OverlayKey.h>
-#include <Vector2D.h>
-#include <CommonMessages_m.h>
+#include "common/NodeHandle.h"
+#include "common/OverlayKey.h"
+#include "common/Vector2D.h"
+#include "common/CommonMessages_m.h"
 
 // constants for message length in bit
 static const int VASTCOMMAND_L = 8;

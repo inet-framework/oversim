@@ -21,8 +21,8 @@
  * @author Daniel Lienert
  */
 
-#include "AbstractSendStrategy.h"
-#include <GlobalViewBuilder.h>
+#include "common/cbr/globalViewBuilder/AbstractSendStrategy.h"
+#include "common/cbr/GlobalViewBuilder.h"
 
 AbstractSendStrategy::AbstractSendStrategy() {
 	// TODO Auto-generated constructor stub

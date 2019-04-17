@@ -24,7 +24,7 @@
 #include <assert.h>
 
 #include "common/OverSimDefs.h"
-#include "GiaMessageBookkeeping.h"
+#include "overlay/gia/GiaMessageBookkeeping.h"
 
 
 GiaMessageBookkeeping::GiaMessageBookkeeping( GiaNeighbors* neighbors, uint32_t timeout )

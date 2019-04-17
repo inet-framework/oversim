@@ -21,8 +21,8 @@
 * @author Stephan Krause
 */
 
-#include "hotspotRoaming.h"
-#include "StringConvert.h"
+#include "applications/simplegameclient/hotspotRoaming.h"
+#include "common/StringConvert.h"
 
 hotspotRoaming::hotspotRoaming(double areaDimension, double speed, NeighborMap *Neighbors, GlobalCoordinator* coordinator, CollisionList* CollisionRect)
               :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)

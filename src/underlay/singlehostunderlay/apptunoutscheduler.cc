@@ -21,9 +21,9 @@
  * @author Ingmar Baumgart, Stephan Krause
  */
 
-#include "apptunoutscheduler.h"
+#include "underlay/singlehostunderlay/apptunoutscheduler.h"
 #include "inet/networklayer/common/L3Address.h"
-//#include <regmacros.h>
+//#include "regmacros.h"
 
 using namespace inet;
 

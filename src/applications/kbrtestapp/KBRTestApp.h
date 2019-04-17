@@ -26,9 +26,9 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 
-#include "BaseApp.h"
+#include "common/BaseApp.h"
 
 class KBRTestMessage;
 class KbrTestCall;

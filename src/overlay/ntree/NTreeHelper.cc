@@ -1,4 +1,4 @@
-#include "NTreeHelper.h"
+#include "overlay/ntree/NTreeHelper.h"
 
 NTreeScope::NTreeScope()
 {

@@ -24,10 +24,10 @@
 #ifndef __RECURSIVE_LOOKUP_H
 #define __RECURSIVE_LOOKUP_H
 
-#include <NodeVector.h>
-#include <AbstractLookup.h>
-#include <RpcListener.h>
-#include <CommonMessages_m.h>
+#include "common/NodeVector.h"
+#include "common/AbstractLookup.h"
+#include "common/RpcListener.h"
+#include "common/CommonMessages_m.h"
 
 class LookupListener;
 class BaseOverlay;

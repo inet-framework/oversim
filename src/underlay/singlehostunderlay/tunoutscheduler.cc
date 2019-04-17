@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include "tunoutscheduler.h"
+#include "underlay/singlehostunderlay/tunoutscheduler.h"
 
 Register_Class(TunOutScheduler);
 

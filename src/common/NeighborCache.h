@@ -28,25 +28,25 @@
 
 #include "common/OverSimDefs.h"
 
-#include <map>
-#include <cfloat>
-#include <deque>
+#include "map"
+#include "cfloat"
+#include "deque"
 
-#include <BaseApp.h>
-#include <NodeHandle.h>
-#include <inet/common/geometry/common/CoordinateSystem.h>
+#include "common/BaseApp.h"
+#include "common/NodeHandle.h"
+#include "inet/common/geometry/common/CoordinateSystem.h"
 
-#include <Nps.h>
+#include "common/Nps.h"
 
-#include <TreeManagement.h>
-#include <TreeManagementMessage_m.h>
-#include <SimpleUnderlayNCS.h>
+#include "common/TreeManagement.h"
+#include "common/TreeManagementMessage_m.h"
+#include "common/SimpleUnderlayNCS.h"
 
-#include <Vivaldi.h>
-#include <SVivaldi.h>
-#include <SimpleNcs.h>
-#include <ProxNodeHandle.h>
-#include <HashFunc.h>
+#include "common/Vivaldi.h"
+#include "common/SVivaldi.h"
+#include "common/SimpleNcs.h"
+#include "common/ProxNodeHandle.h"
+#include "common/HashFunc.h"
 
 
 class GlobalStatistics;

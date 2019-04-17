@@ -24,10 +24,10 @@
 #ifndef __I3IDENTIFIERSTACK_H__
 #define __I3IDENTIFIERSTACK_H__
 
-#include "I3Identifier.h"
-#include "I3IPAddress.h"
-#include "I3SubIdentifier.h"
-#include <inet/networklayer/common/L3AddressResolver.h>
+#include "applications/i3/I3Identifier.h"
+#include "applications/i3/I3IPAddress.h"
+#include "applications/i3/I3SubIdentifier.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
 
 /** Stack of I3SubIdentifier, implementing the "identifier stack" proposed in Internet Indirection Infrastructure */
 class I3IdentifierStack {

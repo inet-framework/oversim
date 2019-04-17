@@ -21,7 +21,7 @@
  * @author Ingmar Baumgart
  */
 
-#include "NodeVector.h"
+#include "common/NodeVector.h"
 
 
 

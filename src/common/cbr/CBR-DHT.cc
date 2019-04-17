@@ -21,15 +21,15 @@
  * @author Ingmar Baumgart
  */
 
-#include <inet/networklayer/common/L3AddressResolver.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
 
-#include "CBR-DHT.h"
+#include "common/cbr/CBR-DHT.h"
 
-#include <RpcMacros.h>
-#include <BaseRpc.h>
-#include <GlobalStatistics.h>
-#include <CoordBasedRoutingAccess.h>
-#include <NeighborCache.h>
+#include "common/RpcMacros.h"
+#include "common/BaseRpc.h"
+#include "common/GlobalStatistics.h"
+#include "common/cbr/CoordBasedRoutingAccess.h"
+#include "common/NeighborCache.h"
 
 Define_Module(CBRDHT);
 

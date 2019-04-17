@@ -21,7 +21,7 @@
  * @author Stephan Krause, Ingmar Baumgart
  */
 
-#include "realtimescheduler.h"
+#include "underlay/singlehostunderlay/realtimescheduler.h"
 
 Register_PerRunConfigOption(CFGID_EXTERNALAPP_CONNECTION_LIMIT, "externalapp-connection-limit", CFG_INT, NULL, "TODO some documentation");
 Register_PerRunConfigOption(CFGID_EXTERNALAPP_APP_PORT, "externalapp-app-port", CFG_INT, NULL, "TODO some documentation");

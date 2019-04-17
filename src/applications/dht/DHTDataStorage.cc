@@ -22,9 +22,9 @@
  */
 
 #include "common/OverSimDefs.h"
-#include <hashWatch.h>
+#include "common/hashWatch.h"
 
-#include "DHTDataStorage.h"
+#include "applications/dht/DHTDataStorage.h"
 
 Define_Module(DHTDataStorage);
 

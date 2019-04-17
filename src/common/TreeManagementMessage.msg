@@ -23,14 +23,14 @@
 cplusplus {{
 #include <vector>
 
-#include <NodeHandle.h>
-#include <TransportAddress.h>
-#include <CommonMessages_m.h>
+#include "common/NodeHandle.h"
+#include "common/TransportAddress.h"
+#include "common/CommonMessages_m.h"
 
-#include <CoordDataContainer.h>
-#include <SimpleCoordDataContainer.h>
-#include <RegionDataContainer.h>
-#include <AreaDataContainer.h>
+#include "common/cbr/globalViewBuilder/CoordDataContainer.h"
+#include "common/cbr/globalViewBuilder/SimpleCoordDataContainer.h"
+#include "common/cbr/globalViewBuilder/RegionDataContainer.h"
+#include "common/cbr/globalViewBuilder/AreaDataContainer.h"
 
 // constants for message length in bit
 static const int NODECOUNT_L = 8;
@@ -38,7 +38,7 @@ static const int NODECOUNT_L = 8;
 #define TREETESTSTRATEGYCALL_L(msg) NODECOUNT_L
 
 #define PARENTREQUESTCALL_L(msg) BASECALL_L(msg)
-#define PARENTREQUESTRESPONSE_L(msg) BASERESPONSE_L(msg) 
+#define PARENTREQUESTRESPONSE_L(msg) BASERESPONSE_L(msg)
 
 #define CHILDRELEASECALL_L(msg) BASECALL_L(msg)
 #define CHILDRELEASERESPONSE_L(msg) BASERESPONSE_L(msg)
@@ -52,7 +52,7 @@ static const int NODECOUNT_L = 8;
 #define GLOBALVIEWBUILDERCALL_L(msg) TREEAPPCALL_L(msg)
 #define GLOBALVIEWBUILDERRESPONSE_L(msg) TREEAPPRESPONSE_L(msg)
 
-#define SENDCOORDINATESCALL_L(msg) (GLOBALVIEWBUILDERCALL_L(msg) + msg->getCoordData().getBitLength()) 
+#define SENDCOORDINATESCALL_L(msg) (GLOBALVIEWBUILDERCALL_L(msg) + msg->getCoordData().getBitLength())
 #define SENDALLSTRATEGYCALL_L(msg) SENDCOORDINATESCALL_L(msg)
 #define REMOVERANDOMSTRATEGYCALL_L(msg) SENDCOORDINATESCALL_L(msg)
 #define REGIONSSTRATEGYCALL_L(msg) (GLOBALVIEWBUILDERCALL_L(msg) + msg->getRegionData().getBitLength())
@@ -69,14 +69,14 @@ class noncobject AreaDataContainer;
 class noncobject NodeHandle;
 class noncobject OverlayKey;
 
-packet ParentRequestCall extends BaseCallMessage 
+packet ParentRequestCall extends BaseCallMessage
 {
     OverlayKey domainKey;
 }
 
-packet ParentRequestResponse extends BaseResponseMessage 
+packet ParentRequestResponse extends BaseResponseMessage
 {
-}	
+}
 
 
 packet TreeAppCall extends BaseCallMessage
@@ -87,7 +87,7 @@ packet TreeAppResponse extends BaseResponseMessage
 {
 }
 
-packet GlobalViewBuilderCall extends TreeAppCall 
+packet GlobalViewBuilderCall extends TreeAppCall
 {
 }
 
@@ -96,60 +96,60 @@ packet GlobalViewBuilderResponse extends TreeAppResponse
 }
 
 
-packet ChildReleaseCall extends BaseCallMessage 
+packet ChildReleaseCall extends BaseCallMessage
 {
-    //NodeHandle newParent;         
+    //NodeHandle newParent;
 }
 
-packet ChildReleaseResponse extends BaseResponseMessage 
+packet ChildReleaseResponse extends BaseResponseMessage
 {
-    //NodeHandle newParent;         
-}
-
-
-packet ChildCheckCall extends BaseCallMessage 
-{
-    //NodeHandle newParent;         
-}
-
-packet ChildCheckResponse extends BaseResponseMessage 
-{
-    //NodeHandle newParent;         
+    //NodeHandle newParent;
 }
 
 
-packet SendCoordinatesCall extends GlobalViewBuilderCall 
+packet ChildCheckCall extends BaseCallMessage
 {
-    CoordDataContainer coordData;
+    //NodeHandle newParent;
 }
 
-packet SendAllStrategyCall extends GlobalViewBuilderCall 
+packet ChildCheckResponse extends BaseResponseMessage
+{
+    //NodeHandle newParent;
+}
+
+
+packet SendCoordinatesCall extends GlobalViewBuilderCall
 {
     CoordDataContainer coordData;
 }
 
-packet RemoveRandomStrategyCall extends GlobalViewBuilderCall 
-{ 
+packet SendAllStrategyCall extends GlobalViewBuilderCall
+{
     CoordDataContainer coordData;
 }
 
-packet TreeTestStrategyCall extends GlobalViewBuilderCall 
+packet RemoveRandomStrategyCall extends GlobalViewBuilderCall
+{
+    CoordDataContainer coordData;
+}
+
+packet TreeTestStrategyCall extends GlobalViewBuilderCall
 {
     int nodeCount;
 }
 
-packet RegionsStrategyCall extends GlobalViewBuilderCall 
+packet RegionsStrategyCall extends GlobalViewBuilderCall
 {
     RegionDataContainer regionData;
 }
 
-packet SimpleCoordStrategyCall extends GlobalViewBuilderCall 
+packet SimpleCoordStrategyCall extends GlobalViewBuilderCall
 {
     SimpleCoordDataContainer coordData;
 }
 
 
-packet AreaDataCall extends GlobalViewBuilderCall 
+packet AreaDataCall extends GlobalViewBuilderCall
 {
     AreaDataContainer areaData;
 }
@@ -157,7 +157,7 @@ packet AreaDataCall extends GlobalViewBuilderCall
 
 packet CapReqCall extends BaseCallMessage
 {
-    
+
 }
 
 packet CapReqResponse extends BaseResponseMessage

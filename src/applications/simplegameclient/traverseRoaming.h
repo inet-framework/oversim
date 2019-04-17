@@ -24,7 +24,7 @@
 #ifndef __TRAVERSEROAMING_H_
 #define __TRAVERSEROAMING_H_
 
-#include "MovementGenerator.h"
+#include "applications/simplegameclient/MovementGenerator.h"
 
 /// traverseRoaming class
 /**

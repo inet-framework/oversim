@@ -24,7 +24,7 @@
 #ifndef __HOTSPOTROAMING_H_
 #define __HOTSPOTROAMING_H_
 
-#include "MovementGenerator.h"
+#include "applications/simplegameclient/MovementGenerator.h"
 
 /// hotspotRoaming class
 /**

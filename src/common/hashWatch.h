@@ -28,7 +28,7 @@
 
 #include <map>
 #include <deque>
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
 template<class T>
 class SIM_API cHashSetWatcher : public cStdVectorWatcherBase

@@ -23,9 +23,9 @@
 
 #include <cfloat>
 
-#include <NeighborCache.h>
+#include "common/NeighborCache.h"
 
-#include "SVivaldi.h"
+#include "common/SVivaldi.h"
 
 
 void SVivaldi::init(NeighborCache* neighborCache)

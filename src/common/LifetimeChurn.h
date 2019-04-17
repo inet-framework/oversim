@@ -24,7 +24,7 @@
 #ifndef __LIFETIMECHURN_H_
 #define __LIFETIMECHURN_H_
 
-#include <ChurnGenerator.h>
+#include "common/ChurnGenerator.h"
 
 class GlobalStatistics;
 class TransportAddress;

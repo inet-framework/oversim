@@ -26,7 +26,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include <NodeVector.h>
+#include "common/NodeVector.h"
 
 class OverlayKey;
 class LookupListener;

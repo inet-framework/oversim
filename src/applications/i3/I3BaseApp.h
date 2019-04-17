@@ -27,15 +27,15 @@
 
 
 #include "common/OverSimDefs.h"
-#include <inet/transportlayer/contract/udp/UDPSocket.h>
-#include <UDPAppBase.h>
+#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "applications/UDPAppBase.h"
 
 
-#include "I3Trigger.h"
-#include "I3IdentifierStack.h"
-#include "I3Message.h"
-#include "I3IPAddress.h"
-#include "I3Identifier.h"
+#include "applications/i3/I3Trigger.h"
+#include "applications/i3/I3IdentifierStack.h"
+#include "applications/i3/I3Message.h"
+#include "applications/i3/I3IPAddress.h"
+#include "applications/i3/I3Identifier.h"
 
 /** Basic template class for I3 applications. */
 class I3BaseApp : public UDPAppBase,

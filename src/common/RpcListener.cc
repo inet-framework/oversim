@@ -21,8 +21,8 @@
  * @author Sebastian Mies
  */
 
-#include <RpcListener.h>
-#include <RpcState.h>
+#include "common/RpcListener.h"
+#include "common/RpcState.h"
 
 
 RpcListener::~RpcListener()

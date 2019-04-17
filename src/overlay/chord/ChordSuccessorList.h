@@ -28,8 +28,8 @@
 
 #include "common/OverSimDefs.h"
 
-#include <common/InitStages.h>
-#include <NodeHandle.h>
+#include "common/InitStages.h"
+#include "common/NodeHandle.h"
 
 class OverlayKey;
 class NotifyResponse;

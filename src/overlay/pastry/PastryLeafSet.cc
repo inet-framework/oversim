@@ -21,9 +21,9 @@
  * @author Felix Palmen, Bernhard Heep
  */
 
-#include "PastryLeafSet.h"
-#include "PastryTypes.h"
-#include "NodeVector.h"
+#include "overlay/pastry/PastryLeafSet.h"
+#include "overlay/pastry/PastryTypes.h"
+#include "common/NodeVector.h"
 
 #if 0
 #define LEAF_TEST() \

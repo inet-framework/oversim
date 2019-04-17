@@ -22,7 +22,7 @@
 * @author Stephan Krause
 */
 
-#include "ConnectivityProbeQuon.h"
+#include "overlay/quon/ConnectivityProbeQuon.h"
 
 Define_Module(ConnectivityProbeQuon);
 

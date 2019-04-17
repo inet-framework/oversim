@@ -26,7 +26,7 @@
 
 #include <ostream>
 
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
 
 typedef UNORDERED_MAP<long, int> regionCountMap;

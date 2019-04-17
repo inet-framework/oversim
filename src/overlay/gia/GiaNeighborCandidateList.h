@@ -24,7 +24,7 @@
 #ifndef __GIANEIGHBORCANDIDATELIST_H_
 #define __GIANEIGHBORCANDIDATELIST_H_
 
-#include <NodeHandle.h>
+#include "common/NodeHandle.h"
 
 /**
  *

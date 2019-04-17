@@ -1,6 +1,7 @@
 # local and generated files not to be committed
 src/Makefile
 src/Makefile.vc
+src/oversim*
 *_m.h
 *_m.cc
 *_sm.h

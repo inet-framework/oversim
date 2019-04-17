@@ -18,8 +18,8 @@
 #ifndef __KADEMLIA_NODE_HANDLE_H
 #define __KADEMLIA_NODE_HANDLE_H
 
-#include <NodeHandle.h>
-#include <NodeVector.h>
+#include "common/NodeHandle.h"
+#include "common/NodeVector.h"
 
 /**
  * @file KademliaNodeHandle.h

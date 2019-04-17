@@ -24,7 +24,7 @@
 #ifndef __RANDOMROAMING_H_
 #define __RANDOMROAMING_H_
 
-#include "MovementGenerator.h"
+#include "applications/simplegameclient/MovementGenerator.h"
 
 /// randomRoaming class
 /**

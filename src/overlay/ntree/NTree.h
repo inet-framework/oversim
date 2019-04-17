@@ -25,10 +25,10 @@
 #define __NTREE_H_
 
 #include "common/OverSimDefs.h"
-#include <NodeHandle.h>
-#include <BaseOverlay.h>
-#include "NTreeHelper.h"
-#include "NTree_m.h"
+#include "common/NodeHandle.h"
+#include "common/BaseOverlay.h"
+#include "overlay/ntree/NTreeHelper.h"
+#include "overlay/ntree/NTree_m.h"
 
 /**
  * A p2p protocol for MMOGs and virtual worlds.
@@ -38,7 +38,7 @@
  * event ordering in peer-to-peer games". In Proceedings of the international
  * Workshop on Network and Operating Systems Support For Digital Audio and
  * Video  (Stevenson, Washington, USA, June 13 - 14, 2005). NOSSDAV '05. ACM,
- * New York, NY, 87-92. DOI= http://doi.acm.org/10.1145/1065983.1066005 
+ * New York, NY, 87-92. DOI= http://doi.acm.org/10.1145/1065983.1066005
  *
  * @author STephan Krause
  */
@@ -162,7 +162,7 @@ class NTree : public BaseOverlay
         void handleLeaveMessage( NTreeLeaveMessage* leaveMsg );
         /**
          * Handles an information message that a subtree we are part of is collapsed
-         * 
+         *
          * @param collapseMsg the information message
          */
         void handleCollapseMessage( NTreeCollapseMessage* collapseMsg );

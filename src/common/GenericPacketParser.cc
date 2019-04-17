@@ -22,7 +22,7 @@
  */
 #include "common/OverSimDefs.h"
 
-#include "GenericPacketParser.h"
+#include "common/GenericPacketParser.h"
 
 Define_Module(GenericPacketParser);
 

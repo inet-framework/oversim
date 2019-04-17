@@ -6,7 +6,7 @@
 
 #if defined(XMLRPC_THREADS)
 
-#include "XmlRpcThread.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcThread.h"
 
 #if defined(_WINDOWS)
 # define WIN32_LEAN_AND_MEAN

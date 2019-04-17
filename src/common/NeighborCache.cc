@@ -22,22 +22,22 @@
  * @author Bernhard Heep
  */
 
-#include <cassert>
+#include "cassert"
 
-#include <TransportAddress.h>
-#include <NodeHandle.h>
-#include <PeerInfo.h>
-#include <GlobalStatisticsAccess.h>
-#include <CoordBasedRoutingAccess.h>
-#include <CoordMessages_m.h>
-#include <GlobalNodeListAccess.h>
-#include <hashWatch.h>
-#include <BootstrapList.h>
-#include <DiscoveryMode.h>
+#include "common/TransportAddress.h"
+#include "common/NodeHandle.h"
+#include "common/PeerInfo.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/cbr/CoordBasedRoutingAccess.h"
+#include "common/cbr/CoordMessages_m.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/hashWatch.h"
+#include "common/BootstrapList.h"
+#include "common/DiscoveryMode.h"
 
-#include "NeighborCache.h"
-#include <GlobalViewBuilder.h>
-#include <UnderlayConfigurator.h>
+#include "common/NeighborCache.h"
+#include "common/cbr/GlobalViewBuilder.h"
+#include "common/UnderlayConfigurator.h"
 
 
 const std::vector<double> NeighborCache::coordsDummy;

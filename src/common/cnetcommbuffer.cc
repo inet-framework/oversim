@@ -17,10 +17,10 @@
   `license' for details on this and other legal matters.
 *--------------------------------------------------------------*/
 #include <string.h>
-#include <platdep/sockets.h>
+#include "platdep/sockets.h"
 #include <stdexcept>
 #include "common/OverSimDefs.h"
-#include "cnetcommbuffer.h"
+#include "common/cnetcommbuffer.h"
 
 /*
 #define STORE(type,d)    {*(type *)(mBuffer+mMsgSize)=d; mMsgSize+=sizeof(type);}

@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include "TunOutDevice.h"
+#include "underlay/singlehostunderlay/TunOutDevice.h"
 #include "inet/networklayer/ipv4/IPv4Datagram.h"
 #include "inet/transportlayer/udp/UDPPacket.h"
 

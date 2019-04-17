@@ -22,7 +22,7 @@
 * @author Stephan Krause
 */
 
-#include "ConnectivityProbeApp.h"
+#include "applications/simplegameclient/ConnectivityProbeApp.h"
 
 Define_Module(ConnectivityProbeApp);
 

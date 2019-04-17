@@ -21,10 +21,10 @@
  * @author Felix Palmen
  */
 
-#include <common/InitStages.h>
+#include "common/InitStages.h"
 
-#include "PastryStateObject.h"
-#include "PastryTypes.h"
+#include "overlay/pastry/PastryStateObject.h"
+#include "overlay/pastry/PastryTypes.h"
 
 
 const PastryExtendedNode* PastryStateObject::_unspecNode = NULL;

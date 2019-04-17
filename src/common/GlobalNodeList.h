@@ -26,13 +26,13 @@
 
 #include <map>
 #include <vector>
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
 #include "common/OverSimDefs.h"
-#include <ChurnGenerator.h>
-#include <BinaryValue.h>
-#include <NodeHandle.h>
-#include <PeerStorage.h>
+#include "common/ChurnGenerator.h"
+#include "common/BinaryValue.h"
+#include "common/NodeHandle.h"
+#include "common/PeerStorage.h"
 
 class BootstrapList;
 class TransportAddress;

@@ -21,7 +21,7 @@
  * @author Robert Palmer
  */
 
-#include "SearchMsgBookkeeping.h"
+#include "applications/giasearchapp/SearchMsgBookkeeping.h"
 
 
 SearchMsgBookkeeping::~SearchMsgBookkeeping()

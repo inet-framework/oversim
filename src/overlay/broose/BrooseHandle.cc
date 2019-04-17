@@ -23,9 +23,9 @@
 
 #include "common/OverSimDefs.h"
 
-#include <inet/networklayer/contract/ipv4/IPv4Address.h>
+#include "inet/networklayer/contract/ipv4/IPv4Address.h"
 
-#include "BrooseHandle.h"
+#include "overlay/broose/BrooseHandle.h"
 
 using namespace inet;
 

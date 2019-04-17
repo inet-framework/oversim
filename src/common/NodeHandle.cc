@@ -22,7 +22,7 @@
  * @author Sebastian Mies
  */
 
-#include "NodeHandle.h"
+#include "common/NodeHandle.h"
 #include <cassert>
 
 // predefined node handle

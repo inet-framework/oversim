@@ -25,14 +25,14 @@
 #define __ITERATIVE_LOOKUP_H
 
 #include <vector>
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
-#include <IterativeLookupConfiguration.h>
-#include <AbstractLookup.h>
-#include <RpcListener.h>
+#include "common/IterativeLookupConfiguration.h"
+#include "common/AbstractLookup.h"
+#include "common/RpcListener.h"
 
-#include <NodeVector.h>
-#include <Comparator.h>
+#include "common/NodeVector.h"
+#include "common/Comparator.h"
 
 class NodeHandle;
 class OverlayKey;

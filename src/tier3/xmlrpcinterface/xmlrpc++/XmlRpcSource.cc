@@ -4,9 +4,9 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcSource.h"
-#include "XmlRpcSocket.h"
-#include "XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSource.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSocket.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
 
 namespace XmlRpc {
 

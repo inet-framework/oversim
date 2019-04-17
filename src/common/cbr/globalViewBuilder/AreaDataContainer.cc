@@ -5,7 +5,7 @@
  *      Author: user
  */
 
-#include "AreaDataContainer.h"
+#include "common/cbr/globalViewBuilder/AreaDataContainer.h"
 
 AreaDataContainer::AreaDataContainer() {
 	// TODO Auto-generated constructor stub

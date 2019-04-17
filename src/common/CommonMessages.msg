@@ -17,13 +17,13 @@
 //
 
 cplusplus {{
-#include <OverlayKey.h>
-#include <NodeHandle.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <TransportAddress.h>
-#include <BinaryValue.h>
-#include <Vector2D.h>
-#include <OverSimMessage.h>
+#include "common/OverlayKey.h"
+#include "common/NodeHandle.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "common/TransportAddress.h"
+#include "common/BinaryValue.h"
+#include "common/Vector2D.h"
+#include "common/OverSimMessage.h"
 
 #define KEY_L OverlayKey::getLength()
 
@@ -290,7 +290,7 @@ packet PingResponse extends BaseResponseMessage
 packet CompReadyMessage
 {
     bool ready;              // true, if the component is ready
-    int comp enum(CompType); // the component, which is ready 
+    int comp enum(CompType); // the component, which is ready
     OverlayKey nodeId = OverlayKey::UNSPECIFIED_KEY;
 }
 
@@ -418,7 +418,7 @@ packet DHTputCAPICall extends BaseCallMessage
 {
     OverlayKey key; // overlayKey that corresponds with value
     uint32_t kind = 1; // the kind of the stored data item
-    uint32_t id = 1; // the id to identify multiple date items with same key and kind 
+    uint32_t id = 1; // the id to identify multiple date items with same key and kind
     BinaryValue value; // value that has to be stored on keys root
     int ttl; // time to life
     bool isModifiable; // true, if the data item may be overwritten by other nodes
@@ -433,7 +433,7 @@ packet DHTgetCAPICall extends BaseCallMessage
 {
     OverlayKey key; // corresponding OverlayKey to the requested value
     uint32_t kind = 1; // the kind of the stored data item
-    uint32_t id = 1; // the id to identify multiple date items with same key and kind 
+    uint32_t id = 1; // the id to identify multiple date items with same key and kind
 }
 
 //
@@ -453,7 +453,7 @@ packet DHTputCAPIResponse extends BaseResponseMessage
 //
 packet DHTgetCAPIResponse extends BaseResponseMessage
 {
-    DhtDumpEntry result[]; 
+    DhtDumpEntry result[];
     bool isSuccess;
 }
 
@@ -536,7 +536,7 @@ packet P2pnsResolveCall extends BaseCallMessage
 {
     BinaryValue p2pName;    // the name to resolve
     uint32_t kind = 1; // the kind of the name
-    uint32_t id = 1; // the id of the name 
+    uint32_t id = 1; // the id of the name
 }
 
 //
@@ -562,7 +562,7 @@ class OverlayCtrlInfo
 {
     TransportAddress lastHop;    // last hop node
     NodeHandle srcNode;          // the message's source node IP/port/nodeID
-    NodeHandle srcRoute;         // like srcNode, but contains the source route to the destination (if available) 
+    NodeHandle srcRoute;         // like srcNode, but contains the source route to the destination (if available)
     int hopCount = 0;            // hop count
     TransportAddress visitedHops[];     // hops on route
     int srcComp enum(CompType);  // source component
@@ -702,7 +702,7 @@ packet GameAPISnowMessage extends GameAPIMessage
 packet GameAPIFrozenMessage extends GameAPIMessage
 {
     NodeHandle src;
-    int thrower;	
+    int thrower;
     int timeSec;
     int timeUsec;
 }

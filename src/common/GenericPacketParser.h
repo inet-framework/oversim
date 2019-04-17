@@ -25,8 +25,8 @@
 #define __GENERICPACKETPARSER_H_
 
 #include "common/OverSimDefs.h"
-#include <PacketParser.h>
-#include <cnetcommbuffer.h>
+#include "common/PacketParser.h"
+#include "common/cnetcommbuffer.h"
 
 /**
  * A message parser using the cMemCommBuffer to serialize cmessages

@@ -25,26 +25,26 @@
 #ifndef __SIMPLEGAMECLIENT_H_
 #define __SIMPLEGAMECLIENT_H_
 
-#include <map>
-#include <string>
+#include "map"
+#include "string"
 
-#include <tunoutscheduler.h>
-#include <realtimescheduler.h>
+#include "underlay/singlehostunderlay/tunoutscheduler.h"
+#include "underlay/singlehostunderlay/realtimescheduler.h"
 
-#include <Vector2D.h>
-#include <BaseApp.h>
+#include "common/Vector2D.h"
+#include "common/BaseApp.h"
 
-#include <GlobalCoordinator.h>
-#include <GlobalStatisticsAccess.h>
-#include <MovementGenerator.h>
-#include <randomRoaming.h>
-#include <groupRoaming.h>
-#include <hotspotRoaming.h>
-#include <traverseRoaming.h>
-#include <greatGathering.h>
-#include <realWorldRoaming.h>
-#include "SCPacket.h"
-#include "SimpleGameClient_m.h"
+#include "applications/simplegameclient/GlobalCoordinator.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "applications/simplegameclient/MovementGenerator.h"
+#include "applications/simplegameclient/randomRoaming.h"
+#include "applications/simplegameclient/groupRoaming.h"
+#include "applications/simplegameclient/hotspotRoaming.h"
+#include "applications/simplegameclient/traverseRoaming.h"
+#include "applications/simplegameclient/greatGathering.h"
+#include "applications/simplegameclient/realWorldRoaming.h"
+#include "applications/simplegameclient/SCPacket.h"
+#include "applications/simplegameclient/SimpleGameClient_m.h"
 
 
 /// SimpleGameClient class

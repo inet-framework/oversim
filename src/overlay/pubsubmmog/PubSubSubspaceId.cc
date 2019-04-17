@@ -22,7 +22,7 @@
  */
 
 
-#include "PubSubSubspaceId.h"
+#include "overlay/pubsubmmog/PubSubSubspaceId.h"
 
 std::ostream& operator<< (std::ostream& o, const PubSubSubspaceId& subspaceId)
 {

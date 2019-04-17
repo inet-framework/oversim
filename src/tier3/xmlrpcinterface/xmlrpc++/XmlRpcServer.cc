@@ -4,13 +4,13 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcServer.h"
-#include "XmlRpcServerConnection.h"
-#include "XmlRpcServerMethod.h"
-#include "XmlRpcSocket.h"
-#include "XmlRpcUtil.h"
-#include "XmlRpcException.h"
-#include "XmlRpc.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServer.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServerConnection.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServerMethod.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSocket.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcException.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpc.h"
 
 
 using namespace XmlRpc;

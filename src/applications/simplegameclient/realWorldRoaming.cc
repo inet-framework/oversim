@@ -21,7 +21,7 @@
 * @author Helge Backhaus
 */
 
-#include "realWorldRoaming.h"
+#include "applications/simplegameclient/realWorldRoaming.h"
 
 realWorldRoaming::realWorldRoaming(double areaDimension, double speed, NeighborMap *Neighbors, GlobalCoordinator* coordinator, CollisionList* CollisionRect)
                  :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)

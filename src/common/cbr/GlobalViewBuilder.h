@@ -25,16 +25,16 @@
 #define GLOBALVIEWBUILDER_H_
 
 #include <string>
-#include <NeighborCache.h>
+#include "common/NeighborCache.h"
 
-#include <OverlayAccess.h>
+#include "common/OverlayAccess.h"
 
-#include <TreeManagement.h>
-#include <SendStrategyFactory.h>
-#include <StrategySendAll.h>
-#include <RpcListener.h>
-#include <TreeManagementMessage_m.h>
-#include <CoordBasedRouting.h>
+#include "common/TreeManagement.h"
+#include "common/cbr/globalViewBuilder/SendStrategyFactory.h"
+#include "common/cbr/globalViewBuilder/StrategySendAll.h"
+#include "common/RpcListener.h"
+#include "common/TreeManagementMessage_m.h"
+#include "common/cbr/CoordBasedRouting.h"
 
 class BaseOverlay;
 class TreeManagement;

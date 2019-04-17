@@ -21,10 +21,10 @@
 //
 
 cplusplus {{
-#include <inet/networklayer/common/L3Address.h>
-#include <NodeHandle.h>
-#include <CommonMessages_m.h>
-#include <OverlayKey.h>
+#include "inet/networklayer/common/L3Address.h"
+#include "common/NodeHandle.h"
+#include "common/CommonMessages_m.h"
+#include "common/OverlayKey.h"
 
 // constants for message length in bit
 static const int INDEX_L = 8;
@@ -45,7 +45,7 @@ class noncobject L3Address;
 class noncobject NodeHandle;
 class noncobject OverlayKey;
 class BaseCallMessage;
-class BaseResponseMessage;	
+class BaseResponseMessage;
 
 enum BucketType
 {
@@ -75,7 +75,7 @@ packet BucketCall extends BaseCallMessage
 }
 
 //
-// response message to a BucketCall 
+// response message to a BucketCall
 //
 packet BucketResponse extends BaseResponseMessage
 {
@@ -87,7 +87,7 @@ packet BucketResponse extends BaseResponseMessage
 //
 packet BrooseFindNodeExtMessage
 {
-        OverlayKey routeKey;   // overlay node to route the message to 
+        OverlayKey routeKey;   // overlay node to route the message to
         int step;              // the remaining de bruijn routing steps
         int maxDistance;       // the estimated maximum distance to any key
         bool rightShifting;    // true if message belongs to a rightshift lookup

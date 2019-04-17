@@ -24,8 +24,8 @@
 #ifndef __DEFS_H_
 #define __DEFS_H_
 
-#include <NodeHandle.h>
-#include <Vector2D.h>
+#include "common/NodeHandle.h"
+#include "common/Vector2D.h"
 #include <math.h>
 #include <map>
 #include <set>

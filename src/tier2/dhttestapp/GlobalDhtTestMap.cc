@@ -23,11 +23,11 @@
 
 #include "common/OverSimDefs.h"
 
-#include <GlobalStatisticsAccess.h>
+#include "common/GlobalStatisticsAccess.h"
 
-#include <DHTTestAppMessages_m.h>
+#include "tier2/dhttestapp/DHTTestAppMessages_m.h"
 
-#include "GlobalDhtTestMap.h"
+#include "tier2/dhttestapp/GlobalDhtTestMap.h"
 
 using namespace std;
 

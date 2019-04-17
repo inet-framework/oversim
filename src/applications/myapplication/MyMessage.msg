@@ -21,7 +21,7 @@
 //
 
 cplusplus {{
-#include <TransportAddress.h>
+#include "common/TransportAddress.h"
 }}
 
 
@@ -29,14 +29,14 @@ cplusplus {{
 class noncobject TransportAddress;
 
 // first, we declare an enum to tell the message types apart:
-enum MessageType 
+enum MessageType
 {
     MYMSG_PING = 1;           // outgoing message
     MYMSG_PONG = 2;           // returning message
 }
 
 // now we declare the message
-packet MyMessage 
+packet MyMessage
 {
     int type enum(MessageType);      // message type
     TransportAddress senderAddress;  // address of the node that sent the message

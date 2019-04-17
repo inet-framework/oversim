@@ -21,7 +21,7 @@
  */
 
 #include "common/OverSimDefs.h"
-#include <TierDummy.h>
+#include "applications/tierdummy/TierDummy.h"
 
 Define_Module(TierDummy);
 

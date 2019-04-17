@@ -25,9 +25,9 @@
 #ifndef __PUBSUBSUBSPACE_H_
 #define __PUBSUBSUBSPACE_H_
 
-#include "PubSubSubspaceId.h"
-#include "NodeHandle.h"
-#include "PubSubMessage_m.h"
+#include "overlay/pubsubmmog/PubSubSubspaceId.h"
+#include "common/NodeHandle.h"
+#include "overlay/pubsubmmog/PubSubMessage_m.h"
 #include <deque>
 
 class PubSubSubspace

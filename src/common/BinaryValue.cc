@@ -23,8 +23,8 @@
 
 #include <iterator>
 
-#include <cnetcommbuffer.h>
-#include "BinaryValue.h"
+#include "common/cnetcommbuffer.h"
+#include "common/BinaryValue.h"
 
 using namespace std;
 

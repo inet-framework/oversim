@@ -21,8 +21,8 @@
 * @author Stephan Krause
 */
 
-#include "traverseRoaming.h"
-#include "GlobalStatisticsAccess.h"
+#include "applications/simplegameclient/traverseRoaming.h"
+#include "common/GlobalStatisticsAccess.h"
 
 traverseRoaming::traverseRoaming(double areaDimension, double speed, NeighborMap *Neighbors, GlobalCoordinator* coordinator, CollisionList* CollisionRect)
               :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)

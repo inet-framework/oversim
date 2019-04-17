@@ -21,10 +21,10 @@
  * @author Stephan Krause
  */
 
-#include "SimMud.h"
-#include "ScribeMessage_m.h"
+#include "tier2/simmud/SimMud.h"
+#include "applications/scribe/ScribeMessage_m.h"
 #include <limits.h>
-#include <GlobalStatistics.h>
+#include "common/GlobalStatistics.h"
 
 Define_Module(SimMud);
 

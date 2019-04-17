@@ -22,8 +22,8 @@
  */
 
 #include "common/OverSimDefs.h"
-#include "BrooseBucket.h"
-#include "BrooseHandle.h"
+#include "overlay/broose/BrooseBucket.h"
+#include "overlay/broose/BrooseHandle.h"
 
 using namespace std;
 

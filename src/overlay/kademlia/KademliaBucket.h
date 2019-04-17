@@ -18,7 +18,7 @@
 #ifndef __KADEMLIA_BUCKET_H
 #define __KADEMLIA_BUCKET_H
 
-#include "KademliaNodeHandle.h"
+#include "overlay/kademlia/KademliaNodeHandle.h"
 
 /**
  * @file KademliaBucket.h

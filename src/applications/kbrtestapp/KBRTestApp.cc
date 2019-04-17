@@ -21,14 +21,14 @@
  * @author Bernhard Heep, Ingmar Baumgart
  */
 
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <CommonMessages_m.h>
-#include <GlobalStatistics.h>
-#include <UnderlayConfigurator.h>
-#include <GlobalNodeList.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/CommonMessages_m.h"
+#include "common/GlobalStatistics.h"
+#include "common/UnderlayConfigurator.h"
+#include "common/GlobalNodeList.h"
 
-#include "KBRTestApp.h"
-#include "KBRTestMessage_m.h"
+#include "applications/kbrtestapp/KBRTestApp.h"
+#include "applications/kbrtestapp/KBRTestMessage_m.h"
 
 Define_Module(KBRTestApp);
 

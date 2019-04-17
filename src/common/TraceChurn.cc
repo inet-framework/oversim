@@ -21,10 +21,10 @@
  * @author Stephan Krause
  */
 
-#include <PeerInfo.h>
-#include <GlobalNodeListAccess.h>
-#include <UnderlayConfigurator.h>
-#include "TraceChurn.h"
+#include "common/PeerInfo.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/UnderlayConfigurator.h"
+#include "common/TraceChurn.h"
 
 Define_Module(TraceChurn);
 

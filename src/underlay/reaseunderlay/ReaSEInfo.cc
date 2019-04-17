@@ -21,7 +21,7 @@
  * @author Helge Backhaus, Bernhard Müller
  */
 
-#include "ReaSEInfo.h"
+#include "underlay/reaseunderlay/ReaSEInfo.h"
 
 ReaSEInfo::ReaSEInfo(uint32_t type, int moduleId, cObject** context) : PeerInfo(type, moduleId, context)
 {

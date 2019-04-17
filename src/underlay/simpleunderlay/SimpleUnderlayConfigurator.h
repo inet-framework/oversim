@@ -25,15 +25,15 @@
 #define __SIMPLEUNDERLAYCONFIGURATOR_H__
 
 #include "common/OverSimDefs.h"
-#include <inet/networklayer/common/L3Address.h>
+#include "inet/networklayer/common/L3Address.h"
 
 #include <deque>
 #include <set>
 
-#include <UnderlayConfigurator.h>
-#include <inet/common/InitStages.h>
-#include <SimpleInfo.h>
-#include <BaseLocation.h>
+#include "common/UnderlayConfigurator.h"
+#include "inet/common/InitStages.h"
+#include "underlay/simpleunderlay/SimpleInfo.h"
+#include "common/BaseLocation.h"
 
 using namespace inet;
 

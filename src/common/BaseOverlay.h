@@ -26,17 +26,17 @@
 
 #include "common/OverSimDefs.h"
 
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
 #include "inet/transportlayer/contract/udp/UDPSocket.h"
 
-#include <NodeVector.h>
-#include <TopologyVis.h>
-#include <BaseRpc.h>
-#include <BaseTcpSupport.h>
-#include <IterativeLookupConfiguration.h>
-#include <RecursiveLookup.h>
-#include <common/InitStages.h>
+#include "common/NodeVector.h"
+#include "common/TopologyVis.h"
+#include "common/BaseRpc.h"
+#include "common/BaseTcpSupport.h"
+#include "common/IterativeLookupConfiguration.h"
+#include "common/RecursiveLookup.h"
+#include "common/InitStages.h"
 
 class GlobalNodeList;
 class UnderlayConfigurator;

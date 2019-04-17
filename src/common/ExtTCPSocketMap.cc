@@ -21,7 +21,7 @@
  * @author Bernhard Mueller
  */
 
-#include <ExtTCPSocketMap.h>
+#include "common/ExtTCPSocketMap.h"
 
 TCPSocket *ExtTCPSocketMap::findSocketFor(L3Address remoteAddress, int remotePort)
 {

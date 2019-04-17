@@ -5,7 +5,7 @@
 #ifndef _SIMPLEX_H_
 #define _SIMPLEX_H_
 
-#include "yang.h"
+#include "common/cbr/yang.h"
 
 
 // forward declarations

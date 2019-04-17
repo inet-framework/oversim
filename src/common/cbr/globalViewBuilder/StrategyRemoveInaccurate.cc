@@ -20,7 +20,7 @@
  * @StrategyRemoveInaccurate.c
  * @author Daniel Lienert
  */
-#include "StrategyRemoveInaccurate.h"
+#include "common/cbr/globalViewBuilder/StrategyRemoveInaccurate.h"
 
 bool compareCoordsByErrorVector(const std::vector<double>& va, const std::vector<double>& vb) {
 	return (va.at(va.size()-1) < vb.at(vb.size()-1));

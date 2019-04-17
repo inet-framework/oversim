@@ -20,7 +20,7 @@
  * @author Helge Backhaus
  */
 
-#include "SimpleInfo.h"
+#include "underlay/simpleunderlay/SimpleInfo.h"
 
 SimpleInfo::SimpleInfo(uint32_t type, int moduleId, cObject** context) : PeerInfo(type, moduleId, context)
 {

@@ -26,7 +26,7 @@
 #include <fcntl.h>
 
 #define WANT_WINSOCK2
-#include <platdep/sockets.h>
+#include "platdep/sockets.h"
 
 #ifndef _WIN32
 #include <net/if.h>
@@ -43,12 +43,12 @@
 #include "inet/networklayer/ipv4/IPv4Route.h"
 #include "inet/networklayer/common/L3AddressResolver.h"
 
-#include <PeerInfo.h>
-#include <inet/networklayer/contract/IRoutingTable.h>
-#include <NodeHandle.h>
-#include <GlobalNodeListAccess.h>
+#include "common/PeerInfo.h"
+#include "inet/networklayer/contract/IRoutingTable.h"
+#include "common/NodeHandle.h"
+#include "common/GlobalNodeListAccess.h"
 
-#include "SingleHostUnderlayConfigurator.h"
+#include "underlay/singlehostunderlay/SingleHostUnderlayConfigurator.h"
 
 using namespace inet;
 

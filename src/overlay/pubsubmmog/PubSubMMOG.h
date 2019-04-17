@@ -25,10 +25,10 @@
 #define __PUBSUBMMOG_H_
 
 #include "common/OverSimDefs.h"
-#include <NodeHandle.h>
-#include <BaseOverlay.h>
-#include "PubSubSubspace.h"
-#include "PubSubMessage_m.h"
+#include "common/NodeHandle.h"
+#include "common/BaseOverlay.h"
+#include "overlay/pubsubmmog/PubSubSubspace.h"
+#include "overlay/pubsubmmog/PubSubMessage_m.h"
 
 class PubSubMMOG : public BaseOverlay
 {

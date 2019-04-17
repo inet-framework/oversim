@@ -30,16 +30,16 @@
 
 #include "common/OverSimDefs.h"
 
-#include <CommonMessages_m.h>
-#include <GlobalNodeListAccess.h>
-#include <GlobalStatisticsAccess.h>
+#include "common/CommonMessages_m.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/GlobalStatisticsAccess.h"
 
-#include <SimpleInfo.h>
-#include <SimpleUDP.h>
+#include "underlay/simpleunderlay/SimpleInfo.h"
+#include "underlay/simpleunderlay/SimpleUDP.h"
 #include "inet/networklayer/ipv4/IPv4Datagram.h"
 #include "inet/networklayer/ipv6/IPv6Datagram.h"
 #include "inet/transportlayer/tcp_common/TCPSegment.h"
-#include "SimpleTCP.h"
+#include "underlay/simpleunderlay/SimpleTCP.h"
 #include "inet/transportlayer/contract/tcp/TCPCommand_m.h"
 #include "inet/networklayer/contract/ipv4/IPv4ControlInfo.h"
 #include "inet/networklayer/contract/ipv6/IPv6ControlInfo.h"

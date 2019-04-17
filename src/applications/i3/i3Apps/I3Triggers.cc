@@ -20,8 +20,8 @@
  * @author Antonio Zea
  */
 
-#include "I3BaseApp.h"
-#include "I3TriggersMessage_m.h"
+#include "applications/i3/I3BaseApp.h"
+#include "applications/i3/i3Apps/I3TriggersMessage_m.h"
 
 using namespace std;
 

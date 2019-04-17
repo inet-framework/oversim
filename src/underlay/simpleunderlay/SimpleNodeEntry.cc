@@ -24,12 +24,12 @@
 #include <sstream>
 #include <cassert>
 
-#include "SimpleNodeEntry.h"
-#include "SimpleUDP.h"
-#include "SimpleTCP.h"
-#include "SHA1.h"
-#include "OverlayKey.h"
-#include "BinaryValue.h"
+#include "underlay/simpleunderlay/SimpleNodeEntry.h"
+#include "underlay/simpleunderlay/SimpleUDP.h"
+#include "underlay/simpleunderlay/SimpleTCP.h"
+#include "common/SHA1.h"
+#include "common/OverlayKey.h"
+#include "common/BinaryValue.h"
 #include "inet/networklayer/common/L3AddressResolver.h"
 
 

@@ -25,8 +25,8 @@
 #define __GLOBALCOORDINATOR_H__
 
 #include "common/OverSimDefs.h"
-#include <Vector2D.h>
-#include <NodeHandle.h>
+#include "common/Vector2D.h"
+#include "common/NodeHandle.h"
 #include <time.h>
 
 class GlobalCoordinator : public cSimpleModule

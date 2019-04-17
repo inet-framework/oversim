@@ -24,9 +24,9 @@
 #ifndef STRATEGYSIMPLIFYCOORDS_H_
 #define STRATEGYSIMPLIFYCOORDS_H_
 
-#include <oversim_mapset.h>
-#include <SimpleCoordDataContainer.h>
-#include <AbstractSendStrategy.h>
+#include "common/oversim_mapset.h"
+#include "common/cbr/globalViewBuilder/SimpleCoordDataContainer.h"
+#include "common/cbr/globalViewBuilder/AbstractSendStrategy.h"
 
 class GlobalViewBuilderMessage;
 class SimpleCoordinate;

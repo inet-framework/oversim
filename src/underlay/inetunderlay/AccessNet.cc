@@ -26,14 +26,14 @@
 
 #include "common/OverSimDefs.h"
 
-#include <inet/networklayer/ipv4/IIPv4RoutingTable.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/ipv6/IPv6RoutingTable.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
-#include <inet/networklayer/ipv6/IPv6InterfaceData.h>
+#include "inet/networklayer/ipv4/IIPv4RoutingTable.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/ipv6/IPv6RoutingTable.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "inet/networklayer/ipv6/IPv6InterfaceData.h"
 
-#include "AccessNet.h"
+#include "underlay/inetunderlay/AccessNet.h"
 
 Define_Module(AccessNet);
 

@@ -28,11 +28,11 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
-#include <common/InitStages.h>
+#include "common/OverlayKey.h"
+#include "common/InitStages.h"
 
-#include "GiaNode.h"
-#include "GiaKeyList.h"
+#include "overlay/gia/GiaNode.h"
+#include "overlay/gia/GiaKeyList.h"
 
 
 struct GiaNeighborInfo
@@ -126,7 +126,7 @@ class GiaNeighbors : public cSimpleModule
      * @return the node
      */
     virtual const GiaNode& get(const OverlayKey& key);
-    
+
     //bullshit
     GiaNeighborInfo* get(const GiaNode& node);
 

@@ -21,7 +21,7 @@
 * @author Helge Backhaus
 */
 
-#include "greatGathering.h"
+#include "applications/simplegameclient/greatGathering.h"
 
 greatGathering::greatGathering(double areaDimension, double speed, NeighborMap *Neighbors, GlobalCoordinator* coordinator, CollisionList* CollisionRect)
                :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)

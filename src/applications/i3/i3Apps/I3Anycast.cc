@@ -20,7 +20,7 @@
  * @author Antonio Zea
  */
 
-#include "I3BaseApp.h"
+#include "applications/i3/I3BaseApp.h"
 
 using namespace std;
 

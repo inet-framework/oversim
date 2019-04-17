@@ -28,9 +28,9 @@
 #include <queue>
 #include <map>
 
-#include "GiaNeighbors.h"
-#include "GiaMessage_m.h"
-#include "GiaNode.h"
+#include "overlay/gia/GiaNeighbors.h"
+#include "overlay/gia/GiaMessage_m.h"
+#include "overlay/gia/GiaNode.h"
 
 
 /**

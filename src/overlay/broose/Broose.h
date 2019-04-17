@@ -25,12 +25,12 @@
 #define __BROOSE_H_
 
 #include "common/OverSimDefs.h"
-#include <BaseOverlay.h>
-#include <RpcListener.h>
-#include <OverlayKey.h>
-#include "BrooseHandle.h"
-#include "BrooseBucket.h"
-#include "BrooseMessage_m.h"
+#include "common/BaseOverlay.h"
+#include "common/RpcListener.h"
+#include "common/OverlayKey.h"
+#include "overlay/broose/BrooseHandle.h"
+#include "overlay/broose/BrooseBucket.h"
+#include "overlay/broose/BrooseMessage_m.h"
 
 #include <map>
 #include <vector>

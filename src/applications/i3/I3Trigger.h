@@ -24,8 +24,8 @@
 #ifndef __I3TRIGGER_H__
 #define __I3TRIGGER_H__
 
-#include "I3Identifier.h"
-#include "I3IdentifierStack.h"
+#include "applications/i3/I3Identifier.h"
+#include "applications/i3/I3IdentifierStack.h"
 #include "common/OverSimDefs.h"
 
 /** Implementation of an Internet Indirection Infrastructure trigger.

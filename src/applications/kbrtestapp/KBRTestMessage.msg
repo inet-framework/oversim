@@ -17,9 +17,9 @@
 //
 
 cplusplus {{
-#include <OverlayKey.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <CommonMessages_m.h>
+#include "common/OverlayKey.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "common/CommonMessages_m.h"
 }}
 
 class CommonAPIMessage;
@@ -56,7 +56,7 @@ packet KbrTestResponse extends BaseResponseMessage
 }
 
 //
-// A basic rpc call for measuring underlay latencies 
+// A basic rpc call for measuring underlay latencies
 //
 packet UnderlayTestCall extends BaseCallMessage
 {

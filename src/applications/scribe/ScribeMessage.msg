@@ -22,11 +22,11 @@
 //
 
 cplusplus {{
-#include <CommonMessages_m.h>
+#include "common/CommonMessages_m.h"
 
 class ScribeTimer;
 
-#include "ScribeGroup.h"
+#include "applications/scribe/ScribeGroup.h"
 
 // Length definition
 static const int SCRIBE_WRONGROOT_L = 8;
@@ -60,7 +60,7 @@ class BaseResponseMessage;
 
 
 
-enum ScribeTimerType 
+enum ScribeTimerType
 {
 
     SCRIBE_HEARTBEAT = 0; // Send heartbeat to all children of a group

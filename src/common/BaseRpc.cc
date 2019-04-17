@@ -28,16 +28,16 @@
 #include <string>
 #include <cassert>
 
-#include <CommonMessages_m.h>
-#include <UnderlayConfiguratorAccess.h>
-#include <GlobalStatisticsAccess.h>
-#include <NeighborCache.h>
-#include <CryptoModule.h>
-#include <Vivaldi.h>
-#include <OverlayAccess.h>
+#include "common/CommonMessages_m.h"
+#include "common/UnderlayConfiguratorAccess.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/NeighborCache.h"
+#include "common/CryptoModule.h"
+#include "common/Vivaldi.h"
+#include "common/OverlayAccess.h"
 
-#include "BaseRpc.h"
-#include "RpcMacros.h"
+#include "common/BaseRpc.h"
+#include "common/RpcMacros.h"
 
 
 //------------------------------------------------------------------------

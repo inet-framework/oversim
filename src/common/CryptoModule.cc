@@ -22,10 +22,10 @@
  */
 
 
-#include <CommonMessages_m.h>
-#include <OverlayAccess.h>
-#include <GlobalStatisticsAccess.h>
-#include <CryptoModule.h>
+#include "common/CommonMessages_m.h"
+#include "common/OverlayAccess.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/CryptoModule.h"
 
 using namespace std;
 

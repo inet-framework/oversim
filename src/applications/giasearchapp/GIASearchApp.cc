@@ -21,15 +21,15 @@
  * @author Robert Palmer, Bernhard Heep
  */
 
-#include <inet/networklayer/common/L3AddressResolver.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
 
-#include <inet/common/InitStages.h>
-#include <CommonMessages_m.h>
-#include <ExtAPIMessages_m.h>
-#include <GiaMessage_m.h>
-#include <GlobalStatistics.h>
+#include "inet/common/InitStages.h"
+#include "common/CommonMessages_m.h"
+#include "common/ExtAPIMessages_m.h"
+#include "overlay/gia/GiaMessage_m.h"
+#include "common/GlobalStatistics.h"
 
-#include "GIASearchApp.h"
+#include "applications/giasearchapp/GIASearchApp.h"
 
 
 Define_Module(GIASearchApp);

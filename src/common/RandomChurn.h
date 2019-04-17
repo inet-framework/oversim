@@ -24,7 +24,7 @@
 #ifndef __RANDOMCHURN_H_
 #define __RANDOMCHURN_H_
 
-#include <ChurnGenerator.h>
+#include "common/ChurnGenerator.h"
 
 /**
  * Random churn generating class

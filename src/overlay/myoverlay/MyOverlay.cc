@@ -20,14 +20,14 @@
  * @author Antonio Zea
  */
 
-#include <iostream>
+#include "iostream"
 
-#include <UnderlayConfigurator.h>
-#include <GlobalStatistics.h>
+#include "common/UnderlayConfigurator.h"
+#include "common/GlobalStatistics.h"
 
-#include "MyOverlay_m.h"
+#include "overlay/myoverlay/MyOverlay_m.h"
 
-#include "MyOverlay.h"
+#include "overlay/myoverlay/MyOverlay.h"
 
 
 // Important! This line must be present for each module you extend (see BaseApp)

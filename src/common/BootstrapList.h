@@ -26,10 +26,10 @@
 #define __BOOTSTRAPLIST_H_
 
 #include "common/OverSimDefs.h"
-#include <BaseApp.h>
-#include <BootstrapNodeHandle.h>
-#include <NodeVector.h>
-#include <oversim_mapset.h>
+#include "common/BaseApp.h"
+#include "common/BootstrapNodeHandle.h"
+#include "common/NodeVector.h"
+#include "common/oversim_mapset.h"
 
 class BaseOverlay;
 class ZeroconfConnector;

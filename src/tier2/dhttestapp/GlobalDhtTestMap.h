@@ -28,8 +28,8 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
-#include <BinaryValue.h>
+#include "common/OverlayKey.h"
+#include "common/BinaryValue.h"
 
 class GlobalStatistics;
 

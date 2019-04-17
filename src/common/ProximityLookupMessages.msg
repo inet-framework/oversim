@@ -17,7 +17,7 @@
 //
 
 cplusplus {{
-#include<CommonMessages_m.h>
+#include "common/CommonMessages_m.h"
 
 #define PROXFINDNODECALL_L(msg) (FINDNODECALL_L(msg)) 
 #define PROXFINDNODERESPONSE_L(msg) (FINDNODERESPONSE_L(msg) + \

@@ -22,7 +22,7 @@
  */
 
 
-#include "ProxNodeHandle.h"
+#include "common/ProxNodeHandle.h"
 
 // This is the usual value for SimTime::getMaxTime(), may change with a different SimTime scale.
 // This value is declared directly a constant, since SimTime::getMaxTime()

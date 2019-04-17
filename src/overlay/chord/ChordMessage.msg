@@ -21,10 +21,10 @@
 //
 
 cplusplus {{
-#include <inet/networklayer/common/L3Address.h>
-#include <NodeHandle.h>
-#include <TransportAddress.h>
-#include <CommonMessages_m.h>
+#include "inet/networklayer/common/L3Address.h"
+#include "common/NodeHandle.h"
+#include "common/TransportAddress.h"
+#include "common/CommonMessages_m.h"
 
 // constants for message length in bit
 static const int CHORDCOMMAND_L = 8;
@@ -50,7 +50,7 @@ static const int PRENODESET_L = 1;
                                    (msg->getSucNodeArraySize() * NODEHANDLE_L))
 #define DEBRUIJNCALL_L(msg) (BASECALL_L(msg) + KEY_L)
 #define DEBRUIJNRESPONSE_L(msg) (BASERESPONSE_L(msg) + SUCNUM_L + NODEHANDLE_L + \
-				 (msg->getSucNodeArraySize() * NODEHANDLE_L)) 
+				 (msg->getSucNodeArraySize() * NODEHANDLE_L))
 
 #define KOORDEFINDNODEEXTMESSAGE_L (KEY_L + STEP_L)
 
@@ -126,7 +126,7 @@ packet JoinResponse extends BaseResponseMessage
 }
 
 //
-// Message used for the  stabilization protocol as mentioned in 
+// Message used for the  stabilization protocol as mentioned in
 // "Chord: A Scalable Peer-to-Peer Lookup Protocol for Internet Applications"
 //
 packet StabilizeCall extends BaseCallMessage

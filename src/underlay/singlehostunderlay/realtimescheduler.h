@@ -25,7 +25,7 @@
 #define __REALTIMESCHEDULER_H__
 
 #define WANT_WINSOCK2
-#include <platdep/sockets.h>
+#include "platdep/sockets.h"
 #include "common/OverSimDefs.h"
 #include <list>
 #include <climits>

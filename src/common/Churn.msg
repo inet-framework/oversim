@@ -21,7 +21,7 @@
 //
 
 cplusplus {{
-#include <NodeHandle.h>
+#include "common/NodeHandle.h"
 }}
 
 
@@ -33,7 +33,7 @@ packet ChurnMessage
 	bool createNode;
 	double lifetime;
 	int contextPos;
-    TransportAddress addr;  
+    TransportAddress addr;
 }
 
 packet ParetoChurnMessage extends ChurnMessage

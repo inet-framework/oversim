@@ -24,9 +24,9 @@
 #ifndef STRATEGYREGIONS_H_
 #define STRATEGYREGIONS_H_
 
-#include <oversim_mapset.h>
-#include <RegionDataContainer.h>
-#include <AbstractSendStrategy.h>
+#include "common/oversim_mapset.h"
+#include "common/cbr/globalViewBuilder/RegionDataContainer.h"
+#include "common/cbr/globalViewBuilder/AbstractSendStrategy.h"
 
 class GlobalViewBuilderMessage;
 class RegionDataContainer;

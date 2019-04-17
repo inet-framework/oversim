@@ -21,11 +21,11 @@
 //
 
 cplusplus {{
-#include <inet/networklayer/common/L3Address.h>
-#include <NodeHandle.h>
-#include <TransportAddress.h>
-#include <CommonMessages_m.h>
-#include <BinaryValue.h>
+#include "inet/networklayer/common/L3Address.h"
+#include "common/NodeHandle.h"
+#include "common/TransportAddress.h"
+#include "common/CommonMessages_m.h"
+#include "common/BinaryValue.h"
 
 #define P2PNSTUNNELMESSAGE_L(msg) (KEY_L + \
                                    msg->getPayload().size() * sizeof(char))

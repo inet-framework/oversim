@@ -21,7 +21,7 @@
 * @author Helge Backhaus
 */
 
-#include "ConnectivityProbe.h"
+#include "overlay/vast/ConnectivityProbe.h"
 
 Define_Module(ConnectivityProbe);
 

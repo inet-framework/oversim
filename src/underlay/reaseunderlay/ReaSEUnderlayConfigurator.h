@@ -33,8 +33,8 @@
 #include "common/OverSimDefs.h"
 #include "inet/networklayer/common/L3Address.h"
 
-#include <UnderlayConfigurator.h>
-#include <ConnectReaSE.h>
+#include "common/UnderlayConfigurator.h"
+#include "underlay/reaseunderlay/ConnectReaSE.h"
 
 using namespace inet;
 

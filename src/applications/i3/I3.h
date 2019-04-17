@@ -24,12 +24,12 @@
 #ifndef __I3_H__
 #define __I3_H__
 
-#include "I3Trigger.h"
-#include "I3Identifier.h"
+#include "applications/i3/I3Trigger.h"
+#include "applications/i3/I3Identifier.h"
 #include "common/OverSimDefs.h"
-#include <OverlayKey.h>
-#include "I3Message.h"
-#include <BaseApp.h>
+#include "common/OverlayKey.h"
+#include "applications/i3/I3Message.h"
+#include "common/BaseApp.h"
 
 /** Simple wrapper aroung set<I3Trigger> to implement string stream operations. */
 class I3TriggerSet : public std::set<I3Trigger>

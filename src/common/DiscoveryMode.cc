@@ -5,11 +5,11 @@
  *      Author: heep
  */
 
-#include <BasePastry.h>
+#include "overlay/pastry/BasePastry.h"
 
-#include <DiscoveryMode_m.h>
+#include "common/DiscoveryMode_m.h"
 
-#include "DiscoveryMode.h"
+#include "common/DiscoveryMode.h"
 
 
 

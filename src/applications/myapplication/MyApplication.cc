@@ -22,12 +22,12 @@
 
 #include <string>
 
-#include "UnderlayConfigurator.h"
-#include "GlobalStatistics.h"
+#include "common/UnderlayConfigurator.h"
+#include "common/GlobalStatistics.h"
 
-#include "MyMessage_m.h"
+#include "applications/myapplication/MyMessage_m.h"
 
-#include "MyApplication.h"
+#include "applications/myapplication/MyApplication.h"
 
 #include "common/InitStages.h"
 

@@ -23,11 +23,11 @@
 
 #include "common/OverSimDefs.h"
 
-#include "OverlayKey.h"
-#include "Comparator.h"
+#include "common/OverlayKey.h"
+#include "common/Comparator.h"
 
-#include <BinaryValue.h>
-#include "SHA1.h"
+#include "common/BinaryValue.h"
+#include "common/SHA1.h"
 
 using namespace std;
 

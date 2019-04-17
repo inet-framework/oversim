@@ -21,8 +21,8 @@
  * @author Felix Palmen
  */
 
-#include "PastryNeighborhoodSet.h"
-#include "PastryTypes.h"
+#include "overlay/pastry/PastryNeighborhoodSet.h"
+#include "overlay/pastry/PastryTypes.h"
 
 
 Define_Module(PastryNeighborhoodSet);

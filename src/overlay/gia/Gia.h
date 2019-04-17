@@ -29,24 +29,24 @@
 
 #include "common/OverSimDefs.h"
 
-#include <UDPAppBase.h>
-#include <inet/networklayer/common/L3Address.h>
+#include "applications/UDPAppBase.h"
+#include "inet/networklayer/common/L3Address.h"
 
-#include <GlobalNodeList.h>
-#include <UnderlayConfigurator.h>
-#include <OverlayKey.h>
-#include <NodeHandle.h>
-#include <CommonMessages_m.h>
-#include <BaseOverlay.h>
+#include "common/GlobalNodeList.h"
+#include "common/UnderlayConfigurator.h"
+#include "common/OverlayKey.h"
+#include "common/NodeHandle.h"
+#include "common/CommonMessages_m.h"
+#include "common/BaseOverlay.h"
 
-#include "GiaMessage_m.h"
-#include "GiaKeyListModule.h"
-#include "GiaKeyList.h"
-#include "GiaNeighbors.h"
-#include "GiaTokenFactory.h"
-#include "GiaNode.h"
-#include "GiaNeighborCandidateList.h"
-#include "GiaMessageBookkeeping.h"
+#include "overlay/gia/GiaMessage_m.h"
+#include "overlay/gia/GiaKeyListModule.h"
+#include "overlay/gia/GiaKeyList.h"
+#include "overlay/gia/GiaNeighbors.h"
+#include "overlay/gia/GiaTokenFactory.h"
+#include "overlay/gia/GiaNode.h"
+#include "overlay/gia/GiaNeighborCandidateList.h"
+#include "overlay/gia/GiaMessageBookkeeping.h"
 
 
 /**

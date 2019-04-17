@@ -19,9 +19,9 @@
 // @author Antonio Zea
 
 cplusplus {{
-#include <NodeHandle.h>
-#include <OverlayKey.h>
-#include <CommonMessages_m.h>
+#include "common/NodeHandle.h"
+#include "common/OverlayKey.h"
+#include "common/CommonMessages_m.h"
 }}
 class noncobject NodeHandle;
 class noncobject OverlayKey;

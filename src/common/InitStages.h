@@ -26,7 +26,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include <inet/common/InitStages.h>
+#include "inet/common/InitStages.h"
 
 /**
  * enumeration for global definiton of init stages

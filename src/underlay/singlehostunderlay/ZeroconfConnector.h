@@ -175,7 +175,7 @@ private:
 
 #else
 
-#include <NodeHandle.h>
+#include "common/NodeHandle.h"
 
 /**
  * Zeroconf module

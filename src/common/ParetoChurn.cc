@@ -30,12 +30,12 @@
  * @author Stephan Krause
  */
 
-#include "ParetoChurn.h"
+#include "common/ParetoChurn.h"
 
-#include "GlobalStatisticsAccess.h"
-#include "Churn_m.h"
-#include "GlobalStatistics.h"
-#include <UnderlayConfigurator.h>
+#include "common/GlobalStatisticsAccess.h"
+#include "common/Churn_m.h"
+#include "common/GlobalStatistics.h"
+#include "common/UnderlayConfigurator.h"
 #include <algorithm>
 #include <deque>
 

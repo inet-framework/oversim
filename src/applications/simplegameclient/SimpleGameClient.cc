@@ -24,7 +24,7 @@
 
 #include "common/InitStages.h"
 
-#include "SimpleGameClient.h"
+#include "applications/simplegameclient/SimpleGameClient.h"
 
 Define_Module(SimpleGameClient);
 

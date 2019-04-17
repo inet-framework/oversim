@@ -21,15 +21,15 @@
  * @author Helge Backhaus
  */
 
-#include "Vast.h"
+#include "overlay/vast/Vast.h"
 
 Define_Module(Vast);
 
-#include <inet/common/NotifierConsts.h>
+#include "inet/common/NotifierConsts.h"
 
-#include <GlobalNodeList.h>
-#include <GlobalStatistics.h>
-#include <BootstrapList.h>
+#include "common/GlobalNodeList.h"
+#include "common/GlobalStatistics.h"
+#include "common/BootstrapList.h"
 
 void Vast::initializeOverlay(int stage)
 {

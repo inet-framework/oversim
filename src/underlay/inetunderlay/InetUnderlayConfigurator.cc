@@ -19,25 +19,25 @@
  * @author Markus Mauch, Stephan Krause, Bernhard Heep
  */
 
-#include "InetUnderlayConfigurator.h"
+#include "underlay/inetunderlay/InetUnderlayConfigurator.h"
 
-#include <GlobalNodeList.h>
-#include <TransportAddress.h>
+#include "common/GlobalNodeList.h"
+#include "common/TransportAddress.h"
 
-#include <StringConvert.h>
+#include "common/StringConvert.h"
 
-#include <AccessNet.h>
-#include <inet/networklayer/contract/IRoutingTable.h>
-#include <inet/networklayer/ipv6/IPv6RoutingTable.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
-#include <inet/networklayer/ipv4/IPv4Route.h>
-#include <inet/networklayer/ipv4/IPv4RoutingTable.h>
-#include <inet/networklayer/ipv6/IPv6InterfaceData.h>
+#include "underlay/inetunderlay/AccessNet.h"
+#include "inet/networklayer/contract/IRoutingTable.h"
+#include "inet/networklayer/ipv6/IPv6RoutingTable.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "inet/networklayer/ipv4/IPv4Route.h"
+#include "inet/networklayer/ipv4/IPv4RoutingTable.h"
+#include "inet/networklayer/ipv6/IPv6InterfaceData.h"
 
 
-#include <InetInfo.h>
+#include "underlay/inetunderlay/InetInfo.h"
 
 using namespace inet;
 

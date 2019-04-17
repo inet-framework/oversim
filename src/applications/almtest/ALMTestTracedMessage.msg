@@ -22,7 +22,7 @@
 //
 
 cplusplus {{
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 }}
 
 class noncobject OverlayKey;

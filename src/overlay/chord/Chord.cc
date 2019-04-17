@@ -21,16 +21,16 @@
  * @author Markus Mauch, Ingmar Baumgart
  */
 
-#include <GlobalStatistics.h>
-#include <Comparator.h>
-#include <BootstrapList.h>
-#include <GlobalParameters.h>
-#include <NeighborCache.h>
+#include "common/GlobalStatistics.h"
+#include "common/Comparator.h"
+#include "common/BootstrapList.h"
+#include "common/GlobalParameters.h"
+#include "common/NeighborCache.h"
 
-#include <ChordFingerTable.h>
-#include <ChordSuccessorList.h>
+#include "overlay/chord/ChordFingerTable.h"
+#include "overlay/chord/ChordSuccessorList.h"
 
-#include "Chord.h"
+#include "overlay/chord/Chord.h"
 
 namespace oversim {
 

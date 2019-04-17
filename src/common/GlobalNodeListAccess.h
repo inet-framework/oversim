@@ -26,7 +26,7 @@
 
 
 #include "common/OverSimDefs.h"
-#include "GlobalNodeList.h"
+#include "common/GlobalNodeList.h"
 
 
 /**

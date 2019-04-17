@@ -25,7 +25,7 @@
 #ifndef __I3MESSAGE_H__
 #define __I3MESSAGE_H__
 
-#include "I3Message_m.h"
+#include "applications/i3/I3Message_m.h"
 
 class I3InsertTriggerMessage : public I3InsertTriggerMessage_Base
 {

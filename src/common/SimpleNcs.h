@@ -28,8 +28,8 @@
 
 #include "common/OverSimDefs.h"
 
-#include <NeighborCache.h>
-#include <common/CoordinateSystem.h>
+#include "common/NeighborCache.h"
+#include "common/CoordinateSystem.h"
 
 
 class SimpleNcs : public AbstractNcs

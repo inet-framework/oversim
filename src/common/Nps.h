@@ -24,12 +24,12 @@
 #ifndef NPS_H_
 #define NPS_H_
 
-#include <yang.h>
-#include <simplex.h>
+#include "common/cbr/yang.h"
+#include "common/cbr/simplex.h"
 
-#include <RpcListener.h>
-#include <Nps_m.h>
-#include <common/CoordinateSystem.h>
+#include "common/RpcListener.h"
+#include "common/Nps_m.h"
+#include "common/CoordinateSystem.h"
 
 class CoordBasedRouting;
 

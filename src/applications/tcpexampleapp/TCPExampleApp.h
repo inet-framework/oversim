@@ -26,9 +26,9 @@
 #define TCPEXAMPLEAPP_H
 
 #include "common/OverSimDefs.h"
-#include <BaseApp.h>
+#include "common/BaseApp.h"
 
-#include "TCPExampleMessage_m.h"
+#include "applications/tcpexampleapp/TCPExampleMessage_m.h"
 
 /**
  * A simple TCP example application

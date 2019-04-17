@@ -24,8 +24,8 @@
 #ifndef _TUNOUTDEVICE_H__
 #define _TUNOUTDEVICE_H__
 
-#include "tunoutscheduler.h"
-#include "RealworldDevice.h"
+#include "underlay/singlehostunderlay/tunoutscheduler.h"
+#include "underlay/singlehostunderlay/RealworldDevice.h"
 
 /**
  * TunOutDevice is a pseudo interface that allows communcation with the real world

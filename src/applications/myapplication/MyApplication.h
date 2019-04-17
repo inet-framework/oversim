@@ -25,7 +25,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include "BaseApp.h"
+#include "common/BaseApp.h"
 
 
 class MyApplication : public BaseApp

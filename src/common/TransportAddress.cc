@@ -24,7 +24,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include "TransportAddress.h"
+#include "common/TransportAddress.h"
 
 // predefined transport address
 const TransportAddress TransportAddress::UNSPECIFIED_NODE;

@@ -21,8 +21,8 @@
 //
 
 cplusplus {{
-#include <NodeHandle.h>
-#include <CommonMessages_m.h>
+#include "common/NodeHandle.h"
+#include "common/CommonMessages_m.h"
 
 #define SIMMUD_MOVE_L(msg) ( NODEHANDLE_L + 2*sizeof(double) + 8 )
 }}

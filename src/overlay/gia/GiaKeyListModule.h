@@ -26,9 +26,9 @@
 
 #include "common/OverSimDefs.h"
 
-#include <common/InitStages.h>
+#include "common/InitStages.h"
 
-#include "GiaKeyList.h"
+#include "overlay/gia/GiaKeyList.h"
 
 
 /**
@@ -40,7 +40,7 @@ class GiaKeyListModule : public cSimpleModule
     // OMNeT++ methodes
 
     /**
-     * Sets init stage 
+     * Sets init stage
      */
     virtual int numInitStages() const override
     {

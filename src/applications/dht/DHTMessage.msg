@@ -21,11 +21,11 @@
 //
 
 cplusplus {{
-#include <OverlayKey.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <BinaryValue.h>
-#include <NodeHandle.h>
-#include <CommonMessages_m.h>
+#include "common/OverlayKey.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "common/BinaryValue.h"
+#include "common/NodeHandle.h"
+#include "common/CommonMessages_m.h"
 
 #define SUCCESS_L 8
 #define KIND_L 32
@@ -79,7 +79,7 @@ packet DHTPutResponse extends BaseResponseMessage
 packet DHTGetResponse extends BaseResponseMessage
 {
     OverlayKey key;
-    BinaryValue hashValue;    
+    BinaryValue hashValue;
     bool isHash;
     DhtDumpEntry result[];
 }

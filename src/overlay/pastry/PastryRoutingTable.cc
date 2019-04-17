@@ -21,7 +21,7 @@
  * @author Felix Palmen
  */
 
-#include "PastryRoutingTable.h"
+#include "overlay/pastry/PastryRoutingTable.h"
 
 
 Define_Module(PastryRoutingTable);

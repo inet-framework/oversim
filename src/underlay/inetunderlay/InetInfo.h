@@ -25,7 +25,7 @@
 #define __IPV4INFO_H__
 
 #include "common/OverSimDefs.h"
-#include <PeerInfo.h>
+#include "common/PeerInfo.h"
 
 class AccessNet;
 

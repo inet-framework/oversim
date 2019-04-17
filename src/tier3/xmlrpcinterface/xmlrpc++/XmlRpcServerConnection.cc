@@ -5,18 +5,18 @@
  */
 
 
-#include "XmlRpcServerConnection.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServerConnection.h"
 
-#include "XmlRpcSocket.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSocket.h"
 #ifndef MAKEDEPEND
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 #endif
 
-#include "XmlRpcDispatch.h"
-#include "XmlRpcServer.h"
-#include "XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcDispatch.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServer.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
 
 using namespace XmlRpc;
 

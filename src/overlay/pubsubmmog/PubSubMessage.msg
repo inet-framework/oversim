@@ -22,8 +22,8 @@
 //
 
 cplusplus {{
-#include <CommonMessages_m.h>
-#include <Vector2D.h>
+#include "common/CommonMessages_m.h"
+#include "common/Vector2D.h"
 
 static const int PUBSUB_FLAG_L = 8;
 static const int PUBSUB_VECTOR_L = 128;
@@ -82,7 +82,7 @@ class BaseResponseMessage;
 
 
 
-enum PubSubTimerType 
+enum PubSubTimerType
 {
 
     PUBSUB_HEARTBEAT = 0;

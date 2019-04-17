@@ -23,7 +23,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include "RealWorldTestPacketParser.h"
+#include "applications/realworldtestapp/RealWorldTestPacketParser.h"
 
 Define_Module(RealWorldTestPacketParser);
 

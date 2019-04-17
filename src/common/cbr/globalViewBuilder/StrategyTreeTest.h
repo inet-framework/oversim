@@ -25,15 +25,15 @@
 #define STRATEGYTREETEST_H_
 
 #include <map>
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
-#include <TransportAddress.h>
-#include <AbstractSendStrategy.h>
+#include "common/TransportAddress.h"
+#include "common/cbr/globalViewBuilder/AbstractSendStrategy.h"
 
-#include <NodeHandle.h>
-#include <GlobalNodeList.h>
-#include <OverlayKey.h>
-#include <TreeManagementMessage_m.h>
+#include "common/NodeHandle.h"
+#include "common/GlobalNodeList.h"
+#include "common/OverlayKey.h"
+#include "common/TreeManagementMessage_m.h"
 
 class TransportAddress;
 

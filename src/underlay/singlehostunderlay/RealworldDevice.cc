@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include "RealworldDevice.h"
+#include "underlay/singlehostunderlay/RealworldDevice.h"
 
 
 void RealworldDevice::initialize(int stage)

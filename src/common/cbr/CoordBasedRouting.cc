@@ -30,10 +30,10 @@
 
 #include "common/OverSimDefs.h"
 
-#include <GlobalNodeListAccess.h>
-#include <PeerInfo.h>
+#include "common/GlobalNodeListAccess.h"
+#include "common/PeerInfo.h"
 
-#include "CoordBasedRouting.h"
+#include "common/cbr/CoordBasedRouting.h"
 
 
 Define_Module(CoordBasedRouting);

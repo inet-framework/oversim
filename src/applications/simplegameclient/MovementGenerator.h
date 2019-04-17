@@ -25,11 +25,11 @@
 #define __MOVEMENTGENERATOR_H_
 
 #include "common/OverSimDefs.h"
-#include <Vector2D.h>
-#include <BoundingBox2D.h>
-#include <TransportAddress.h>
+#include "common/Vector2D.h"
+#include "applications/simplegameclient/BoundingBox2D.h"
+#include "common/TransportAddress.h"
 #include <list>
-#include "GlobalCoordinator.h"
+#include "applications/simplegameclient/GlobalCoordinator.h"
 
 enum SCDir {
     DIR_DOWN, DIR_UP, DIR_LEFT, DIR_RIGHT

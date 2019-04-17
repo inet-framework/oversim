@@ -24,11 +24,11 @@
 #ifndef __HASHFUNC
 #define __HASHFUNC
 
-#include <oversim_mapset.h>
-#include <oversim_byteswap.h>
+#include "common/oversim_mapset.h"
+#include "common/oversim_byteswap.h"
 
-#include <inet/networklayer/common/L3Address.h>
-#include <TransportAddress.h>
+#include "inet/networklayer/common/L3Address.h"
+#include "common/TransportAddress.h"
 
 #if defined(HAVE_GCC_TR1) || defined(HAVE_MSVC_TR1)
 namespace std { namespace tr1 {

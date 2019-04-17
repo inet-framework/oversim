@@ -23,8 +23,8 @@
 
 #include <assert.h>
 
-#include "GiaTokenFactory.h"
-#include "Gia.h"
+#include "overlay/gia/GiaTokenFactory.h"
+#include "overlay/gia/Gia.h"
 
 
 Define_Module(GiaTokenFactory);

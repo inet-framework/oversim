@@ -21,8 +21,8 @@
  * @author Helge Backhaus
  */
 
-#include "ChurnGenerator.h"
-#include <UnderlayConfiguratorAccess.h>
+#include "common/ChurnGenerator.h"
+#include "common/UnderlayConfiguratorAccess.h"
 
 void ChurnGenerator::initialize(int stage)
 {
@@ -41,11 +41,11 @@ void ChurnGenerator::initialize(int stage)
 
     type.channelTypesTx = cStringTokenizer(par("channelTypes"), " ").asVector();
     type.channelTypesRx = cStringTokenizer(par("channelTypesRx"), " ").asVector();
-    
+
     if (type.channelTypesRx.size() != type.channelTypesTx.size()) {
         type.channelTypesRx = type.channelTypesTx;
     }
-    
+
     terminalCount = 0;
     init = true;
 

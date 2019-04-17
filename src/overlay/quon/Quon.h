@@ -25,14 +25,14 @@
 #ifndef __QUON_H_
 #define __QUON_H_
 
-#include <BaseOverlay.h>
-#include <GlobalNodeList.h>
-#include <GlobalStatistics.h>
+#include "common/BaseOverlay.h"
+#include "common/GlobalNodeList.h"
+#include "common/GlobalStatistics.h"
 #include <float.h>
 
-#include <Quon_m.h>
-#include <QuonHelper.h>
-#include "LoginCache.h"
+#include "overlay/quon/Quon_m.h"
+#include "overlay/quon/QuonHelper.h"
+#include "overlay/quon/LoginCache.h"
 
 /**
  * QuON: An overlay network based on quadtrees.

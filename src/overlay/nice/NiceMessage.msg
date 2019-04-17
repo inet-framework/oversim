@@ -22,9 +22,9 @@
 
 cplusplus {{
 
-#include <CommonMessages_m.h>
-#include <NodeHandle.h>
-	
+#include "common/CommonMessages_m.h"
+#include "common/NodeHandle.h"
+
 #define TRANSPORTADDRESS_L (IPADDR_L + UDPPORT_L)
 
 static const int NICECOMMAND_L = 8;
@@ -34,7 +34,7 @@ static const int SIMTIME_L = 32;
 static const int BOOL_L = 8;
 static const int DOUBLE_L = 64;
 static const int SHORT_L = 16;
-	
+
 #define NICEMESSAGE_L(msg) (BASEOVERLAY_L(msg) + NICECOMMAND_L + TRANSPORTADDRESS_L + LAYER_L)
 #define NICEMEMBERMESSAGE_L(msg) (NICEMESSAGE_L(msg) + (msg->getMembersArraySize() * TRANSPORTADDRESS_L))
 #define NICECLUSTERMERGE_L(msg) (NICEMEMBERMESSAGE_L(msg) + TRANSPORTADDRESS_L)
@@ -56,7 +56,7 @@ enum NICECommand
     NICE_JOIN_CLUSTER = 2; // Join Cluster in specific layer
     NICE_HEARTBEAT = 3; // Periodic Heartbeat message
     NICE_LEADERHEARTBEAT = 4; // Periodic Heartbeat message
-    NICE_LEADERTRANSFER = 5; // Leader Transfer 
+    NICE_LEADERTRANSFER = 5; // Leader Transfer
     NICE_JOINEVAL = 6; // Distance evaluation when joining
     NICE_JOINEVAL_RESPONSE = 7; // Response to JoinEval
     NICE_REMOVE = 8; // Removes node from cluster

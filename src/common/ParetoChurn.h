@@ -26,7 +26,7 @@
 #ifndef __PARETOCHURN_H_
 #define __PARETOCHURN_H_
 
-#include <ChurnGenerator.h>
+#include "common/ChurnGenerator.h"
 
 class TransportAddress;
 class GlobalStatistics;

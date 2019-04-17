@@ -22,10 +22,10 @@
  * @author Ingmar Baumgart
  */
 
-#include <PeerInfo.h>
-#include <NodeHandle.h>
+#include "common/PeerInfo.h"
+#include "common/NodeHandle.h"
 
-#include "PeerStorage.h"
+#include "common/PeerStorage.h"
 
 PeerStorage::~PeerStorage()
 {

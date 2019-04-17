@@ -21,11 +21,11 @@
  * @author Ingmar Baumgart
  */
 
-#include <XmlRpcInterface.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <P2pnsMessage_m.h>
+#include "tier3/xmlrpcinterface/XmlRpcInterface.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "tier2/p2pns/P2pnsMessage_m.h"
 
-#include "P2pns.h"
+#include "tier2/p2pns/P2pns.h"
 
 Define_Module(P2pns);
 

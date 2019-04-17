@@ -25,8 +25,8 @@
 #ifndef __QUONHELPER_H_
 #define __QUONHELPER_H_
 
-#include <map>
-#include <QuonDefs.h>
+#include "map"
+#include "overlay/quon/QuonDefs.h"
 
 /// QuonP Definitions
 

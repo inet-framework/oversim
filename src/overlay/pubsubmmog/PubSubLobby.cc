@@ -21,10 +21,10 @@
  * @author Stephan Krause
  */
 
-#include "PubSubLobby.h"
+#include "overlay/pubsubmmog/PubSubLobby.h"
 
-#include <GlobalStatistics.h>
-#include <GlobalNodeListAccess.h>
+#include "common/GlobalStatistics.h"
+#include "common/GlobalNodeListAccess.h"
 
 using namespace std;
 

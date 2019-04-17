@@ -21,7 +21,7 @@
  * @author Helge Backhaus
  */
 
-#include <Vector2D.h>
+#include "common/Vector2D.h"
 #include <algorithm>
 
 Vector2D::Vector2D()

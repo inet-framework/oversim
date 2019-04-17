@@ -21,16 +21,16 @@
  * @author Ingmar Baumgart
  */
 
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <GlobalNodeListAccess.h>
-#include <GlobalStatisticsAccess.h>
-#include <UnderlayConfiguratorAccess.h>
-#include <RpcMacros.h>
-#include "CommonMessages_m.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/UnderlayConfiguratorAccess.h"
+#include "common/RpcMacros.h"
+#include "common/CommonMessages_m.h"
 
-#include <GlobalDhtTestMap.h>
+#include "tier2/dhttestapp/GlobalDhtTestMap.h"
 
-#include "DHTTestApp.h"
+#include "tier2/dhttestapp/DHTTestApp.h"
 
 Define_Module(DHTTestApp);
 

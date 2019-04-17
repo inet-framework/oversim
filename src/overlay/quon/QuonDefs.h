@@ -25,8 +25,8 @@
 #ifndef __QUONDEFS_H_
 #define __QUONDEFS_H_
 
-#include <Vector2D.h>
-#include <NodeHandle.h>
+#include "common/Vector2D.h"
+#include "common/NodeHandle.h"
 #include <limits.h>
 #include <float.h>
 #include <set>

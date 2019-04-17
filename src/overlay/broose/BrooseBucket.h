@@ -25,10 +25,10 @@
 #define __BROOSEBUCKET_H_
 
 #include "common/OverSimDefs.h"
-#include "BrooseHandle.h"
-#include "Broose.h"
+#include "overlay/broose/BrooseHandle.h"
+#include "overlay/broose/Broose.h"
 #include <map>
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 #include "common/InitStages.h"
 
 class Broose;

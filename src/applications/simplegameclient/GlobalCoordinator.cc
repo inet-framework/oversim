@@ -21,7 +21,7 @@
 * @author Helge Backhaus
 */
 
-#include "GlobalCoordinator.h"
+#include "applications/simplegameclient/GlobalCoordinator.h"
 
 Define_Module(GlobalCoordinator);
 

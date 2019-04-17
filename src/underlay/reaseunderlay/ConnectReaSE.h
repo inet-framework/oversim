@@ -25,13 +25,13 @@
 #define CONNECTREASE_H_
 
 #include "common/OverSimDefs.h"
-#include <inet/networklayer/common/InterfaceEntry.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/ipv4/IIPv4RoutingTable.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
-#include <inet/networklayer/ipv4/IPv4Route.h>
+#include "inet/networklayer/common/InterfaceEntry.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/ipv4/IIPv4RoutingTable.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "inet/networklayer/ipv4/IPv4Route.h"
 
-#include <common/InitStages.h>
+#include "common/InitStages.h"
 
 using namespace inet;
 

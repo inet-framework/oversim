@@ -21,13 +21,13 @@
  * @author Gregoire Menuel, Ingmar Baumgart
  */
 
-#include <inet/networklayer/common/L3AddressResolver.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
 
-#include "DHT.h"
+#include "applications/dht/DHT.h"
 
-#include <RpcMacros.h>
-#include <BaseRpc.h>
-#include <GlobalStatistics.h>
+#include "common/RpcMacros.h"
+#include "common/BaseRpc.h"
+#include "common/GlobalStatistics.h"
 
 Define_Module(DHT);
 

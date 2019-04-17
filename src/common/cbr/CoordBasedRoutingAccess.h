@@ -25,7 +25,7 @@
 #define __COORDBASEDROUTING_ACCESS_H__
 
 #include "common/OverSimDefs.h"
-#include "CoordBasedRouting.h"
+#include "common/cbr/CoordBasedRouting.h"
 
 
 /**

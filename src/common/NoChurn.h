@@ -24,7 +24,7 @@
 #ifndef __NO_CHURN_H_
 #define __NO_CHURN_H_
 
-#include <ChurnGenerator.h>
+#include "common/ChurnGenerator.h"
 
 class GlobalStatistics;
 class TransportAddress;

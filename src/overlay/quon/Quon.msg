@@ -22,10 +22,10 @@
 //
 
 cplusplus {{
-#include <NodeHandle.h>
-#include <QuonDefs.h>
-#include <QuonHelper.h>
-#include <CommonMessages_m.h>
+#include "common/NodeHandle.h"
+#include "overlay/quon/QuonDefs.h"
+#include "overlay/quon/QuonHelper.h"
+#include "common/CommonMessages_m.h"
 
 // constants for message length in bit
 static const int QUONCOMMAND_L = 8;

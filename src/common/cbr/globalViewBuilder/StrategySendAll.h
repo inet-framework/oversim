@@ -24,10 +24,10 @@
 #ifndef STRATEGYSENDALL_H_
 #define STRATEGYSENDALL_H_
 
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
-#include <CoordDataContainer.h>
-#include <AbstractSendStrategy.h>
+#include "common/cbr/globalViewBuilder/CoordDataContainer.h"
+#include "common/cbr/globalViewBuilder/AbstractSendStrategy.h"
 
 class GlobalViewBuilderMessage;
 class CoordDataContainer;

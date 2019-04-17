@@ -4,7 +4,7 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
 
 #ifndef MAKEDEPEND
 # include <ctype.h>
@@ -14,7 +14,7 @@
 # include <string.h>
 #endif
 
-#include "XmlRpc.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpc.h"
 
 using namespace XmlRpc;
 

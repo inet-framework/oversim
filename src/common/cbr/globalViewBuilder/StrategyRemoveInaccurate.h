@@ -24,7 +24,7 @@
 #ifndef STRATEGYREMOVEINACCURATE_H_
 #define STRATEGYREMOVEINACCURATE_H_
 
-#include <StrategyRemoveCoords.h>
+#include "common/cbr/globalViewBuilder/StrategyRemoveCoords.h"
 #include <algorithm>
 
 class StrategyRemoveInaccurate : public StrategyRemoveCoords {

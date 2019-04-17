@@ -27,13 +27,13 @@
 #include <deque>
 #include "common/OverSimDefs.h"
 
-#include <CommonMessages_m.h>
-#include <BaseOverlay.h>
-#include <GlobalStatistics.h>
-#include <NeighborCache.h>
+#include "common/CommonMessages_m.h"
+#include "common/BaseOverlay.h"
+#include "common/GlobalStatistics.h"
+#include "common/NeighborCache.h"
 
-#include "KademliaNodeHandle.h"
-#include "KademliaBucket.h"
+#include "overlay/kademlia/KademliaNodeHandle.h"
+#include "overlay/kademlia/KademliaBucket.h"
 
 
 /**

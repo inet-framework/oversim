@@ -23,15 +23,15 @@
 
 #include <cassert>
 
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
-#include <RpcMacros.h>
-#include <inet/common/InitStages.h>
-#include <GlobalStatistics.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "common/RpcMacros.h"
+#include "inet/common/InitStages.h"
+#include "common/GlobalStatistics.h"
 
-#include "Pastry.h"
+#include "overlay/pastry/Pastry.h"
 
 
 Define_Module(Pastry);

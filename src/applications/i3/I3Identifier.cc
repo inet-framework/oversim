@@ -21,8 +21,8 @@
  */
 
 
-#include "I3Identifier.h"
-#include "SHA1.h"
+#include "applications/i3/I3Identifier.h"
+#include "common/SHA1.h"
 
 using namespace std;
 

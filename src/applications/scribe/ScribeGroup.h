@@ -26,12 +26,12 @@
 #define __SCRIBEGROUP_H_
 
 #include <set>
-#include "OverlayKey.h"
-#include "NodeHandle.h"
+#include "common/OverlayKey.h"
+#include "common/NodeHandle.h"
 
 class ScribeGroup;
 
-#include "ScribeMessage_m.h"
+#include "applications/scribe/ScribeMessage_m.h"
 
 /**
  * Capsulates the informations of a scribe multicast group

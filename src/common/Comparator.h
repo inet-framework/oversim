@@ -26,8 +26,8 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
-#include <ProxNodeHandle.h>
+#include "common/OverlayKey.h"
+#include "common/ProxNodeHandle.h"
 
 /**
  * Default Comparator

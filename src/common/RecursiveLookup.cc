@@ -21,12 +21,12 @@
  * @author Bernhard Heep
  */
 
-#include <CommonMessages_m.h>
+#include "common/CommonMessages_m.h"
 
-#include <BaseOverlay.h>
-#include <LookupListener.h>
+#include "common/BaseOverlay.h"
+#include "common/LookupListener.h"
 
-#include <RecursiveLookup.h>
+#include "common/RecursiveLookup.h"
 
 RecursiveLookup::RecursiveLookup(BaseOverlay* overlay,
                                  RoutingType routingType,

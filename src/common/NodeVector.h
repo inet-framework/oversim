@@ -28,9 +28,9 @@
 #include <vector>
 #include <cassert>
 
-#include <Comparator.h>
-#include <NodeHandle.h>
-#include <ProxNodeHandle.h>
+#include "common/Comparator.h"
+#include "common/NodeHandle.h"
+#include "common/ProxNodeHandle.h"
 
 
 template < class T > struct KeyExtractor;

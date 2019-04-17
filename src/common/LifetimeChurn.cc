@@ -23,11 +23,11 @@
 
 #include <algorithm>
 
-#include "GlobalStatisticsAccess.h"
-#include "UnderlayConfigurator.h"
-#include "Churn_m.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/UnderlayConfigurator.h"
+#include "common/Churn_m.h"
 
-#include "LifetimeChurn.h"
+#include "common/LifetimeChurn.h"
 
 Define_Module(LifetimeChurn);
 

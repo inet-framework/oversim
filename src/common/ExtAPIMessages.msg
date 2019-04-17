@@ -17,7 +17,7 @@
 //
 
 cplusplus {{
-#include <CommonMessages_m.h>
+#include "common/CommonMessages_m.h"
 
 static const int GIAAPPCOMMAND_L = 8;
 #define GIASEARCHAPP_L(msg) (GIAAPPCOMMAND_L)

@@ -33,12 +33,12 @@
 # include <string>
 #endif
 
-#include "XmlRpcClient.h"
-#include "XmlRpcException.h"
-#include "XmlRpcServer.h"
-#include "XmlRpcServerMethod.h"
-#include "XmlRpcValue.h"
-#include "XmlRpcUtil.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcClient.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcException.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServer.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServerMethod.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcValue.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcUtil.h"
 
 namespace XmlRpc {
 

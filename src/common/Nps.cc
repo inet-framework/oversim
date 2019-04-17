@@ -21,21 +21,21 @@
  * @author Christian Fickinger, Bernhard Heep
  */
 
-#include <GlobalNodeList.h>
-#include <PeerInfo.h>
-#include <RpcMacros.h>
-#include <NeighborCache.h>
-#include <GlobalNodeListAccess.h>
-#include <Landmark.h>
-#include <UnderlayConfigurator.h>
-#include <SimpleNodeEntry.h>
-#include <SimpleInfo.h>
-#include <CoordBasedRoutingAccess.h>
-#include <GlobalStatistics.h>
+#include "common/GlobalNodeList.h"
+#include "common/PeerInfo.h"
+#include "common/RpcMacros.h"
+#include "common/NeighborCache.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/cbr/Landmark.h"
+#include "common/UnderlayConfigurator.h"
+#include "underlay/simpleunderlay/SimpleNodeEntry.h"
+#include "underlay/simpleunderlay/SimpleInfo.h"
+#include "common/cbr/CoordBasedRoutingAccess.h"
+#include "common/GlobalStatistics.h"
 
-#include <Nps_m.h>
+#include "common/Nps_m.h"
 
-#include <Nps.h>
+#include "common/Nps.h"
 
 
 void Nps::init(NeighborCache* neighborCache)

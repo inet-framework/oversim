@@ -17,12 +17,12 @@
 //
 
 /**
- * @file GiaNode.cc 
- * @author Robert Palmer 
+ * @file GiaNode.cc
+ * @author Robert Palmer
  */
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 
-#include "GiaNode.h"
+#include "overlay/gia/GiaNode.h"
 
 
 // predefined gia node

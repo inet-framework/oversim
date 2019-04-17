@@ -21,12 +21,12 @@
  * @author Jochen Schenk, Ingmar Baumgart
  */
 
-#include "Broose.h"
-#include <RpcMacros.h>
-#include <GlobalStatistics.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <BootstrapList.h>
-#include <LookupListener.h>
+#include "overlay/broose/Broose.h"
+#include "common/RpcMacros.h"
+#include "common/GlobalStatistics.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/BootstrapList.h"
+#include "common/LookupListener.h"
 #include "common/InitStages.h"
 
 using namespace std;

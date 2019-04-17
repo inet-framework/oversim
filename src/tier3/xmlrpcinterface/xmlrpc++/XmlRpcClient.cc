@@ -4,12 +4,12 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcClient.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcClient.h"
 
-#include "XmlRpcSocket.h"
-#include "XmlRpc.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSocket.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpc.h"
 
-#include "base64.h"   // For HTTP authentication encoding
+#include "tier3/xmlrpcinterface/xmlrpc++/base64.h"   // For HTTP authentication encoding
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -26,7 +26,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include "UnderlayConfigurator.h"
+#include "common/UnderlayConfigurator.h"
 
 /**
  * Gives access to the UnderlayConfigurator.

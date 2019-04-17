@@ -3,9 +3,9 @@
  * Peter Seidler
  * Source Code taken from: http://whome.phys.au.dk/~seidler/numeric/ 		*/
 
-#include "simplex.h"
+#include "common/cbr/simplex.h"
 //#include "CoordNodeFunctions.h"
-#include <NeighborCache.h>
+#include "common/NeighborCache.h"
 
 #include <cmath>
 

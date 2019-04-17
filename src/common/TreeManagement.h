@@ -28,13 +28,13 @@
 #define  MAXTREELEVEL 25	// 20 levels = 1 000 000 Nodes
 
 #include <map>
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
-#include <NodeHandle.h>
-#include <GlobalNodeList.h>
-#include <OverlayKey.h>
-#include <NeighborCache.h>
-#include <TreeManagementMessage_m.h>
+#include "common/NodeHandle.h"
+#include "common/GlobalNodeList.h"
+#include "common/OverlayKey.h"
+#include "common/NeighborCache.h"
+#include "common/TreeManagementMessage_m.h"
 
 class GlobalNodeList;
 class TransportAddress;

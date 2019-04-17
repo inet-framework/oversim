@@ -23,7 +23,7 @@
 
 
 
-#include "ScribeGroup.h"
+#include "applications/scribe/ScribeGroup.h"
 
 
 ScribeGroup::ScribeGroup( OverlayKey id ) : groupId(id)

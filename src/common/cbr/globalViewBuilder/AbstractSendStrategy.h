@@ -25,9 +25,9 @@
 #define ABSTRACTSENDSTRATEGY_H_
 
 #include <vector>
-#include <inet/common/geometry/common/CoordinateSystem.h>
-#include <TreeManagementMessage_m.h>
-#include <TreeManagement.h>
+#include "inet/common/geometry/common/CoordinateSystem.h"
+#include "common/TreeManagementMessage_m.h"
+#include "common/TreeManagement.h"
 
 class GlobalViewBuilder;
 

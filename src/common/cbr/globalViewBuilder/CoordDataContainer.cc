@@ -21,7 +21,7 @@
  * @author Daniel Lienert
  */
 
-#include "CoordDataContainer.h"
+#include "common/cbr/globalViewBuilder/CoordDataContainer.h"
 
 CoordDataContainer::CoordDataContainer() {
 	// TODO Auto-generated constructor stub

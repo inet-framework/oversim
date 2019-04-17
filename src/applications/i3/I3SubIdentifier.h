@@ -24,8 +24,8 @@
 #ifndef __I3SUBIDENTIFIER_H__
 #define __I3SUBIDENTIFIER_H__
 
-#include "I3IPAddress.h"
-#include "I3Identifier.h"
+#include "applications/i3/I3IPAddress.h"
+#include "applications/i3/I3Identifier.h"
 
 /** A wrapper around either an I3IPAddress or an I3Identifier.
 * The I3 paper proposes an identifier stack that is "a list of identifiers

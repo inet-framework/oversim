@@ -32,13 +32,13 @@ class Nice;
 
 }
 
-#include <BaseOverlay.h>
-#include "NiceCluster.h"
-#include "NiceMessage_m.h"
-#include "NicePeerInfo.h"
-#include <hashWatch.h>
+#include "common/BaseOverlay.h"
+#include "overlay/nice/NiceCluster.h"
+#include "overlay/nice/NiceMessage_m.h"
+#include "overlay/nice/NicePeerInfo.h"
+#include "common/hashWatch.h"
 #include <vector>
-#include "combination.h"
+#include "overlay/nice/combination.h"
 #include <algorithm>
 
 #include <fstream>

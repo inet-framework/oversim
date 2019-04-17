@@ -20,8 +20,8 @@
 # include <string>
 #endif
 
-#include "XmlRpcDispatch.h"
-#include "XmlRpcSource.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcDispatch.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcSource.h"
 
 namespace XmlRpc {
 

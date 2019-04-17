@@ -31,23 +31,23 @@
 
 #include <fstream>
 
-#include <NodeHandle.h>
+#include "common/NodeHandle.h"
 #include "inet/networklayer/contract/IInterfaceTable.h"
 #include "inet/networklayer/common/InterfaceEntry.h"
 #include "inet/networklayer/ipv4/IPv4InterfaceData.h"
 #include "inet/networklayer/ipv6/IPv6InterfaceData.h"
-#include "TransportAddress.h"
+#include "common/TransportAddress.h"
 #include "inet/networklayer/common/L3AddressResolver.h"
-//#include <cenvir.h>
-//#include <cxmlelement.h>
-#include "ChurnGenerator.h"
-#include "GlobalNodeList.h"
-#include <StringConvert.h>
+//#include "cenvir.h"
+//#include "cxmlelement.h"
+#include "common/ChurnGenerator.h"
+#include "common/GlobalNodeList.h"
+#include "common/StringConvert.h"
 
-#include "SimpleUDP.h"
-#include "SimpleTCP.h"
+#include "underlay/simpleunderlay/SimpleUDP.h"
+#include "underlay/simpleunderlay/SimpleTCP.h"
 
-#include "SimpleUnderlayConfigurator.h"
+#include "underlay/simpleunderlay/SimpleUnderlayConfigurator.h"
 
 Define_Module(SimpleUnderlayConfigurator);
 

@@ -30,10 +30,10 @@
 
 #include "common/OverSimDefs.h"
 
-#include <common/InitStages.h>
+#include "common/InitStages.h"
 
 class Gia;
-#include "GiaNeighbors.h"
+#include "overlay/gia/GiaNeighbors.h"
 
 
 /**

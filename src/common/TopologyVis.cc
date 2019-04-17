@@ -22,12 +22,12 @@
 
 #include "common/OverSimDefs.h"
 
-#include <NodeHandle.h>
-#include <GlobalNodeList.h>
-#include <GlobalNodeListAccess.h>
-#include <PeerInfo.h>
+#include "common/NodeHandle.h"
+#include "common/GlobalNodeList.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/PeerInfo.h"
 
-#include "TopologyVis.h"
+#include "common/TopologyVis.h"
 
 
 TopologyVis::TopologyVis()

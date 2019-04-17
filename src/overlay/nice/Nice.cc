@@ -24,13 +24,13 @@
 
 #include <stdio.h>
 
-#include <GlobalStatistics.h>
-#include "SimpleInfo.h"
-#include "SimpleNodeEntry.h"
-#include "SimpleUDP.h"
-#include "GlobalNodeListAccess.h"
-#include <BootstrapList.h>
-#include "Nice.h"
+#include "common/GlobalStatistics.h"
+#include "underlay/simpleunderlay/SimpleInfo.h"
+#include "underlay/simpleunderlay/SimpleNodeEntry.h"
+#include "underlay/simpleunderlay/SimpleUDP.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/BootstrapList.h"
+#include "overlay/nice/Nice.h"
 
 namespace oversim
 {

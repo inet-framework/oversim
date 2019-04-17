@@ -22,7 +22,7 @@
  */
 
 
-#include "PubSubSubspace.h"
+#include "overlay/pubsubmmog/PubSubSubspace.h"
 
 using namespace std;
 

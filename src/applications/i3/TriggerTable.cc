@@ -20,7 +20,7 @@
  * @author Antonio Zea
  */
 
-#include "TriggerTable.h"
+#include "applications/i3/TriggerTable.h"
 #include <string>
 #include <sstream>
 

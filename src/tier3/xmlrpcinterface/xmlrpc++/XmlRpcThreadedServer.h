@@ -20,9 +20,9 @@
 #endif
 
 
-#include "XmlRpcMutex.h"
-#include "XmlRpcServer.h"
-#include "XmlRpcThread.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcMutex.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServer.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcThread.h"
 
 
 namespace XmlRpc {

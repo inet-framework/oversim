@@ -21,7 +21,7 @@
 * @author Helge Backhaus
 */
 
-#include "MovementGenerator.h"
+#include "applications/simplegameclient/MovementGenerator.h"
 
 std::ostream& operator<<(std::ostream& Stream, const NeighborMapEntry& e)
 {

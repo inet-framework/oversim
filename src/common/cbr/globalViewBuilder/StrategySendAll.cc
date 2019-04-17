@@ -21,9 +21,9 @@
  * @author Daniel Lienert
  */
 
-#include <TreeManagement.h>
+#include "common/TreeManagement.h"
 
-#include "StrategySendAll.h"
+#include "common/cbr/globalViewBuilder/StrategySendAll.h"
 
 
 StrategySendAll::StrategySendAll()

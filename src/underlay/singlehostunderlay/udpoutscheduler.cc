@@ -21,9 +21,9 @@
  * @author Stephan Krause
  */
 
-#include "udpoutscheduler.h"
+#include "underlay/singlehostunderlay/udpoutscheduler.h"
 #include "inet/networklayer/common/L3Address.h"
-//#include <regmacros.h>
+//#include "regmacros.h"
 
 using namespace inet;
 

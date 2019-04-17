@@ -23,7 +23,7 @@
 #ifndef _MYOVERLAY_
 #define _MYOVERLAY_
 
-#include "BaseOverlay.h"
+#include "common/BaseOverlay.h"
 
 class MyOverlay : public BaseOverlay
 {

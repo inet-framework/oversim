@@ -6,8 +6,8 @@
 
 #if defined(XMLRPC_THREADS)
 
-#include "XmlRpcThreadedServer.h"
-//#include "XmlRpcServerConnection.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcThreadedServer.h"
+//#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServerConnection.h"
 
 
 using namespace XmlRpc;

@@ -23,11 +23,11 @@
 
 #include <cfloat>
 
-#include "hashWatch.h"
+#include "common/hashWatch.h"
 
-#include "Chord.h"
-#include "ChordSuccessorList.h"
-#include "ChordFingerTable.h"
+#include "overlay/chord/Chord.h"
+#include "overlay/chord/ChordSuccessorList.h"
+#include "overlay/chord/ChordFingerTable.h"
 
 namespace oversim {
 

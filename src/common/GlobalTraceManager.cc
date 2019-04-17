@@ -31,12 +31,12 @@
 
 #include "common/OverSimDefs.h"
 
-#include <UnderlayConfiguratorAccess.h>
-#include <GlobalNodeListAccess.h>
-#include <GlobalTraceManager_m.h>
-#include <TraceChurn.h>
+#include "common/UnderlayConfiguratorAccess.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/GlobalTraceManager_m.h"
+#include "common/TraceChurn.h"
 
-#include "GlobalTraceManager.h"
+#include "common/GlobalTraceManager.h"
 
 Define_Module(GlobalTraceManager);
 

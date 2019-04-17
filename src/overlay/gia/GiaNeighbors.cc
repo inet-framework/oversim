@@ -23,9 +23,9 @@
 
 #include <assert.h>
 
-#include <inet/common/InitStages.h>
+#include "inet/common/InitStages.h"
 
-#include "GiaNeighbors.h"
+#include "overlay/gia/GiaNeighbors.h"
 
 
 Define_Module(GiaNeighbors);

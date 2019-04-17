@@ -22,8 +22,8 @@
 //
 
 cplusplus {{
-#include <CommonMessages_m.h>
-#include <Vector2D.h>
+#include "common/CommonMessages_m.h"
+#include "common/Vector2D.h"
 
 static const int NTREEPOSITION_L = 128;
 static const int NTREESIZE_L = 64;

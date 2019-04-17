@@ -23,8 +23,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "StrategyRegions.h"
-#include <GlobalViewBuilder.h>
+#include "common/cbr/globalViewBuilder/StrategyRegions.h"
+#include "common/cbr/GlobalViewBuilder.h"
 
 StrategyRegions::StrategyRegions()
 {

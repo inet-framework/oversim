@@ -23,7 +23,7 @@
 #define __MESSAGEOBSERVER_H__
 
 #include <stdint.h>
-#include "OverlayKey.h"
+#include "common/OverlayKey.h"
 
 class ALMTestTracedMessage;
 

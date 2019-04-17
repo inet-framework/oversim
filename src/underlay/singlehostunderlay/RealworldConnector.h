@@ -24,10 +24,10 @@
 #ifndef _REALWORLDCONNECTOR_H_
 #define _REALWORLDCONNECTOR_H_
 
-#include "realtimescheduler.h"
+#include "underlay/singlehostunderlay/realtimescheduler.h"
 #include "common/OverSimDefs.h"
 #include "common/InitStages.h"
-#include "PacketParser.h"
+#include "common/PacketParser.h"
 
 /**
  * helper funcition needed for computing checksums

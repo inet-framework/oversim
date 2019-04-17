@@ -26,8 +26,8 @@
 
 
 #include "common/OverSimDefs.h"
-#include <inet/common/ModuleAccess.h>
-#include "ChurnGenerator.h"
+#include "inet/common/ModuleAccess.h"
+#include "common/ChurnGenerator.h"
 
 /**
  * Gives access to the ChurnGenerator

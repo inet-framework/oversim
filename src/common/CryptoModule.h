@@ -26,7 +26,7 @@
 #define __CRYPTOMODULE_H_
 
 #include "common/OverSimDefs.h"
-#include <cnetcommbuffer.h>
+#include "common/cnetcommbuffer.h"
 
 class GlobalStatistics;
 class BaseOverlay;

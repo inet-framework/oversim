@@ -25,13 +25,13 @@
 #define __CONNECTIVITYPROBE_H__
 
 #include "common/OverSimDefs.h"
-#include <NodeHandle.h>
-#include <VastDefs.h>
-//#include <NeighborsList.h>
-#include <Vast.h>
+#include "common/NodeHandle.h"
+#include "overlay/vast/VastDefs.h"
+//#include "NeighborsList.h"
+#include "overlay/vast/Vast.h"
 #include <fstream>
 #include <sstream>
-#include "GlobalStatisticsAccess.h"
+#include "common/GlobalStatisticsAccess.h"
 
 //typedef std::set<NodeHandle> NodeSet;
 

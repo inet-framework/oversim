@@ -28,14 +28,14 @@
 
 #include "common/OverSimDefs.h"
 
-#include <NodeHandle.h>
-#include <NodeVector.h>
+#include "common/NodeHandle.h"
+#include "common/NodeVector.h"
 
-#include "PastryStateObject.h"
-#include "PastryTypes.h"
-#include "PastryMessage_m.h"
+#include "overlay/pastry/PastryStateObject.h"
+#include "overlay/pastry/PastryTypes.h"
+#include "overlay/pastry/PastryMessage_m.h"
 
-#include "BasePastry.h"
+#include "overlay/pastry/BasePastry.h"
 
 class BasePastry;
 

@@ -22,7 +22,7 @@
  * @author Stephan Krause
  */
 
-#include <QuonHelper.h>
+#include "overlay/quon/QuonHelper.h"
 
 QuonAOI::QuonAOI(bool useSquareMetric)
 {

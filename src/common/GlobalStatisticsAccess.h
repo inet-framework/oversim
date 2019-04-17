@@ -25,7 +25,7 @@
 #define __GLOBALSTATISTICS_ACCESS_H__
 
 #include "common/OverSimDefs.h"
-#include "GlobalStatistics.h"
+#include "common/GlobalStatistics.h"
 
 /**
  * Gives access to the GlobalStatistics module.

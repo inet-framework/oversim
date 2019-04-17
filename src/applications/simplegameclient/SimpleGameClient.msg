@@ -21,9 +21,9 @@
 //
 
 cplusplus {{
-    #include <NodeHandle.h>
-    #include <OverlayKey.h>
-    #include <Vector2D.h>
+    #include "common/NodeHandle.h"
+    #include "common/OverlayKey.h"
+    #include "common/Vector2D.h"
 }}
 
 

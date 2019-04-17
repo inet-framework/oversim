@@ -24,10 +24,10 @@
 #ifndef __CHORD_H_
 #define __CHORD_H_
 
-#include <BaseOverlay.h>
-#include <NeighborCache.h>
+#include "common/BaseOverlay.h"
+#include "common/NeighborCache.h"
 
-#include "ChordMessage_m.h"
+#include "overlay/chord/ChordMessage_m.h"
 
 namespace oversim {
 

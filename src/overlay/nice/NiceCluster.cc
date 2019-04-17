@@ -22,7 +22,7 @@
  */
 
 
-#include "NiceCluster.h"
+#include "overlay/nice/NiceCluster.h"
 
 // Constructor *****************************************************************
 NiceCluster::NiceCluster()

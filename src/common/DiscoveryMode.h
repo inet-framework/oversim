@@ -10,9 +10,9 @@
 
 #include "common/OverSimDefs.h"
 
-#include <RpcListener.h>
-#include <NeighborCache.h>
-#include <DiscoveryMode_m.h>
+#include "common/RpcListener.h"
+#include "common/NeighborCache.h"
+#include "common/DiscoveryMode_m.h"
 
 class BasePastry;
 

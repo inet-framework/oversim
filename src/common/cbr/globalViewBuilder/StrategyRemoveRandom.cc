@@ -21,8 +21,8 @@
  * @author Daniel Lienert
  */
 
-#include "StrategyRemoveRandom.h"
-#include <GlobalViewBuilder.h>
+#include "common/cbr/globalViewBuilder/StrategyRemoveRandom.h"
+#include "common/cbr/GlobalViewBuilder.h"
 
 StrategyRemoveRandom::StrategyRemoveRandom() {
 }

@@ -21,7 +21,7 @@
  */
 
 
-#include "KademliaBucket.h"
+#include "overlay/kademlia/KademliaBucket.h"
 
 KademliaBucket::KademliaBucket(uint16_t maxSize,
                                const Comparator<OverlayKey>* comparator)

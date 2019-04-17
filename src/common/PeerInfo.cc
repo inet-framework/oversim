@@ -21,7 +21,7 @@
  * @author Stephan Krause
  */
 
-#include "PeerInfo.h"
+#include "common/PeerInfo.h"
 
 PeerInfo::PeerInfo(uint32_t type, int moduleId, cObject** context)
 {

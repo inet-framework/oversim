@@ -21,7 +21,7 @@
  */
 
 
-#include <KademliaNodeHandle.h>
+#include "overlay/kademlia/KademliaNodeHandle.h"
 
 
 std::ostream& operator<<(std::ostream& os, const MarkedNodeHandle& n)

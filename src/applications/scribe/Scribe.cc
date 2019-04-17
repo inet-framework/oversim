@@ -23,11 +23,11 @@
 
 #include <assert.h>
 
-#include <BaseApp.h>
-#include "Scribe.h"
-#include <GlobalStatistics.h>
+#include "common/BaseApp.h"
+#include "applications/scribe/Scribe.h"
+#include "common/GlobalStatistics.h"
 
-#include "Comparator.h"
+#include "common/Comparator.h"
 
 Define_Module(Scribe);
 
@@ -235,7 +235,7 @@ void Scribe::handleReadyMessage( CompReadyMessage* msg )
         readyMsg->setComp( getThisCompType() );
 
         send( readyMsg, "to_upperTier" );
-        
+
         startTimer( subscriptionTimer );
     }
     delete msg;

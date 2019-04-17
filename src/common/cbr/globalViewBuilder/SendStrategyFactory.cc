@@ -21,7 +21,7 @@
  * @author Daniel Lienert
  */
 
-#include "SendStrategyFactory.h"
+#include "common/cbr/globalViewBuilder/SendStrategyFactory.h"
 
 
 SendStrategyFactory::SendStrategyFactory() {

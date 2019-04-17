@@ -26,7 +26,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include "GiaNeighborCandidateList.h"
+#include "overlay/gia/GiaNeighborCandidateList.h"
 
 
 uint32_t GiaNeighborCandidateList::getSize()

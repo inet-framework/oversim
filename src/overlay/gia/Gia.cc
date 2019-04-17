@@ -23,15 +23,15 @@
 
 #include <assert.h>
 
-#include <inet/transportlayer/contract/udp/UDPControlInfo_m.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <GlobalStatistics.h>
-#include <CommonMessages_m.h>
-#include <ExtAPIMessages_m.h>
-#include <inet/common/InitStages.h>
-#include <BootstrapList.h>
+#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/GlobalStatistics.h"
+#include "common/CommonMessages_m.h"
+#include "common/ExtAPIMessages_m.h"
+#include "inet/common/InitStages.h"
+#include "common/BootstrapList.h"
 
-#include "Gia.h"
+#include "overlay/gia/Gia.h"
 
 
 Define_Module(Gia);

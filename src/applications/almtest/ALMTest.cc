@@ -23,8 +23,8 @@
  */
 
 #include <assert.h>
-#include "ALMTest.h"
-#include "ALMTestTracedMessage_m.h"
+#include "applications/almtest/ALMTest.h"
+#include "applications/almtest/ALMTestTracedMessage_m.h"
 
 Define_Module(ALMTest);
 

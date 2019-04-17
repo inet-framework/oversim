@@ -26,12 +26,12 @@
 #define __CONNECTIVITYPROBEQUON_H__
 
 #include "common/OverSimDefs.h"
-#include <NodeHandle.h>
-#include <QuonHelper.h>
-#include <Quon.h>
+#include "common/NodeHandle.h"
+#include "overlay/quon/QuonHelper.h"
+#include "overlay/quon/Quon.h"
 #include <fstream>
 #include <sstream>
-#include "GlobalStatisticsAccess.h"
+#include "common/GlobalStatisticsAccess.h"
 
 class QuonTopologyNode
 {

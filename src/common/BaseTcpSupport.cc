@@ -21,10 +21,10 @@
  * @author Bernhard Mueller
  */
 
-#include "BaseTcpSupport.h"
-#include <GlobalStatisticsAccess.h>
-#include <inet/transportlayer/contract/udp/UDPSocket.h>
-#include <inet/transportlayer/contract/tcp/TCPCommand_m.h>
+#include "common/BaseTcpSupport.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "inet/transportlayer/contract/tcp/TCPCommand_m.h"
 #include "common/OverSimDefs.h"
 
 void BaseTcpSupport::handleTCPMessage(cMessage* msg)

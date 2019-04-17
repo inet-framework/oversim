@@ -26,11 +26,11 @@
 #define __CONNECTIVITYPROBEAPP_H__
 
 
-#include <SimpleGameClient.h>
-#include <NodeHandle.h>
-#include <Vector2D.h>
+#include "applications/simplegameclient/SimpleGameClient.h"
+#include "common/NodeHandle.h"
+#include "common/Vector2D.h"
 #include "common/OverSimDefs.h"
-#include "GlobalStatisticsAccess.h"
+#include "common/GlobalStatisticsAccess.h"
 
 class ConnectivityProbeApp : public cSimpleModule
 {

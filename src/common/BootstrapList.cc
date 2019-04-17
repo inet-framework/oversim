@@ -21,18 +21,18 @@
  * @author Bin Zheng, Ingmar Baumgart
  */
 
-#include <BaseApp.h>
-#include <BootstrapList.h>
-#include <GlobalNodeList.h>
-#include <BaseOverlay.h>
-#include <NeighborCache.h>
-#include <UnderlayConfiguratorAccess.h>
-#include <ZeroconfConnector.h>
-#include <CommonMessages_m.h>
-#include <hashWatch.h>
+#include "common/BaseApp.h"
+#include "common/BootstrapList.h"
+#include "common/GlobalNodeList.h"
+#include "common/BaseOverlay.h"
+#include "common/NeighborCache.h"
+#include "common/UnderlayConfiguratorAccess.h"
+#include "underlay/singlehostunderlay/ZeroconfConnector.h"
+#include "common/CommonMessages_m.h"
+#include "common/hashWatch.h"
 
-#include <fstream>
-#include <iostream>
+#include "fstream"
+#include "iostream"
 
 using namespace std;
 

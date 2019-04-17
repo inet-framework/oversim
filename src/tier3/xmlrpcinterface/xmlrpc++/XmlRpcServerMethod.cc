@@ -4,8 +4,8 @@
  * @author Chris Morley
  */
 
-#include "XmlRpcServerMethod.h"
-#include "XmlRpcServer.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServerMethod.h"
+#include "tier3/xmlrpcinterface/xmlrpc++/XmlRpcServer.h"
 
 namespace XmlRpc {
 

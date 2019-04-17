@@ -24,8 +24,8 @@
 #ifndef COORDDATACONTAINER_H_
 #define COORDDATACONTAINER_H_
 
-#include<oversim_mapset.h>
-#include<vector>
+#include "common/oversim_mapset.h"
+#include <vector>
 
 class CoordDataContainer {
 

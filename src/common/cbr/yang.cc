@@ -6,7 +6,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
-#include "yang.h"
+#include "common/cbr/yang.h"
 
 void error(const char* v) {
   std::cout << v << "\n";

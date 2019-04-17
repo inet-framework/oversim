@@ -21,10 +21,10 @@
  * @author Ingmar Baumgart
  */
 
-#include <TransportAddress.h>
-#include <UnderlayConfigurator.h>
+#include "common/TransportAddress.h"
+#include "common/UnderlayConfigurator.h"
 
-#include "NoChurn.h"
+#include "common/NoChurn.h"
 
 Define_Module(NoChurn);
 

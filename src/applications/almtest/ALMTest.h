@@ -26,9 +26,9 @@
 #ifndef __ALMTEST_H_
 #define __ALMTEST_H_
 
-#include "BaseApp.h"
-#include "CommonMessages_m.h"
-#include "MessageObserver.h"
+#include "common/BaseApp.h"
+#include "common/CommonMessages_m.h"
+#include "applications/almtest/MessageObserver.h"
 
 class ALMTest : public BaseApp {
 public:

@@ -20,21 +20,21 @@
  * @author Sebastian Mies, Ingmar Baumgart, Bernhard Heep
  */
 
-#include "Kademlia.h"
-#include "KademliaMessage_m.h"
+#include "overlay/kademlia/Kademlia.h"
+#include "overlay/kademlia/KademliaMessage_m.h"
 
 #include <assert.h>
 #include <algorithm>
 
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
-#include "TopologyVis.h"
-#include <AbstractLookup.h>
-#include <LookupListener.h>
-#include <RpcMacros.h>
-#include <BootstrapList.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "common/TopologyVis.h"
+#include "common/AbstractLookup.h"
+#include "common/LookupListener.h"
+#include "common/RpcMacros.h"
+#include "common/BootstrapList.h"
 
 
 #if 0

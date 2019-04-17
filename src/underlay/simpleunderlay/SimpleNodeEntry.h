@@ -28,12 +28,12 @@
 
 
 #include "common/OverSimDefs.h"
-#include <inet/networklayer/common/L3Address.h>
+#include "inet/networklayer/common/L3Address.h"
 
 #include "inet/transportlayer/udp/UDPPacket_m.h"
 #include "inet/transportlayer/tcp_common/TCPSegment.h"
 
-#include "BaseLocation.h"
+#include "common/BaseLocation.h"
 
 
 class NodeRecord: public BaseLocation

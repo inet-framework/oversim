@@ -21,9 +21,9 @@
 //
 
 cplusplus {{
-#include <KademliaNodeHandle.h>
-#include <OverlayKey.h>
-#include <CommonMessages_m.h>
+#include "overlay/kademlia/KademliaNodeHandle.h"
+#include "common/OverlayKey.h"
+#include "common/CommonMessages_m.h"
 
 static const int ALIVEFLAG_L = 8;
 #define MARKEDNODEHANDLE_L (NODEHANDLE_L + ALIVEFLAG_L)

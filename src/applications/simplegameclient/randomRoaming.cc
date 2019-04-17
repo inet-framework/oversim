@@ -21,7 +21,7 @@
 * @author Helge Backhaus
 */
 
-#include "randomRoaming.h"
+#include "applications/simplegameclient/randomRoaming.h"
 
 randomRoaming::randomRoaming(double areaDimension, double speed, NeighborMap *Neighbors, GlobalCoordinator* coordinator, CollisionList* CollisionRect)
               :MovementGenerator(areaDimension, speed, Neighbors, coordinator, CollisionRect)

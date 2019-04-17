@@ -24,7 +24,7 @@
 #ifndef __NICECLUSTER_H_
 #define __NICECLUSTER_H_
 
-#include <BaseOverlay.h>
+#include "common/BaseOverlay.h"
 #include "common/OverSimDefs.h"
 
 class NiceCluster
@@ -37,7 +37,7 @@ private:
 
     /* leader of the cluster */
     TransportAddress leader;
-    
+
     /* last time of leader transfer */
     simtime_t lastLT;
 

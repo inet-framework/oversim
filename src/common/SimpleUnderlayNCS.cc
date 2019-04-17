@@ -21,12 +21,12 @@
  * @author Daniel Lienert
  */
 
-#include "SimpleUnderlayNCS.h"
+#include "common/SimpleUnderlayNCS.h"
 
-#include <GlobalNodeListAccess.h>
-#include <OverlayAccess.h>
-#include <SimpleNodeEntry.h>
-#include <SimpleInfo.h>
+#include "common/GlobalNodeListAccess.h"
+#include "common/OverlayAccess.h"
+#include "underlay/simpleunderlay/SimpleNodeEntry.h"
+#include "underlay/simpleunderlay/SimpleInfo.h"
 
 
 

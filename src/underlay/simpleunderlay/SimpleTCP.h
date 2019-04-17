@@ -34,8 +34,8 @@
 //#include <set>
 #include "common/OverSimDefs.h"
 #include "inet/networklayer/common/L3Address.h"
-#include <inet/transportlayer/tcp/TCPConnection.h>
-#include <inet/common/InitStages.h>
+#include "inet/transportlayer/tcp/TCPConnection.h"
+#include "inet/common/InitStages.h"
 
 using namespace inet;
 using namespace inet::tcp;

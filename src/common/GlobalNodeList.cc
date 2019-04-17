@@ -25,15 +25,15 @@
 
 #include "common/OverSimDefs.h"
 
-#include <BinaryValue.h>
-#include <OverlayKey.h>
-#include <PeerInfo.h>
-#include <BaseOverlay.h>
-#include <GlobalStatisticsAccess.h>
-#include <hashWatch.h>
-#include <BootstrapList.h>
+#include "common/BinaryValue.h"
+#include "common/OverlayKey.h"
+#include "common/PeerInfo.h"
+#include "common/BaseOverlay.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/hashWatch.h"
+#include "common/BootstrapList.h"
 
-#include "GlobalNodeList.h"
+#include "common/GlobalNodeList.h"
 
 Define_Module(GlobalNodeList);
 

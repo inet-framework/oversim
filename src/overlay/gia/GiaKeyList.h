@@ -23,7 +23,7 @@
 #ifndef __GIAKEYLIST_H_
 #define __GIAKEYLIST_H_
 
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 
 /**
  * This class is for managing (search)keys

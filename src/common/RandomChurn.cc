@@ -23,12 +23,12 @@
 
 #include <assert.h>
 
-#include <TransportAddress.h>
-#include <GlobalStatistics.h>
-#include <GlobalStatisticsAccess.h>
-#include <UnderlayConfigurator.h>
+#include "common/TransportAddress.h"
+#include "common/GlobalStatistics.h"
+#include "common/GlobalStatisticsAccess.h"
+#include "common/UnderlayConfigurator.h"
 
-#include "RandomChurn.h"
+#include "common/RandomChurn.h"
 
 Define_Module(RandomChurn);
 

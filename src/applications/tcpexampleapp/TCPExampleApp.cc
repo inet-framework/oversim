@@ -24,15 +24,15 @@
 
 #include <string>
 
-#include "UnderlayConfigurator.h"
-#include "GlobalStatistics.h"
-#include "GlobalNodeList.h"
+#include "common/UnderlayConfigurator.h"
+#include "common/GlobalStatistics.h"
+#include "common/GlobalNodeList.h"
 #include "inet/networklayer/common/L3AddressResolver.h"
-#include "BootstrapList.h"
+#include "common/BootstrapList.h"
 
 using namespace std;
 
-#include "TCPExampleApp.h"
+#include "applications/tcpexampleapp/TCPExampleApp.h"
 
 Define_Module(TCPExampleApp);
 

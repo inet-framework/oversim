@@ -26,16 +26,16 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
-#include <SHA1.h>
-#include <CommonMessages_m.h>
+#include "common/OverlayKey.h"
+#include "common/SHA1.h"
+#include "common/CommonMessages_m.h"
 
-#include <BaseApp.h>
-#include <RpcMacros.h>
+#include "common/BaseApp.h"
+#include "common/RpcMacros.h"
 
 class XmlRpcInterface;
 
-#include "P2pnsCache.h"
+#include "tier2/p2pns/P2pnsCache.h"
 
 /**
  * Implementation of "P2PNS: A distributed name service for P2PSIP"

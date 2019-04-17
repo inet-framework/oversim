@@ -26,7 +26,7 @@
 #define __I3IDENTIFIER_H__
 
 #include "common/OverSimDefs.h"
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 
 /** Implementation of an Internet Indirection Infrastructure identifier.
 * An identifier is an array of bits of size m, containing a prefix of size k.

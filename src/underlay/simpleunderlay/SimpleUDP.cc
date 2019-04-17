@@ -30,13 +30,13 @@
 
 #include "common/OverSimDefs.h"
 
-#include <CommonMessages_m.h>
-#include <GlobalNodeListAccess.h>
-#include <GlobalStatisticsAccess.h>
+#include "common/CommonMessages_m.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/GlobalStatisticsAccess.h"
 
-#include <SimpleInfo.h>
+#include "underlay/simpleunderlay/SimpleInfo.h"
 #include "inet/transportlayer/udp/UDPPacket.h"
-#include "SimpleUDP.h"
+#include "underlay/simpleunderlay/SimpleUDP.h"
 #include "inet/networklayer/contract/ipv4/IPv4ControlInfo.h"
 #include "inet/networklayer/contract/ipv6/IPv6ControlInfo.h"
 

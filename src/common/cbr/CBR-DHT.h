@@ -26,16 +26,16 @@
 
 #include "common/OverSimDefs.h"
 
-#include <OverlayKey.h>
-#include <SHA1.h>
-#include <CommonMessages_m.h>
+#include "common/OverlayKey.h"
+#include "common/SHA1.h"
+#include "common/CommonMessages_m.h"
 
-#include "CBR-DHTMessage_m.h"
-#include "DHTMessage_m.h"
-#include "DHTDataStorage.h"
+#include "common/cbr/CBR-DHTMessage_m.h"
+#include "applications/dht/DHTMessage_m.h"
+#include "applications/dht/DHTDataStorage.h"
 
-#include "BaseApp.h"
-#include <RpcMacros.h>
+#include "common/BaseApp.h"
+#include "common/RpcMacros.h"
 
 class CoordBasedRouting;
 class NeighborCache;

@@ -24,12 +24,12 @@
 #include <iostream>
 #include <assert.h>
 
-#include <UnderlayConfigurator.h>
-#include <LookupListener.h>
-#include <BaseOverlay.h>
-#include <GlobalStatistics.h>
+#include "common/UnderlayConfigurator.h"
+#include "common/LookupListener.h"
+#include "common/BaseOverlay.h"
+#include "common/GlobalStatistics.h"
 
-#include "IterativeLookup.h"
+#include "common/IterativeLookup.h"
 
 using namespace std;
 

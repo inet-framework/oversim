@@ -21,7 +21,7 @@
  * @author Bin Zheng + avahi example code
  */
 
-#include "ZeroconfConnector.h"
+#include "underlay/singlehostunderlay/ZeroconfConnector.h"
 
 Define_Module(ZeroconfConnector);
 
@@ -37,9 +37,9 @@ Define_Module(ZeroconfConnector);
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#include <BaseOverlay.h>
-#include <GlobalNodeListAccess.h>
-#include <BootstrapList.h>
+#include "common/BaseOverlay.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/BootstrapList.h"
 
 using namespace std;
 

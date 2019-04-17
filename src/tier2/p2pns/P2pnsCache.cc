@@ -23,7 +23,7 @@
 
 #include "common/OverSimDefs.h"
 
-#include "P2pnsCache.h"
+#include "tier2/p2pns/P2pnsCache.h"
 
 Define_Module(P2pnsCache);
 

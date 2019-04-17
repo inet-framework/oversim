@@ -32,11 +32,11 @@ class OverlayKey;
 class CommonAPIMessage;
 
 #include "common/OverSimDefs.h"
-#include <inet/transportlayer/contract/udp/UDPSocket.h>
-#include "NodeVector.h"
-#include <BaseRpc.h>
-#include <BaseTcpSupport.h>
-#include <BaseOverlay.h>
+#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "common/NodeVector.h"
+#include "common/BaseRpc.h"
+#include "common/BaseTcpSupport.h"
+#include "common/BaseOverlay.h"
 
 
 /**

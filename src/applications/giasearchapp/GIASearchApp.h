@@ -17,8 +17,8 @@
 //
 
 /**
- * @file GIASearchApp.h 
- * @author Robert Palmer 
+ * @file GIASearchApp.h
+ * @author Robert Palmer
  */
 
 #ifndef __GIASEARCHAPP_H_
@@ -28,17 +28,17 @@
 
 #include "common/OverSimDefs.h"
 
-#include <BaseApp.h>
-#include <GlobalNodeList.h>
-#include <UnderlayConfigurator.h>
-#include <OverlayKey.h>
-#include "SearchMsgBookkeeping.h"
+#include "common/BaseApp.h"
+#include "common/GlobalNodeList.h"
+#include "common/UnderlayConfigurator.h"
+#include "common/OverlayKey.h"
+#include "applications/giasearchapp/SearchMsgBookkeeping.h"
 
 
 /**
  * Gia search test application
- * 
- * Gia search test application, sends periodically SEARCH-Messages and collects statistical data. 
+ *
+ * Gia search test application, sends periodically SEARCH-Messages and collects statistical data.
  *
  * @see BaseApp
  */

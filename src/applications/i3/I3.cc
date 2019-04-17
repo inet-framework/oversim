@@ -20,29 +20,29 @@
  * @author Antonio Zea
  */
 
-#include <UDPAppBase.h>
-#include <inet/transportlayer/contract/udp/UDPControlInfo_m.h>
+#include "applications/UDPAppBase.h"
+#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
 #include "inet/transportlayer/contract/udp/UDPSocket.h"
 #include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
 
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <CommonMessages_m.h>
-#include <GlobalNodeListAccess.h>
-#include <UnderlayConfiguratorAccess.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/CommonMessages_m.h"
+#include "common/GlobalNodeListAccess.h"
+#include "common/UnderlayConfiguratorAccess.h"
 
 #include "common/OverSimDefs.h"
-#include <OverlayKey.h>
-#include "SHA1.h"
+#include "common/OverlayKey.h"
+#include "common/SHA1.h"
 
-#include "TriggerTable.h"
-#include "I3Identifier.h"
-#include "I3IPAddress.h"
-#include "I3SubIdentifier.h"
-#include "I3IdentifierStack.h"
-#include "I3Trigger.h"
-#include "I3Message_m.h"
-#include "I3Message.h"
-#include "I3.h"
+#include "applications/i3/TriggerTable.h"
+#include "applications/i3/I3Identifier.h"
+#include "applications/i3/I3IPAddress.h"
+#include "applications/i3/I3SubIdentifier.h"
+#include "applications/i3/I3IdentifierStack.h"
+#include "applications/i3/I3Trigger.h"
+#include "applications/i3/I3Message_m.h"
+#include "applications/i3/I3Message.h"
+#include "applications/i3/I3.h"
 
 using namespace std;
 

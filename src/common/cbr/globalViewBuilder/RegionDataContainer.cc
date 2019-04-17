@@ -21,7 +21,7 @@
  * @author Daniel Lienert
  */
 
-#include "RegionDataContainer.h"
+#include "common/cbr/globalViewBuilder/RegionDataContainer.h"
 
 RegionDataContainer::RegionDataContainer()
 {

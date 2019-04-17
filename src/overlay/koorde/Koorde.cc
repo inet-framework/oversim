@@ -20,13 +20,13 @@
  * @file Koorde.cc
  * @author Jochen Schenk, Ingmar Baumgart
  */
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/common/L3Address.h>
-#include <inet/networklayer/contract/IInterfaceTable.h>
-#include <inet/networklayer/ipv4/IPv4InterfaceData.h>
-#include <GlobalStatistics.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "inet/networklayer/common/L3Address.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
+#include "common/GlobalStatistics.h"
 
-#include "Koorde.h"
+#include "overlay/koorde/Koorde.h"
 
 using namespace std;
 

@@ -25,8 +25,8 @@
 #define __SIMPLEINFO_H__
 
 #include "common/OverSimDefs.h"
-#include <PeerInfo.h>
-#include <SimpleNodeEntry.h>
+#include "common/PeerInfo.h"
+#include "underlay/simpleunderlay/SimpleNodeEntry.h"
 
 class SimpleInfo : public PeerInfo
 {

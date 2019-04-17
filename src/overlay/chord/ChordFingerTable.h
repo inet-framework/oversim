@@ -29,8 +29,8 @@
 
 #include "common/OverSimDefs.h"
 
-#include <NodeVector.h>
-#include <inet/common/InitStages.h>
+#include "common/NodeVector.h"
+#include "inet/common/InitStages.h"
 
 class BaseOverlay;
 

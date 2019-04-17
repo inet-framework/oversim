@@ -26,7 +26,7 @@
 
 
 #include "common/OverSimDefs.h"
-#include "GlobalParameters.h"
+#include "common/GlobalParameters.h"
 
 
 /**

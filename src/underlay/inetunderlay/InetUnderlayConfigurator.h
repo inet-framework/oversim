@@ -29,7 +29,7 @@
 #include "common/OverSimDefs.h"
 #include "inet/networklayer/common/L3Address.h"
 
-#include <UnderlayConfigurator.h>
+#include "common/UnderlayConfigurator.h"
 
 using namespace inet;
 

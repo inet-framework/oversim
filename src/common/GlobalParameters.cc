@@ -22,9 +22,9 @@
  */
 
 #include "common/OverSimDefs.h"
-#include <OverlayKey.h>
+#include "common/OverlayKey.h"
 
-#include "GlobalParameters.h"
+#include "common/GlobalParameters.h"
 
 Define_Module(GlobalParameters);
 

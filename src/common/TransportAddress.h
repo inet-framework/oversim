@@ -27,10 +27,10 @@
 #define __TRANSPORTADDRESS_H_
 
 //#include <stdint.h>
-#include <oversim_mapset.h>
+#include "common/oversim_mapset.h"
 
 #include "common/OverSimDefs.h"
-#include <inet/networklayer/common/L3Address.h>
+#include "inet/networklayer/common/L3Address.h"
 
 using namespace inet;
 

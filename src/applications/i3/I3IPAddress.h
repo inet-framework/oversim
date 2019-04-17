@@ -25,8 +25,8 @@
 #define __I3IPADDRESS_H__
 
 #include "common/OverSimDefs.h"
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <TransportAddress.h>
+#include "inet/networklayer/common/L3AddressResolver.h"
+#include "common/TransportAddress.h"
 
 /** A simple wrapper around an L3Address and a port. */
 struct I3IPAddress : public TransportAddress {
