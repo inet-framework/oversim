@@ -1,7 +1,7 @@
 INETDIR = `pwd`/../../inet
 REASEDIR = `pwd`/../../ReaSE
 
-BUILD_OPTIONS = -f --deep -I. -I$(INETDIR)/src -L$(INETDIR)/src -l'INET$$D' -KINET_PROJ=$(INETDIR)
+BUILD_OPTIONS = -f --deep -o OverSim -I. -I$(INETDIR)/src -L$(INETDIR)/src -l'INET$$D' -KINET_PROJ=$(INETDIR)
 
 ifeq "$(REASE)" "true"
 	BUILD_OPTIONS += -lrease -L$(REASEDIR)/src -KREASE_PROJ=$(REASEDIR)
