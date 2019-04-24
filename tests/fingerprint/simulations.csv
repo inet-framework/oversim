@@ -31,7 +31,7 @@
 /simulations/,                       -f omnetpp.ini -c SimMud -r 0,                    300s,         93c1-59d9/tplx
 /simulations/,                       -f omnetpp.ini -c NTree -r 0,                     300s,         3b33-1964/tplx
 /simulations/,                       -f omnetpp.ini -c PubSubMMOG -r 0,                300s,         bca6-e524/tplx
-/simulations/,                       -f omnetpp.ini -c Vast -r 0,                      300s,         0000-0000/tplx
+/simulations/,                       -f omnetpp.ini -c Vast -r 0,                      100s,         6f6a-e001/tplx
 /simulations/,                       -f omnetpp.ini -c Quon -r 0,                      100s,         317d-f98e/tplx
 /simulations/,                       -f omnetpp.ini -c QuonLoginCache -r 0,            100s,         a360-722f/tplx
 /simulations/,                       -f omnetpp.ini -c QuonGroup -r 0,                 100s,         794d-f3a1/tplx
