@@ -36,14 +36,14 @@ doxy:
 	doxygen doxy.cfg
 	
 verify:
-	cd simulations && ../src/OverSim -fverify.ini -cChord | grep Fingerprint
-	cd simulations && ../src/OverSim -fverify.ini -cKoorde | grep Fingerprint
-	cd simulations && ../src/OverSim -fverify.ini -cKademlia | grep Fingerprint
-	cd simulations && ../src/OverSim -fverify.ini -cBroose | grep Fingerprint
-	cd simulations && ../src/OverSim -fverify.ini -cPastry | grep Fingerprint
-	cd simulations && ../src/OverSim -fverify.ini -cBamboo | grep Fingerprint
-	cd simulations && ../src/OverSim -fverify.ini -cKademliaInet | grep Fingerprint
-	cd simulations && ../src/OverSim -fverify.ini -cChordSource | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cChord | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cKoorde | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cKademlia | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cBroose | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cPastry | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cBamboo | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cKademliaInet | grep Fingerprint
+	cd simulations && ../src/OverSim_dbg -fverify.ini -cChordSource | grep Fingerprint
 
 dist: makefiles
 	cd src && $(MAKE) MODE=release

@@ -36,6 +36,7 @@ precompiled_*.h.*
 .buildlog*
 
 # ignore binary files
+src/OverSim*
 out/
 *.so
 *.dylib
