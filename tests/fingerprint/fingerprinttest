@@ -34,7 +34,7 @@ from StringIO import StringIO
 oversimRoot = os.path.abspath("../..")
 sep = ";" if sys.platform == 'win32' else ':'
 nedPath = oversimRoot + "/src" + sep + oversimRoot + "/simulations"
-executable = oversimRoot + "/src/oversim_dbg"
+executable = oversimRoot + "/src/OverSim_dbg"
 cpuTimeLimit = "3000s"
 logFile = "test.out"
 extraOppRunArgs = ""
