@@ -29,6 +29,7 @@ from optparse import OptionParser
 from matplotlib.font_manager import fontManager, FontProperties
 from string import maketrans
 import re
+import shlex
 
 def sortedDictValues(adict):
     keys = adict.keys()
@@ -121,7 +122,7 @@ for infilename in args[2:]:
                     valuemap[vars]={}
 
             # find xvar
-            if line.startswith("attr " + args[0] + " "):
+            if line.startswith("attr " + args[0] + " ") or line.startswith("itervar " + args[0] + " "):
                 xvarFound = True
                 bucket = float(line.split(" ", 3)[2])
             
@@ -141,7 +142,7 @@ for infilename in args[2:]:
             splitline = line.split(" ", 1)
             if splitline[0] != "scalar":
                 continue
-            splitline = splitline[1].split("\t")
+            splitline = shlex.split(splitline[1], "\s", posix=False)
             # if y scalar regexp matches the line
             yParMatch = yParRegex.match(splitline[1])
             if yParMatch:
